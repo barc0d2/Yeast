@@ -1,0 +1,500 @@
+.list {
+    position: relative;
+    width: 847px;
+    height: 306px;
+    background-color: var(--fontlightgray);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid;
+    border-color: #6e6e6e;
+  }
+  
+  .list .overlap-group {
+    position: absolute;
+    width: 806px;
+    height: 220px;
+    top: 64px;
+    left: 20px;
+  }
+  
+  .list .table {
+    width: 806px;
+    position: absolute;
+    height: 220px;
+    top: 0;
+    left: 0;
+  }
+  
+  .list .div {
+    display: flex;
+    flex-direction: column;
+    width: 636px;
+    align-items: center;
+    gap: 16px;
+    background-color: #ffffff;
+    position: absolute;
+    height: 220px;
+    top: 0;
+    left: 0;
+  }
+  
+  .list .navbar {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 33px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .list .number {
+    width: 46px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    line-height: var(--head-kakao-24px-line-height);
+    white-space: nowrap;
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .company {
+    width: 83px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    line-height: var(--head-kakao-24px-line-height);
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .type {
+    position: relative;
+    align-self: stretch;
+    width: 66px;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 32px;
+    white-space: nowrap;
+  }
+  
+  .list .name {
+    position: relative;
+    align-self: stretch;
+    width: 101px;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .text-wrapper {
+    position: relative;
+    align-self: stretch;
+    width: 79px;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 32px;
+    white-space: nowrap;
+  }
+  
+  .list .navbar-2 {
+    display: flex;
+    width: 619px;
+    align-items: flex-start;
+    gap: 33px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .list .number-2 {
+    position: relative;
+    width: 46px;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .company-2 {
+    position: relative;
+    width: 83px;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .type-2 {
+    width: 66px;
+    font-family: "Kakao OTF-Regular", Helvetica;
+    font-weight: 400;
+    line-height: 32px;
+    white-space: nowrap;
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  
+  .list .name-2 {
+    width: 101px;
+    font-family: "Kakao OTF-Regular", Helvetica;
+    font-weight: 400;
+    line-height: 32px;
+    white-space: nowrap;
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  
+  .list .price {
+    width: 79px;
+    font-family: "Kakao OTF-Regular", Helvetica;
+    font-weight: 400;
+    line-height: 32px;
+    white-space: nowrap;
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  
+  .list .select {
+    position: relative;
+    width: 79px;
+    height: 34px;
+  }
+  
+  .list .ellipse {
+    background-color: var(--stateinfo);
+    border-color: var(--linelightgray);
+    position: relative;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    left: 28px;
+    border-radius: 12px;
+    border: 1px solid;
+  }
+  
+  .list .number-3 {
+    align-self: stretch;
+    position: relative;
+    width: 46px;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .ellipse-2 {
+    background-color: var(--variable-collection-button-white);
+    border-color: var(--lineblack);
+    position: relative;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    left: 28px;
+    border-radius: 12px;
+    border: 1px solid;
+  }
+  
+  .list .company-3 {
+    align-self: stretch;
+    white-space: nowrap;
+    position: relative;
+    width: 83px;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .ellipse-3 {
+    background-color: var(--inputwhite);
+    border-color: var(--lineblack);
+    position: relative;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    left: 28px;
+    border-radius: 12px;
+    border: 1px solid;
+  }
+  
+  .list .amount {
+    position: absolute;
+    width: 156px;
+    height: 30px;
+    top: 0;
+    left: 645px;
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+  
+  .list .amount-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    top: 1px;
+    left: 8px;
+  }
+  
+  .list .line {
+    width: fit-content;
+    line-height: normal;
+    white-space: nowrap;
+    position: relative;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  
+  .list .line-2 {
+    width: 82px;
+    line-height: normal;
+    position: relative;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  
+  .list .total-price {
+    display: flex;
+    flex-direction: column;
+    width: 158px;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 37px;
+    left: 648px;
+  }
+  
+  .list .line-3 {
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .list .line-4 {
+    align-self: stretch;
+    text-align: right;
+    position: relative;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .list .price-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .list .line-5 {
+    flex: 1;
+    margin-top: -1.00px;
+    position: relative;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .list .click {
+    position: absolute;
+    width: 156px;
+    height: 72px;
+    top: 148px;
+    left: 645px;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: var(--fontlightgray);
+  }
+  
+  .list .text {
+    position: relative;
+    width: 97px;
+    height: 34px;
+    top: 19px;
+    left: 29px;
+  }
+  
+  .list .add {
+    position: absolute;
+    height: 34px;
+    top: -1px;
+    left: 8px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: var(--variable-collection-font-yellow2);
+    font-size: var(--head-kakao-24px-font-size);
+    text-align: center;
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .bread-list {
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 22px;
+  }
+  
+  .list .line-6 {
+    align-self: stretch;
+    width: 131px;
+    line-height: var(--head-kakao-24px-line-height);
+    white-space: nowrap;
+    position: relative;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    color: #000000;
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    font-style: var(--head-kakao-24px-font-style);
+  }
+  
+  .list .div-2 {
+    display: inline-flex;
+    height: 40px;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 6px;
+    position: relative;
+    flex: 0 0 auto;
+    margin-top: -5.00px;
+    margin-bottom: -5.00px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid;
+    border-color: #bfbfbf;
+  }
+  
+  .list .text-wrapper-2 {
+    position: relative;
+    width: 73.19px;
+    height: 36.26px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 32px;
+    white-space: nowrap;
+  }
+  
+  .list .vector {
+    position: relative;
+    width: 20.25px;
+    height: 12.82px;
+    margin-right: -2.40px;
+  }
+  
+  .list .search-bar {
+    position: absolute;
+    width: 156px;
+    height: 30px;
+    top: 20px;
+    left: 430px;
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+  
+  .list .search {
+    display: flex;
+    width: 156px;
+    height: 30px;
+    align-items: center;
+    position: relative;
+  }
+  
+  .list .rectangle {
+    position: relative;
+    align-self: stretch;
+    width: 132px;
+    background-color: #ffffff;
+    border-radius: 10px 0px 0px 10px;
+  }
+  
+  .list .search-icon {
+    position: relative;
+    width: 21.6px;
+    height: 22.6px;
+  }
+  
