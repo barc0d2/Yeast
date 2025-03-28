@@ -37,13 +37,13 @@
     position: relative;
     width: 539px;
     height: 78px;
-    border-bottom-width: 3px;
-    border-bottom-style: solid;
-    border-color: var(--linedarkgray);
   }
   
   .div-wrapper .line {
     position: absolute;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-color: var(--linedarkgray);
     top: -3px;
     left: 0;
     font-family: var(--head-kakao-56px-font-family);

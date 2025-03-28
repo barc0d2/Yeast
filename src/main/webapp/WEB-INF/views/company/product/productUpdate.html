@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/globals/productUpdate.css" />
     <link rel="stylesheet" href="css/style/productUpdate.css" />
     <link rel="stylesheet" href="css/styleguide/productUpdate.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
   <body>
     <div class="main">
@@ -16,32 +17,37 @@
           </p>
           <div class="right-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수정 / 삭제</div>
         </header>
-        <div class="form">
-          <div class="image"><div class="frame"></div></div>
+        <div class="form" enctype="multipart/form-data" method="post" action="">
+          <div >
+            <img id="thumbnail" class="image" onclick="chooseFile('.file-image')">
+          </div>
+          <div style="display: none;">
+            <input type="file" class="file-image" name="image" required onchange="loadImg(this, '#thumbnail')">
+          </div>
           <div class="column">
             <div class="list">
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 종류</span> <span class="text-wrapper-3">*</span></p>
                 <div class="select">
-                  <div class="el">베이글</div>
+                  <input class="el" />
                   <img class="icon" src="img/icon.svg" />
                 </div>
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 이름</span> <span class="text-wrapper-3">*</span></p>
-                <div class="menu-name"><div class="text-wrapper-4">블랙올리브 베이글</div></div>
+                <div class="menu-name"><input class="text-wrapper-4"/></div>
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">가격</span> <span class="text-wrapper-3">*</span></p>
                 <div class="div-2">
-                  <div class="text-wrapper-4">3,600</div>
+                  <input class="text-wrapper-4"/>
                   <div class="text-wrapper-4">원</div>
                 </div>
               </div>
               <div class="menu-descript">
                 <div class="menu-descript-2">메뉴 설명</div>
                 <div class="menu-description">
-                  <p class="text-wrapper-5">블랙올리브 고소한 롤치즈가 들어간 짭조름하게 맛있는 베이글</p>
+                  <textarea class="text-wrapper-5" style="border: none; resize: none"></textarea>
                 </div>
               </div>
             </div>
@@ -50,34 +56,65 @@
                 <div class="div">
                   <div class="text-wrapper-6">메뉴 칼로리</div>
                   <div class="div-2">
-                    <div class="text-wrapper-4">230</div>
+                    <input class="text-wrapper-4"/>
                     <div class="text-wrapper-4">kcal</div>
                   </div>
                 </div>
                 <div class="menu-info">
                   <div class="menu-info-2">메뉴 알레르기 정보</div>
-                  <div class="info"><div class="text-wrapper-5">블랙올리브 베이글</div></div>
+                  <div class="info"><input class="text-wrapper-5"/></div>
                 </div>
                 <div class="sale-status">
                   <div class="text-wrapper-6">판매여부</div>
-                  <div class="push-bar"><div class="ellipse"></div></div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" checked>
+                  </div>
                 </div>
                 <div class="div">
                   <div class="text-wrapper-6">메뉴 등록일</div>
                   <div class="register-date">
-                    <div class="date">2025-03-19</div>
+                    <input class="date"/>
                     <img class="img" src="img/image.png" />
                   </div>
                 </div>
               </div>
               <div class="end">
-                <div class="update-btn"><div class="text-wrapper-7">수정</div></div>
-                <div class="delete-btn"><div class="text-wrapper-7">삭제</div></div>
+                <button class="update-btn"><div class="text-wrapper-7">수정</div></button>
+                <button class="delete-btn"><div class="text-wrapper-7">삭제</div></button>
               </div>
             </div>
           </div>
-        </div>
+        </input>
       </div>
     </div>
+    <script>
+      function loadImg(changeInput, targetImg){
+          //파일객체 -> files -> 선택된파일들이 담겨있음
+          console.log(changeInput.files[0])
+          const img = document.querySelector(targetImg);
+          console.log(img)
+          if(changeInput.files.length > 0){ //파일은 선택했을 때
+              //파일을 읽어들일 객체
+              const reader = new FileReader();
+  
+              //해당 파일을 읽얻들여 해당파일만의 고유한 url을 부여
+              //url : Base64로 인코딩된 데이터 url(파일을 실제로 표현하는 형식인 바이너리 코드를 텍스트문자열로 인코딩한 방식)
+              reader.readAsDataURL(changeInput.files[0]);
+  
+              //파일읽어들이기를 완료 했을 때 이벤트핸들러를 실행시켜줘
+              reader.onload = function(ev){
+                  img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
+              }
+  
+  
+          } else { //파일이 있었는데 선택 후 취소했을 때
+              img.src = null;
+          }
+      }
+      function chooseFile(selector){
+          const fileInput = document.querySelector(selector);
+          fileInput.click();
+      }
+  </script>
   </body>
 </html>

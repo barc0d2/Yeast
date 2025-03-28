@@ -221,6 +221,7 @@
   position: absolute;
   top: 0;
   left: 98px;
+  cursor: pointer;
 }
 
 .screen .delete-image {
@@ -255,6 +256,7 @@
   border-right-width: 1px;
   border-right-style: solid;
   border-color: var(--fontlightgray);
+  cursor: pointer;
 }
 
 .screen .pin-angle-fill {
@@ -276,6 +278,7 @@
   border-right-width: 1px;
   border-right-style: solid;
   border-color: var(--fontlightgray);
+  cursor: pointer;
 }
 
 .screen .pencil-write {

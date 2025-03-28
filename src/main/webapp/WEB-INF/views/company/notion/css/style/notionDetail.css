@@ -56,15 +56,15 @@
   position: relative;
   width: 539px;
   height: 78px;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-  border-color: var(--linedarkgray);
 }
 
 .div-wrapper .text-wrapper {
   position: absolute;
   top: -3px;
   left: 0;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-color: var(--linedarkgray);
   font-family: var(--head-kakao-56px-font-family);
   font-weight: var(--head-kakao-56px-font-weight);
   color: var(--fontdeepyellow);
@@ -168,7 +168,6 @@
   font-size: 32px;
   letter-spacing: 0;
   line-height: 44.8px;
-  white-space: nowrap;
 }
 
 .div-wrapper .close {
