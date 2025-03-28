@@ -122,12 +122,15 @@
   height: 97.94px;
 }
 
-.register .img {
+.register .gender {
   position: absolute;
   width: 214px;
   height: 59px;
   top: 39px;
   left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
 }
 
 .register .p {
@@ -157,6 +160,9 @@
   height: 59px;
   top: 39px;
   left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
   background-color: #ffffff;
   border: 1px solid;
   border-color: #9e896a;
@@ -223,16 +229,11 @@
 .register .frame-4 {
   display: flex;
   width: 482px;
+  height: 140px;
   align-items: flex-start;
   justify-content: space-between;
   position: relative;
   flex: 0 0 auto;
-}
-
-.register .add-image {
-  position: relative;
-  width: 121.38px;
-  height: 137.5px;
 }
 
 .register .group-7 {
@@ -278,6 +279,9 @@
   height: 58px;
   top: 39px;
   left: 0;
+  text-align: start;
+  padding-inline: 10%;
+  font-size: 15px;
   background-color: #ffffff;
   border-radius: 40px;
   border: 1px solid;
@@ -309,6 +313,9 @@
   height: 58px;
   top: 39px;
   left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
   background-color: #ffffff;
   border-radius: 40px;
   border: 1px solid;
@@ -366,19 +373,22 @@
   height: 97.59px;
 }
 
-.register .div-wrapper {
+.register .div-wrapper input[type="submit"] {
   display: flex;
   width: 647px;
   height: 53px;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 13px 46px;
   position: absolute;
   top: 773px;
   left: 172px;
   background-color: #9e896a;
   border-radius: 36px;
+}
+
+.div-wrapper input[type="submit"]:hover {
+  opacity: 0.9;
 }
 
 .register .text-wrapper-7 {
@@ -387,7 +397,9 @@
   font-family: "Kakao OTF-Bold", Helvetica;
   font-weight: 700;
   color: #ffffff;
+  background-color: #9e896a;
   font-size: 20px;
+  border: none;
   white-space: nowrap;
   letter-spacing: 0;
   line-height: normal;
@@ -417,4 +429,40 @@
   top: 23px;
   left: 121px;
   object-fit: cover;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-preview {
+  width: 167px;
+  height: 167px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.profile-preview:hover {
+  opacity: 0.7;
+}
+
+.profile-input {
+  display: none; /* 파일 인풋 숨기기 */
+}
+
+.default-image {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
 }
