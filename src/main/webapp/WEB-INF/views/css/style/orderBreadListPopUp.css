@@ -377,7 +377,12 @@
     background-color: #ffffff;
     border: 1px solid;
     border-color: var(--fontlightgray);
+    transition: transform 0.3s ease-in-out;
   }
+
+.click:hover{
+  transform: scale(1.1);
+}
   
   .list .text {
     position: relative;

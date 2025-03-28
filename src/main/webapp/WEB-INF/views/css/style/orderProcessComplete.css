@@ -161,6 +161,11 @@
     height: 33px;
     top: 5px;
     left: 239px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .image:hover{
+    transform: scale(1.1);
   }
   
   .screen .manager {
@@ -201,7 +206,12 @@
     background-color: #ffffff;
     border: 1px solid;
     border-color: var(--fontlightgray);
+    transition: transform 0.3s ease-in-out;
   }
+
+.div-wrapper:hover{
+  transform: scale(0.8);
+}
   
   .screen .text {
     position: relative;
@@ -252,9 +262,14 @@
     gap: 10px;
     position: absolute;
     top: 747px;
-    left: 1351px;
+    left: 1337px;
     background-color: var(--buttonprimary);
     border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .back-btn-wrapper:hover{
+    transform: scale(1.1);
   }
   
   .screen .back-btn {
@@ -549,6 +564,11 @@
     background-color: var(--stateerror);
     border-radius: 10px;
     overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+   }
+
+  .delete-image:hover{
+    transform: scale(0.8);
   }
   
   .screen .recycle-bin-remove {

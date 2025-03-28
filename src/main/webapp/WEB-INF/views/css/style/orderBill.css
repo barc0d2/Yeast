@@ -164,6 +164,11 @@
     border-radius: 10px;
     border: 1px solid;
     border-color: var(--fontlightgray);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .send:hover{
+    transform: scale(1.1);
   }
   
   .toggle .text-2 {
@@ -200,7 +205,12 @@
     border-radius: 10px;
     border: 1px solid;
     border-color: var(--fontlightgray);
+    transition: transform 0.3s ease-in-out;
   }
+
+.cancel:hover{
+  transform: scale(1.1);
+}
   
   .toggle .cancel-2 {
     position: absolute;

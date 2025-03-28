@@ -74,12 +74,18 @@
     position: relative;
     width: 28.01px;
     height: 38.6px;
+    transition: transform 0.3s ease-in-out;
   }
+
+.calendar:hover{
+  transform: scale(1.1);
+}
   
   .order-managment .wave-sym {
     display: flex;
     flex-direction: column;
     width: 21.78px;
+    margin-top: 15px;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -111,7 +117,12 @@
     border-radius: 15px;
     border: 1px solid;
     border-color: var(--linedarkgray);
+    transition: transform 0.3s ease-in-out;
   }
+
+.check:hover{
+  transform: scale(1.1);
+}
   
   .order-managment .reading-icon {
     position: relative;
@@ -145,7 +156,7 @@
     border: 1px solid;
     border-color: var(--bordergray);
   }
-  
+
   .order-managment .check-box {
     position: relative;
     width: 26.97px;
@@ -258,16 +269,43 @@
     margin-top: -4.62px;
     margin-bottom: -2.62px;
   }
-  
+
   .order-managment .check-box-2 {
     position: relative;
     width: 27.3px;
     height: 31.58px;
     background-color: #ffffff;
     border-radius: 8px;
-    border: 1px solid;
-    border-color: #bfbfbf;
+    border: 1px solid #bfbfbf;
+    cursor: pointer;
   }
+
+/* 기본 체크박스 숨기기 */
+.check-box-2 input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 체크되었을 때 스타일 변경 */
+.check-box-2 input:checked + label {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* 체크 표시 추가 (✔) */
+.check-box-2 input:checked + label::after {
+  content: "✔";
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
   
   .order-managment .order-no-2 {
     position: relative;
@@ -284,11 +322,10 @@
   
   .order-managment .order-register {
     display: flex;
-    width: 110px;
+    width: 120px;
     height: 50px;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    padding: 10px;
     position: relative;
     background-color: var(--backgroundsecondary);
     border-radius: 15px;
@@ -299,7 +336,10 @@
   .order-managment .complete {
     position: relative;
     width: 85.04px;
-    height: 37.43px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    margin-top: -1.00px;
     font-family: "Kakao OTF-Bold", Helvetica;
     font-weight: 700;
     color: var(--stateerror);
@@ -401,7 +441,12 @@
     width: 74.24px;
     height: 74.24px;
     object-fit: cover;
+    transition: transform 0.3s ease-in-out;
   }
+
+.correct-icon:hover{
+  transform: scale(1.1);
+}
   
   .order-managment .elements-wrapper {
     display: flex;
