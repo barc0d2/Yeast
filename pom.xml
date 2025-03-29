@@ -13,7 +13,7 @@
 	</parent>
 
 	<groupId>com.kh</groupId>
-	<artifactId>boot</artifactId>
+	<artifactId>yeast</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>boot</name>
