@@ -1,0 +1,468 @@
+.register {
+  background-color: #fffefc;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+}
+
+.register .div {
+  background-color: #fffefc;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  margin-bottom: 10%;
+}
+
+.register .group {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 990px;
+  height: 826px;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.register .group-2 {
+  position: absolute;
+  width: 331px;
+  height: 112px;
+  top: 0;
+  left: 331px;
+}
+
+.register .overlap-group-wrapper {
+  position: absolute;
+  width: 331px;
+  height: 64px;
+  top: 49px;
+  left: 0;
+}
+
+.register .overlap-group {
+  position: relative;
+  width: 329px;
+  height: 64px;
+  background-color: #f7ecdc;
+  border-radius: 33px;
+}
+
+.register .text-wrapper {
+  position: absolute;
+  width: 55px;
+  top: 22px;
+  left: 62px;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: #9e896a;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.register .frame {
+  display: flex;
+  width: 146px;
+  height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 40px;
+  position: absolute;
+  top: 11px;
+  left: 171px;
+  background-color: #9e896a;
+  border-radius: 33px;
+}
+
+.register .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 16px;
+  white-space: nowrap;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .text-wrapper-3 {
+  position: absolute;
+  width: 204px;
+  top: 0;
+  left: 63px;
+  font-family: "Kakao OTF-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .frame-2 {
+  display: flex;
+  width: 990px;
+  height: 98px;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  top: 647px;
+  left: 0;
+}
+
+.register .group-3 {
+  position: relative;
+  width: 216px;
+  height: 97.94px;
+}
+
+.register .gender {
+  position: absolute;
+  width: 214px;
+  height: 59px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
+}
+
+.register .p {
+  position: absolute;
+  width: 214px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .span {
+  color: #000000;
+}
+
+.register .text-wrapper-4 {
+  color: #606060;
+}
+
+.register .rectangle {
+  position: absolute;
+  width: 214px;
+  height: 59px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9e896a;
+}
+
+.register .text-wrapper-5 {
+  position: absolute;
+  width: 214px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .group-4 {
+  position: relative;
+  width: 216.33px;
+  height: 97.94px;
+}
+
+.register .text-wrapper-6 {
+  position: absolute;
+  width: 214px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: #606060;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .group-5 {
+  position: relative;
+  width: 216px;
+  height: 97.94px;
+  margin-right: -2.00px;
+}
+
+.register .group-6 {
+  position: absolute;
+  width: 990px;
+  height: 496px;
+  top: 140px;
+  left: 0;
+}
+
+.register .frame-3 {
+  display: flex;
+  flex-direction: column;
+  width: 541px;
+  align-items: flex-start;
+  gap: 22px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.register .frame-4 {
+  display: flex;
+  width: 482px;
+  height: 140px;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.register .group-7 {
+  position: relative;
+  width: 149px;
+  height: 182px;
+  top: -44px;
+  left: -12px;
+}
+
+.register .image {
+  position: absolute;
+  width: 167px;
+  height: 168px;
+  top: 24px;
+  left: -10px;
+}
+
+.register .upload-photo {
+  position: absolute;
+  width: 121px;
+  top: 0;
+  left: 12px;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.54px;
+  line-height: 16px;
+}
+
+.register .group-8 {
+  position: relative;
+  width: 300.62px;
+  height: 97.29px;
+  margin-right: -2.00px;
+}
+
+.register .rectangle-2 {
+  width: 299px;
+  position: absolute;
+  height: 58px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 10%;
+  font-size: 15px;
+  background-color: #ffffff;
+  border-radius: 40px;
+  border: 1px solid;
+  border-color: #9e896a;
+}
+
+.register .div-2 {
+  position: absolute;
+  width: 82px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .group-9 {
+  position: relative;
+  width: 451px;
+  height: 97.59px;
+}
+
+.register .rectangle-3 {
+  width: 449px;
+  position: absolute;
+  height: 58px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
+  background-color: #ffffff;
+  border-radius: 40px;
+  border: 1px solid;
+  border-color: #9e896a;
+}
+
+.register .div-3 {
+  position: absolute;
+  width: 449px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .frame-5 {
+  display: flex;
+  flex-direction: column;
+  width: 449px;
+  align-items: flex-start;
+  gap: 22px;
+  position: absolute;
+  top: 0;
+  left: 541px;
+}
+
+.register .group-10 {
+  position: relative;
+  width: 451px;
+  height: 97.29px;
+  margin-right: -2.00px;
+}
+
+.register .div-4 {
+  position: absolute;
+  width: 123px;
+  top: 0;
+  left: 0;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: transparent;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .group-11 {
+  margin-right: -2.00px;
+  position: relative;
+  width: 451px;
+  height: 97.59px;
+}
+
+.register .div-wrapper input[type="submit"] {
+  display: flex;
+  width: 647px;
+  height: 53px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  top: 773px;
+  left: 172px;
+  background-color: #9e896a;
+  border-radius: 36px;
+}
+
+.div-wrapper input[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.register .text-wrapper-7 {
+  position: relative;
+  width: fit-content;
+  font-family: "Kakao OTF-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #9e896a;
+  font-size: 20px;
+  border: none;
+  white-space: nowrap;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.register .view {
+  position: absolute;
+  width: 253px;
+  height: 99px;
+  top: 15px;
+  left: 20px;
+}
+
+.register .logo {
+  position: absolute;
+  width: 121px;
+  height: 99px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.register .logo-2 {
+  position: absolute;
+  width: 132px;
+  height: 53px;
+  top: 23px;
+  left: 121px;
+  object-fit: cover;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-preview {
+  width: 167px;
+  height: 167px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.profile-preview:hover {
+  opacity: 0.7;
+}
+
+.profile-input {
+  display: none; /* 파일 인풋 숨기기 */
+}
+
+.default-image {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+}
