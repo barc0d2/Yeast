@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class EmployeeController {
+public class EmployeeCController {
 
     @GetMapping("/company/employee/enrollForm")
     public String enrollFormEmployee() {
