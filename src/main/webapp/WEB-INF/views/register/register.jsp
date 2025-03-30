@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../../../../resources/static/registerglobal.css" />
-  <link rel="stylesheet" href="../../../../resources/static/registerstyleguide.css" />
-  <link rel="stylesheet" href="../../../../resources/static/registertyle.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YEAST 회원가입</title>
+  <link rel="stylesheet" href="css/register/style.css" />
+  <link rel="stylesheet" href="css/register/styleguide.css" />
+  <link rel="stylesheet" href="css/register/global.css" />
 </head>
 <body>
 <div class="register">
