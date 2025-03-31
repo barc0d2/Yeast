@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main class="frame">
+        <section class="sales">
+            <div id="inventory" class="inventory-container">
+                <div class="inventory-header">
+                    <h3>종류</h3>
+                    <select name="category" class="category">단과자류
+                        <option value="단과자류">단과자류</option>
+                        <option value="식빵">식빵</option>
+                        <option value="cookie">베이글</option>
+                        <option value="cookie">페스츄리</option>
+                        <option value="cookie">도넛</option>
+                        <option value="cookie">기타</option>
+                    </select>
+                </div>
+                <table class="inventory-list">
+                    <thead>
+                        <tr>
+                            <th>상품번호</th>
+                            <th>상품명</th>
+                            <th>수량</th>
+                            <th>재고상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                        <tr>
+                            <td>a_2</td>
+                            <td>발효버터 소금빵</td>
+                            <td>10</td>
+                            <td class="stock-low">재고부족</td>
+                        </tr>
+                        <tr>
+                            <td>a_2</td>
+                            <td>발효버터 소금빵</td>
+                            <td>10</td>
+                            <td class="stock-low">재고부족</td>
+                        </tr>
+                        <tr>
+                            <td>a_2</td>
+                            <td>발효버터 소금빵</td>
+                            <td>10</td>
+                            <td class="stock-low">재고부족</td>
+                        </tr>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                        <tr>
+                            <td>a_1</td>
+                            <td>추억의소세지빵</td>
+                            <td>34</td>
+                            <td class="stock-sufficient">재고여유</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="production">
+            <h2 class="text-wrapper">금일 매출 현황</h2>
+            <div class="div-4">
+                <div class="chart-content">
+                    <canvas id="chartjs-doughnut"></canvas>
+                </div>
+                <div class="sales-details">
+                    <table class="sales-details-table">
+                        <thead>
+                            <tr>
+                                <th>종류</th>
+                                <th>거래건수</th>
+                                <th>매출</th>
+                                <th>재고소진율</th>
+                                <th>순수익</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>단과자</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                            <tr>
+                                <td>식빵</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                            <tr>
+                                <td>베이글</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                            <tr>
+                                <td>페스츄리</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                            <tr>
+                                <td>도넛</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                            <tr>
+                                <td>기타</td>
+                                <td>260</td>
+                                <td>338,000</td>
+                                <td>30%</td>
+                                <td>202,800</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-sales">
+                        금일 총 매출 금액 : <strong>3,340,000</strong>원 <br>
+                        금일 총 순수익 : <strong>2,004,000</strong>원
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <section class="notion">
+            <header class="div-10">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_478_2940)">
+                        <path
+                            d="M6.42871 12.9428L17.4001 16.5999C17.615 16.6708 17.8436 16.6896 18.0671 16.6548C18.2906 16.6201 18.5027 16.5326 18.6859 16.3999C18.8704 16.2685 19.0211 16.0951 19.1256 15.8938C19.2299 15.6926 19.2849 15.4695 19.2859 15.2428V3.48567C19.2849 3.25903 19.2299 3.03589 19.1256 2.83469C19.0211 2.63349 18.8704 2.45999 18.6859 2.32853C18.5014 2.19816 18.2889 2.11336 18.0653 2.08107C17.8419 2.0488 17.6139 2.06996 17.4001 2.14282L6.42871 5.79996V12.9428Z"
+                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M0.714355 9.37148C0.714355 9.84048 0.806733 10.3049 0.986214 10.7382C1.1657 11.1715 1.42877 11.5652 1.7604 11.8969C2.43017 12.5666 3.33858 12.9429 4.28578 12.9429H6.42864V5.80005H4.28578C3.81678 5.80005 3.35237 5.89242 2.91906 6.07191C2.48576 6.25139 2.09204 6.51446 1.7604 6.84609C1.09063 7.51586 0.714355 8.42428 0.714355 9.37148Z"
+                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M4.28589 12.9429V14.3715C4.28589 14.8405 4.37826 15.3049 4.55775 15.7382C4.73723 16.1715 5.0003 16.5652 5.33193 16.8968C5.66357 17.2285 6.05729 17.4915 6.49059 17.6711C6.9239 17.8505 7.38832 17.9429 7.85732 17.9429"
+                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_478_2940">
+                            <rect width="20" height="20" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+
+                <h2 class="text-wrapper-7">공지사항 관리</h2>
+            </header>
+            <ul class="div-8">
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                
+            </ul>
+        </section>
+        <section class="inquire">
+            <header class="div-10">
+                <div class="text-wrapper-10">Q</div>
+                <h2 class="text-wrapper-11">문의사항 관리</h2>
+            </header>
+            <ul class="div-8">
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                <li class="line">
+                    <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
+                    <time class="text-wrapper-9">2025-03-20</time>
+                </li>
+                
+            </ul>
+        </section>
+        <section class="employee">
+            <h2 class="text-wrapper-12">전체직원 목록</h2>
+            <div class="list">
+                <div class="div-2">
+                    <div class="div-wrapper-2">
+                        <h3 class="text-wrapper-13">이름</h3>
+                    </div>
+                    <div class="div-wrapper-2">
+                        <h3 class="text-wrapper-13">소속</h3>
+                    </div>
+                    <div class="div-wrapper-2">
+                        <h3 class="text-wrapper-13">직무</h3>
+                    </div>
+                    <div class="div-wrapper-2">
+                        <h3 class="text-wrapper-13">연락처</h3>
+                    </div>
+                </div>
+                <ul class="div-8">
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    <li class="div-2">
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">최지원</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회사</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">회장</p>
+                        </div>
+                        <div class="div-wrapper-2">
+                            <p class="text-wrapper-13">010-7777-7777</p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const colorPalette = [
+                '#007bff',   // primary (blue)
+                '#28a745',   // success (green)
+                '#ffc107',   // warning (yellow)
+                '#dee2e6',    // gray
+                '#cecece',
+                '#575757'
+            ];
+
+            new Chart(document.getElementById("chartjs-doughnut"), {
+                type: "pie",
+                data: {
+                    labels: ["단과자", "식빵", "베이글", "페스츄리", "도넛", "기타"],
+                    datasets: [{
+                        data: [260, 125, 54, 146, 100, 70],
+                        backgroundColor: colorPalette,
+                        borderColor: "transparent"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        datalabels: {
+                            color: 'white',
+                            font: {
+                                weight: 'bold',
+                                size: 16
+                            },
+                            formatter: function (value, context) {
+                                return value > 0 ? value : '';
+                            },
+                            anchor: 'center',
+                            align: 'center'
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,433 @@
+*{
+    color: #202224;
+}
+
+body>div {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    position: relative;
+    background: #FFFCEC;
+}
+
+#Container {
+    width: 1309.15px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 97px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 64px;
+    display: inline-flex
+}
+
+#Container>.List .Head {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #FAFAFA;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    outline: 1px #D9D9D9 solid;
+    outline-offset: -1px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 111px;
+    display: inline-flex
+}
+
+#Container>.List .Head .Email {
+    align-self: stretch;
+    width: 165px;
+    opacity: 0.90;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .No {
+    width: 42px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .Name {
+    width: 50px;
+    height: 22px;
+    opacity: 0.90;
+    align-self: stretch;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .Id {
+    width: 48px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .Phone {
+    width: 108.15px;
+    opacity: 0.90;
+    justify-content: center;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .Gender {
+    width: 35px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .Position {
+    width: 35px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .Head .EnrollDate {
+    width: 65px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: Nunito Sans;
+    font-weight: 800;
+    word-wrap: break-word
+}
+
+#Container>.List .List {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: white;
+    overflow: hidden;
+    outline: 1px #D9D9D9 solid;
+    outline-offset: -1px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 111px;
+    display: inline-flex
+}
+
+#Container>.List .List .Email {
+    width: 165px;
+    align-self: stretch;
+    opacity: 0.90;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .No {
+    width: 42px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .Name {
+    width: 50px;
+    align-self: stretch;
+    opacity: 0.90;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .Id {
+    width: 48px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .Phone {
+    width: 108.15px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .Gender {
+    width: 35px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .Position {
+    width: 35px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#Container>.List .List .EnrollDate {
+    width: 65px;
+    align-self: stretch;
+    opacity: 0.90;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+#PageBar {
+    height: 37px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 920px;
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+#NextPage {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border-radius: 8px;
+    outline: 1px #E8E8E8 solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+}
+
+#NextPage > .Icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+#NextPage > .Icon > .Icon {
+    width: 5.49px;
+    height: 9.31px;
+    left: 7.50px;
+    top: 5px;
+    position: absolute;
+    background: black;
+}
+
+#PrePage {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border-radius: 8px;
+    outline: 1px #E8E8E8 solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+}
+
+#PrePage .Icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+#PrePage .Icon .Icon {
+    width: 5.49px;
+    height: 9.31px;
+    left: 12.99px;
+    top: 14.31px;
+    position: absolute;
+    transform: rotate(-180deg);
+    transform-origin: top left;
+    background: black;
+}
+
+#PageBar > .Page {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    outline: 1px #9E9E9E solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    text-align: center;
+}
+
+#PageBar > .Page > div {
+    color: black;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 700;
+    line-height: 33.60px;
+    word-wrap: break-word;
+}
+
+#PageBar > .SelectPage {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: var(--Font-Brown, #FF9538);
+    border-radius: 6px;
+    outline: 1px #9E9E9E solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+#PageBar > .SelectPage > div {
+    color: white;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 700;
+    line-height: 33.60px;
+    word-wrap: break-word;
+}
+
+#PageBar .Page {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    outline: 1px #9E9E9E solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    text-align: center;
+}
+
+#PageBar .Page div {
+    color: black;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 700;
+    line-height: 33.60px;
+    word-wrap: break-word
+}
+
+#PageBar > .SelectPage {
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    background: var(--Font-Brown, #FF9538);
+    border-radius: 6px;
+    outline: 1px #9E9E9E solid;
+    outline-offset: -1px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+#PageBar > .SelectPage > div {
+    color: white;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 700;
+    line-height: 33.60px;
+    word-wrap: break-word;
+}
