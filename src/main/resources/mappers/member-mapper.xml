@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.boot.mappers.MemberMapper">
+<mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
@@ -22,27 +22,30 @@
         <result column="STATUS" property="status"/>
     </resultMap>
     <select id="loginMember" parameterType="Member" resultMap="memberResult">
-        SELECT USER_NO,
-                BUSINESS_NAME,
-                POSITION_NAME,
-                MANAGER_NAME,
-                USER_NAME,
-                USER_ID,
-                USER_PWD,
-                EMAIL,
-                SALARY,
-                BONUS,
-                PHONE,
-                GENDER,
-                ADDRESS,
-                CREATE_DATE,
-                IMAGE_CHANGEPATH,
-                IMAGE_ORIGINPATH,
-                BIRTHDAY,
-                STATUS
-         FROM MEMBER
-        WHERE USER_ID = #{userId}
-          AND STATUS = 'Y'
+        SELECT M.USER_NO,
+        BUSINESS_NAME AS BUSINESS_NAME,
+        POSITION_NAME AS POSITION_NAME,
+        E.USER_NAME AS MANAGER_NAME,
+        M.USER_NAME AS USER_NAME,
+        M.USER_ID AS USER_ID,
+        M.USER_PWD AS USER_PWD,
+        M.EMAIL AS EMAIL,
+        M.SALARY AS SALARY,
+        M.BONUS AS BONUS,
+        M.PHONE AS PHONE,
+        M.GENDER AS GENDER,
+        M.ADDRESS AS ADDRESS,
+        M.CREATE_DATE AS CREATE_DATE,
+        M.IMAGE_CHANGEPATH AS IMAGE_CHANGEPATH,
+        M.IMAGE_ORIGINPATH AS IMAGE_ORIGINPATH,
+        M.BIRTHDAY AS BIRTHDAY,
+        M.STATUS AS STATUS
+        FROM MEMBER M
+        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+        WHERE M.USER_ID = #{userId}
+        AND M.STATUS = 1
     </select>
     <insert id="insertMember">
         INSERT
