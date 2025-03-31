@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/branch/product/list/globals.css" />
-    <link rel="stylesheet" href="css/branch/product/list/style.css" />
-    <link rel="stylesheet" href="css/branch/product/list/styleguide.css" />
+    <link rel="stylesheet" href="/css/branch/product/list/globals.css" />
+    <link rel="stylesheet" href="/css/branch/product/list/style.css" />
+    <link rel="stylesheet" href="/css/branch/product/list/styleguide.css" />
   </head>
   <body>
     <div class="screen">

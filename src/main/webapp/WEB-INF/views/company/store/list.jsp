@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/company/store/list/globals.css" />
-    <link rel="stylesheet" href="css/company/store/list/style.css" />
-    <link rel="stylesheet" href="css/company/store/list/styleguide.css" />
+    <link rel="stylesheet" href="/css/company/store/list/globals.css" />
+    <link rel="stylesheet" href="/css/company/store/list/style.css" />
+    <link rel="stylesheet" href="/css/company/store/list/styleguide.css" />
   </head>
   <body>
     <div class="frame">

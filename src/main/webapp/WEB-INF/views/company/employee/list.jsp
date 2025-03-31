@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee List</title>
-    <link rel="stylesheet" href="css/company/employee/list/globals.css" />
-    <link rel="stylesheet" href="css/company/employee/list/style.css" />
-    <link rel="stylesheet" href="css/company/employee/list/styleguide.css" />
+    <link rel="stylesheet" href="/css/company/employee/list/globals.css" />
+    <link rel="stylesheet" href="/css/company/employee/list/style.css" />
+    <link rel="stylesheet" href="/css/company/employee/list/styleguide.css" />
   </head>
   <body>
     <main class="frame">
