@@ -263,3 +263,12 @@ body{
     position:absolute;
     top:90%;
 }
+
+#Input>div:hover{
+    background: white;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+#Input>div:hover>div{
+    color : black;
+    transition: background 0.3s ease, color 0.3s ease;
+}
