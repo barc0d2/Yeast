@@ -9,13 +9,6 @@ public class WebConfig implements WebMvcConfigurer{
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // static 폴더 내의 모든 리소스에 대한 매핑
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
-        
-        // css 파일에 대한 명시적 매핑
-        registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/static/css/");
     }
 
 }

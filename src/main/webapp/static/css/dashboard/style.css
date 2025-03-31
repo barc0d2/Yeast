@@ -1,3 +1,7 @@
+#wrapper {
+  width: 100%;
+}
+
 .frame {
   position: relative;
   width: 1565px;
@@ -10,8 +14,8 @@
   align-items: flex-start;
   padding: 10px;
   position: absolute;
-  top: 430px;
-  left: 39px;
+  top: 445px;
+  left: 30px;
   background-color: #ffffff;
   border-radius: 15px;
   overflow: hidden;
@@ -252,8 +256,8 @@
   gap: 22px;
   padding: 10px;
   position: absolute;
-  top: 23px;
-  left: 39px;
+  top: 30px;
+  left: 30px;
   background-color: #ffffff;
   border-radius: 15px;
   border: 1px solid;
@@ -380,8 +384,8 @@
   gap: 12px;
   padding: 10px;
   position: absolute;
-  top: 23px;
-  left: 812px;
+  top: 30px;
+  left: 790px;
   background-color: #ffffff;
   border-radius: 15px;
   border: 1px solid;
@@ -479,7 +483,7 @@
   padding: 10px;
   position: absolute;
   top: 293px;
-  left: 812px;
+  left: 790px;
   background-color: #ffffff;
   border-radius: 15px;
   border: 1px solid;
@@ -523,7 +527,7 @@
   padding: 10px;
   position: absolute;
   top: 568px;
-  left: 812px;
+  left: 790px;
   background-color: #ffffff;
   border-radius: 15px;
   border: 1px solid;
@@ -648,8 +652,13 @@ td {
 }
 
 .stock-low {
+  color: #D6BB73;
+}
+.stock-sufficient{
+  color: #5687F2;
+}
+.stock-off{
   color: #FF435C;
-
 }
 
 .sales-details {

@@ -1,19 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../../../static/css/dashboard/globals.css" />
+    <link rel="stylesheet" href="../../../../static/css/dashboard/styleguide.css" />
+    <link rel="stylesheet" href="../../../../static/css/dashboard/style.css" />
 </head>
 
 <body>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+  <div id="wrapper">
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
     <main class="frame">
         <section class="sales">
             <div id="inventory" class="inventory-container">
@@ -84,8 +88,8 @@
                         <tr>
                             <td>a_1</td>
                             <td>추억의소세지빵</td>
-                            <td>34</td>
-                            <td class="stock-sufficient">재고여유</td>
+                            <td>0</td>
+                            <td class="stock-off">재고소진</td>
                         </tr>
                         <tr>
                             <td>a_1</td>
@@ -377,7 +381,9 @@
                     
                 </ul>
             </div>
+
         </section>
+  </div>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

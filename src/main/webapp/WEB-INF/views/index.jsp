@@ -8,7 +8,16 @@
   <title>Document</title>
 </head>
 <body>
-<jsp:include page="branch/sideBar/whiteSideBar.jsp" />
-  안녕하세요 인덱스입니다 인태덱스 ㅋㅋ
+<%-- <jsp:include page="branch/dashboard/dashboard.jsp" />--%>
+
+
+<%-- <jsp:include page="branch/sideBar/whiteSideBar.jsp" />--%>
+<%--<jsp:include page="branch/sideBar/whiteTopBar.jsp" />--%>
+
+<jsp:include page="company/sideBar/brownSideBar.jsp" />
+ <jsp:include page="company/sideBar/brownTopBar.jsp" />
+
+
+
 </body>
 </html>

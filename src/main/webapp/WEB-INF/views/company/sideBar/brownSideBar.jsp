@@ -1,11 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/brownSideBar.css">
+    <link rel="stylesheet" href="/resources/css/sideBar/brownSideBar.css">
+
 </head>
 
 <body>
@@ -60,30 +63,18 @@
             </div>
             <div class="submenu">
                 <div class="submenu-item">직원관리</div>
-                <div class="submenu-item">재고관리</div>
                 <div class="submenu-item">지점 수정/추가</div>
             </div>
             <div id="order-menu" class="menu-item">
                 <div class="menu-icon">
                     <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M22.8968 27.9119V10.9481C22.8968 9.56733 21.7775 8.44806 20.3968 8.44806H4.25585C2.87515 8.44806 1.75586 9.56733 1.75586 10.9481V27.5122C1.75586 28.8929 2.87515 30.0122 4.25585 30.0122H6.13085"
-                            stroke="#EC9F23" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M33.244 20.2791H22.9004" stroke="#EC9F23" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M29.8796 29.5457H30.7414C32.1221 29.5457 33.2414 28.4264 33.2414 27.0457V19.5433L29.7604 12.4162C29.3411 11.5578 28.4694 11.0134 27.5139 11.0134H23.3477"
-                            stroke="#EC9F23" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M9.74488 33.5774C11.6724 33.5774 13.2349 32.0149 13.2349 30.0874C13.2349 28.16 11.6724 26.5974 9.74488 26.5974C7.81741 26.5974 6.25488 28.16 6.25488 30.0874C6.25488 32.0149 7.81741 33.5774 9.74488 33.5774Z"
-                            stroke="#EC9F23" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M25.49 33.6674C27.4175 33.6674 28.98 32.1049 28.98 30.1774C28.98 28.25 27.4175 26.6874 25.49 26.6874C23.5625 26.6874 22 28.25 22 30.1774C22 32.1049 23.5625 33.6674 25.49 33.6674Z"
-                            stroke="#EC9F23" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M21.4429 30.0117H14.0991" stroke="#EC9F23" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-
+                        <path d="M22.8969 27.7245V10.7606C22.8969 9.3799 21.7776 8.26062 20.3969 8.26062H4.25597C2.87527 8.26062 1.75598 9.3799 1.75598 10.7606V27.3247C1.75598 28.7055 2.87527 29.8247 4.25597 29.8247H6.13097" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M33.244 20.0917H22.9004" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M29.8798 29.3583H30.7415C32.1223 29.3583 33.2415 28.239 33.2415 26.8583V19.3559L29.7605 12.2288C29.3413 11.3704 28.4695 10.8259 27.514 10.8259H23.3478" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.745 33.39C11.6725 33.39 13.235 31.8275 13.235 29.9C13.235 27.9725 11.6725 26.41 9.745 26.41C7.81753 26.41 6.255 27.9725 6.255 29.9C6.255 31.8275 7.81753 33.39 9.745 33.39Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M25.4901 33.48C27.4176 33.48 28.9801 31.9175 28.9801 29.99C28.9801 28.0625 27.4176 26.5 25.4901 26.5C23.5626 26.5 22.0001 28.0625 22.0001 29.99C22.0001 31.9175 23.5626 33.48 25.4901 33.48Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21.4429 29.8242H14.0991" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
 
                 </div>
                 <div id="order-text" class="menu-text">출하관리</div>
@@ -203,108 +194,57 @@
                 </div>
                 <div class="menu-text">규약서</div>
             </div>
-            <div class="menu-item">
-                <div class="menu-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.6099 23.1501L30.8099 29.55C31.1859 29.674 31.5859 29.707 31.9771 29.646C32.3681 29.5852 32.7394 29.4322 33.0599 29.2C33.3829 28.97 33.6466 28.6665 33.8294 28.3142C34.0119 27.9622 34.1081 27.5718 34.1099 27.175V6.60005C34.1081 6.20343 34.0119 5.81293 33.8294 5.46083C33.6466 5.10873 33.3829 4.8051 33.0599 4.57505C32.7371 4.3469 32.3651 4.1985 31.9739 4.142C31.5829 4.08553 31.1839 4.12255 30.8099 4.25005L11.6099 10.6501V23.1501Z"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M1.60986 16.9001C1.60986 17.7209 1.77152 18.5336 2.08562 19.2919C2.39971 20.0502 2.86009 20.7392 3.44044 21.3196C4.61254 22.4917 6.20226 23.1501 7.85986 23.1501H11.6099V10.6501H7.85986C7.03911 10.6501 6.22639 10.8118 5.46809 11.1259C4.70981 11.44 4.02081 11.9004 3.44044 12.4807C2.26834 13.6528 1.60986 15.2425 1.60986 16.9001Z"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M7.85986 23.1501V25.6502C7.85986 26.471 8.02151 27.2837 8.33561 28.042C8.64971 28.8002 9.11009 29.4892 9.69044 30.0695C10.2708 30.65 10.9598 31.1102 11.7181 31.4245C12.4764 31.7385 13.2891 31.9002 14.1099 31.9002"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <div class="menu-text">공지사항 관리</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-icon"><svg width="35" height="36" viewBox="0 0 35 36" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M17.4953 1.8797C14.5793 1.88061 11.7182 2.67242 9.21673 4.1708C6.71523 5.66917 4.667 7.818 3.29018 10.3884C1.91335 12.9588 1.25951 15.8545 1.39829 18.7671C1.53706 21.6798 2.46326 24.5002 4.07825 26.928L1.375 34.1203L10.4271 32.4832C12.6069 33.5485 14.9989 34.108 17.4249 34.12C19.851 34.132 22.2484 33.5963 24.4386 32.5528C26.6286 31.5093 28.5551 29.9848 30.0741 28.0933C31.5931 26.2015 32.6656 23.9913 33.2116 21.6275C33.7574 19.2637 33.7629 16.8071 33.2271 14.4409C32.6916 12.0747 31.6289 9.85992 30.1181 7.96165C28.6074 6.06337 26.6876 4.53058 24.502 3.47752C22.3164 2.42444 19.9213 1.87827 17.4953 1.8797Z"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M13.7754 14.2799C13.7754 13.5441 13.9936 12.8249 14.4023 12.2131C14.8111 11.6014 15.3921 11.1246 16.0718 10.843C16.7516 10.5614 17.4996 10.4878 18.2212 10.6313C18.9428 10.7748 19.6057 11.1291 20.1259 11.6494C20.6462 12.1697 21.0005 12.8325 21.144 13.5541C21.2876 14.2758 21.2139 15.0237 20.9323 15.7035C20.6508 16.3832 20.174 16.9642 19.5622 17.373C18.9504 17.7818 18.2312 17.9999 17.4954 17.9999V20.48"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M17.4999 26.6803C17.1575 26.6803 16.8799 26.4025 16.8799 26.0603C16.8799 25.7178 17.1575 25.4402 17.4999 25.4402"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M17.4995 26.6803C17.8419 26.6803 18.1195 26.4028 18.1195 26.0603C18.1195 25.7178 17.8419 25.4403 17.4995 25.4403"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <div class="menu-text">문의사항 관리</div>
-            </div>
+
         </div>
 
     </div>
-    <div id="top-bar">
-        <div id="top-bar-background"></div>
-        <div class="menu-management">
-            <div class="menu-icons">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M8.30769 1H1.76923C1.3444 1 1 1.3444 1 1.76923V8.30769C1 8.73252 1.3444 9.07692 1.76923 9.07692H8.30769C8.73252 9.07692 9.07692 8.73252 9.07692 8.30769V1.76923C9.07692 1.3444 8.73252 1 8.30769 1Z"
-                        stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M20.2305 1H13.6921C13.2673 1 12.9229 1.3444 12.9229 1.76923V8.30769C12.9229 8.73252 13.2673 9.07692 13.6921 9.07692H20.2305C20.6553 9.07692 20.9998 8.73252 20.9998 8.30769V1.76923C20.9998 1.3444 20.6553 1 20.2305 1Z"
-                        stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M8.30769 12.9231H1.76923C1.3444 12.9231 1 13.2675 1 13.6923V20.2308C1 20.6556 1.3444 21 1.76923 21H8.30769C8.73252 21 9.07692 20.6556 9.07692 20.2308V13.6923C9.07692 13.2675 8.73252 12.9231 8.30769 12.9231Z"
-                        stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M20.2305 12.9231H13.6921C13.2673 12.9231 12.9229 13.2675 12.9229 13.6923V20.2308C12.9229 20.6556 13.2673 21 13.6921 21H20.2305C20.6553 21 20.9998 20.6556 20.9998 20.2308V13.6923C20.9998 13.2675 20.6553 12.9231 20.2305 12.9231Z"
-                        stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M1 5.61536H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M12.9229 5.61536H20.9998" stroke="#888888" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M12.9229 17.5385H20.9998" stroke="#888888" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M1 17.5385H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="menu-label">메뉴관리</div>
-            </div>
-            <div class="page-title">메뉴조회</div>
-        </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu-item');
 
-        <div class="announcement">
-            <div class="announcement-icon">
-                <svg width="36" height="35" viewBox="0 0 36 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_323_2045)">
-                        <path
-                            d="M11.8843 22.6501L31.0843 29.05C31.4603 29.174 31.8603 29.207 32.2515 29.146C32.6425 29.0852 33.0138 28.9322 33.3343 28.7C33.6573 28.47 33.921 28.1665 34.1038 27.8142C34.2863 27.4622 34.3825 27.0718 34.3843 26.675V6.10005C34.3825 5.70343 34.2863 5.31293 34.1038 4.96083C33.921 4.60873 33.6573 4.3051 33.3343 4.07505C33.0115 3.8469 32.6395 3.6985 32.2483 3.642C31.8573 3.58553 31.4583 3.62255 31.0843 3.75005L11.8843 10.1501V22.6501Z"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M1.88428 16.4001C1.88428 17.2209 2.04594 18.0336 2.36003 18.7919C2.67412 19.5502 3.1345 20.2392 3.71485 20.8196C4.88695 21.9917 6.47668 22.6501 8.13428 22.6501H11.8843V10.1501H8.13428C7.31353 10.1501 6.5008 10.3118 5.7425 10.6259C4.98423 10.94 4.29523 11.4004 3.71485 11.9807C2.54276 13.1528 1.88428 14.7425 1.88428 16.4001Z"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M8.13428 22.6501V25.1502C8.13428 25.971 8.29593 26.7837 8.61003 27.542C8.92413 28.3002 9.3845 28.9892 9.96485 29.5695C10.5452 30.15 11.2342 30.6102 11.9925 30.9245C12.7508 31.2385 13.5635 31.4002 14.3843 31.4002"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_323_2045">
-                            <rect width="35" height="35" fill="white" transform="translate(0.634277)" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-            <div class="announcement-text">
-                089 Kutch Green Apt. 448 이거진짜 여러분 방빼셔야해요
-            </div>
-        </div>
+            menuItems.forEach(item => {
+                // 화살표가 있는 메뉴 아이템만 클릭 이벤트 처리
+                const arrow = item.querySelector('.arrow');
+                if (arrow) {
+                    item.addEventListener('click', function () {
+                        // 현재 메뉴의 활성화 상태 토글
+                        this.classList.toggle('active');
 
-        <div class="branch-info">
-            <div class="branch-name">회사</div>
-            <div class="manager-info">
-                <div class="manager-label">공장장</div>
-                <div class="manager-name">황인태</div>
-                <div class="manager-separator"></div>
-            </div>
-        </div>
-    </div>
+                        // 다음 형제 요소인 서브메뉴 토글
+                        const submenu = this.nextElementSibling;
+                        if (submenu && submenu.classList.contains('submenu')) {
+                            submenu.classList.toggle('show');
+                        }
+                    });
+                } else {
+                    // 화살표가 없는 메뉴는 클릭시 페이지 이동
+                    item.addEventListener('click', function () {
+                        const menuText = this.querySelector('.menu-text').textContent;
+                        // 각 메뉴별 이동할 페이지 URL 설정
+                        switch (menuText) {
+                            case '메뉴조회':
+                                location.href = '/menu';
+                                break;
+                            // 다른 메뉴들에 대한 페이지 이동 처리 추가
+                        }
+                    });
+                }
+            });
+
+            // 서브메뉴 아이템 클릭 이벤트
+            const submenuItems = document.querySelectorAll('.submenu-item');
+            submenuItems.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.stopPropagation(); // 상위 메뉴 클릭 이벤트 전파 방지
+                    const menuText = this.textContent;
+                    // 각 서브메뉴별 이동할 페이지 URL 설정
+                    switch (menuText) {
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 
