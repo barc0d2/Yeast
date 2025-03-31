@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/company/store/enrollForm/styleguide.css" />
   </head>
   <body>
-    <form class="store">
+    <main class="store">
       <div class="form">
         <section class="thumbnail">
           <div class="overlap-group">

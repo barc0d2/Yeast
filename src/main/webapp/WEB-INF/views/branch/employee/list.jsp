@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <title>Employee List</title>
-    <link rel="stylesheet" href="css/branch/employee/list/globals.css" />
-    <link rel="stylesheet" href="css/branch/employee/list/styleguide.css" />
-    <link rel="stylesheet" href="css/branch/employee/list/style.css" />
+    <link rel="stylesheet" href="/css/branch/employee/list/globals.css" />
+    <link rel="stylesheet" href="/css/branch/employee/list/styleguide.css" />
+    <link rel="stylesheet" href="/css/branch/employee/list/style.css" />
   </head>
   <body>
     <main class="div-wrapper">
