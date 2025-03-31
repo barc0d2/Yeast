@@ -1,96 +1,11 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매장 매출 대시보드</title>
+    <link rel="stylesheet" href="css/finance/wholesalegraph.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            width: 1570px;
-            margin: 0 auto;
-        }
-        .dashboard {
-            width: 360px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .header {
-            background-color: #f8f8f8;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .sales-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .sales-table tr {
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .sales-table td {
-            padding: 12px 15px;
-        }
-        .sales-table .rank {
-            width: 40px;
-            text-align: center;
-            color: #888;
-        }
-        .sales-table .product {
-            flex-grow: 1;
-        }
-        .sales-table .quantity {
-            text-align: right;
-            color: #333;
-        }
-        .summary {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px;
-            background-color: #f8f8f8;
-            border-top: 1px solid #e0e0e0;
-        }
-        .summary-item {
-            text-align: center;
-        }
-        .summary-label {
-            color: #888;
-            font-size: 0.9em;
-        }
-        .summary-value {
-            font-weight: bold;
-            color: #333;
-        }
-        .detail-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            font-weight: bold;
-        }
-        .detail-button:hover {
-            background-color: #EED184;
-        }
-        .chart-container {
-            height: 200px;
-            padding: 15px;
-        }
-    </style>
 </head>
 <body>
     <!-- 잠실 지점 -->
