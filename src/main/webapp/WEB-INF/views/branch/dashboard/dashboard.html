@@ -19,13 +19,13 @@
             <div id="inventory" class="inventory-container">
                 <div class="inventory-header">
                     <h3>종류</h3>
-                    <select name="category" class="category">단과자류
-                        <option value="단과자류">단과자류</option>
+                    <select name="category" class="category">단과자
+                        <option value="단과자류">단과자</option>
                         <option value="식빵">식빵</option>
-                        <option value="cookie">베이글</option>
-                        <option value="cookie">페스츄리</option>
+                        <option value="cookie">간식빵</option>
+                        <option value="cookie">건강빵</option>
                         <option value="cookie">도넛</option>
-                        <option value="cookie">기타</option>
+                        <option value="cookie">페스츄리/파이</option>
                     </select>
                 </div>
                 <table class="inventory-list">
@@ -136,14 +136,14 @@
                                 <td>202,800</td>
                             </tr>
                             <tr>
-                                <td>베이글</td>
+                                <td>간식빵</td>
                                 <td>260</td>
                                 <td>338,000</td>
                                 <td>30%</td>
                                 <td>202,800</td>
                             </tr>
                             <tr>
-                                <td>페스츄리</td>
+                                <td>건강빵</td>
                                 <td>260</td>
                                 <td>338,000</td>
                                 <td>30%</td>
@@ -157,7 +157,7 @@
                                 <td>202,800</td>
                             </tr>
                             <tr>
-                                <td>기타</td>
+                                <td>페스츄리/파이</td>
                                 <td>260</td>
                                 <td>338,000</td>
                                 <td>30%</td>
@@ -393,7 +393,7 @@
             new Chart(document.getElementById("chartjs-doughnut"), {
                 type: "pie",
                 data: {
-                    labels: ["단과자", "식빵", "베이글", "페스츄리", "도넛", "기타"],
+                    labels: ["단과자", "식빵", "간식빵", "건강빵", "도넛", "페스츄리"],
                     datasets: [{
                         data: [260, 125, 54, 146, 100, 70],
                         backgroundColor: colorPalette,

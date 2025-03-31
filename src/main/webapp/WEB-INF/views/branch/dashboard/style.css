@@ -590,7 +590,7 @@ main.frame {
   justify-content: space-between;
 }
 .category{
-  width: 120px;
+  width: 150px;
   height: 40px;
   font-family: var(--head-kakao-20px-font-family);
   font-weight: var(--head-kakao-20px-font-weight);
