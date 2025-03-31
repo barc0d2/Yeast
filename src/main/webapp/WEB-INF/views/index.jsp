@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YEAST 회원가입</title>
-    <link rel="stylesheet" href="css/register/style.css" />
-    <link rel="stylesheet" href="css/register/styleguide.css" />
-    <link rel="stylesheet" href="css/register/global.css" />
+    <link rel="stylesheet" href="/css/register/style.css" />
+    <link rel="stylesheet" href="/css/register/styleguide.css" />
+    <link rel="stylesheet" href="/css/register/global.css" />
 </head>
 <body>
 <div class="register">

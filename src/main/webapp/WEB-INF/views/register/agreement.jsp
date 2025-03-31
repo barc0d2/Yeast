@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YEAST 회원가입</title>
-  <link rel="stylesheet" href="css/agree/global.css" />
-  <link rel="stylesheet" href="css/agree/style.css" />
-  <link rel="stylesheet" href="css/agree/styleguide.css" />
+  <link rel="stylesheet" href="/css/agree/global.css" />
+  <link rel="stylesheet" href="/css/agree/style.css" />
+  <link rel="stylesheet" href="/css/agree/styleguide.css" />
 
   <script>
     function toggleAllTerms(source) {
