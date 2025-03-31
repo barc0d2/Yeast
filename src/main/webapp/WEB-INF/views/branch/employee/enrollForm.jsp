@@ -2,9 +2,9 @@
 <html lang="ko">
   <head>
     <title>사용자 정보 양식</title>
-    <link rel="stylesheet" href="css/branch/employee/enrollForm/globals.css" />
-    <link rel="stylesheet" href="css/branch/employee/enrollForm/styleguide.css" />
-    <link rel="stylesheet" href="css/branch/employee/enrollForm/style.css" />
+    <link rel="stylesheet" href="/css/branch/employee/enrollForm/globals.css" />
+    <link rel="stylesheet" href="/css/branch/employee/enrollForm/styleguide.css" />
+    <link rel="stylesheet" href="/css/branch/employee/enrollForm/style.css" />
   </head>
   <body>
     <main class="main">

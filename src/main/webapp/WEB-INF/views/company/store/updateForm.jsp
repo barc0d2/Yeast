@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>매장 정보 수정</title>
-    <link rel="stylesheet" href="css/company/store/updateForm/globals.css" />
-    <link rel="stylesheet" href="css/company/store/updateForm/style.css" />
-    <link rel="stylesheet" href="css/company/store/updateForm/styleguide.css" />
+    <link rel="stylesheet" href="/css/company/store/updateForm/globals.css" />
+    <link rel="stylesheet" href="/css/company/store/updateForm/style.css" />
+    <link rel="stylesheet" href="/css/company/store/updateForm/styleguide.css" />
   </head>
   <body>
     <form class="store">

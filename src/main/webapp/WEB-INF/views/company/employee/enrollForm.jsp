@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/company/employee/enrollForm/globals.css" />
-    <link rel="stylesheet" href="css/company/employee/enrollForm/style.css" />
-    <link rel="stylesheet" href="css/company/employee/enrollForm/styleguide.css" />
+    <link rel="stylesheet" href="/css/company/employee/enrollForm/globals.css" />
+    <link rel="stylesheet" href="/css/company/employee/enrollForm/style.css" />
+    <link rel="stylesheet" href="/css/company/employee/enrollForm/styleguide.css" />
   </head>
   <body>
     <div class="main">
@@ -24,43 +24,43 @@
             </div>
             <div class="div-2">
               <div class="title">이름</div>
-              <div class="input"><div class="hint">호원준</div></div>
+              <div class="input"></div>
             </div>
             <div class="div-2">
               <div class="title">아이디</div>
-              <div class="input"><div class="hint">호원준</div></div>
+              <div class="input"></div>
             </div>
             <div class="address">
               <div class="title">집주소</div>
-              <div class="input"><div class="hint">서울특별시</div></div>
+              <div class="input"></div>
             </div>
           </div>
           <div class="column-2">
             <div class="div-2">
               <div class="title">비밀번호</div>
-              <div class="input"><div class="hint">123123</div></div>
+              <div class="input"></div>
             </div>
             <div class="div-2">
               <div class="title">이메일</div>
-              <div class="input"><div class="hint">호원준@호원준.com</div></div>
+              <div class="input"></div>
             </div>
             <div class="div-2">
               <div class="title">전화번호</div>
-              <div class="input"><div class="hint">010-1111-2222</div></div>
+              <div class="input"></div>
             </div>
             <div class="div-2">
               <div class="title">생년월일</div>
-              <div class="input"><div class="hint">2025-03-20</div></div>
+              <div class="input"></div>
             </div>
             <div class="job">
               <div class="split">
                 <div class="div-3">
                   <div class="title">*가맹점</div>
-                  <div class="input"><div class="hint">회사</div></div>
+                  <div class="input"></div>
                 </div>
                 <div class="div-3">
                   <div class="title">직무</div>
-                  <div class="input"><div class="hint">직원</div></div>
+                  <div class="input"></div>
                 </div>
               </div>
             </div>

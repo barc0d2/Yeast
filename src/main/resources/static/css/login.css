@@ -1,0 +1,251 @@
+body{
+    min-width: 100vh;
+    margin:0;
+    padding:0;
+    position: relative;
+}
+
+#frame{
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    position:absolute;
+}
+
+
+#frame .Background {
+    width: 100%;
+    height: 100vh;
+    opacity: 0.15;
+    position: absolute;
+}
+
+#Main {
+    width: 100%;
+    height: 100vh;
+
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: hidden;
+}
+
+#Title {
+    width: 900px;
+    height: 198px;
+    left: 74px;
+    top: 241px;
+    position: absolute;
+    color: var(--Accent-3, #1F1F1F);
+    font-size: 64px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 99px;
+    word-wrap: break-word
+}
+
+#Input {
+    width: 438px;
+    left: 78px;
+    top: 510px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 39px;
+    display: inline-flexF
+}
+
+#Id {
+    align-self: stretch;
+    height: 75px;
+    position: relative;
+    background: #6C6C6C;
+    overflow: hidden;
+    border-radius: 10px;
+    outline: 1px #CED4DA solid;
+    outline-offset: -1px
+}
+
+#Id div {
+    width: 75px;
+    height: 40px;
+    left: 18px;
+    top: 0px;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 20px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 28px;
+    word-wrap: break-word
+}
+
+#Password {
+    margin-top: 39px;
+    align-self: stretch;
+    height: 75px;
+    position: relative;
+    background: #6C6C6C;
+    overflow: hidden;
+    border-radius: 10px;
+    outline: 1px #CED4DA solid;
+    outline-offset: -1px
+}
+
+#Password div {
+    width: 100px;
+    height: 40px;
+    left: 18px;
+    top: 0px;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 20px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 20px;
+    word-wrap: break-word
+}
+
+#Underlogo {
+    width: 1045px;
+    left: 74px;
+    top: 85%;
+    position: absolute;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: flex-start
+}
+
+#Address {
+    width: 246px;
+    height: 17.75px;
+    color: #191919;
+    font-size: 21.14px;
+    font-family: Open Sans;
+    font-weight: 600;
+    line-height: 17.97px;
+    word-wrap: break-word
+}
+
+#khAcademy {
+    width: 1045px;
+    height: 10px;
+    color: var(--Color-2, black);
+    font-size: 11.84px;
+    font-family: Open Sans;
+    font-weight: 300;
+    line-height: 8.88px;
+    letter-spacing: 7.89px;
+    word-wrap: break-word
+}
+
+#Logo {
+    width: 355.27px;
+    height: 99px;
+    left: 54px;
+    top: 58px;
+    position: absolute
+}
+
+#Logo .Image {
+    width: 120.96px;
+    height: 99px;
+    left: 0px;
+    top: 0px;
+    position: absolute
+}
+
+#Logo .Text {
+    width: 212.27px;
+    height: 85px;
+    left: 143px;
+    top: 7px;
+    position: absolute
+}
+
+#Checkbox {
+    width: 437.14px;
+    height: 27.60px;
+    left: 79px;
+    top: 707px;
+    position: absolute
+}
+
+#Checkbox .Session {
+    width: 102.82px;
+    height: 9.14px;
+    left: 25.48px;
+    top: 9px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 10px;
+    word-wrap: break-word
+}
+
+#Checkbox .Login {
+    width: 49.11px;
+    height: 9px;
+    left: 303.69px;
+    top: 4px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 10px;
+    word-wrap: break-word
+}
+
+#Checkbox .Join {
+    width: 80px;
+    height: 9px;
+    left: 376px;
+    top: 4px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 10px;
+    word-wrap: break-word
+}
+
+#underContent {
+    left: 74px;
+    top: 80%;
+    position: absolute;
+    color: var(--Color-4, #191919);
+    font-size: 25.68px;
+    font-family: Open Sans;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 55.55px;
+    word-wrap: break-word
+}
+
+#Bread {
+    background: url(/images/login/bread.jpg) no-repeat;
+    background-position:-600px;
+    background-size: cover;
+    position: absolute;
+    width: 600px;
+    height: 90%;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 43.900001525878906px -14px rgba(0, 0, 0, 0.20);
+    border-radius: 21px;
+}
