@@ -32,7 +32,7 @@
             <div id="Password">
                 <div>
                     비밀번호
-                    <input type="text" id="userPwd" name="userPwd" class="input" required>
+                    <input type="password" id="userPwd" name="userPwd" class="input" required>
                 </div>
             </div>
         </div>
