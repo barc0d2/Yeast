@@ -1,0 +1,394 @@
+.store {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.store .form {
+  display: flex;
+  width: 1530px;
+  height: 637px;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  position: absolute;
+  top: 201px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--backgroundwhite);
+  border-radius: 15px;
+  border: 2px solid;
+  border-color: #c9c9c9;
+}
+
+.store .thumbnail {
+  position: relative;
+  width: 372px;
+  height: 370px;
+}
+
+.store .overlap-group {
+  position: relative;
+  width: 370px;
+  height: 370px;
+  border-radius: 5px;
+}
+
+.store .image {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  height: 370px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: var(--fontgray);
+}
+
+.store .plus-circle-fill {
+  position: relative;
+  width: 78px;
+  height: 78px;
+}
+
+.store .text-wrapper {
+  position: absolute;
+  width: 123px;
+  top: 4px;
+  left: 125px;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--fontdeepdarkgray);
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  white-space: nowrap;
+}
+
+.store .list {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  align-items: flex-start;
+  gap: 60px;
+  position: relative;
+}
+
+.store .div {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.store .text {
+  width: 100px;
+  height: 32px;
+  color: var(--fontdeepdarkgray);
+  font-size: 24px;
+  line-height: 32px;
+  position: relative;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.store .input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--fontgray);
+  opacity: 0.5;
+  width: 210px;
+  height: 40px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: var(--fontgray);
+}
+
+.store .text-wrapper-2 {
+  width: fit-content;
+  margin-top: -4.00px;
+  margin-bottom: -2.00px;
+  color: #000000;
+  font-size: var(--body-kakao-18px-font-size);
+  text-align: right;
+  line-height: var(--body-kakao-18px-line-height);
+  position: relative;
+  font-family: var(--body-kakao-18px-font-family);
+  font-weight: var(--body-kakao-18px-font-weight);
+  letter-spacing: var(--body-kakao-18px-letter-spacing);
+  white-space: nowrap;
+  font-style: var(--body-kakao-18px-font-style);
+}
+
+.store .div-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-color: var(--fontgray);
+  width: 210px;
+  height: 40px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.store .text-wrapper-3 {
+  position: relative;
+  width: fit-content;
+  margin-top: -4.00px;
+  margin-bottom: -2.00px;
+  font-family: var(--body-kakao-18px-font-family);
+  font-weight: var(--body-kakao-18px-font-weight);
+  color: #000000;
+  font-size: var(--body-kakao-18px-font-size);
+  letter-spacing: var(--body-kakao-18px-letter-spacing);
+  line-height: var(--body-kakao-18px-line-height);
+  white-space: nowrap;
+  font-style: var(--body-kakao-18px-font-style);
+}
+
+.store .work {
+  display: flex;
+  width: 330px;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.store .p {
+  width: 100px;
+  height: 32px;
+  margin-top: -1.00px;
+  color: transparent;
+  font-size: 24px;
+  line-height: 32px;
+  position: relative;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.store .span {
+  color: #565656;
+}
+
+.store .text-wrapper-4 {
+  color: #ff435c;
+}
+
+.store .input-2 {
+  background-color: #ffffff;
+  border-color: var(--fontgray);
+  width: 210px;
+  height: 40px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.store .header {
+  display: flex;
+  width: 1530px;
+  height: 97px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: #c9c9c9;
+}
+
+.store .title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.store .line {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: var(--head-kakao-32px-font-family);
+  font-weight: var(--head-kakao-32px-font-weight);
+  color: var(--fontdeepyellow);
+  font-size: var(--head-kakao-32px-font-size);
+  letter-spacing: var(--head-kakao-32px-letter-spacing);
+  line-height: var(--head-kakao-32px-line-height);
+  white-space: nowrap;
+  font-style: var(--head-kakao-32px-font-style);
+}
+
+.store .line-2 {
+  position: relative;
+  width: fit-content;
+  font-family: var(--body-kakao-18px-font-family);
+  font-weight: var(--body-kakao-18px-font-weight);
+  color: var(--fontdeepdarkgray);
+  font-size: var(--body-kakao-18px-font-size);
+  letter-spacing: var(--body-kakao-18px-letter-spacing);
+  line-height: var(--body-kakao-18px-line-height);
+  white-space: nowrap;
+  font-style: var(--body-kakao-18px-font-style);
+}
+
+.store .submit {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 24px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #ec9f23;
+  border-radius: 8px;
+  border: 2px solid;
+  border-color: #ffffff;
+  box-shadow: 0px 4px 12px #1c4efe33;
+}
+
+.store .content {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  align-self: stretch;
+  flex: 0 0 auto;
+}
+
+.store .BUTTON {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+/* Original CSS code here */
+
+.store .thumbnail {
+  position: relative;
+  width: 372px;
+  height: 370px;
+}
+
+.store .overlap-group {
+  position: relative;
+  width: 370px;
+  height: 370px;
+  border-radius: 5px;
+}
+
+.store .image {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  height: 370px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: var(--fontgray);
+  cursor: pointer;
+}
+
+.store .plus-circle-fill {
+  position: relative;
+  width: 78px;
+  height: 78px;
+}
+
+.store .text-wrapper {
+  position: absolute;
+  width: 123px;
+  top: 4px;
+  left: 125px;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--fontdeepdarkgray);
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.store .input input,
+.store .div-wrapper input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  text-align: right;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.store .input-2 input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-family: var(--body-kakao-18px-font-family);
+  font-size: var(--body-kakao-18px-font-size);
+}
+
+.store .BUTTON {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Rest of the original CSS code */
