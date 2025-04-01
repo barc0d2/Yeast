@@ -9,6 +9,25 @@
   <link rel="stylesheet" href="/css/register/style.css" />
   <link rel="stylesheet" href="/css/register/styleguide.css" />
   <link rel="stylesheet" href="/css/register/global.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .register {
+      width: 100%;
+      min-height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-bottom: 50px;
+    }
+    .div {
+      min-height: 100vh;
+      position: relative;
+    }
+  </style>
   <script>
     // encodeURIComponent 함수 정의
     function encodeURIComponent(str) {
