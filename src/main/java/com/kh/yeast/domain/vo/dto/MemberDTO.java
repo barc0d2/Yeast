@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class MemberDTO {
     private Long userNo;
     private String businessName;
     private String positionName;
@@ -29,6 +30,8 @@ public class Member {
     private Timestamp enrollDate;
     private String imageChangePath;
     private String imageOriginPath;
-    private Date birthday;
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
 }
