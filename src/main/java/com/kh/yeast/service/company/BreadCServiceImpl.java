@@ -8,6 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
@@ -24,7 +26,19 @@ public class BreadCServiceImpl implements BreadCService {
     public ArrayList<Bread> selectBreadList(PageInfo pi) {
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-        return breadCMapper.selectBreadList(rowBounds);
+        ArrayList<Bread> breadList = breadCMapper.selectBreadList(rowBounds);
+        System.out.println("size2"+breadList.size());
+        breadList.forEach(bread -> {
+            Timestamp createDate = bread.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                bread.setEnrollDate(sqlDate);
+            } else {
+                bread.setEnrollDate(null);
+            }
+        });
+
+        return breadList;
     }
 
     @Override
