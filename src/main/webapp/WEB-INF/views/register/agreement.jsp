@@ -58,25 +58,39 @@
       const nextButton = document.querySelector('.next-button');
       nextButton.disabled = !allChecked;
       nextButton.style.opacity = allChecked ? '1' : '0.5';
+      
+      // 전체 동의 체크박스 상태 업데이트
+      const allAgreeCheckbox = document.getElementById('all-agree');
+      if (allAgreeCheckbox) {
+        allAgreeCheckbox.checked = allChecked;
+      }
     }
 
     // 체크박스 변경 시 다음 버튼 상태 업데이트
-    document.querySelectorAll('.outline-interface').forEach(checkbox => {
-      checkbox.addEventListener('change', updateNextButton);
-    });
-
-    // 다음 버튼 클릭 이벤트
-    document.querySelector('.next-button').addEventListener('click', function() {
-      const allCheckboxes = document.querySelectorAll('.outline-interface');
-      const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+    document.addEventListener('DOMContentLoaded', function() {
+      // 다음 버튼 초기 상태 설정
+      updateNextButton();
       
-      if (!allChecked) {
-        alert('모든 약관에 동의해주세요.');
-        return;
-      }
+      // 개별 체크박스 이벤트 리스너 설정
+      document.querySelectorAll('.outline-interface').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          updateNextButton();
+        });
+      });
       
-      // 모든 약관에 동의한 경우 회원가입 페이지로 이동
-      window.location.href = '/member/register';
+      // 다음 버튼 클릭 이벤트
+      document.querySelector('.next-button').addEventListener('click', function() {
+        const allCheckboxes = document.querySelectorAll('.outline-interface');
+        const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+        
+        if (!allChecked) {
+          alert('모든 약관에 동의해주세요.');
+          return;
+        }
+        
+        // 모든 약관에 동의한 경우 회원가입 페이지로 이동
+        window.location.href = '/member/register';
+      });
     });
 
     function openPopup(content) {

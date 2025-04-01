@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #FFFCEC;
         }
-
+        
         .filter-container {
             display: flex;
             justify-content: space-between;
@@ -92,134 +93,134 @@
         <table id="salesTable">
             <thead>
                 <tr>
-                    <th data-sort="no">NO.</th>
-                    <th data-sort="date">일자</th>
-                    <th data-sort="branch">지점</th>
-                    <th data-sort="purchase">구매수량</th>
-                    <th data-sort="quantity">판매수량</th>
-                    <th data-sort="sales">매출</th>
+                    <th data-sort="no">No.</th>
+                    <th data-sort="product">상품명</th>
+                    <th data-sort="type">종류</th>
+                    <th data-sort="sales-quantity">판매개수</th>
+                    <th data-sort="remaining-quantity">남은개수</th>
+                    <th data-sort="sales">매출(원)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>00001</td>
-                    <td>25/03/19</td>
-                    <td>잠실점</td>
-                    <td>200개</td>
+                    <td>버터 크로와상</td>
+                    <td>크로와상</td>
                     <td>150개</td>
-                    <td>2,400,000</td>
+                    <td>50개</td>
+                    <td>750,000</td>
                 </tr>
                 <tr>
                     <td>00002</td>
-                    <td>25/03/18</td>
-                    <td>강남점</td>
-                    <td>150개</td>
+                    <td>초코 크로와상</td>
+                    <td>크로와상</td>
                     <td>120개</td>
-                    <td>1,920,000</td>
+                    <td>40개</td>
+                    <td>600,000</td>
                 </tr>
                 <tr>
                     <td>00003</td>
-                    <td>25/03/17</td>
-                    <td>명동점</td>
-                    <td>220개</td>
-                    <td>180개</td>
-                    <td>2,880,000</td>
+                    <td>플레인 베이글</td>
+                    <td>베이글</td>
+                    <td>200개</td>
+                    <td>75개</td>
+                    <td>1,000,000</td>
                 </tr>
                 <tr>
                     <td>00004</td>
-                    <td>25/03/16</td>
-                    <td>잠실점</td>
-                    <td>250개</td>
-                    <td>200개</td>
-                    <td>3,200,000</td>
+                    <td>치즈 베이글</td>
+                    <td>베이글</td>
+                    <td>180개</td>
+                    <td>60개</td>
+                    <td>900,000</td>
                 </tr>
                 <tr>
                     <td>00005</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>통밀 소금빵</td>
+                    <td>소금빵</td>
+                    <td>500개</td>
+                    <td>200개</td>
+                    <td>500,000</td>
                 </tr>
                 <tr>
                     <td>00006</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>올리브 소금빵</td>
+                    <td>소금빵</td>
+                    <td>250개</td>
+                    <td>100개</td>
+                    <td>1,250,000</td>
                 </tr>
                 <tr>
                     <td>00007</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>클래식 단팥빵</td>
+                    <td>단팥빵</td>
+                    <td>120개</td>
+                    <td>30개</td>
+                    <td>600,000</td>
                 </tr>
                 <tr>
                     <td>00008</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>대만식 단팥빵</td>
+                    <td>단팥빵</td>
+                    <td>400개</td>
+                    <td>150개</td>
+                    <td>400,000</td>
                 </tr>
                 <tr>
                     <td>00009</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>통밀 식빵</td>
+                    <td>식빵</td>
+                    <td>100개</td>
+                    <td>25개</td>
+                    <td>750,000</td>
                 </tr>
                 <tr>
                     <td>00010</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>우유 식빵</td>
+                    <td>식빵</td>
+                    <td>80개</td>
+                    <td>20개</td>
+                    <td>240,000</td>
                 </tr>
                 <tr>
                     <td>00011</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>바닐라 크로와상</td>
+                    <td>크로와상</td>
+                    <td>220개</td>
+                    <td>80개</td>
+                    <td>660,000</td>
                 </tr>
                 <tr>
                     <td>00012</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
+                    <td>블루베리 베이글</td>
+                    <td>베이글</td>
                     <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>30개</td>
+                    <td>450,000</td>
                 </tr>
                 <tr>
                     <td>00013</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>마늘 소금빵</td>
+                    <td>소금빵</td>
+                    <td>350개</td>
+                    <td>125개</td>
+                    <td>525,000</td>
                 </tr>
                 <tr>
                     <td>00014</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>고구마 식빵</td>
+                    <td>식빵</td>
+                    <td>180개</td>
+                    <td>60개</td>
+                    <td>900,000</td>
                 </tr>
                 <tr>
                     <td>00015</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
+                    <td>단옥수수 단팥빵</td>
+                    <td>단팥빵</td>
+                    <td>200개</td>
+                    <td>75개</td>
+                    <td>400,000</td>
                 </tr>
             </tbody>
         </table>
@@ -245,24 +246,15 @@
                     // Determine sorting method based on type
                     switch(type) {
                         case 'no':
-                        case 'quantity':
+                        case 'sales-quantity':
+                        case 'remaining-quantity':
                         case 'sales':
-                        case 'purchase':
                             const numA = parseFloat(cleanValue(cellA));
                             const numB = parseFloat(cleanValue(cellB));
                             return direction === 'asc' ? numA - numB : numB - numA;
                         
-                        case 'date':
-                            // Convert date to comparable format
-                            const parseDate = (dateStr) => {
-                                const [year, month, day] = dateStr.split('/').map(Number);
-                                return new Date(2025, month - 1, day);
-                            };
-                            const dateA = parseDate(cellA);
-                            const dateB = parseDate(cellB);
-                            return direction === 'asc' ? dateA - dateB : dateB - dateA;
-                        
-                        case 'branch':
+                        case 'product':
+                        case 'type':
                         default:
                             return direction === 'asc' 
                                 ? cellA.localeCompare(cellB) 
