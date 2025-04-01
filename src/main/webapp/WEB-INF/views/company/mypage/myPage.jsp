@@ -3,9 +3,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../css/global/bmyPage.css" />
-    <link rel="stylesheet" href="../../css/styleguide/bmyPage.css" />
-    <link rel="stylesheet" href="../../css/style/bmyPage.css" />
+    <link rel="stylesheet" href="../../css/global/cmyPage.css" />
+    <link rel="stylesheet" href="../../css/styleguide/cmyPage.css" />
+    <link rel="stylesheet" href="../../css/style/cmyPage.css" />
 </head>
 <body>
 <div class="main">
@@ -25,47 +25,33 @@
             </div>
             <div class="div">
                 <p class="p"><span class="span">이메일&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="email" name="email" id="email" class="blank" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" />
                 </div>
-            </div>
             <div class="div">
                 <p class="p"><span class="span">이름&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="text" name="name" id="name" class="blank" value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>" />
-                </div>
             </div>
             <div class="div">
                 <p class="p"><span class="span">아이디&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="text" name="userId" id="userId" class="blank" value="<%= request.getAttribute("userId") != null ? request.getAttribute("userId") : "" %>" disabled />
-                </div>
             </div>
         </div>
         <div class="column-2">
             <div class="div">
                 <p class="p"><span class="span">비밀번호&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="password" name="password" id="password" class="blank" />
-                </div>
             </div>
             <div class="div">
                 <p class="p"><span class="span">주소&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="text" name="address" id="address" class="blank" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" />
-                </div>
             </div>
             <div class="div">
                 <p class="p"><span class="span">전화번호&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="text" name="phone" id="phone" class="blank" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" />
-                </div>
             </div>
             <div class="div">
                 <p class="p"><span class="span">생년월일&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-                <div class="blank">
                     <input type="date" name="birthdate" id="birthdate" class="blank" value="<%= request.getAttribute("birthdate") != null ? request.getAttribute("birthdate") : "" %>" />
-                </div>
             </div>
             <div class="div-2">
                 <div class="text-wrapper-2">직무</div>
@@ -109,41 +95,39 @@
             </div>
         </div>
     </div>
-    <div class="save-btn">
-        <div class="text-wrapper-3" onclick="saveChanges()">저장</div>
-    </div>
     <div class="edit-btn" onclick="click()">
-        <a href="/branch/mypage/myPagePopUp">
+        <a href="/company/mypage/myPagePopUp">
             <div class="text-wrapper-3">수정</div>
         </a>
     </div>
+</div>
 
-    <script>
+<script>
 
-        function saveChanges() {
-            const formData = {
-                email: document.getElementById("email").value,
-                name: document.getElementById("name").value,
-                userId: document.getElementById("userId").value,
-                password: document.getElementById("password").value,
-                address: document.getElementById("address").value,
-                phone: document.getElementById("phone").value,
-                birthdate: document.getElementById("birthdate").value,
-                position: document.getElementById("position").value,
-                business: document.getElementById("department").value, // 수정: businessNo 추가
-                gender: document.getElementById("gender").value
-            };
+    function saveChanges() {
+        const formData = {
+            email: document.getElementById("email").value,
+            name: document.getElementById("name").value,
+            userId: document.getElementById("userId").value,
+            password: document.getElementById("password").value,
+            address: document.getElementById("address").value,
+            phone: document.getElementById("phone").value,
+            birthdate: document.getElementById("birthdate").value,
+            position: document.getElementById("position").value,
+            business: document.getElementById("business").value,
+            gender: document.getElementById("gender").value
+        };
 
-            console.log("Updated Information:", formData);
-            alert("정보가 업데이트되었습니다.");
+        console.log("Updated Information:", formData);
+        alert("정보가 업데이트되었습니다.");
+    }
+
+    document.getElementById("fileInput").addEventListener("change", function (event) {
+            let files = event.target.files;
+            let previewContainer = document.getElementById("previewContainer");
         }
+    );
 
-        document.getElementById("fileInput").addEventListener("change", function (event) {
-                let files = event.target.files;
-                let previewContainer = document.getElementById("previewContainer");
-            }
-        );
-
-    </script>
+</script>
 </body>
 </html>

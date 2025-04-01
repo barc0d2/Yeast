@@ -2,21 +2,19 @@ package com.kh.yeast.domain.vo;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MEMBER")
 @Getter
-@NoArgsConstructor
-@SequenceGenerator(
-        name = "MEMBER_SEQ_GENERATOR",
-        sequenceName = "SEQ_MEMBER",
-        allocationSize = 1
-)
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자 제한
+@AllArgsConstructor
+@Builder
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_NO")
     private Long userNo;
 
@@ -44,8 +42,14 @@ public class Member {
     @Column(name = "POSITION_NO", nullable = false)
     private Long positionNo;
 
+    @Column(name = "POSITION", nullable = false)
+    private Long position;
+
     @Column(name = "BUSINESS_NO", nullable = false)
     private Long businessNo;
+
+    @Column(name = "BUSINESS", nullable = false)
+    private Long business;
 
     @Column(name = "MANAGER_NO")
     private Long managerNo;
@@ -71,19 +75,19 @@ public class Member {
     @Column(name = "STATUS", nullable = false)
     private Integer status = 1;
 
-    public Member(String userId, String userPwd, String userName, String phone, String gender, String address, Long positionNo, Long businessNo) {
+
+
+    // 📌 setter 없이 생성자로만 값 설정
+    @Builder
+    public Member(String userId, String userPwd, String userName, String email, String phone, String gender, String address, Long positionNo, Long businessNo) {
         this.userId = userId;
         this.userPwd = userPwd;
         this.userName = userName;
+        this.email = email;
         this.phone = phone;
         this.gender = gender;
         this.address = address;
         this.positionNo = positionNo;
         this.businessNo = businessNo;
-
-    }
-
-    public void setUserPwd(String userPwd) {
-        
     }
 }

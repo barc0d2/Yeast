@@ -117,6 +117,7 @@
     <div class="text-wrapper-3">수정</div>
  </a>
 </div>
+</div>
 
 <script>
 
@@ -130,7 +131,7 @@
       phone: document.getElementById("phone").value,
       birthdate: document.getElementById("birthdate").value,
       position: document.getElementById("position").value,
-      business: document.getElementById("department").value, // 수정: businessNo 추가
+      business: document.getElementById("business").value,
       gender: document.getElementById("gender").value
     };
 

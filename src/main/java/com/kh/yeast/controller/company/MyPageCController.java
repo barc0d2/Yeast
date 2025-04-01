@@ -1,4 +1,4 @@
-package com.kh.yeast.controller.branch;
+package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.MyPageService;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
-public class MyPageBController {
+public class MyPageCController {
 
     @Autowired
     private MyPageService myPageService;
 
-    @GetMapping("/branch/mypage/myPage")
+    @GetMapping("/company/mypage/myPage")
     public String myPage(@SessionAttribute(value = "userId", required = false) String userId, Model model) {
         try {
             Member user = myPageService.getMemberInfo(userId);
@@ -28,10 +28,10 @@ public class MyPageBController {
             model.addAttribute("error", "회원 정보를 불러오는 데 실패했습니다.");
         }
 
-        return "branch/mypage/myPage";
+        return "company/mypage/myPage";
     }
 
-    @GetMapping("/branch/mypage/myPagePopUp")
+    @GetMapping("/company/mypage/myPagePopUp")
     public String editUserPage(HttpSession session, Model model) {
         String userId = (String) session.getAttribute("userId");
 
@@ -46,6 +46,6 @@ public class MyPageBController {
             }
         }
 
-        return "branch/mypage/myPagePopUp";
+        return "company/mypage/myPagePopUp";
     }
 }

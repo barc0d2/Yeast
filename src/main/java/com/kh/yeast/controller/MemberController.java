@@ -22,21 +22,21 @@ public class MemberController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @PostMapping("insert.me")
-    public String insertMember(Member member, HttpSession session, Model model) {
-
-        String userPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
-        member.setUserPwd(userPwd);
-
-        int result = memberService.insertMember(member);
-        if (result > 0) {
-            session.setAttribute("alertMsg", "회원가입 완료!");
-            return "redirect:/";
-        } else {
-            model.addAttribute("errorMsg", "회원가입 실패");
-            return "error";
-        }
-    }
+//    @PostMapping("insert.me")
+//    public String insertMember(Member member, HttpSession session, Model model) {
+//
+//        String userPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
+//        member.setUserPwd(userPwd);
+//
+//        int result = memberService.insertMember(member);
+//        if (result > 0) {
+//            session.setAttribute("alertMsg", "회원가입 완료!");
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("errorMsg", "회원가입 실패");
+//            return "error";
+//        }
+//    }
 
     @PostMapping("login.me")
     public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
