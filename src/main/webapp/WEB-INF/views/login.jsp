@@ -19,7 +19,8 @@
 <body>
 <div id="frame">
     <img class="Background" src="images/login/background.jpg" />
-    <form id="Main">
+    <form id="Main" action="login.me" method="post">
+        <button type="submit" style="display: none"></button>
         <div id="Title">
             빵처럼 부드럽고, <br />효율적인 통합 관리 프로그램</div>
         <div id="Input">

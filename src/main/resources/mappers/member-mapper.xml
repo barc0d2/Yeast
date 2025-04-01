@@ -2,47 +2,51 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.boot.mappers.MemberMapper">
+<mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="USER_NAME" property="userName"/>
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
-        <result column="USER_NAME" property="userName"/>
-        <result column="BUSINESS_NAME" property="b"/>
-        <result column="POSITION_NAME" property="b"/>
-        <result column="MANAGER_NAME" property="b"/>
-        <result column="SALARY" property="b"/>
-        <result column="BONUS" property="b"/>
         <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
         <result column="PHONE" property="phone"/>
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGEPATH" property="imageChangePath"/>
+        <result column="IMAGE_ORIGINPATH" property="imageOriginPath"/>
         <result column="BIRTHDAY" property="birthday"/>
-        <result column="ENROLL_DATE" property="enrollDate"/>
-        <result column="MODIFY_DATE" property="modifyDate"/>
-        <result column="STATUS" property="status"/>
     </resultMap>
     <select id="loginMember" parameterType="Member" resultMap="memberResult">
-        SELECT USER_NO,
-                BUSINESS_NAME,
-                POSITION_NAME,
-                MANAGER_NAME,
-                USER_NAME,
-                USER_ID,
-                USER_PWD,
-                EMAIL,
-                SALARY,
-                BONUS,
-                PHONE,
-                GENDER,
-                ADDRESS,
-                CREATE_DATE,
-                IMAGE_CHANGEPATH,
-                IMAGE_ORIGINPATH,
-                BIRTHDAY,
-                STATUS
-         FROM MEMBER
-        WHERE USER_ID = #{userId}
-          AND STATUS = 'Y'
+        SELECT M.USER_NO,
+        BUSINESS_NAME AS BUSINESS_NAME,
+        POSITION_NAME AS POSITION_NAME,
+        E.USER_NAME AS MANAGER_NAME,
+        M.USER_NAME AS USER_NAME,
+        M.USER_ID AS USER_ID,
+        M.USER_PWD AS USER_PWD,
+        M.EMAIL AS EMAIL,
+        M.SALARY AS SALARY,
+        M.BONUS AS BONUS,
+        M.PHONE AS PHONE,
+        M.GENDER AS GENDER,
+        M.ADDRESS AS ADDRESS,
+        M.CREATE_DATE AS CREATE_DATE,
+        M.IMAGE_CHANGEPATH AS IMAGE_CHANGEPATH,
+        M.IMAGE_ORIGINPATH AS IMAGE_ORIGINPATH,
+        M.BIRTHDAY AS BIRTHDAY,
+        M.STATUS AS STATUS
+        FROM MEMBER M
+        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+        WHERE M.USER_ID = #{userId}
+        AND M.STATUS = 1
     </select>
     <insert id="insertMember">
         INSERT
@@ -66,7 +70,7 @@
             #{address}
         )
     </insert>
-    <select id="idCheck" resultType="_int">
+    <select id="idCheck" resultType="int">
         SELECT COUNT(*)
         FROM MEMBER
         WHERE USER_ID = #{userId}
