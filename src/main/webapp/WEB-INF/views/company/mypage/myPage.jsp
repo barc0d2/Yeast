@@ -93,7 +93,14 @@
                     <option value="여" <%= "여".equals(request.getAttribute("gender")) ? "selected" : "" %>>여자</option>
                 </select>
             </div>
+            <div class="div-2">
+                    <p class="p"><span class="span">사수&nbsp;&nbsp;</span> <span class="span">(이름)</span></p>
+                    <input type="text" name="manager" id="manager" class="blank-2" value="<%= request.getAttribute("managerName") != null ? request.getAttribute("managerName") : "" %>"  readonly/>
+                </div>
+            </div>
         </div>
+    <div class="save-btn">
+        <div class="text-wrapper-3" onclick="saveChanges()">저장</div>
     </div>
     <div class="edit-btn" onclick="click()">
         <a href="/company/mypage/myPagePopUp">

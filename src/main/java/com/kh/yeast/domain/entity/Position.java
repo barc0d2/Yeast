@@ -1,4 +1,4 @@
-package com.kh.yeast.domain.vo;
+package com.kh.yeast.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,9 +6,9 @@ import lombok.*;
 @Entity
 @Table(name = "POSITION")
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 @SequenceGenerator(
         name = "POSITION_SEQ_GENERATOR",
         sequenceName = "SEQ_POSITION",
@@ -25,5 +25,13 @@ public class Position {
     private String positionName;
 
     @Column(name = "BUSINESS_NO", nullable = false)
-    private Long businessNo;  // 부서와의 연관을 나타냄
+    private Long businessNo;
+
+    public void updatePositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    public void updateBusinessNo(Long businessNo) {
+        this.businessNo = businessNo;
+    }
 }

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,8 @@
   <link rel="stylesheet" href="../../css/styleguide/companyIntroduce.css" />
 </head>
 <body>
-<div class="box"><div class="group"/></div></div>
+<div class="box">
+  <div class="group"></div>
+</div>
 </body>
 </html>

@@ -19,13 +19,14 @@ String birthdate = (String) session.getAttribute("birthdate");
 String gender = (String) session.getAttribute("gender");
 String position = (String) session.getAttribute("position");
 String business = (String) session.getAttribute("business");
+String managerName = (String) session.getAttribute("managerName");
 %>
 
 <div class="a">
   <div class="mypage-edit-wrapper">
     <div class="mypage-edit">
       <div class="main">
-        <a href="/company/mypage/myPage">
+        <a href="../mypage/myPage">
           <div class="save-cloe">
             <div class="save-close">저장 후 닫기</div>
           </div>
@@ -99,6 +100,10 @@ String business = (String) session.getAttribute("business");
                 <option value="남" <%= "남".equals(gender) ? "selected" : "" %>>남자</option>
                 <option value="여" <%= "여".equals(gender) ? "selected" : "" %>>여자</option>
               </select>
+            </div>
+            <div class="div-2">
+              <p class="p"><span class="span">사수&nbsp;&nbsp;</span> <span class="span">(이름)</span></p>
+              <input type="text" name="manager" id="manager" class="blank-2" value="<%= request.getAttribute("managerName") != null ? request.getAttribute("managerName") : "" %>" readonly/>
             </div>
           </div>
         </div>
