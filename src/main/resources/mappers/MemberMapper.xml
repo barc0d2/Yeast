@@ -3,7 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.MemberMapper">
-
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="BUSINESS_NAME" property="b"/>
+        <result column="POSITION_NAME" property="b"/>
+        <result column="MANAGER_NAME" property="b"/>
+        <result column="SALARY" property="b"/>
+        <result column="BONUS" property="b"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="ENROLL_DATE" property="enrollDate"/>
+        <result column="MODIFY_DATE" property="modifyDate"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
     <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
         INSERT INTO MEMBER (
             USER_NO,
@@ -40,7 +57,7 @@
 
     <select id="existsByUserId" resultType="boolean">
         SELECT COUNT(*) > 0
-        FROM member
+        FROM MEMBER
         WHERE user_id = #{userId}
     </select>
 

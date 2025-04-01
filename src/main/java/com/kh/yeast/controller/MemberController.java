@@ -1,6 +1,7 @@
 package com.kh.yeast.controller;
 
 import com.kh.yeast.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+@RequiredArgsConstructor
 @Slf4j
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
-    @Autowired
     private MemberService memberService;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/agreement")

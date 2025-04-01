@@ -2,6 +2,7 @@ package com.kh.yeast.service;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.MemberMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,14 +17,13 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired
     private MemberMapper memberMapper;
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
