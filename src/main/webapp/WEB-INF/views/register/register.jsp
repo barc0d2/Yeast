@@ -1,12 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="_csrf" content="${_csrf.token}"/>
   <title>YEAST 회원가입</title>
   <link rel="stylesheet" href="/css/register/style.css" />
   <link rel="stylesheet" href="/css/register/styleguide.css" />
   <link rel="stylesheet" href="/css/register/global.css" />
+  <script>
+    // encodeURIComponent 함수 정의
+    function encodeURIComponent(str) {
+      return encodeURIComponent(str);
+    }
+  </script>
 </head>
 <body>
 <div class="register">
@@ -21,30 +29,33 @@
         </div>
         <div class="text-wrapper-3">Welcome to YEAST..!</div>
       </div>
-      <form id="registrationForm">
+      <form id="registrationForm" enctype="multipart/form-data">
         <div class="frame-2">
           <div class="group-3">
-            <select class="gender" required>
+            <select class="gender" name="gender" required>
+              <option value="">성별을 선택하세요</option>
               <option value="male">남</option>
               <option value="female">여</option>
             </select>
             <p class="p"><span class="span">성별</span> <span class="text-wrapper-4">(필수)</span></p>
           </div>
           <div class="group-3">
-            <input class="rectangle" type="text" name="job"></input>
+            <input class="rectangle" type="text" name="positionName"></input>
             <div class="text-wrapper-5">직무</div>
           </div>
           <div class="group-4">
-            <div class="text-wrapper-6">소속 사업장(필수)</div>
-            <select class="gender" required>
-              <option value="male">가맹점</option>
-              <option value="female">회사</option>
+            <div class="text-wrapper-6">소속(필수)</div>
+            <select class="rectangle" name="businessName" required>
+              <option value="">소속을 선택하세요</option>
+              <option value="가맹점">가맹점</option>
+              <option value="회사">회사</option>
             </select>
           </div>
           <div class="group-5">
-            <input class="rectangle" type="text" name="supervisor" required></input>
+            <input class="rectangle" type="text" name="managerName" required></input>
             <div class="text-wrapper-6">사수(필수)</div>
           </div>
+
         </div>
         <div class="group-6">
           <div class="frame-3">
@@ -62,16 +73,16 @@
                 </div>
               </div>
               <div class="group-8">
-                <input class="rectangle-2" type="text" name="name" required></input>
+                <input class="rectangle-2" type="text" name="userName" required></input>
                 <p class="div-2"><span class="span">이름</span> <span class="text-wrapper-4">(필수)</span></p>
               </div>
             </div>
             <div class="group-9">
-              <input class="rectangle-3" type="text" name="id" required></input>
+              <input class="rectangle-3" type="text" name="userId" required></input>
               <p class="div-3"><span class="span">아이디</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-9">
-              <input class="rectangle-3" type="password" name="password" required></input>
+              <input class="rectangle-3" type="password" name="userPwd" required></input>
               <p class="div-3"><span class="span">비밀번호</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-9">
@@ -85,7 +96,7 @@
               <p class="div-4"><span class="span">이메일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
-              <input class="rectangle-3" type="date" name="birth-date" required></input>
+              <input class="rectangle-3" type="date" name="birthday" required></input>
               <p class="div-3"><span class="span">생년월일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
@@ -111,6 +122,7 @@
   const profileInput = document.getElementById('profileInput');
   const profileImage = document.getElementById('profileImage');
   const registrationForm = document.getElementById('registrationForm');
+  let selectedFile = null;
 
   // 이미지 클릭 시 파일 선택 트리거
   profileImage.addEventListener('click', function() {
@@ -128,6 +140,7 @@
       }
 
       const reader = new FileReader();
+      selectedFile = file;
 
       reader.onload = function(e) {
         profileImage.src = e.target.result;
@@ -139,12 +152,36 @@
     }
   });
 
+  // 아이디 중복 체크
+  const idInput = document.querySelector('input[name="userId"]');
+  let idCheckTimeout;
+
+  idInput.addEventListener('input', function() {
+    clearTimeout(idCheckTimeout);
+    idCheckTimeout = setTimeout(() => {
+      const userId = this.value;
+      if (userId.length >= 4) {
+        fetch('/member/check-id?userId=' + encodeURIComponent(userId))
+          .then(response => response.json())
+          .then(data => {
+            const messageDiv = document.getElementById('idCheckMessage');
+            messageDiv.textContent = data.message;
+            messageDiv.style.color = data.available ? 'green' : 'red';
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('아이디 중복 체크 중 오류가 발생했습니다.');
+          });
+      }
+    }, 500);
+  });
+
   // 폼 제출 이벤트 처리
   registrationForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // 기본 제출 동작 방지
+    event.preventDefault();
 
     // 비밀번호 일치 확인
-    const password = document.querySelector('input[name="password"]').value;
+    const password = document.querySelector('input[name="userPwd"]').value;
     const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
 
     if (password !== confirmPassword) {
@@ -152,8 +189,38 @@
       return;
     }
 
-    // 여기에 실제 폼 제출 로직 추가 (예: AJAX 요청)
-    alert('회원가입 양식이 제출되었습니다.');
+    // FormData 객체 생성
+    const formData = new FormData(this);
+    if (selectedFile) {
+      formData.append('profileImage', selectedFile);
+    }
+
+    // 서버로 데이터 전송
+    fetch('/member/register', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]').content
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        alert(data.message);
+        window.location.href = '/login'; // 로그인 페이지로 리다이렉트
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
+    });
   });
 </script>
 </body>

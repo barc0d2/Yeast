@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.MemberMapper">
+
+    <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
+        INSERT INTO member (
+            business_name, position_name, manager_name, user_name,
+            user_id, user_pwd, email, phone, gender, address,
+            enroll_date, image_change_path, image_origin_path, birthday
+        ) VALUES (
+                     #{businessName}, #{positionName}, #{managerName}, #{userName},
+                     #{userId}, #{userPwd}, #{email}, #{phone}, #{gender}, #{address},
+                     #{enrollDate}, #{imageChangePath}, #{imageOriginPath}, #{birthday}
+                 )
+    </insert>
+
+    <select id="existsByUserId" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM member
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

@@ -1,17 +1,10 @@
 package com.kh.yeast.domain.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Member {
     private Long userNo;
     private String businessName;
@@ -21,8 +14,6 @@ public class Member {
     private String userId;
     private String userPwd;
     private String email;
-    private int salary;
-    private int bonus;
     private String phone;
     private String gender;
     private String address;
@@ -30,5 +21,4 @@ public class Member {
     private String imageChangePath;
     private String imageOriginPath;
     private Date birthday;
-
 }
