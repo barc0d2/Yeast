@@ -47,31 +47,4 @@
         WHERE M.USER_ID = #{userId}
         AND M.STATUS = 1
     </select>
-    <insert id="insertMember">
-        INSERT
-        INTO MEMBER(
-            USER_ID,
-            USER_PWD,
-            USER_NAME,
-            EMAIL,
-            GENDER,
-            AGE,
-            PHONE,
-            ADDRESS
-        ) VALUES(
-            #{userId},
-            #{userPwd},
-            #{userName},
-            #{email},
-            #{gender},
-            #{age},
-            #{phone},
-            #{address}
-        )
-    </insert>
-    <select id="idCheck" resultType="_int">
-        SELECT COUNT(*)
-        FROM MEMBER
-        WHERE USER_ID = #{userId}
-    </select>
 </mapper>
