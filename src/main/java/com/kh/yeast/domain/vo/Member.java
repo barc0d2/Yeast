@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Getter
+@Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode
 public class Member {
 
     private Long userNo;

@@ -4,22 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="USER_NAME" property="userName"/>
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
-        <result column="USER_NAME" property="userName"/>
-        <result column="BUSINESS_NAME" property="b"/>
-        <result column="POSITION_NAME" property="b"/>
-        <result column="MANAGER_NAME" property="b"/>
-        <result column="SALARY" property="b"/>
-        <result column="BONUS" property="b"/>
         <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
         <result column="PHONE" property="phone"/>
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGEPATH" property="imageChangePath"/>
+        <result column="IMAGE_ORIGINPATH" property="imageOriginPath"/>
         <result column="BIRTHDAY" property="birthday"/>
-        <result column="ENROLL_DATE" property="enrollDate"/>
-        <result column="MODIFY_DATE" property="modifyDate"/>
-        <result column="STATUS" property="status"/>
     </resultMap>
     <select id="loginMember" parameterType="Member" resultMap="memberResult">
         SELECT M.USER_NO,
@@ -69,7 +70,7 @@
             #{address}
         )
     </insert>
-    <select id="idCheck" resultType="_int">
+    <select id="idCheck" resultType="int">
         SELECT COUNT(*)
         FROM MEMBER
         WHERE USER_ID = #{userId}
