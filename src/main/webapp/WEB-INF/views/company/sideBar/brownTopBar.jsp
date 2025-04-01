@@ -5,8 +5,9 @@
     <style>
         #top-bar {
             height: 97px;
-            width: 98%;
-            position: relative;
+            width: calc(100% - 250px);
+            position: fixed;
+            right:0px;
             display: flex;
             align-items: center;
             justify-content: space-between;

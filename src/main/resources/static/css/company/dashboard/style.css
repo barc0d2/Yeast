@@ -1,5 +1,7 @@
 .frame {
-  position: relative;
+  position: absolute;
+  top: 97px;
+  left: 250px;
   width: 1565px;
   height: 100%;
 }

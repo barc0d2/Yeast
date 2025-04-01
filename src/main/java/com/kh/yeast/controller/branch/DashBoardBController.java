@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DashBoardBController {
 
     @GetMapping("/branch/dashboard/dashboard")
-    public String enrollForm() {
+    public String dashboard() {
         return "branch/dashboard/dashboard";
     }
     
