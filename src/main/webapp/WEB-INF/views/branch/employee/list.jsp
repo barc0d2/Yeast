@@ -101,5 +101,7 @@
         </nav>
       </section>
     </main>
+    <jsp:include page="../sideBar/whiteSideBar.jsp"/>
+    <jsp:include page="../sideBar/whiteTopBar.jsp"/>
   </body>
 </html>
