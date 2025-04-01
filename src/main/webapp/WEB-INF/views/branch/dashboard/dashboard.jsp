@@ -9,15 +9,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
-    <link rel="stylesheet" href="../../../../static/css/dashboard/globals.css" />
-    <link rel="stylesheet" href="../../../../static/css/dashboard/styleguide.css" />
-    <link rel="stylesheet" href="../../../../static/css/dashboard/style.css" />
+    <link rel="stylesheet" href="/css/branch/dashboard/globals.css" />
+    <link rel="stylesheet" href="/css/branch/dashboard/styleguide.css" />
+    <link rel="stylesheet" href="/css/branch/dashboard/style.css" />
 </head>
 
 <body>
-<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+
   <div id="wrapper">
-<jsp:include page="../sideBar/whiteTopBar.jsp"/>
     <main class="frame">
         <section class="sales">
             <div id="inventory" class="inventory-container">
@@ -383,8 +382,9 @@
             </div>
 
         </section>
-  </div>
     </main>
+
+  </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const colorPalette = [
@@ -431,6 +431,8 @@
             });
         });
     </script>
+  <jsp:include page="../sideBar/whiteSideBar.jsp"/>
+  <jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </body>
 
 </html>

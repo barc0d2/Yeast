@@ -1,9 +1,14 @@
-#wrapper {
+body{
+
+}
+#wrapper{
+  position: relative;
   width: 100%;
 }
-
 .frame {
-  position: relative;
+  position: absolute;
+  top: 97px;
+  left: 250px;
   width: 1565px;
   height: 100%;
 }
