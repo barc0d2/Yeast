@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,8 @@
 <body>
 <div id="frame">
     <img class="Background" src="images/login/background.jpg" />
-    <form id="Main">
+    <form id="Main" action="login.me" method="post">
+        <button type="submit" style="display: none"></button>
         <div id="Title">
             빵처럼 부드럽고, <br />효율적인 통합 관리 프로그램</div>
         <div id="Input">
@@ -57,9 +58,9 @@
             <div class="findIdPwd">
                 ID/PW 찾기
             </div>
-            <div class="Join">
-                회원가입
-            </div>
+            <a href="company/employee/enrollForm"><div class="Join">
+                회원가입  </div></a>
+
             <label class="Session" style="white-space: nowrap;">
                 <input type="checkbox" id="Session" name="Session">
                 로그인 유지
