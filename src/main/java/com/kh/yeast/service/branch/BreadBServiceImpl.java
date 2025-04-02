@@ -31,7 +31,7 @@ public class BreadBServiceImpl implements BreadBService {
         breadList.forEach(bread -> {
             Timestamp createDate = bread.getCreateDate();
             if (createDate != null) {
-                java.sql.Date sqlDate = new java.sql.Date(createDate.getTime());
+                Date sqlDate = new Date(createDate.getTime());
                 bread.setEnrollDate(sqlDate);
             } else {
                 bread.setEnrollDate(null);

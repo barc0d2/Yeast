@@ -1,11 +1,7 @@
 package com.kh.yeast.service;
 
-<<<<<<< HEAD
 import com.kh.yeast.domain.entity.Member;
-=======
-import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
->>>>>>> intae
 import com.kh.yeast.mappers.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;

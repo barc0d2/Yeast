@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.company;
 
-import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.entity.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.service.MemberService;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.branch.BreadBMapper">
+<mapper namespace="com.kh.yeast.mappers.company.BreadCMapper">
     <resultMap id="breadResult" type="Bread">
         <result column="BREAD_NO" property="breadNo"/>
         <result column="BREAD_NAME" property="breadName"/>
@@ -15,7 +15,7 @@
         <result column="IMAGE_CHANGE" property="imageChange"/>
     </resultMap>
     <select id="selectBreadCount" resultType="Integer">
-        SELECT COUNT(*) AS "COUNT"
+        SELECT COUNT(*)
         FROM BREAD
     </select>
     <select id="selectBreadList" resultMap="breadResult">
@@ -33,4 +33,47 @@
         WHERE STATUS = 1
         ORDER BY BREAD_NO DESC
     </select>
+    <insert id="insertBread">
+        INSERT ALL
+        INTO BREAD(
+            BREAD_NAME,
+            CATEGORY_NO,
+            PRICE
+        )VALUES(
+            #{breadName},
+            #{categoryNo},
+            #{price}
+        )
+        INTO DETAIL_BREAD(
+            BREAD_CONTENT,
+            CALORIES,
+            ALLERGY,
+            IMAGE_ORIGIN,
+            IMAGE_CHANGE
+        )VALUES(
+            #{breadContent},
+            #{calories},
+            #{allergy},
+            #{imageOrigin},
+            #{imageChange}
+        )
+        SELECT*FROM DUAL
+    </insert>
+
+    <update id="updateBread">
+        UPDATE BREAD
+        SET BREAD_NAME = #{breadName},
+            CATEGORY_NO = #{categoryNo)
+        WHERE = BREAD_NO = #{breadNo}
+    </update>
+
+    <update id="updateBreadDetail">
+        UPDATE BREAD
+        SET     BREAD_CONTENT = #{breadContent},
+                CALORIES = #{calories},
+                ALLERGY = #{allergy},
+                IMAGE_ORIGIN = #{imageOrigin},
+                IMAGE_CHANGE = #{imageChange}
+        WHERE = BREAD_NO = #{breadNo}
+    </update>
 </mapper>

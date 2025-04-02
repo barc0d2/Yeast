@@ -6,11 +6,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-=======
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> intae
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 

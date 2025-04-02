@@ -40,11 +40,12 @@ public class BreadCController {
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
         ArrayList<Bread> list = breadCService.selectBreadList(pi);
+        System.out.println("size1"+list.size());
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
 
-        return "branch/bread/list";
+        return "company/bread/list";
     }
 
     @PostMapping("/company/bread/insert")
