@@ -17,13 +17,14 @@
         m.BUSINESS_NO AS businessNo,
         m.SALARY,
         m.CREATE_DATE AS createDate,
-        (SELECT mm.USER_NAME
+        h.headName
+        FROM MEMBER m
+        LEFT JOIN (
+        SELECT mm.BUSINESS_NO, mm.USER_NAME AS headName
         FROM MEMBER mm
         JOIN POSITION p ON mm.POSITION_NO = p.POSITION_NO
-        WHERE mm.BUSINESS_NO = m.BUSINESS_NO
-        AND p.ROLE = 1
-        LIMIT 1) AS headName
-        FROM MEMBER m
-        WHERE m.USER_NAME LIKE '%' || #{userName} || '%';
+        WHERE p.ROLE = 1
+        ) h ON m.BUSINESS_NO = h.BUSINESS_NO
+        WHERE m.USER_NAME LIKE '%' || #{userName} || '%'
     </select>
 </mapper>
