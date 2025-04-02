@@ -1,11 +1,11 @@
-package com.kh.yeast.service.branch;
+package com.kh.yeast.service.company;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 
 import java.util.ArrayList;
 
-public interface MemberBService {
+public interface EmployeeCService {
 
     int selectMemberCount();
 

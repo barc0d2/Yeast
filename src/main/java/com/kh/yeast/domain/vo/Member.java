@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 @Builder
 @EqualsAndHashCode
 public class Member {
-
     private Long userNo;
     private String businessName;
     private String positionName;

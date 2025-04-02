@@ -2,7 +2,7 @@ package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
-import com.kh.yeast.service.company.MemberCService;
+import com.kh.yeast.service.company.EmployeeCService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,22 +15,22 @@ import java.util.ArrayList;
 @Controller
 public class EmployeeCController {
 
-    private final MemberCService memberCService;
+    private final EmployeeCService employeeCService;
 
 
     @GetMapping("/company/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
-        Member m = memberCService.selectMember(userNo);
+        Member m = employeeCService.selectMember(userNo);
         model.addAttribute("m", m);
         return "company/employee/enrollForm";
     }
 
     @GetMapping("/company/employee/list")
     public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) {
-        int memberCount = memberCService.selectMemberCount();
+        int memberCount = employeeCService.selectMemberCount();
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
-        ArrayList<Member> list = memberCService.selectMemberList(pi);
+        ArrayList<Member> list = employeeCService.selectMemberList(pi);
         model.addAttribute("currentName", "지점관리");
         model.addAttribute("smallCurrentName","직원관리");
         model.addAttribute("list", list);
