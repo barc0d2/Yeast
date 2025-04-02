@@ -68,10 +68,10 @@
                   <div class="form-check form-switch">
                     <c:choose>
                       <c:when test="${bread.status == 1}">
-                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="1" checked readonly>
+                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="1" checked disabled>
                       </c:when>
                       <c:otherwise>
-                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="0" readonly>
+                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="0" disabled>
                       </c:otherwise>
                     </c:choose>
                   </div>
@@ -87,5 +87,7 @@
         </div>
       </div>
     </div>
+    <jsp:include page="../sideBar/brownSideBar.jsp"/>
+    <jsp:include page="../sideBar/brownTopBar.jsp"/>
   </body>
 </html>

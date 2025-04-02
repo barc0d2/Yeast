@@ -24,22 +24,44 @@
           </header>
           <div class="list">
             <c:forEach var="bread" items="${list}">
-              <div class="div" onclick="location.href='/company/bread/detail?breadNo=${bread.breadNo}'" style="cursor: pointer">
-                <img class="image" src="${bread.imageChange}" />
-                <div class="div-2">
-                  <div class="div-3">
-                    <div class="text-wrapper-4">${bread.breadName}</div>
-                    <div class="div-4">
-                      <div class="text-wrapper-5">종류 : ${bread.categoryName} </div>
-                      <div class="text-wrapper-6"> ${bread.enrollDate} </div>
-                      <div class="text-wrapper-6">가격 : ${bread.price}￦</div>
-                      <div class="text-wrapper-6"> 총 내용량당 칼로리(kcal): ${bread.calories}</div>
-                      <p class="text-wrapper-6">알레리기 정보 : ${bread.allergy}</p>
+              <c:choose>
+                <c:when test="${bread.status eq 1}">
+                <div class="div" onclick="location.href='/company/bread/detail?breadNo=${bread.breadNo}'" style="cursor: pointer">
+                  <img class="image" src="${bread.imageChange}" />
+                  <div class="div-2">
+                    <div class="div-3">
+                      <div class="text-wrapper-4">${bread.breadName}</div>
+                      <div class="div-4">
+                        <div class="text-wrapper-5">종류 : ${bread.categoryName} </div>
+                        <div class="text-wrapper-6"> ${bread.enrollDate} </div>
+                        <div class="text-wrapper-6">가격 : ${bread.price}￦</div>
+                        <div class="text-wrapper-6"> 총 내용량당 칼로리(kcal): ${bread.calories}</div>
+                        <p class="text-wrapper-6">알레리기 정보 : ${bread.allergy}</p>
+                      </div>
+                    </div>
+                    <p class="text-wrapper-6">${bread.breadContent}</p>
+                  </div>
+                </div>
+                </c:when>
+                <c:otherwise>
+                  <div class="div" style="opacity: 0.4" onclick="location.href='/company/bread/detail?breadNo=${bread.breadNo}'" style="cursor: pointer">
+                    <img class="image" src="${bread.imageChange}" />
+                    <div class="div-2">
+                      <div class="div-3">
+                        <div class="text-wrapper-4">${bread.breadName}</div>
+                        <div class="div-4">
+                          <div class="text-wrapper-5">종류 : ${bread.categoryName} </div>
+                          <div class="text-wrapper-6"> ${bread.enrollDate} </div>
+                          <div class="text-wrapper-6">가격 : ${bread.price}￦</div>
+                          <div class="text-wrapper-6"> 총 내용량당 칼로리(kcal): ${bread.calories}</div>
+                          <p class="text-wrapper-6">알레리기 정보 : ${bread.allergy}</p>
+                        </div>
+                      </div>
+                      <p class="text-wrapper-6">${bread.breadContent}</p>
                     </div>
                   </div>
-                  <p class="text-wrapper-6">${bread.breadContent}</p>
-                </div>
-              </div>
+                </c:otherwise>
+              </c:choose>
             </c:forEach>
           </div>
         </div>

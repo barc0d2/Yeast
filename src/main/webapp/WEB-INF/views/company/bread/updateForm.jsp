@@ -19,7 +19,7 @@
           <div class="right-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수정 / 삭제</div>
         </header>
         <button class="pre-btn" type="button" onclick="history.back()"><div class="text-wrapper-7">이전</div></button>
-        <form class="form" enctype="multipart/form-data" method="post" action="/company/bread/update">
+        <form class="form" id="myForm" enctype="multipart/form-data" method="post" action="/company/bread/update">
           <input type="hidden" name="breadNo" value="${bread.breadNo}">
           <div>
             <img id="thumbnail" class="image" src="${bread.imageChange}" onclick="chooseFile('.file-image')">
@@ -90,7 +90,9 @@
               <div></div>
               <div class="end">
                 <button class="update-btn" type="submit"><div class="text-wrapper-7">수정</div></button>
-                <button class="delete-btn" type="button" onclick="location.href='/company/bread/delete?breadNo=${bread.breadNo}'"><div class="text-wrapper-7">삭제</div></button>
+                <button class="delete-btn" type="button" onclick="submitDeleteForm(${bread.breadNo}, '${bread.imageChange}')">
+                  <div class="text-wrapper-7">삭제</div>
+                </button>
               </div>
             </div>
           </div>
@@ -98,17 +100,6 @@
       </div>
     </div>
     <script>
-      const checkbox = document.getElementById('flexSwitchCheckChecked');
-      const form = document.getElementById('myForm');
-
-      form.addEventListener('submit', function(event) {
-        if (!checkbox.checked) {
-          checkbox.value = 0;
-        } else {
-          checkbox.value = 1;
-        }
-      });
-
       function loadImg(changeInput, targetImg){
         //파일객체 -> files -> 선택된파일들이 담겨있음
         console.log(changeInput.files[0])
@@ -137,6 +128,29 @@
         const fileInput = document.querySelector(selector);
         fileInput.click();
       }
+
+      function submitDeleteForm(breadNo, imageChange) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/company/bread/delete';
+
+        const breadNoInput = document.createElement('input');
+        breadNoInput.type = 'hidden';
+        breadNoInput.name = 'breadNo';
+        breadNoInput.value = breadNo;
+        form.appendChild(breadNoInput);
+
+        const imageChangeInput = document.createElement('input');
+        imageChangeInput.type = 'hidden';
+        imageChangeInput.name = 'imageChange';
+        imageChangeInput.value = imageChange;
+        form.appendChild(imageChangeInput);
+
+        document.body.appendChild(form);
+        form.submit();
+      }
     </script>
+    <jsp:include page="../sideBar/brownSideBar.jsp"/>
+    <jsp:include page="../sideBar/brownTopBar.jsp"/>
   </body>
 </html>

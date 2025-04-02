@@ -113,17 +113,8 @@
           const fileInput = document.querySelector(selector);
           fileInput.click();
       }
-
-      const checkbox = document.getElementById('flexSwitchCheckChecked');
-      const form = document.getElementById('myForm');
-
-      form.addEventListener('submit', function(event) {
-      if (!checkbox.checked) {
-      checkbox.value = 0;
-        }else{
-        checkbox.value = 1;
-      }
-      });
   </script>
+    <jsp:include page="../sideBar/brownSideBar.jsp"/>
+    <jsp:include page="../sideBar/brownTopBar.jsp"/>
   </body>
 </html>

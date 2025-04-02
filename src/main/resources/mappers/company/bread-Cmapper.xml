@@ -103,4 +103,9 @@
         LEFT JOIN BREAD_CATEGORY USING(CATEGORY_NO)
         WHERE BREAD_NO = #{breadNo}
     </select>
+
+    <delete id="deleteBread">
+        DELETE FROM BREAD
+        WHERE BREAD_NO=#{breadNo}
+    </delete>
 </mapper>

@@ -12,5 +12,6 @@ public interface BreadCService {
     Integer insertBread(Bread bread) throws Exception;
     Integer updateBread(Bread bread) throws Exception;
     ArrayList<BreadCategory> selectBreadCategories() throws Exception;
-    Bread selectBread(int breadNo) throws Exception;
+    Bread selectBread(Integer breadNo) throws Exception;
+    Integer deleteBread(Long breadNo) throws Exception;
 }

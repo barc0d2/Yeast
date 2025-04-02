@@ -21,7 +21,8 @@ input{
   align-items: flex-start;
   gap: 20px;
   position: relative;
-  top: 42px;
+  top: 139px;
+  left : 125px;
 }
 
 .main .header {

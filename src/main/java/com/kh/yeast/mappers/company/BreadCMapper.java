@@ -15,5 +15,6 @@ public interface BreadCMapper {
     Integer updateBread(Bread bread);
     Integer updateBreadDetail(Bread bread);
     ArrayList<BreadCategory> selectBreadCategories();
-    Bread selectBread(int breadNo);
+    Bread selectBread(Integer breadNo);
+    Integer deleteBread(Long breadNo);
 }

@@ -61,7 +61,13 @@ public class BreadCServiceImpl implements BreadCService {
     }
 
     @Override
-    public Bread selectBread(int breadNo) {
+    public Bread selectBread(Integer breadNo) throws Exception {
         return breadCMapper.selectBread(breadNo);
+    }
+
+    @Override
+    @Transactional
+    public Integer deleteBread(Long breadNo) throws Exception {
+        return breadCMapper.deleteBread(breadNo);
     }
 }
