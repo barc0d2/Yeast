@@ -1,6 +1,7 @@
 package com.kh.yeast.controller;
 
-import com.kh.yeast.service.company.MemberCService;
+import com.kh.yeast.service.MemberService;
+import com.kh.yeast.service.company.EmployeeCService;
 import com.kh.yeast.domain.vo.Member;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MemberController {
 
-    private final MemberCService memberCService;
+    private final MemberService memberService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public MemberController(MemberCService memberCService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.memberCService = memberCService;
+    public MemberController(MemberService memberService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.memberService = memberService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -28,7 +29,7 @@ public class MemberController {
         String userPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(userPwd);
 
-        int result = memberCService.insertMember(member);
+        int result = memberService.insertMember(member);
         if (result > 0) {
             session.setAttribute("alertMsg", "회원가입 완료!");
             return "redirect:/";
@@ -42,7 +43,7 @@ public class MemberController {
     public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
         try {
-            loginMember = memberCService.loginMember(member.getUserId());
+            loginMember = memberService.loginMember(member.getUserId());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -5,7 +5,7 @@ import com.kh.yeast.domain.vo.PageInfo;
 
 import java.util.ArrayList;
 
-public interface MemberBService {
+public interface EmployeeBService {
 
     int selectMemberCount();
 
