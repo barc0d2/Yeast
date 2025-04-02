@@ -15,14 +15,12 @@ public class Template {
         //확장자
         String ext = originName.substring(originName.lastIndexOf("."));
 
-        //년월일시분초
-        String currentTime = String.valueOf(System.currentTimeMillis());
-
-        //5자리 랜덤값
-
-        int random = (int) (Math.random() * 10000);
-
-        String changeName = "kh_" + UUID.randomUUID() + ext;
+        String changeName;
+        if(originName.length() >= 10){
+            changeName = originName.substring(0,10) + UUID.randomUUID() + ext;
+        }else{
+            changeName = originName.substring(0,originName.lastIndexOf(".")) + UUID.randomUUID() + ext;
+        }
 
         //첨부파일을 저장할 폴더의 물리적 경로
         String savePath = session.getServletContext().getRealPath(path);

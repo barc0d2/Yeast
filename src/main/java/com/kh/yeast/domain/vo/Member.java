@@ -28,8 +28,8 @@ public class Member {
     private String gender;
     private String address;
     private Timestamp enrollDate;
-    private String imageChangePath;
-    private String imageOriginPath;
+    private String imageChange;
+    private String imageOrigin;
     private Date birthday;
 
     public void setUserPwd(String userPwd) {

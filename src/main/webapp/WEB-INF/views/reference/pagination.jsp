@@ -3,7 +3,15 @@
         color:black;
         text-decoration: none;
     }
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/branch/pagination.jsp
     .frame {
+=======
+    .outFrame {
+        width: 1530px;
+        height: 1300px;
+
+        align-items: center;
+>>>>>>> 341da2a2fbfe39df8d796b2927027bf8cdb983b6:src/main/webapp/WEB-INF/views/reference/pagination.jsp
         gap: 27px;
         top: 46px;
         left: 50%;
@@ -40,7 +48,7 @@
         border: 1px solid;
         border-color: #9e9e9e;
     }
-    .text-wrapper-7 {
+    .unSelectPage {
         color: #000000;
         position: relative;
         width: fit-content;
@@ -55,7 +63,7 @@
         font-style: normal;
     }
 
-    .text-wrapper-8 {
+    .selectPage {
         color: #ffffff;
         position: relative;
         width: fit-content;
@@ -119,9 +127,9 @@
 
 </style>
 
-<%--frame은 외부 컨테이너--%>
+<%--outFrame은 외부 컨테이너--%>
 
-<div  class="frame">
+<div  class="outFrame">
     <div id="pagination">
         <ul>
             <c:choose>
@@ -137,10 +145,10 @@
             <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                 <c:choose>
                     <c:when test="${p == pi.currentPage}">
-                        <li class="cpage"><div class="text-wrapper-8">${p}</div></li>
+                        <li class="cpage"><div class="selectPage">${p}</div></li>
                     </c:when>
                     <c:otherwise>
-                        <li class="page"><div class="text-wrapper-7"><a class="page-link" href="/company/bread/list?currentPage=${p}">${p}</a></div></li>
+                        <li class="page"><div class="unSelectPage"><a class="page-link" href="/company/bread/list?currentPage=${p}">${p}</a></div></li>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

@@ -18,8 +18,8 @@
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
         <result column="CREATE_DATE" property="createDate"/>
-        <result column="IMAGE_CHANGEPATH" property="imageChangePath"/>
-        <result column="IMAGE_ORIGINPATH" property="imageOriginPath"/>
+        <result column="IMAGE_CHANGEPATH" property="imageChange"/>
+        <result column="IMAGE_ORIGINPATH" property="imageOrigin"/>
         <result column="BIRTHDAY" property="birthday"/>
     </resultMap>
     <select id="loginMember" parameterType="Member" resultMap="memberResult">

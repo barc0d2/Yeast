@@ -19,10 +19,11 @@ input{
   flex-direction: column;
   width: 1530px;
   align-items: flex-start;
-  gap: 20px;
+  gap: 60px;
   position: relative;
   top: 139px;
   left : 125px;
+
 }
 
 .main .header {
@@ -88,7 +89,7 @@ input{
 
 .main .form {
   display: flex;
-  height: 700px;
+  height: 630px;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -438,19 +439,7 @@ input{
   right: 0px;
   bottom: 50px;
 }
-.pre-btn {
-  display: flex;
-  width: 118px;
-  height: 63px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-left: 1176px;
-  padding: 10px;
-  position: relative;
-  background-color: var(--buttonprimary);
-  border-radius: 10px;
-}
+
 .main .update-btn {
   display: flex;
   width: 118px;
@@ -489,6 +478,5 @@ input{
   position: relative;
   background-color: #ef3826;
   border-radius: 10px;
-  margin-left:20px;
 }
   

@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -23,4 +22,5 @@ public class Bread {
     private String imageOrigin;
     private String imageChange;
     private Date enrollDate;
+    private Integer status;
 }

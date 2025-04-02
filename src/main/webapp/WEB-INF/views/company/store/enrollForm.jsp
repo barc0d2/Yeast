@@ -95,6 +95,7 @@
           const fileInput = document.querySelector(selector);
           fileInput.click();
       }
+
   </script>
   </body>
 </html>
