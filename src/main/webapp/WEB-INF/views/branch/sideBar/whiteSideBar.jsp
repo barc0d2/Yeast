@@ -164,7 +164,8 @@
                                 stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <div class="menu-text">메뉴조회</div>
+                    <a href="/branch/bread/list"><div class="menu-text">메뉴조회</div></a>
+
                 </div>
                 <div class="menu-item">
                     <div class="menu-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
