@@ -1,20 +1,19 @@
 .frame {
-  position: relative;
-  width: 100%;
-  height: 980px;
-  background-color: #ffffff;
-}
-
-.frame .div {
   display: flex;
   flex-direction: column;
   white-space: nowrap;
   width: 1309px;
+  height: 900px;
   align-items: center;
   gap: 41px;
-  position: absolute;
+  position: relative;
   top: 150px;
-  left: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.frame .div {
+
 }
 
 .frame .container {
@@ -22,7 +21,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 55px;
-  position: relative;
+  position: absolute;
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
@@ -222,11 +221,81 @@
   border-color: var(--linelightgray);
 }
 
+#pagination {
+  position: absolute;
+  bottom: 20px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+#pagination ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+}
+
+#pagination li {
+  display: flex;
+}
+
+.page, .cpage {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #9e9e9e;
+}
+
+.page {
+  background-color: #ffffff;
+}
+
+.cpage {
+  background: #ff9538;
+}
+
+.text-wrapper-7, .text-wrapper-8 {
+  font-family: "Kakao OTF", Helvetica;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.text-wrapper-7 {
+  color: #000000;
+}
+
+.text-wrapper-8 {
+  color: #ffffff;
+}
+
+.pre-page, .next-page {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(232, 232, 232, 1);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.06);
+}
+
+
+
+
 .frame .head {
   display: inline-flex;
   align-items: flex-start;
+  width: 100%;
   gap: 111px;
-  padding: 20px 10px;
+  padding: 20px 20px 20px 10px;
   position: relative;
   flex: 0 0 auto;
   background-color: #ec9f23;
@@ -241,7 +310,7 @@
   font-weight: 800;
   font-size: 16px;
   position: relative;
-  width: 145px;
+  width: 130px;
   margin-top: -1.00px;
   opacity: 0.9;
   color: #202224;
@@ -254,6 +323,7 @@
   font-weight: 800;
   font-size: 16px;
   position: relative;
+  text-align: center;
   align-self: stretch;
   width: 42px;
   margin-top: -1.00px;
@@ -266,6 +336,7 @@
 .frame .name {
   height: 22px;
   font-family: "Nunito Sans-ExtraBold", Helvetica;
+  text-align: center;
   font-weight: 800;
   font-size: 16px;
   position: relative;
@@ -335,10 +406,12 @@
 .frame .list-2 {
   display: inline-flex;
   align-items: flex-start;
+  width: 100%;
   gap: 111px;
-  padding: 20px 10px;
+  padding: 20px 20px 20px 10px;
   position: relative;
   flex: 0 0 auto;
+  cursor: pointer;
   border: 1px solid;
   border-color: var(--linelightgray);
 }
@@ -360,11 +433,23 @@
   padding: 0;
 }
 
+.email-2{
+  font-family: "Nunito Sans-SemiBold", Helvetica;
+  font-weight: 600;
+  font-size: 14px;
+  width: 130px;
+  white-space: nowrap;
+  color: #202224;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.9;
+}
 .frame .no-2 {
   font-family: "Nunito Sans-SemiBold", Helvetica;
   font-weight: 600;
   font-size: 14px;
   position: relative;
+  text-align: center;
   align-self: stretch;
   width: 42px;
   margin-top: -1.00px;
@@ -420,6 +505,7 @@
 .frame .text-wrapper-3 {
   position: relative;
   align-self: stretch;
+  text-align: center;
   width: 30px;
   margin-top: -1.00px;
   opacity: 0.9;
@@ -446,9 +532,12 @@
 }
 
 .frame .page-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
   position: relative;
-  width: 656px;
-  height: 37px;
+  bottom: 0;
 }
 
 .frame .next-page {

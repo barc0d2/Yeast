@@ -3,11 +3,15 @@
         color:black;
         text-decoration: none;
     }
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/branch/pagination.jsp
+    .frame {
+=======
     .outFrame {
         width: 1530px;
         height: 1300px;
 
         align-items: center;
+>>>>>>> 341da2a2fbfe39df8d796b2927027bf8cdb983b6:src/main/webapp/WEB-INF/views/reference/pagination.jsp
         gap: 27px;
         top: 46px;
         left: 50%;

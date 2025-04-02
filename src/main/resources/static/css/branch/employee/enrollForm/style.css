@@ -1,16 +1,17 @@
 .main {
+  position: relative;
   width: 100%;
   height: auto;
   min-height: auto;
+
 }
 
 .main .form {
-  position: relative;
+  position: absolute;
   width: 1243px;
   height: 800px;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 150px;
+  left: 20%;
   background-color: #ffffff;
   border-radius: 14px;
   border: 0.3px solid;
@@ -137,11 +138,15 @@
   height: 78px;
   top: 104px;
   left: 146px;
+  cursor: pointer;
+}
+.main .circle:hover {
+  background-color: #efefef;
 }
 
 .main .text-wrapper-2 {
   position: absolute;
-  width: 142px;
+  width: fit-content;
   top: 59px;
   left: 114px;
   font-family: "Kakao OTF-Regular", Helvetica;
@@ -178,15 +183,27 @@
   border-color: var(--fontdeepyellow);
   font-style: var(--title-kakao-16px-font-style);
 }
-
+.form-floating > .bi-calendar-date + .datepicker_input + label {
+  padding-left: 3.5rem;
+  z-index: 3;
+}
 .main .input {
   position: relative;
   align-self: stretch;
   width: 100%;
   height: 55.92px;
+  padding-left: 10px;
   background-color: #f5f6fa;
   border: 1px solid;
   border-color: var(--fontdeepyellow);
+  font-family: var(--title-kakao-16px-font-family);
+  font-weight: var(--title-kakao-16px-font-weight);
+  color: #5f5f5f;
+  font-size: var(--title-kakao-20px-font-size);
+  letter-spacing: var(--title-kakao-16px-letter-spacing);
+  line-height: var(--title-kakao-16px-line-height);
+  border-color: var(--fontdeepyellow);
+  font-style: var(--title-kakao-16px-font-style);
 }
 
 .main .hint {
@@ -417,13 +434,13 @@
   position: absolute;
   width: 78px;
   height: 78px;
-  top: 104px;
+  top: 120px;
   left: 146px;
 }
 
 .main .text-wrapper-2 {
   position: absolute;
-  width: 142px;
+  width: fit-content;
   top: 59px;
   left: 114px;
   font-family: "Kakao OTF-Regular", Helvetica;
@@ -464,11 +481,19 @@
 .main .input {
   position: relative;
   align-self: stretch;
+  align-content: center;
   width: 100%;
   height: 55.92px;
   background-color: #f5f6fa;
   border: 1px solid;
   border-color: var(--fontdeepyellow);
+}
+.selectBox{
+  border: none;
+  cursor: pointer;
+  background-color: #f5f6fa;
+  width: 100%;
+  height: 54px;
 }
 
 .main .hint {
@@ -647,4 +672,9 @@
     position: static;
     margin-bottom: 20px;
   }
+}
+
+button{
+  border: none;
+  background: none;
 }

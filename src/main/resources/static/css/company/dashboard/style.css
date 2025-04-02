@@ -1,7 +1,8 @@
 .frame {
   position: absolute;
   top: 97px;
-  left: 250px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 1565px;
   height: 100%;
 }

@@ -1,25 +1,24 @@
 package com.kh.yeast.controller;
 
-import com.kh.yeast.service.MemberService;
+import com.kh.yeast.service.company.MemberCService;
 import com.kh.yeast.domain.vo.Member;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
 
-    private final MemberService memberService;
+    private final MemberCService memberCService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public MemberController(MemberService memberService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.memberService = memberService;
+    public MemberController(MemberCService memberCService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.memberCService = memberCService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -29,7 +28,7 @@ public class MemberController {
         String userPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(userPwd);
 
-        int result = memberService.insertMember(member);
+        int result = memberCService.insertMember(member);
         if (result > 0) {
             session.setAttribute("alertMsg", "회원가입 완료!");
             return "redirect:/";
@@ -43,7 +42,7 @@ public class MemberController {
     public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
         try {
-            loginMember = memberService.loginMember(member.getUserId());
+            loginMember = memberCService.loginMember(member.getUserId());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
