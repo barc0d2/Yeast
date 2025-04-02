@@ -16,12 +16,12 @@ public class MyPageBServiceImpl implements MyPageBService {
     }
 
     @Override
-    public Member getBMemberInfo(String userId) throws Exception {
+    public Member getBMemberInfo(String userId) {
         return myPageBMapper.selectBMemberById(userId);
     }
 
     @Override
-    public int updateBMemberInfo(Member member) throws Exception {
+    public int updateBMemberInfo(Member member){
         return myPageBMapper.updateBMember(member);
     }
 

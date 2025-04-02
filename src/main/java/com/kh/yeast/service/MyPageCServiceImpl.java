@@ -16,12 +16,12 @@ public class MyPageCServiceImpl implements MyPageCService {
     }
 
     @Override
-    public Member getCMemberInfo(String userId) throws Exception {
+    public Member getCMemberInfo(String userId) {
         return myPageCMapper.selectCMemberById(userId);
     }
 
     @Override
-    public int updateCMemberInfo(Member member) throws Exception {
+    public int updateCMemberInfo(Member member) {
         return myPageCMapper.updateCMember(member);
     }
 
