@@ -37,7 +37,8 @@ public class BreadBController {
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
-
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
         return "branch/bread/list";
     }
 }

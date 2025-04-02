@@ -33,7 +33,8 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴등록");
         model.addAttribute("categories",categories);
         return "company/bread/enrollForm";
     }
@@ -54,6 +55,8 @@ public class BreadCController {
         }
         model.addAttribute("bread",bread);
         model.addAttribute("categories",categories);
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴수정");
         return "company/bread/updateForm";
     }
 
@@ -65,6 +68,8 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
         model.addAttribute("bread",bread);
         return "company/bread/detail";
     }
@@ -89,6 +94,8 @@ public class BreadCController {
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
 
         return "company/bread/list";
     }
@@ -110,7 +117,8 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
         if (result > 0) {
             session.setAttribute("alertMsg", "게시글 작성 성공");
             return "redirect:/company/bread/list";
@@ -142,6 +150,8 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
         if(result > 0){
             session.setAttribute("alertMsg", "게시글 수정 성공");
             return "redirect:/company/bread/detail?breadNo=" + bread.getBreadNo();
@@ -165,6 +175,8 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        model.addAttribute("currentName", "메뉴관리");
+        model.addAttribute("smallCurrentName","메뉴조회");
         if(result > 0){
             session.setAttribute("alertMsg", "게시글 삭제 성공");
             return "redirect:/company/bread/list";
