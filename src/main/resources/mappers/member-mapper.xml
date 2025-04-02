@@ -18,27 +18,27 @@
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
         <result column="CREATE_DATE" property="createDate"/>
-        <result column="IMAGE_CHANGEPATH" property="imageChange"/>
-        <result column="IMAGE_ORIGINPATH" property="imageOrigin"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
         <result column="BIRTHDAY" property="birthday"/>
     </resultMap>
     <select id="loginMember" parameterType="Member" resultMap="memberResult">
         SELECT M.USER_NO,
-        BUSINESS_NAME AS BUSINESS_NAME,
-        POSITION_NAME AS POSITION_NAME,
-        E.USER_NAME AS MANAGER_NAME,
-        M.USER_NAME AS USER_NAME,
-        M.USER_ID AS USER_ID,
-        M.USER_PWD AS USER_PWD,
-        M.EMAIL AS EMAIL,
-        M.SALARY AS SALARY,
-        M.BONUS AS BONUS,
-        M.PHONE AS PHONE,
-        M.GENDER AS GENDER,
-        M.ADDRESS AS ADDRESS,
-        M.CREATE_DATE AS CREATE_DATE,
-        M.IMAGE_CHANGE AS IMAGE_CHANGE,
-        M.IMAGE_ORIGIN AS IMAGE_ORIGIN,
+        BUSINESS_NAME,
+        POSITION_NAME,
+        E.USER_NAME,
+        M.USER_NAME,
+        M.USER_ID,
+        M.USER_PWD,
+        M.EMAIL,
+        M.SALARY,
+        M.BONUS,
+        M.PHONE,
+        M.GENDER,
+        M.ADDRESS,
+        M.CREATE_DATE,
+        M.IMAGE_CHANGE,
+        M.IMAGE_ORIGIN,
         M.BIRTHDAY AS BIRTHDAY,
         M.STATUS AS STATUS
         FROM MEMBER M
