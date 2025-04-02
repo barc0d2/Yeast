@@ -68,7 +68,7 @@
         </div>
         <div class="submenu">
             <a href="/company/employee/list"><div class="submenu-item">직원관리</div></a>
-            <div class="submenu-item">지점 수정/추가</div>
+            <a href="/company/store/list"><div class="submenu-item">지점 수정/추가</div></a>
         </div>
         <div id="order-menu" class="menu-item">
             <div class="menu-icon">

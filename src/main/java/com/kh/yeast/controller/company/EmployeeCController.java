@@ -2,8 +2,7 @@ package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
-import com.kh.yeast.service.MemberService;
-import lombok.AllArgsConstructor;
+import com.kh.yeast.service.company.MemberCService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,25 +15,26 @@ import java.util.ArrayList;
 @Controller
 public class EmployeeCController {
 
-    private final MemberService memberService;
+    private final MemberCService memberCService;
 
 
     @GetMapping("/company/employee/enrollForm")
-    public String enrollFormEmployee() {
-
+    public String enrollFormEmployee(int userNo, Model model) {
+        Member m = memberCService.selectMember(userNo);
+        model.addAttribute("m", m);
         return "company/employee/enrollForm";
     }
 
     @GetMapping("/company/employee/list")
-    public String listEmployee(@RequestParam(defaultValue = "1") int cpage, Model model) {
+    public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) {
+        int memberCount = memberCService.selectMemberCount();
 
-        int memberCount = memberService.selectMemberCount();
-
-        PageInfo pi = new PageInfo(memberCount, cpage, 10, 5);
-        ArrayList<Member> list = memberService.selectMemberList(pi);
-
+        PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
+        ArrayList<Member> list = memberCService.selectMemberList(pi);
+        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("smallCurrentName","직원관리");
         model.addAttribute("list", list);
-        model.addAttribute("pageInfo", pi);
+        model.addAttribute("pi", pi);
         return "company/employee/list";
     }
 

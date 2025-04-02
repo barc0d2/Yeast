@@ -19,7 +19,7 @@
             </div>
             <div id="menu-container">
                 <div class="menu-item">
-                    <a href="dashboard.sb">
+                    <a href="/branch/dashboard/dashboard">
                         <div class="menu-icon">
                             <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@
                         </svg></div>
                 </div>
                 <div class="submenu">
-                    <a href="">
+                    <a href="/branch/employee/list">
                         <div class="submenu-item">직원관리</div>
                     </a>
                     <div class="submenu-item">매장 정보수정</div>

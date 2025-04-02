@@ -133,9 +133,9 @@
                       stroke-linejoin="round" />
                 <path d="M1 17.5385H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <div class="menu-label">메뉴관리</div>
+            <div class="menu-label">${currentName}</div>
         </div>
-        <div class="page-title">메뉴조회</div>
+        <div class="page-title">${smallCurrentName}</div>
     </div>
 
     <div class="branch-info">

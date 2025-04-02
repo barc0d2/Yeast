@@ -4,10 +4,6 @@
         text-decoration: none;
     }
     .frame {
-        width: 1530px;
-        height: 1300px;
-
-        align-items: center;
         gap: 27px;
         top: 46px;
         left: 50%;

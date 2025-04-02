@@ -8,7 +8,7 @@
 .frame .div {
   display: flex;
   flex-direction: column;
-  width: 1112px;
+  width: 1212px;
   align-items: center;
   gap: 44px;
   position: relative;
@@ -175,56 +175,6 @@
   border-radius: 18px;
   border: 1px solid;
   border-color: #000000;
-  background-image: url(./img/image-2.png);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-.frame .image-2 {
-  position: absolute;
-  width: 285px;
-  height: 213px;
-  top: 0;
-  left: 0;
-  border-radius: 18px;
-  border: 1px solid;
-  border-color: #000000;
-  background-image: url(./img/image-4.png);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-.frame .overlap-wrapper {
-  position: relative;
-  width: 287px;
-  height: 328px;
-  margin-right: -1.57px;
-}
-
-.frame .image-3 {
-  position: absolute;
-  width: 285px;
-  height: 213px;
-  top: 0;
-  left: 0;
-  border-radius: 18px;
-  border: 1px solid;
-  border-color: #000000;
-  background-image: url(./img/image-3.png);
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-.frame .image-4 {
-  position: absolute;
-  width: 285px;
-  height: 213px;
-  top: 0;
-  left: 0;
-  border-radius: 18px;
-  border: 1px solid;
-  border-color: #000000;
-  background-image: url(./img/image-5.png);
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -242,6 +192,7 @@
   position: relative;
   width: 109px;
   height: 190px;
+  text-align: center;
   top: 125px;
   left: 89px;
 }

@@ -14,7 +14,7 @@
 <div class="main">
     <form class="form" action="">
         <div class="pre">
-            <div class="text-wrapper">이전</div>
+            <div class="text-wrapper" onclick="history.back()">이전</div>
         </div>
         <div class="button">
             <button type="submit">
@@ -48,49 +48,49 @@
                 </div>
                 <div class="div-2">
                     <div class="title">이름</div>
-                    <input type="text" class="input" name="userName" required>
+                    <input type="text" class="input" value="${m.userName}" name="userName" required>
                 </div>
                 <div class="div-2">
                     <div class="title">아이디</div>
-                    <div class="input" aria-readonly="true"></div>
+                    <div class="input" aria-readonly="true">${m.userId}</div>
                 </div>
                 <div class="address">
                     <div class="title">집주소</div>
-                    <input type="text" class="input" name="userId" required>
+                    <input type="text" class="input" value="${m.address}" name="userId" required>
                 </div>
             </div>
             <div class="column-2">
                 <div class="div-2">
                     <div class="title">사수</div>
-                    <input type="text" class="input" name="managerName">
+                    <input type="text" class="input" value="${m.managerName}" name="managerName">
                 </div>
                 <div class="div-2">
                     <div class="title">이메일</div>
-                    <input type="text" class="input" name="email" required>
+                    <input type="text" class="input" value="${m.email}" name="email" required>
                 </div>
                 <div class="div-2">
                     <div class="title">전화번호</div>
-                    <input type="text" class="input" name="phone" required>
+                    <input type="text" class="input" value="${m.phone}" name="phone" required>
                 </div>
                 <div class="div-2">
                     <div class="title">생년월일</div>
-                    <input type="date" class="input" name="birthday" required>
+                    <input type="date" class="input" value="${m.birthday}" name="birthday" required>
                 </div>
                 <div class="job">
                     <div class="split">
                         <div class="div-3">
                             <div class="title">*가맹점</div>
-                            <input type="text" class="input" name="branch" required>
+                            <input type="text" class="input" value="${m.businessName}" name="branch" required>
                         </div>
                         <div class="div-3">
                             <div class="title">직무</div>
-                            <input type="text" class="input" name="position">
+                            <input type="text" class="input" value="${m.positionName}" name="position">
                         </div>
                     </div>
                 </div>
                 <div class="gender">
                     <div class="title">성별</div>
-                    <div class="input" aria-readonly="true"></div>
+                    <div class="input" aria-readonly="true">${m.gender}</div>
                 </div>
             </div>
         </div>
