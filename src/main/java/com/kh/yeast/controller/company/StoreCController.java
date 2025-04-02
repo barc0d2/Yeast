@@ -28,7 +28,8 @@ public class StoreCController {
 
         PageInfo pi = new PageInfo(listCount, cpage, 10, 6);
         ArrayList<Business> list = storeCService.selectStoreList(pi);
-
+        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("smallCurrentName","지점수정/추가");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
         return "company/store/list";
