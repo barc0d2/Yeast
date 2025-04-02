@@ -1,13 +1,15 @@
 package com.kh.yeast.service.company;
 
 import com.kh.yeast.domain.vo.Bread;
+import com.kh.yeast.domain.vo.BreadCategory;
 import com.kh.yeast.domain.vo.PageInfo;
 
 import java.util.ArrayList;
 
 public interface BreadCService {
-    Integer selectBreadCount();
-    ArrayList<Bread> selectBreadList(PageInfo pi);
-    Integer insertBread(Bread bread);
-    Integer updateBread(Bread bread);
+    Integer selectBreadCount() throws Exception;
+    ArrayList<Bread> selectBreadList(PageInfo pi) throws Exception;
+    Integer insertBread(Bread bread) throws Exception;
+    Integer updateBread(Bread bread) throws Exception;
+    ArrayList<BreadCategory> selectBreadCategories() throws Exception;
 }

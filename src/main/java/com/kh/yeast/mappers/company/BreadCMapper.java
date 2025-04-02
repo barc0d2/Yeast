@@ -1,6 +1,7 @@
 package com.kh.yeast.mappers.company;
 
 import com.kh.yeast.domain.vo.Bread;
+import com.kh.yeast.domain.vo.BreadCategory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
@@ -13,4 +14,5 @@ public interface BreadCMapper {
     Integer insertBread(Bread bread);
     Integer updateBread(Bread bread);
     Integer updateBreadDetail(Bread bread);
+    ArrayList<BreadCategory> selectBreadCategories();
 }

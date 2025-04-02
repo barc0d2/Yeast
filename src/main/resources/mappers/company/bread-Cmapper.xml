@@ -14,6 +14,10 @@
         <result column="IMAGE_ORIGIN" property="imageOrigin"/>
         <result column="IMAGE_CHANGE" property="imageChange"/>
     </resultMap>
+    <resultMap id="breadCategoryResult" type="BreadCategory">
+        <result column="CATEGORY_NO" property="categoryNo"/>
+        <result column="CATEGORY_NAME" property="categoryName"/>
+    </resultMap>
     <select id="selectBreadCount" resultType="Integer">
         SELECT COUNT(*)
         FROM BREAD
@@ -76,4 +80,8 @@
                 IMAGE_CHANGE = #{imageChange}
         WHERE = BREAD_NO = #{breadNo}
     </update>
+    <select id="selectBreadCategories" resultMap="breadCategoryResult">
+        SELECT *
+        FROM BREAD_CATEGORY
+    </select>
 </mapper>

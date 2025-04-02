@@ -2,6 +2,7 @@ package com.kh.yeast.controller.company;
 
 
 import com.kh.yeast.domain.vo.Bread;
+import com.kh.yeast.domain.vo.BreadCategory;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.service.company.BreadCService;
 import com.kh.yeast.utils.Template;
@@ -25,7 +26,16 @@ public class BreadCController {
     private final BreadCService breadCService;
 
     @GetMapping("/company/bread/enrollForm")
-    public String enrollFormProduct() {
+    public String enrollFormProduct(Model model) {
+        ArrayList<BreadCategory> categories;
+        try {
+            categories = breadCService.selectBreadCategories();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("size"+categories.size());
+        model.addAttribute("categories",categories);
         return "company/bread/enrollForm";
     }
 
@@ -36,10 +46,20 @@ public class BreadCController {
 
     @GetMapping("/company/bread/list")
     public String selectBreadList(@RequestParam(defaultValue = "1") Integer currentPage, Model model) {
-        Integer breadCount = breadCService.selectBreadCount();
+        Integer breadCount = null;
+        try {
+            breadCount = breadCService.selectBreadCount();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
-        ArrayList<Bread> list = breadCService.selectBreadList(pi);
+        ArrayList<Bread> list = null;
+        try {
+            list = breadCService.selectBreadList(pi);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("size1"+list.size());
 
         model.addAttribute("list", list);
@@ -56,7 +76,12 @@ public class BreadCController {
             bread.setImageOrigin(upfile.getOriginalFilename());
         }
 
-        Integer result = breadCService.insertBread(bread);
+        Integer result = null;
+        try {
+            result = breadCService.insertBread(bread);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         if (result > 0) {
             session.setAttribute("alertMsg", "게시글 작성 성공");
@@ -79,7 +104,12 @@ public class BreadCController {
             bread.setImageOrigin(reupfile.getOriginalFilename());
         }
 
-        int result = breadCService.updateBread(bread);
+        int result = 0;
+        try {
+            result = breadCService.updateBread(bread);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if(result > 0){
             session.setAttribute("alertMsg", "게시글 수정 성공");
             return "redirect:/detail.bo?bno=" + bread.getBreadNo();

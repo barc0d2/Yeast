@@ -18,20 +18,23 @@
           </p>
           <div class="right-line">메뉴관리 / 등록</div>
         </header>
-        <form class="form" enctype="multipart/form-data" method="post" action="">
+        <form class="form" enctype="multipart/form-data" method="post" action="company/bread/insert">
           <div>
             <img id="thumbnail" class="image" onclick="chooseFile('.file-image')">
           </div>
           <div style="display: none;">
-            <input type="file" class="file-image" name="image" required onchange="loadImg(this, '#thumbnail')">
+            <input type="file" class="file-image" name="upfile" required onchange="loadImg(this, '#thumbnail')">
           </div>
           <div class="column">
             <div class="list">
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 종류</span> <span class="text-wrapper-3">*</span></p>
                 <div class="select">
-                  <input class="el" />
-                  <img class="icon" src="img/icon.svg" />
+                  <select name="el">
+                    <c:forEach var="c" items="${categories}">
+                      <option value="${c.categoryNo}">${c.categoryName}</option>
+                    </c:forEach>
+                  </select>
                 </div>
               </div>
               <div class="div">

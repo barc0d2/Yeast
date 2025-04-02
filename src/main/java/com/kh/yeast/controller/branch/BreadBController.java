@@ -19,10 +19,21 @@ public class BreadBController {
 
     @GetMapping("/branch/bread/list")
     public String selectBreadList(@RequestParam(defaultValue = "1") int currentPage, Model model) {
-        Integer breadCount = breadBService.selectBreadCount();
+        Integer breadCount = null;
+        try {
+            breadCount = breadBService.selectBreadCount();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
-        ArrayList<Bread> list = breadBService.selectBreadList(pi);
+        ArrayList<Bread> list = null;
+
+        try {
+            list = breadBService.selectBreadList(pi);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
