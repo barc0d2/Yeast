@@ -22,4 +22,5 @@ public class Bread {
     private String imageOrigin;
     private String imageChange;
     private Date enrollDate;
+    private Integer status;
 }

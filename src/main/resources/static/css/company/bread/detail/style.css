@@ -42,7 +42,7 @@ input{
 .main .left-line {
   position: relative;
   width: 569px;
-  height: 69px;
+  height: 40px;
   font-family: "Kakao OTF-Bold", Helvetica;
   font-weight: 400;
   color: transparent;
@@ -433,6 +433,7 @@ input{
 
 .main .end {
   position: absolute;
+  display: flex;
   right: 0px;
   bottom: 50px;
 }
@@ -444,6 +445,7 @@ input{
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin-left: 20px;
   padding: 10px;
   position: relative;
   background-color: var(--buttonprimary);

@@ -26,7 +26,7 @@ public class BreadCController {
     private final BreadCService breadCService;
 
     @GetMapping("/company/bread/enrollForm")
-    public String enrollFormProduct(Model model) {
+    public String enrollFormBread(Model model) {
         ArrayList<BreadCategory> categories;
         try {
             categories = breadCService.selectBreadCategories();
@@ -34,14 +34,39 @@ public class BreadCController {
             throw new RuntimeException(e);
         }
 
-        System.out.println("size"+categories.size());
         model.addAttribute("categories",categories);
         return "company/bread/enrollForm";
     }
 
     @GetMapping("/company/bread/updateForm")
-    public String updateFormBread() {
+    public String updateFormBread(int breadNo, Model model) {
+        ArrayList<BreadCategory> categories;
+        Bread bread = null;
+        try {
+            categories = breadCService.selectBreadCategories();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            bread = breadCService.selectBread(breadNo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("bread",bread);
+        model.addAttribute("categories",categories);
         return "company/bread/updateForm";
+    }
+
+    @GetMapping("/company/bread/detail")
+    public String detailBread(int breadNo, Model model) {
+        Bread bread = null;
+        try {
+            bread = breadCService.selectBread(breadNo);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("bread",bread);
+        return "company/bread/detail";
     }
 
     @GetMapping("/company/bread/list")
@@ -85,7 +110,7 @@ public class BreadCController {
 
         if (result > 0) {
             session.setAttribute("alertMsg", "게시글 작성 성공");
-            return "redirect:/list.bo";
+            return "redirect:/company/bread/list";
         } else {
             model.addAttribute("errorMsg", "게시글 작성 실패");
             return "common/errorPage";
@@ -94,6 +119,9 @@ public class BreadCController {
 
     @PostMapping("/company/bread/update")
     public String updateBread(@ModelAttribute Bread bread, MultipartFile reupfile, HttpSession session, Model model) {
+        System.out.println("reupfile :"+reupfile.getOriginalFilename());
+        System.out.println("bread :"+bread.getImageChange());
+
         if(!reupfile.getOriginalFilename().equals("")){
             if(bread.getImageChange() != null && !bread.getImageChange().equals("")){
                 new File(session.getServletContext().getRealPath(bread.getImageChange())).delete();
@@ -103,7 +131,7 @@ public class BreadCController {
             bread.setImageChange("/resources/uploadfile/" + changeName);
             bread.setImageOrigin(reupfile.getOriginalFilename());
         }
-
+        System.out.println("bread : "+bread.getImageChange());
         int result = 0;
         try {
             result = breadCService.updateBread(bread);
@@ -112,7 +140,7 @@ public class BreadCController {
         }
         if(result > 0){
             session.setAttribute("alertMsg", "게시글 수정 성공");
-            return "redirect:/detail.bo?bno=" + bread.getBreadNo();
+            return "redirect:/company/bread/detail?breadNo=" + bread.getBreadNo();
         } else {
             model.addAttribute("errorMsg", "게시글 수정 실패");
             return "common/errorPage";

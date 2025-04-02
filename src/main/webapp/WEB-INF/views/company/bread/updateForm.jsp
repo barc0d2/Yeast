@@ -18,37 +18,45 @@
           </p>
           <div class="right-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수정 / 삭제</div>
         </header>
-        <div class="form" enctype="multipart/form-data" method="post" action="">
-          <div >
-            <img id="thumbnail" class="image" onclick="chooseFile('.file-image')">
+        <button class="pre-btn" type="button" onclick="history.back()"><div class="text-wrapper-7">이전</div></button>
+        <form class="form" enctype="multipart/form-data" method="post" action="/company/bread/update">
+          <input type="hidden" name="breadNo" value="${bread.breadNo}">
+          <div>
+            <img id="thumbnail" class="image" src="${bread.imageChange}" onclick="chooseFile('.file-image')">
           </div>
           <div style="display: none;">
-            <input type="file" class="file-image" name="image" required onchange="loadImg(this, '#thumbnail')">
+            <input type="file" class="file-image" name="reupfile" onchange="loadImg(this, '#thumbnail')">
           </div>
+          <input type="hidden" name="imageChange" value="${bread.imageChange}">
           <div class="column">
             <div class="list">
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 종류</span> <span class="text-wrapper-3">*</span></p>
                 <div class="select">
-                  <input class="el" />
-                  <img class="icon" src="img/icon.svg" />
+                  <select name="categoryNo" class="el">
+                    <c:forEach var="c" items="${categories}">
+                      <option value="${c.categoryNo}" ${c.categoryName eq bread.categoryName ? 'selected="selected"' : ''}>
+                          ${c.categoryName}
+                      </option>
+                    </c:forEach>
+                  </select>
                 </div>
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 이름</span> <span class="text-wrapper-3">*</span></p>
-                <div class="menu-name"><input class="text-wrapper-4"/></div>
+                <div class="menu-name"><input name="breadName" value="${bread.breadName}" class="text-wrapper-4"/></div>
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">가격</span> <span class="text-wrapper-3">*</span></p>
                 <div class="div-2">
-                  <input class="text-wrapper-4"/>
+                  <input name="price" class="text-wrapper-4" value="${bread.price}"/>
                   <div class="text-wrapper-4">원</div>
                 </div>
               </div>
               <div class="menu-descript">
                 <div class="menu-descript-2">메뉴 설명</div>
                 <div class="menu-description">
-                  <textarea class="text-wrapper-5" style="border: none; resize: none"></textarea>
+                  <textarea name="breadContent" class="text-wrapper-5" style="border: none; resize: none">${bread.breadContent}</textarea>
                 </div>
               </div>
             </div>
@@ -57,65 +65,78 @@
                 <div class="div">
                   <div class="text-wrapper-6">메뉴 칼로리</div>
                   <div class="div-2">
-                    <input class="text-wrapper-4"/>
+                    <input class="text-wrapper-4" name="calories" value="${bread.calories}"/>
                     <div class="text-wrapper-4">kcal</div>
                   </div>
                 </div>
                 <div class="menu-info">
                   <div class="menu-info-2">메뉴 알레르기 정보</div>
-                  <div class="info"><input class="text-wrapper-5"/></div>
+                  <div class="info"><textarea name="allergy" class="text-wrapper-5">${bread.allergy}</textarea></div>
                 </div>
                 <div class="sale-status">
                   <div class="text-wrapper-6">판매여부</div>
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" checked>
-                  </div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper-6">메뉴 등록일</div>
-                  <div class="register-date">
-                    <input class="date"/>
-                    <img class="img" src="img/image.png" />
+                    <c:choose>
+                      <c:when test="${bread.status == 1}">
+                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="1" checked>
+                      </c:when>
+                      <c:otherwise>
+                        <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="0">
+                      </c:otherwise>
+                    </c:choose>
                   </div>
                 </div>
               </div>
+              <div></div>
               <div class="end">
-                <button class="update-btn"><div class="text-wrapper-7">수정</div></button>
-                <button class="delete-btn"><div class="text-wrapper-7">삭제</div></button>
+                <button class="update-btn" type="submit"><div class="text-wrapper-7">수정</div></button>
+                <button class="delete-btn" type="button" onclick="location.href='/company/bread/delete?breadNo=${bread.breadNo}'"><div class="text-wrapper-7">삭제</div></button>
               </div>
             </div>
           </div>
-        </input>
+        </form>
       </div>
     </div>
     <script>
+      const checkbox = document.getElementById('flexSwitchCheckChecked');
+      const form = document.getElementById('myForm');
+
+      form.addEventListener('submit', function(event) {
+        if (!checkbox.checked) {
+          checkbox.value = 0;
+        } else {
+          checkbox.value = 1;
+        }
+      });
+
       function loadImg(changeInput, targetImg){
-          //파일객체 -> files -> 선택된파일들이 담겨있음
-          console.log(changeInput.files[0])
-          const img = document.querySelector(targetImg);
-          console.log(img)
-          if(changeInput.files.length > 0){ //파일은 선택했을 때
-              //파일을 읽어들일 객체
-              const reader = new FileReader();
-  
-              //해당 파일을 읽얻들여 해당파일만의 고유한 url을 부여
-              //url : Base64로 인코딩된 데이터 url(파일을 실제로 표현하는 형식인 바이너리 코드를 텍스트문자열로 인코딩한 방식)
-              reader.readAsDataURL(changeInput.files[0]);
-  
-              //파일읽어들이기를 완료 했을 때 이벤트핸들러를 실행시켜줘
-              reader.onload = function(ev){
-                  img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
-              }
-  
-  
-          } else { //파일이 있었는데 선택 후 취소했을 때
-              img.src = null;
+        //파일객체 -> files -> 선택된파일들이 담겨있음
+        console.log(changeInput.files[0])
+        const img = document.querySelector(targetImg);
+        console.log(img)
+        if(changeInput.files.length > 0){ //파일은 선택했을 때
+          //파일을 읽어들일 객체
+          const reader = new FileReader();
+
+          //해당 파일을 읽얻들여 해당파일만의 고유한 url을 부여
+          //url : Base64로 인코딩된 데이터 url(파일을 실제로 표현하는 형식인 바이너리 코드를 텍스트문자열로 인코딩한 방식)
+          reader.readAsDataURL(changeInput.files[0]);
+
+          //파일읽어들이기를 완료 했을 때 이벤트핸들러를 실행시켜줘
+          reader.onload = function(ev){
+            img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
           }
+
+
+        } else { //파일이 있었는데 선택 후 취소했을 때
+          img.src = null;
+        }
       }
+
       function chooseFile(selector){
-          const fileInput = document.querySelector(selector);
-          fileInput.click();
+        const fileInput = document.querySelector(selector);
+        fileInput.click();
       }
-  </script>
+    </script>
   </body>
 </html>

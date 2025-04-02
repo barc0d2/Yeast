@@ -24,8 +24,8 @@
           </header>
           <div class="list">
             <c:forEach var="bread" items="${list}">
-              <div class="div">
-                <img class="image" src="/resources/uploadfile/${bread.imageChange}" />
+              <div class="div" onclick="location.href='/company/bread/detail?breadNo=${bread.breadNo}'" style="cursor: pointer">
+                <img class="image" src="${bread.imageChange}" />
                 <div class="div-2">
                   <div class="div-3">
                     <div class="text-wrapper-4">${bread.breadName}</div>

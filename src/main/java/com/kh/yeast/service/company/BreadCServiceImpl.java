@@ -59,4 +59,9 @@ public class BreadCServiceImpl implements BreadCService {
     public ArrayList<BreadCategory> selectBreadCategories() {
         return breadCMapper.selectBreadCategories();
     }
+
+    @Override
+    public Bread selectBread(int breadNo) {
+        return breadCMapper.selectBread(breadNo);
+    }
 }

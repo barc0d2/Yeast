@@ -18,19 +18,19 @@
           </p>
           <div class="right-line">메뉴관리 / 등록</div>
         </header>
-        <form class="form" enctype="multipart/form-data" method="post" action="company/bread/insert">
+        <form class="form" enctype="multipart/form-data" method="post" action="/company/bread/insert">
           <div>
             <img id="thumbnail" class="image" onclick="chooseFile('.file-image')">
           </div>
           <div style="display: none;">
-            <input type="file" class="file-image" name="upfile" required onchange="loadImg(this, '#thumbnail')">
+            <input type="file" class="file-image" name="upfile" onchange="loadImg(this, '#thumbnail')">
           </div>
           <div class="column">
             <div class="list">
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 종류</span> <span class="text-wrapper-3">*</span></p>
                 <div class="select">
-                  <select name="el">
+                  <select name="categoryNo" class="el" required>
                     <c:forEach var="c" items="${categories}">
                       <option value="${c.categoryNo}">${c.categoryName}</option>
                     </c:forEach>
@@ -39,19 +39,19 @@
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">메뉴 이름</span> <span class="text-wrapper-3">*</span></p>
-                <div class="menu-name"><input class="text-wrapper-4"/></div>
+                <div class="menu-name"><input name="breadName" class="text-wrapper-4" required/></div>
               </div>
               <div class="div">
                 <p class="p"><span class="text-wrapper-2">가격</span> <span class="text-wrapper-3">*</span></p>
                 <div class="div-2">
-                  <input class="text-wrapper-4"/>
+                  <input name="price" class="text-wrapper-4" required/>
                   <div class="text-wrapper-4">원</div>
                 </div>
               </div>
               <div class="menu-descript">
                 <div class="menu-descript-2">메뉴 설명</div>
                 <div class="menu-description">
-                  <textarea class="text-wrapper-5" style="border: none; resize: none"></textarea>
+                  <textarea class="text-wrapper-5" name="breadContent" style="border: none; resize: none"></textarea>
                 </div>
               </div>
             </div>
@@ -60,33 +60,28 @@
                 <div class="div">
                   <div class="text-wrapper-6">메뉴 칼로리</div>
                   <div class="div-2">
-                    <input class="text-wrapper-4"/>
+                    <input class="text-wrapper-4" name="calories"/>
                     <div class="text-wrapper-4">kcal</div>
                   </div>
                 </div>
                 <div class="menu-info">
                   <div class="menu-info-2">메뉴 알레르기 정보</div>
-                  <div class="info"><input class="text-wrapper-5"/></div>
+                  <div class="info"><textarea class="text-wrapper-5" name="allergy"></textarea></div>
                 </div>
                 <div class="sale-status">
                   <div class="text-wrapper-6">판매여부</div>
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" checked>
-                  </div>
-                </div>
-                <div class="div">
-                  <div class="text-wrapper-6">메뉴 등록일</div>
-                  <div class="register-date">
-                    <input class="date"/>
-                    <img class="img" src="img/image.png" />
+                    <input class="form-check-input" type="checkbox" role="switch" style="width: 70px; height: 30px" id="flexSwitchCheckChecked" name="status" value="1" checked>
                   </div>
                 </div>
               </div>
+              <div></div>
               <div class="end">
                 <button type="submit" class="update-btn"><div class="text-wrapper-7">저장</div></button>
               </div>
             </div>
           </div>
+
         </form>
       </div>
     </div>
@@ -118,6 +113,17 @@
           const fileInput = document.querySelector(selector);
           fileInput.click();
       }
+
+      const checkbox = document.getElementById('flexSwitchCheckChecked');
+      const form = document.getElementById('myForm');
+
+      form.addEventListener('submit', function(event) {
+      if (!checkbox.checked) {
+      checkbox.value = 0;
+        }else{
+        checkbox.value = 1;
+      }
+      });
   </script>
   </body>
 </html>
