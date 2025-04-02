@@ -209,6 +209,7 @@ String managerName = (String) session.getAttribute("managerName");
     }
   });
 </script>
-
+<jsp:include page="brownSideBar.jsp"/>
+<jsp:include page="brownTopBar.jsp"/>
 </body>
 </html>

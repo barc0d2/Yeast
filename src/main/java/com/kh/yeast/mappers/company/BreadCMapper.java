@@ -1,6 +1,6 @@
 package com.kh.yeast.mappers.company;
 
-import com.kh.yeast.domain.vo.Bread;
+import com.kh.yeast.domain.entity.Bread;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 

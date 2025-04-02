@@ -1,7 +1,7 @@
 package com.kh.yeast.mappers;
 
 import com.kh.yeast.domain.entity.Member;
-import com.kh.yeast.domain.vo.Bread;
+import com.kh.yeast.domain.entity.Bread;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
@@ -12,7 +12,6 @@ public interface MemberMapper {
     Integer insertMember(Member member);
 
     Member loginMember(String userId);
-
 
     int selectMemberCount();
 

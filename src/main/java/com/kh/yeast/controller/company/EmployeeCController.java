@@ -1,9 +1,8 @@
 package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.entity.Member;
-import com.kh.yeast.domain.vo.PageInfo;
+import com.kh.yeast.domain.entity.PageInfo;
 import com.kh.yeast.service.MemberService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

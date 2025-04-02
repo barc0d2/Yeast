@@ -1,5 +1,6 @@
 package com.kh.yeast.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_NO")
@@ -21,14 +24,23 @@ public class Employee {
     @Column(name = "BUSINESS_NAME", nullable = false, length = 100)
     private String businessName;
 
+    @Column(name = "BUSINESS_NO", nullable = false)  // 🔥 비즈니스 번호 추가
+    private Integer businessNo;
+
     @Column(name = "POSITION_NAME", length = 50)
     private String position;
+
+    @Column(name = "POSITION_NO", nullable = false)
+    private Integer positionNo;
 
     @Column(name = "MANAGER_NAME", length = 50)
     private String managerName;
 
+    @Column(name = "HEAD_NAME", length = 50)
+    private String headName;
+
     @Column(name = "USER_NAME", nullable = false, length = 50)
-    private String name;
+    private String userName;
 
     @Column(name = "USER_ID", nullable = false, unique = true, length = 50)
     private String userId;
@@ -69,19 +81,31 @@ public class Employee {
     @Column(name = "STATUS", length = 10)
     private String status;
 
-    public void updateSalary(Integer salary) {
-        this.salary = salary;
+    @PrePersist
+    public void prePersist() {
+        if (this.enrollDate == null) {
+            this.enrollDate = LocalDate.now();
+        }
     }
 
-    public void updateBonus(Double bonus) {
-        this.bonus = bonus;
-    }
-
-    public void updatePosition(String position) {
-        this.position = position;
-    }
-
-    public void updateStatus(String status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "userNo=" + userNo +
+                ", userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", positionNo=" + positionNo +
+                ", managerName='" + managerName + '\'' +
+                ", headName='" + headName + '\'' +
+                ", salary=" + salary +
+                ", bonus=" + bonus +
+                ", birthday=" + birthday +
+                ", enrollDate=" + (enrollDate != null ? enrollDate.toString() : "N/A") +
+                ", status=" + status +
+                '}';
     }
 }

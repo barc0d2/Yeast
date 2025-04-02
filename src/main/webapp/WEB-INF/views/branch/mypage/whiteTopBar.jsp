@@ -113,7 +113,7 @@
             <div id="top-bar-background"></div>
             <div class="menu-management">
                 <div class="menu-icons">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<%--                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">--%>
                         <path
                             d="M8.30769 1H1.76923C1.3444 1 1 1.3444 1 1.76923V8.30769C1 8.73252 1.3444 9.07692 1.76923 9.07692H8.30769C8.73252 9.07692 9.07692 8.73252 9.07692 8.30769V1.76923C9.07692 1.3444 8.73252 1 8.30769 1Z"
                             stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
@@ -133,9 +133,9 @@
                             stroke-linejoin="round" />
                         <path d="M1 17.5385H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <div class="menu-label">메뉴관리</div>
+                    <div class="menu-label"></div>
                 </div>
-                <div class="page-title">메뉴조회</div>
+                <div class="page-title">마이페이지</div>
             </div>
 
             <div class="branch-info">
@@ -151,9 +151,7 @@
                         </svg>
                     </div>
                     <div class="dropdown-menu">
-                        <a href="/branch/mypage/myPage">
-                        <div class="dropdown-item">마이페이지</div>
-                        </a>
+                        <div class="dropdown-item" href="/company/mypage/myPage">마이페이지</div>
                         <div class="dropdown-item">로그아웃</div>
                     </div>
                 </div>

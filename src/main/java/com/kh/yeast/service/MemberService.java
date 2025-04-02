@@ -1,7 +1,7 @@
 package com.kh.yeast.service;
 
 import com.kh.yeast.domain.entity.Member;
-import com.kh.yeast.domain.vo.PageInfo;
+import com.kh.yeast.domain.entity.PageInfo;
 import java.util.ArrayList;
 
 public interface MemberService {

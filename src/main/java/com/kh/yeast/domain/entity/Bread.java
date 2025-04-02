@@ -1,4 +1,4 @@
-package com.kh.yeast.domain.vo;
+package com.kh.yeast.domain.entity;
 
 import lombok.*;
 

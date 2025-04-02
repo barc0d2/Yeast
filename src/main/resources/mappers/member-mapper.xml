@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<<<<<<< HEAD
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
@@ -12,85 +11,42 @@
         <result column="MANAGER_NAME" property="managerName"/>
         <result column="SALARY" property="salary"/>
         <result column="BONUS" property="bonus"/>
-=======
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.MemberMapper">
-    <resultMap id="memberResult" type="Member">
-        <result column="USER_NO" property="userNo"/>
-        <result column="BUSINESS_NAME" property="businessName"/>
-        <result column="POSITION_NAME" property="positionName"/>
-        <result column="MANAGER_NAME" property="managerName"/>
-        <result column="USER_NAME" property="userName"/>
-        <result column="USER_ID" property="userId"/>
-        <result column="USER_PWD" property="userPwd"/>
->>>>>>> intae
-        <result column="EMAIL" property="email"/>
-        <result column="SALARY" property="salary"/>
-        <result column="BONUS" property="bonus"/>
         <result column="PHONE" property="phone"/>
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
         <result column="CREATE_DATE" property="createDate"/>
-        <result column="IMAGE_CHANGEPATH" property="imageChangePath"/>
-        <result column="IMAGE_ORIGINPATH" property="imageOriginPath"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
         <result column="BIRTHDAY" property="birthday"/>
-<<<<<<< HEAD
         <result column="ENROLL_DATE" property="createDate"/>
         <result column="MODIFY_DATE" property="modifyDate"/>
         <result column="STATUS" property="status"/>
     </resultMap>
-    <select id="loginMember" parameterType="String" resultMap="memberResult">
-        SELECT USER_NO,
-        BUSINESS_NAME,
-        POSITION_NAME,
-        MANAGER_NAME,
-        USER_NAME,
-        USER_ID,
-        USER_PWD,
-        EMAIL,
-        SALARY,
-        BONUS,
-        PHONE,
-        GENDER,
-        ADDRESS,
-        ENROLL_DATE AS CREATE_DATE,
-        IMAGE_CHANGEPATH,
-        IMAGE_ORIGINPATH,
-        BIRTHDAY,
-        STATUS
-        FROM MEMBER
-        WHERE USER_ID = #{userId}
-        AND STATUS = 1
-=======
-    </resultMap>
-    <select id="loginMember" parameterType="Member" resultMap="memberResult">
-        SELECT M.USER_NO,
-        BUSINESS_NAME AS BUSINESS_NAME,
-        POSITION_NAME AS POSITION_NAME,
-        E.USER_NAME AS MANAGER_NAME,
-        M.USER_NAME AS USER_NAME,
-        M.USER_ID AS USER_ID,
-        M.USER_PWD AS USER_PWD,
-        M.EMAIL AS EMAIL,
-        M.SALARY AS SALARY,
-        M.BONUS AS BONUS,
-        M.PHONE AS PHONE,
-        M.GENDER AS GENDER,
-        M.ADDRESS AS ADDRESS,
-        M.CREATE_DATE AS CREATE_DATE,
-        M.IMAGE_CHANGEPATH AS IMAGE_CHANGEPATH,
-        M.IMAGE_ORIGINPATH AS IMAGE_ORIGINPATH,
-        M.BIRTHDAY AS BIRTHDAY,
-        M.STATUS AS STATUS
-        FROM MEMBER M
-        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
-        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
-        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
-        WHERE M.USER_ID = #{userId}
-        AND M.STATUS = 1
->>>>>>> intae
+    <select id="loginMember" resultType="com.kh.yeast.domain.entity.Member">
+    SELECT M.USER_NO,
+    BUSINESS_NAME AS BUSINESS_NAME,  <!-- 이 값을 Business 객체에 매핑 -->
+    POSITION_NAME AS POSITION_NAME,
+    E.USER_NAME AS MANAGER_NAME,
+    M.USER_NAME AS USER_NAME,
+    M.USER_ID AS USER_ID,
+    M.USER_PWD AS USER_PWD,
+    M.EMAIL AS EMAIL,
+    M.SALARY AS SALARY,
+    M.BONUS AS BONUS,
+    M.PHONE AS PHONE,
+    M.GENDER AS GENDER,
+    M.ADDRESS AS ADDRESS,
+    M.CREATE_DATE AS CREATE_DATE,
+    M.IMAGE_CHANGE AS IMAGE_CHANGE,
+    M.IMAGE_ORIGIN AS IMAGE_ORIGIN,
+    M.BIRTHDAY AS BIRTHDAY,
+    M.STATUS AS STATUS
+    FROM MEMBER M
+    LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+    LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+    LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+    WHERE M.USER_ID = #{userId}
+    AND M.STATUS = 1
     </select>
     <insert id="insertMember">
         INSERT
@@ -113,7 +69,7 @@
         )
     </insert>
     <select id="idCheck" resultType="int">
-        SELECT COUNT(*)
+        SELECT COUNT *
         FROM MEMBER
         WHERE USER_ID = #{userId}
     </select>
@@ -125,8 +81,8 @@
         m.PHONE,
         m.ADDRESS,
         m.BIRTHDAY,
-        m.IMAGE_CHANGEPATH,
-        m.IMAGE_ORIGINPATH,
+        m.IMAGE_CHANGE,
+        m.IMAGE_ORIGIN,
         p.POSITION_NAME,
         b.BUSINESS_NAME
         FROM MEMBER m
@@ -147,14 +103,14 @@
         PHONE = #{phone},
         ADDRESS = #{address},
         BIRTHDAY = #{birthday},
-        IMAGE_CHANGEPATH = #{imageChangePath},
-        IMAGE_ORIGINPATH = #{imageOriginPath},
+        IMAGE_CHANGE = #{image_change},
+        IMAGE_ORIGIN = #{image_origin},
         POSITION_NO = #{positionNo},
         BUSINESS_NO = #{businessNo},
         MODIFY_DATE = NOW()
         WHERE USER_ID = #{userId}
     </update>
-    <select id="findEmployees" resultType="com.kh.yeast.domain.entity.Employee">
+    <select id="findEmployees" resultType="String">
         SELECT * FROM MEMBER
         WHERE
         (#{businessName} IS NULL OR BUSINESS_NAME = #{businessName})
@@ -164,7 +120,7 @@
         LIMIT #{size} OFFSET #{offset}
     </select>
     <select id="countEmployees" resultType="int">
-        SELECT COUNT(*) FROM MEMBER
+        SELECT COUNT * FROM MEMBER
         WHERE
         (#{businessName} IS NULL OR BUSINESS_NAME = #{businessName})
         AND (#{positionName} IS NULL OR POSITION_NAME = #{positionName})

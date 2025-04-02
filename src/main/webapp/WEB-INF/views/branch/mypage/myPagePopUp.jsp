@@ -26,7 +26,7 @@
   <div class="mypage-edit-wrapper">
     <div class="mypage-edit">
       <div class="main">
-        <a href="../mypage/myPage">
+        <a href="/branch/mypage/myPage">
           <div class="save-cloe">
             <div class="save-close">저장 후 닫기</div>
           </div>

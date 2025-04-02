@@ -22,6 +22,7 @@ public class Member {
     private Long positionNo;
     private Long position;
     private Long businessNo;
+    @Getter
     private Long business;
     private Long managerNo;
     private Integer salary;
@@ -45,6 +46,7 @@ public class Member {
         this.businessNo = businessNo;
     }
 
+
     public void updateSalary(Integer salary) {
         this.salary = salary;
     }
@@ -59,5 +61,19 @@ public class Member {
 
     public void updateStatus(Integer status) {
         this.status = status;
+    }
+
+
+    public String getName() {
+        return this.userName;
+    }
+
+    public String getManagerName() {
+        return managerNo != null ? "사수 이름" : "없음";
+    }
+
+
+    public void setBusiness(Business business) {
+        this.business = business.getBusinessNo();
     }
 }

@@ -9,4 +9,9 @@ public class DashBoardCController {
     public String dashboard() {
         return "company/dashboard/dashboard";
     }
+
+    @GetMapping("/company/mypage/myPage")
+    public String myPage() {
+        return "company/mypage/myPage";
+    }
 }

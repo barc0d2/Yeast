@@ -1,4 +1,14 @@
+.first{
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: var(--backgroundsecondary);
+}
+
 .frame {
+  left: 15%;
+  top: 15%;
   display: flex;
   flex-direction: column;
   width: 1519px;
@@ -11,14 +21,15 @@
 }
 
 
-
-.frame .date {
-  display: inline-flex;
-  height: 39.78px;
-  align-items: flex-start;
-  gap: 12px;
+.frame .date-picker{
   position: relative;
   flex: 0 0 auto;
+  height: 54.33px;
+  width: 200px;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: var(--variable-collection-button-lightyellow);
 }
 
 .frame .text {
@@ -37,16 +48,27 @@
 
 .frame .input {
   position: relative;
-  width: 250px;
-  height: 46px;
-  background-color: var(--variable-collection-button-white);
+  flex: 0 0 auto;
+  height: 54.33px;
+  width: 200px;
+  background-color: #FFFFFF;
   border-radius: 15px;
-  overflow: hidden;
   border: 1px solid;
-  border-color: var(--linelightgray);
+  border-color: var(--variable-collection-button-lightyellow);
 }
 
-.frame .product-name {
+.input {
+  position: relative;
+  flex: 0 0 auto;
+  height: 54.33px;
+  width: 200px;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: var(--variable-collection-button-lightyellow);
+}
+
+.input .product-name {
   position: absolute;
   top: 6px;
   left: 20px;
@@ -58,6 +80,8 @@
   line-height: 32px;
   white-space: nowrap;
 }
+
+.frame
 
 .frame .pre-page {
   display: flex;
@@ -229,12 +253,19 @@ td>button {
   border-color: var(--variable-collection-border-grayup);
 }
 
-.pagination {
+.frame .pagination {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   flex: 0 0 auto;
+}
+
+#employeeTable{
+  left: 30%;
 }
 
 .product-name-input {

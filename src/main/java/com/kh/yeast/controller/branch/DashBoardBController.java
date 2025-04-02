@@ -10,5 +10,9 @@ public class DashBoardBController {
     public String dashboard() {
         return "branch/dashboard/dashboard";
     }
-    
+
+    @GetMapping("/branch/mypage/myPage")
+    public String myPage() {
+        return "branch/mypage/myPage";
+    }
 }

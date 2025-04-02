@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.branch.STableBMapper">
+    <select id="getAllEmployees" resultType="com.kh.yeast.domain.entity.Employee">
+        SELECT *
+        FROM MEMBER;
+    </select>
+    <select id="findEmployeesByName" parameterType="String" resultType="com.kh.yeast.domain.entity.Employee">
+        SELECT
+        m.USER_NO AS userNo,
+        m.USER_ID AS userId,
+        m.USER_NAME AS userName,
+        m.EMAIL,
+        m.PHONE,
+        m.GENDER,
+        m.POSITION_NO AS positionNo,
+        m.BUSINESS_NO AS businessNo,
+        m.SALARY,
+        m.CREATE_DATE AS createDate,
+        (SELECT mm.USER_NAME
+        FROM MEMBER mm
+        JOIN POSITION p ON mm.POSITION_NO = p.POSITION_NO
+        WHERE mm.BUSINESS_NO = m.BUSINESS_NO
+        AND p.ROLE = 1
+        LIMIT 1) AS headName
+        FROM MEMBER m
+        WHERE m.USER_NAME LIKE '%' || #{userName} || '%';
+    </select>
+</mapper>

@@ -3,9 +3,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../../css/global/cmyPage.css" />
-  <link rel="stylesheet" href="../../css/styleguide/cmyPage.css" />
-  <link rel="stylesheet" href="../../css/style/cmyPage.css" />
+  <link rel="stylesheet" href="../../css/global/bmyPage.css" />
+  <link rel="stylesheet" href="../../css/styleguide/bmyPage.css" />
+  <link rel="stylesheet" href="../../css/style/bmyPage.css" />
 </head>
 <body>
 <div class="main">
@@ -136,5 +136,7 @@
   );
 
 </script>
+<jsp:include page="whiteSideBar.jsp"/>
+<jsp:include page="whiteTopBar.jsp"/>
 </body>
 </html>
