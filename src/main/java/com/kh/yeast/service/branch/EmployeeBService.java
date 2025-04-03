@@ -1,15 +1,11 @@
-package com.kh.yeast.service.company;
+package com.kh.yeast.service.branch;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 
 import java.util.ArrayList;
 
-public interface MemberCService {
-
-    int insertMember(Member member);
-
-    Member loginMember(String userId) throws Exception;
+public interface EmployeeBService {
 
     int selectMemberCount();
 

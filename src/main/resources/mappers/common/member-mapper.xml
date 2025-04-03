@@ -48,7 +48,6 @@
         LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
         WHERE M.USER_ID = #{userId}
         AND M.STATUS = 1
-        AND ROLE = 1
     </select>
     <insert id="insertMember">
         INSERT
