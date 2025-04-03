@@ -78,7 +78,7 @@
                     <div class="phone-2">${m.phone}</div>
                     <div class="text-wrapper-3">${m.gender}</div>
                     <div class="text-wrapper-3">${m.positionName}</div>
-                    <div class="enroll-date-2">${m.createDate}</div>
+                    <div class="enroll-date-2">${m.enrollDate}</div>
                 </div>
             </c:forEach>
         </div>

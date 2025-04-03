@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
@@ -25,11 +27,27 @@ public class EmployeeCServiceImpl implements EmployeeCService {
     public ArrayList<Member> selectMemberList(PageInfo pi) {
         int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset , pi.getBoardLimit());
-        return employeeCMapper.selectMemberList(rowBounds);
+
+        ArrayList<Member> memberList = employeeCMapper.selectMemberList(rowBounds);
+        memberList.forEach(member -> {
+            Timestamp createDate = member.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                member.setEnrollDate(sqlDate);
+            } else {
+                member.setEnrollDate(null);
+            }
+        });
+        return memberList;
     }
 
     @Override
     public Member selectMember(int userNo) {
         return employeeCMapper.selectMember(userNo);
+    }
+
+    @Override
+    public int update(Member member) {
+        return employeeCMapper.update(member);
     }
 }

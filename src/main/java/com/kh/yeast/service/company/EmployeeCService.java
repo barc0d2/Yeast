@@ -12,4 +12,6 @@ public interface EmployeeCService {
     ArrayList<Member> selectMemberList(PageInfo pi);
 
     Member selectMember(int userNo);
+
+    int update(Member member);
 }

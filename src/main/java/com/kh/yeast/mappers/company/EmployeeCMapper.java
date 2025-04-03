@@ -16,4 +16,6 @@ public interface EmployeeCMapper {
     ArrayList<Member> selectMemberList(RowBounds rowBounds);
 
     Member selectMember(@Param("userNo") int userNo);
+
+    int update(Member member);
 }
