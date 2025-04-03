@@ -1,14 +1,12 @@
 package com.kh.yeast.service;
 
 import com.kh.yeast.domain.vo.Member;
-import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.mappers.MemberMapper;
-import com.kh.yeast.mappers.company.EmployeeCMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Service
@@ -23,8 +21,16 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member loginMember(String userId) throws Exception {
-        return memberMapper.loginMember(userId);
-    }
+    public Member loginMember(String userId) {
+        Member member = memberMapper.loginMember(userId);
+        Timestamp createDate = member.getCreateDate();
+        if (createDate != null) {
+            Date sqlDate = new Date(createDate.getTime());
+            member.setEnrollDate(sqlDate);
+        } else {
+            member.setEnrollDate(null);
+        }
 
+        return member;
+    }
 }
