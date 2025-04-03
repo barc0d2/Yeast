@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,9 +56,12 @@ public class MemberController {
             modelAndView.setViewName("/common/errorPage");
         } else {
             session.setAttribute("loginUser", loginMember);
-            modelAndView.setViewName("redirect:/");
+            if(loginMember.getUserId().startsWith("B")){
+                modelAndView.setViewName("redirect:/branch/dashboard/dashboard");
+            }else{
+                modelAndView.setViewName("redirect:/company/dashboard/dashboard");
+            }
         }
-
         return modelAndView;
     }
 

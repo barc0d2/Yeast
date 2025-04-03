@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.branch.BreadBMapper">
+    <resultMap id="breadResult" type="Bread">
+        <result column="BREAD_NO" property="breadNo"/>
+        <result column="BREAD_NAME" property="breadName"/>
+        <result column="CATEGORY_NAME" property="categoryName"/>
+        <result column="PRICE" property="price"/>
+        <result column="BREAD_CONTENT" property="breadContent"/>
+        <result column="CALORIES" property="calories"/>
+        <result column="ALLERGY" property="allergy"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+    </resultMap>
+    <select id="selectBreadCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM BREAD
+        WHERE STATUS = 1
+    </select>
+    <select id="selectBreadList" resultMap="breadResult">
+        SELECT BREAD_NO,
+                BREAD_NAME,
+                CATEGORY_NAME,
+                PRICE,
+                BREAD_CONTENT,
+                CALORIES,
+                ALLERGY,
+                IMAGE_CHANGE
+        FROM BREAD
+        LEFT JOIN DETAIL_BREAD USING(BREAD_NO)
+        LEFT JOIN BREAD_CATEGORY USING(CATEGORY_NO)
+        WHERE STATUS = 1
+        ORDER BY BREAD_NO DESC
+    </select>
+</mapper>

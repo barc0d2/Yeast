@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Getter
+@Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode
 public class Member {
-
     private Long userNo;
     private String businessName;
     private String positionName;
@@ -26,9 +26,10 @@ public class Member {
     private String phone;
     private String gender;
     private String address;
-    private Timestamp enrollDate;
-    private String imageChangePath;
-    private String imageOriginPath;
+    private Date enrollDate;
+    private Timestamp createDate;
+    private String imageChange;
+    private String imageOrigin;
     private Date birthday;
 
     public void setUserPwd(String userPwd) {

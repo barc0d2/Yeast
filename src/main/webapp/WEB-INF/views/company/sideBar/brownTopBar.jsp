@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -80,6 +81,31 @@
             font-size: 24px;
             font-weight: 700;
         }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 30px;
+            background-color: white;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+            padding: 8px 0;
+            min-width: 120px;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-item {
+            padding: 8px 16px;
+            color: #575757;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 <body>
@@ -107,9 +133,9 @@
                       stroke-linejoin="round" />
                 <path d="M1 17.5385H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            <div class="menu-label">메뉴관리</div>
+            <div class="menu-label">${currentName}</div>
         </div>
-        <div class="page-title">메뉴조회</div>
+        <div class="page-title">${smallCurrentName}</div>
     </div>
 
     <div class="branch-info">
@@ -117,15 +143,36 @@
         <div class="manager-info">
             <div class="manager-label">공장장</div>
             <div class="manager-name">황인태</div>
-            <div class="manager-separator">
+            <div class="manager-separator" style="cursor: pointer;">
                 <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1L4.70455 4.67453C5.14205 5.10849 5.85795 5.10849 6.29545 4.67453L10 1"
                           stroke="#575757" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
                           stroke-linejoin="round" />
                 </svg>
             </div>
+            <div class="dropdown-menu">
+                <div class="dropdown-item">마이페이지</div>
+                <div class="dropdown-item">로그아웃</div>
+            </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const managerSeparator = document.querySelector('.manager-separator');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        managerSeparator.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // 다른 곳을 클릭하면 드롭다운 메뉴가 닫히도록 설정
+        document.addEventListener('click', function(event) {
+            if (!managerSeparator.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+</script>

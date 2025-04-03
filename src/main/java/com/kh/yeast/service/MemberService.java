@@ -7,4 +7,5 @@ public interface MemberService {
     int insertMember(Member member);
 
     Member loginMember(String userId) throws Exception;
+
 }
