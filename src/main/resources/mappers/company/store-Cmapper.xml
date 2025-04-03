@@ -32,5 +32,30 @@
         WHERE STATUS='1'
         ORDER BY BUSINESS_NO
     </select>
+    <select id="selectStore" resultMap="businessResult">
+        SELECT  BUSINESS_NO,
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                MONEY,
+                CREATE_TIME,
+                STATUS,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        FROM BUSINESS
+        WHERE STATUS='1'
+            AND BUSINESS_NO = #{businessNo}
+    </select>
+    <update id="updateThings">
+        UPDATE BUSINESS
+        SET
+            BUSINESS_NAME = #{businessName},
+            PHONE = #{phone},
+            LOCATION= #{location},
+            IMAGE_CHANGE = #{imageChange},
+            IMAGE_ORIGIN = #{imageOrigin}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND STATUS = 1
+    </update>
 
 </mapper>

@@ -10,4 +10,7 @@ public interface StoreCService {
     int selectStoreCount();
 
     ArrayList<Business> selectStoreList(PageInfo pi);
+
+    Business selectStore(int businessNo);
+    Integer updateThings(Business business) throws Exception;
 }

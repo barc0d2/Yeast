@@ -22,8 +22,7 @@
                     <div class="overlap-group">
                         <div class="row">
                             <div class="update">
-                                <a href="/company/store/updateForm">
-                                    <div class="in">
+                                    <div class="in" style="cursor: pointer" onclick="location.href='updateForm?businessNo=${s.businessNo}'">
                                         <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <g opacity="0.6">
@@ -41,7 +40,6 @@
                                         </svg>
                                         <div class="text">수정하기</div>
                                     </div>
-                                </a>
                             </div>
                             <div class="delete">
                                 <div class="in-2">

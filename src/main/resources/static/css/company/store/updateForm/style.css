@@ -1,7 +1,10 @@
 .store {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: auto;
+  top : 97px;
+  left : 50%;
+  transform: translateX(-50%);
   min-height: 100vh;
   background: #ffffff;
 }
@@ -86,9 +89,19 @@
 .store .div {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   position: relative;
   flex: 0 0 auto;
+  color: #000000;
+  font-size: var(--body-kakao-18px-font-size);
+  text-align: left;
+  line-height: var(--body-kakao-18px-line-height);
+  position: relative;
+  font-family: var(--body-kakao-18px-font-family);
+  font-weight: var(--body-kakao-18px-font-weight);
+  letter-spacing: var(--body-kakao-18px-letter-spacing);
+  white-space: nowrap;
+  font-style: var(--body-kakao-18px-font-style);
 }
 
 .store .text {
@@ -122,11 +135,11 @@
 
 .store .text-wrapper-2 {
   width: fit-content;
-  margin-top: -4.00px;
-  margin-bottom: -2.00px;
+  height:  40px;
   color: #000000;
   font-size: var(--body-kakao-18px-font-size);
-  text-align: right;
+  direction: ltr;
+  text-align: left;
   line-height: var(--body-kakao-18px-line-height);
   position: relative;
   font-family: var(--body-kakao-18px-font-family);
@@ -134,14 +147,27 @@
   letter-spacing: var(--body-kakao-18px-letter-spacing);
   white-space: nowrap;
   font-style: var(--body-kakao-18px-font-style);
+  border: none;
+  outline: none;
 }
-
+#location{
+  width: 100%;
+  height:  37px;
+  border: none;
+  outline: none;
+}
+#phone-number{
+  width: 100%;
+  height:  37px;
+  border: none;
+  outline: none;
+}
 .store .div-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 10px;
+  padding-left: 10px;
   background-color: #ffffff;
   border-color: var(--fontgray);
   width: 210px;
@@ -168,9 +194,9 @@
 
 .store .work {
   display: flex;
-  width: 330px;
+  width: 700px;
   align-items: flex-start;
-  gap: 20px;
+  gap: 50px;
   position: relative;
   flex: 0 0 auto;
 }
@@ -200,13 +226,16 @@
 .store .input-2 {
   background-color: #ffffff;
   border-color: var(--fontgray);
-  width: 210px;
+  width: 550px;
   height: 40px;
   position: relative;
   border-radius: 3px;
   border: 1px solid;
 }
-
+.right-button{
+  display: flex;
+  gap: 20px;
+}
 .store .header {
   display: flex;
   width: 1530px;
@@ -359,7 +388,6 @@
   height: 100%;
   background: transparent;
   border: none;
-  text-align: right;
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -368,7 +396,7 @@
 .store .input-2 input {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding-left: 10px;
   border: none;
   border-radius: 3px;
   font-family: var(--body-kakao-18px-font-family);

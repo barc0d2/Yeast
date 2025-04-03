@@ -27,4 +27,17 @@ public class StoreCSereviceImpl implements StoreCService {
         RowBounds rowBounds = new RowBounds(offset , pi.getBoardLimit());
         return storeCMapper.selectStoreList(rowBounds);
     }
+
+    @Override
+    public Business selectStore(int businessNo) {
+        return storeCMapper.selectStore(businessNo);
+    }
+
+    @Override
+    public Integer updateThings(Business business){
+        int result= storeCMapper.updateThings(business);
+        return result;
+    }
+
+
 }
