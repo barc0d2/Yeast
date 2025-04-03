@@ -1,0 +1,223 @@
+* {
+    color: #575757;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+
+#Store {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    position: relative;
+}
+
+#Form {
+    width: 1530px;
+    height: 637px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 201px;
+    position: absolute;
+    background: white;
+    border-radius: 15px;
+    outline: 2px #CACACA solid;
+    outline-offset: -2px;
+    justify-content: center;
+    align-items: center;
+    gap: 72px;
+    display: inline-flex
+}
+
+#Image {
+    width: 370px;
+    height: 370px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    outline: 2px #BDBDBD solid;
+    outline-offset: -2px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex
+}
+
+#Image .PlusCircleFill {
+    width: 78px;
+    height: 78px;
+    position: relative
+}
+
+#Image .PlusCircleFill .SubStract {
+    width: 78px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #C8C8C8
+}
+
+#Form .font {
+    width: 122.63px;
+    height: 33.83px;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word
+}
+
+#List {
+    width: 450px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 60px;
+    display: inline-flex
+}
+
+#No {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    display: inline-flex
+}
+
+#Name {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    display: inline-flex
+}
+
+#Phone {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    display: inline-flex
+}
+
+.Text {
+    width: 105px;
+    height: 32px;
+    font-size: 24px;
+    font-family: Kakao OTF;
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word
+}
+
+.Input {
+    width: 210px;
+    height: 40px;
+    padding: 10px;
+    background: white;
+    border-radius: 3px;
+    outline: 1px #BDBDBD solid;
+    outline-offset: -1px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    display: flex
+}
+
+.font {
+    flex-grow: 1;
+    white-space: nowrap;
+    text-align: right;
+    color: black;
+    font-size: 20px;
+    font-family: Kakao OTF;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word
+}
+
+#Work {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    display: inline-flex
+}
+
+#Header {
+    width: 1470px;
+    height: 97px;
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 55px;
+    position: absolute;
+    background: white;
+    border-radius: 15px;
+    outline: 1px #CACACA solid;
+    outline-offset: -1px;
+    justify-content: space-between;
+    align-items: center;
+    display: inline-flex
+}
+
+#Header .Title {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    display: inline-flex
+}
+
+#Header .Title .Line1 {
+    color: #EC9F23;
+    font-size: 32px;
+    font-family: Kakao OTF;
+    font-weight: 700;
+    line-height: 35px;
+    word-wrap: break-word
+}
+
+#Header .Title .Line2 {
+    font-size: 20px;
+    font-family: Kakao OTF;
+    font-weight: 400;
+    line-height: 26px;
+    word-wrap: break-word
+}
+
+#Submit {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: #EC9F23;
+    box-shadow: 0px 4px 12px rgba(28, 78, 254, 0.20);
+    border-radius: 8px;
+    outline: 2px white solid;
+    outline-offset: -2px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex
+}
+
+#Submit .Content {
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    display: inline-flex
+}
+
+#Submit .Button {
+    color: white;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: 24px;
+    word-wrap: break-word
+}

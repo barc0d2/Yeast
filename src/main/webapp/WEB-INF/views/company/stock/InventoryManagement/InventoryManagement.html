@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재고 현황</title>
+    <link rel="stylesheet" href="/company/css/InventoryManagement.css">
+</head>
+
+<body>
+    <div class="table-all">
+
+        <div class="inventory-container">
+            <div class="inventory-header">
+                <div class="branch-selector">
+                    <label for="branch">지점</label>
+                    <div id="branch" class="dropdown">잠실지점
+                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.20808 7.78996C7.81734 8.18179 7.18266 8.18179 6.79192 7.78996L0.97418 1.95613C0.345556 1.32577 0.792025 0.25 1.68226 0.25L13.3177 0.25C14.208 0.25 14.6544 1.32577 14.0258 1.95613L8.20808 7.78996Z"
+                                fill="#575757" />
+                        </svg>
+                    </div>
+
+                </div>
+                <div class="product-type-selector">
+                    <label for="product-type">종류</label>
+                    <div id="product-type" class="dropdown">단과자류
+                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.20808 7.78996C7.81734 8.18179 7.18266 8.18179 6.79192 7.78996L0.97418 1.95613C0.345556 1.32577 0.792025 0.25 1.68226 0.25L13.3177 0.25C14.208 0.25 14.6544 1.32577 14.0258 1.95613L8.20808 7.78996Z"
+                                fill="#575757" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inventory-table">
+                <div class="table-header">
+                    <div class="product-number">상품번호</div>
+                    <div class="product-name">상품명</div>
+                    <div class="product-quantity">수량</div>
+                    <div class="inventory-status">재고상태</div>
+                </div>
+
+                <div class="table-body">
+                    <div class="table-row">
+                        <div class="product-number">a_1</div>
+                        <div class="product-name">추억의소세지빵</div>
+                        <div class="product-quantity">34</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_2</div>
+                        <div class="product-name">발효버터 소금빵</div>
+                        <div class="product-quantity">10</div>
+                        <div class="inventory-status status-low">재고부족</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_3</div>
+                        <div class="product-name">발효버터 모카 소금빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_4</div>
+                        <div class="product-name">갈릭버터 소금빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_5</div>
+                        <div class="product-name">딸기 크림치즈 소보루번</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_6</div>
+                        <div class="product-name">초코베리 맘모스</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_7</div>
+                        <div class="product-name">생딸기 빵스테라</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_8</div>
+                        <div class="product-name">부드러운 후레쉬 크림빵</div>
+                        <div class="product-quantity">0</div>
+                        <div class="inventory-status status-out">재고소진</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_9</div>
+                        <div class="product-name">고소한 밤크림빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_10</div>
+                        <div class="product-name">나폴리 피자빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_11</div>
+                        <div class="product-name">고소한 밤크림빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_12</div>
+                        <div class="product-name">고소한 밤크림빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_13</div>
+                        <div class="product-name">고소한 밤크림빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="product-number">a_14</div>
+                        <div class="product-name">고소한 밤크림빵</div>
+                        <div class="product-quantity">20</div>
+                        <div class="inventory-status status-available">재고여유</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

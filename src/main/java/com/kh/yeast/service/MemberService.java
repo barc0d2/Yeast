@@ -8,4 +8,7 @@ import java.util.ArrayList;
 public interface MemberService {
     int insertMember(Member member);
     int idCheck(String checkId);
+
+    Member loginMember(String userId) throws Exception;
+
 }

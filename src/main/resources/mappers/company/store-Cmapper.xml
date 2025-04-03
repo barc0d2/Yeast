@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.StoreCMapper">
+    <resultMap id="businessResult" type="Business">
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="PHONE" property="phone"/>
+        <result column="LOCATION" property="location"/>
+        <result column="MONEY" property="money"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+    </resultMap>
+    <select id="selectStoreCount" resultType="int">
+        SELECT COUNT(*)
+        FROM BUSINESS
+        WHERE STATUS='1'
+    </select>
+    <select id="selectStoreList" resultMap="businessResult">
+        SELECT  BUSINESS_NO,
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                MONEY,
+                CREATE_TIME,
+                STATUS,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        FROM BUSINESS
+        WHERE STATUS='1'
+        ORDER BY BUSINESS_NO
+    </select>
+
+</mapper>
