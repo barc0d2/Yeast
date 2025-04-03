@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface StoreCService {
 
-    int selectStoreCount();
+    Integer selectStoreCount();
 
     ArrayList<Business> selectStoreList(PageInfo pi);
 
@@ -15,4 +15,6 @@ public interface StoreCService {
     Integer updateThings(Business business) throws Exception;
     int deleteStore(int businessNo);
     int insertStore(Business business) throws Exception;
+
+    Integer dropBread();
 }
