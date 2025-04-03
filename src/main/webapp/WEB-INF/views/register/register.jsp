@@ -89,10 +89,63 @@
         }
       }
 
+      // 이메일 중복 체크
+      const emailCheckButton = document.querySelector('.email-check-button');
+      if (emailCheckButton) {
+        emailCheckButton.addEventListener('click', function() {
+          const emailInput = document.querySelector('input[name="email"]');
+          emailCheck(emailInput);
+        });
+      }
+
+      let emailEventFlag;
+      function emailCheck(emailInput) {
+        const email = emailInput.value;
+
+        if(email.trim().length > 0) {
+          clearTimeout(emailEventFlag);
+          emailEventFlag = setTimeout(function() {
+            $.ajax({
+              url: "/member/check-email",
+              data: { checkEmail: email },
+              success: function(result) {
+                const messageDiv = document.getElementById('emailCheckMessage');
+                if(result === "NNNNY") {
+                  messageDiv.style.color = "green";
+                  messageDiv.textContent = "사용 가능한 이메일입니다.";
+                } else {
+                  messageDiv.style.color = "red";
+                  messageDiv.textContent = "이미 사용중인 이메일입니다.";
+                }
+              },
+              error: function() {
+                console.log("이메일 중복체크 ajax 실패");
+              }
+            });
+          }, 500);
+        } else {
+          document.getElementById('emailCheckMessage').textContent = "이메일을 입력해주세요.";
+        }
+      }
+
       // 폼 제출 이벤트 처리
       if (registrationForm) {
         registrationForm.addEventListener('submit', function(event) {
           event.preventDefault();
+
+          // 아이디 중복 체크 확인
+          const idCheckMessage = document.getElementById('idCheckMessage');
+          if (idCheckMessage.style.color !== 'green') {
+            alert('아이디 중복 체크를 해주세요.');
+            return;
+          }
+
+          // 이메일 중복 체크 확인
+          const emailCheckMessage = document.getElementById('emailCheckMessage');
+          if (emailCheckMessage.style.color !== 'green') {
+            alert('이메일 중복 체크를 해주세요.');
+            return;
+          }
 
           // 비밀번호 일치 확인
           const password = document.querySelector('input[name="userPwd"]').value;
@@ -181,30 +234,58 @@
       <form id="registrationForm" enctype="multipart/form-data">
         <div class="frame-2">
           <div class="group-3">
-            <select class="gender" name="gender" required>
+            <select class="gender" value="${m.gender}" name="gender" required>
               <option value="">성별을 선택하세요</option>
-              <option value="male">남</option>
-              <option value="female">여</option>
+              <option value="M">남</option>
+              <option value="F">여</option>
             </select>
             <p class="p"><span class="span">성별</span> <span class="text-wrapper-4">(필수)</span></p>
           </div>
           <div class="group-3">
-            <input class="rectangle" type="text" name="positionNo"></input>
+            <select class="rectangle" name="positionNo" required>
+              <option value="">직무를 선택하세요</option>
+              <option value="1">C_회장</option>
+              <option value="2">C_사장</option>
+              <option value="3">C_대표이사</option>
+              <option value="4">C_인사팀장</option>
+              <option value="5">C_인사사원</option>
+              <option value="6">C_회계팀장</option>
+              <option value="7">C_마케팅팀장</option>
+              <option value="8">C_개발팀장</option>
+              <option value="9">C_사원</option>
+              <option value="10">C_공장장</option>
+              <option value="11">C_품질관리팀장</option>
+              <option value="12">C_생산관리팀장</option>
+              <option value="13">C_생산직 사원</option>
+              <option value="14">B_점장</option>
+              <option value="15">B_매니저</option>
+              <option value="16">B_바리스타</option>
+              <option value="17">B_주방직원</option>
+              <option value="18">B_홀서빙</option>
+            </select>
             <div class="text-wrapper-5">직무</div>
           </div>
           <div class="group-4">
             <div class="text-wrapper-6">소속(필수)</div>
             <select class="rectangle" name="businessNo" required>
-              <c:forEach var="b" items="business">
               <option value="">소속을 선택하세요</option>
-                <option value="branch">가맹점</option>
-              <option value="company">회사</option>
-              </c:forEach>
+              <option value="1">YEAST본사</option>
+              <option value="2">서울 강남점</option>
+              <option value="3">서울 홍대점</option>
+              <option value="4">서울 종로점</option>
+              <option value="5">서울 잠실점</option>
             </select>
           </div>
           <div class="group-5">
-            <input class="rectangle" type="text" name="managerNo" required></input>
-            <div class="text-wrapper-6">사수(필수)</div>
+            <select class="rectangle" name="managerNo">
+              <option value="">사수를 선택하세요</option>
+              <option value="">없음</option>
+              <option value="1">김대표 (회장)</option>
+              <option value="2">박사장 (사장)</option>
+              <option value="3">이이사 (대표이사)</option>
+              <option value="4">최인사 (인사팀장)</option>
+            </select>
+            <div class="text-wrapper-6">사수(선택)</div>
           </div>
 
         </div>
@@ -247,7 +328,11 @@
           </div>
           <div class="frame-5">
             <div class="group-10">
-              <input class="rectangle-3" type="email" value="${m.email}" name="email" required></input>
+              <div class="email-check-container">
+                <input class="rectangle-3 with-button" type="email" value="${m.email}" name="email" required></input>
+                <button type="button" class="email-check-button">중복확인</button>
+              </div>
+              <div id="emailCheckMessage" style="margin-top: 5px; font-size: 12px;"></div>
               <p class="div-4"><span class="span">이메일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
