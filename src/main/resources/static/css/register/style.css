@@ -520,3 +520,17 @@
 .register .rectangle-3.with-button {
   padding-right: 100px;
 }
+
+.register .rectangle-sa {
+  position: absolute;
+  width: 214px;
+  height: 59px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9e896a;
+}

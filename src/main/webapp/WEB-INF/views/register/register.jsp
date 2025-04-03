@@ -172,7 +172,6 @@
           fetch('/member/register', {
             method: 'POST',
             body: formData,
-            // multipart/form-data는 자동으로 설정되므로 headers 설정하지 않음
           })
           .then(response => {
             if (!response.ok) {
@@ -180,15 +179,11 @@
                 throw new Error(text || 'Network response was not ok');
               });
             }
-            return response.json();
+            return response;
           })
-          .then(data => {
-            if (data.success) {
-              alert('회원가입이 완료되었습니다.');
-              window.location.href = '/login';
-            } else {
-              alert(data.message || '회원가입 중 오류가 발생했습니다.');
-            }
+          .then(response => {
+            alert('회원가입이 완료되었습니다.');
+            window.location.href = '/login';
           })
           .catch(error => {
             console.error('Error:', error);
@@ -277,14 +272,7 @@
             </select>
           </div>
           <div class="group-5">
-            <select class="rectangle" name="managerNo">
-              <option value="">사수를 선택하세요</option>
-              <option value="">없음</option>
-              <option value="1">김대표 (회장)</option>
-              <option value="2">박사장 (사장)</option>
-              <option value="3">이이사 (대표이사)</option>
-              <option value="4">최인사 (인사팀장)</option>
-            </select>
+            <input class="rectangle" type="text" name="managerNo">
             <div class="text-wrapper-6">사수(선택)</div>
           </div>
 
@@ -315,7 +303,7 @@
                 <input class="rectangle-3 with-button" type="text" value="${m.userId}" name="userId" required></input>
                 <button type="button" class="id-check-button">중복확인</button>
               </div>
-              <div id="idCheckMessage" style="margin-top: 5px; font-size: 12px;"></div>
+              <div class="idCheckMessage" id="idCheckMessage" style="margin-top: 10px; font-size: 12px; padding-left: 180px"></div>
             </div>
             <div class="group-9">
               <input class="rectangle-3" type="password" value="${m.userPwd}" name="userPwd" required></input>
@@ -332,7 +320,7 @@
                 <input class="rectangle-3 with-button" type="email" value="${m.email}" name="email" required></input>
                 <button type="button" class="email-check-button">중복확인</button>
               </div>
-              <div id="emailCheckMessage" style="margin-top: 5px; font-size: 12px;"></div>
+              <div id="emailCheckMessage" style="margin-top: 10px; font-size: 12px; padding-left: 180px"></div>
               <p class="div-4"><span class="span">이메일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">

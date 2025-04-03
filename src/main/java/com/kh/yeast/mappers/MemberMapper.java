@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberMapper {
    Integer insertMember(Member member);
    Integer idCheck(@Param("userId") String userId);
+   Integer emailCheck(@Param("email") String email);
 
    Member loginMember(String userId);;
 }

@@ -51,6 +51,20 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/check-email")
+    @ResponseBody
+    public String checkEmail(String checkEmail) {
+        Integer result = memberService.emailCheck(checkEmail);
+
+        if (result > 0) {
+            return "NNNNN";
+        } else {
+            return "NNNNY";
+        }
+    }
+
+
+
     @PostMapping("/register")
     @ResponseBody
     public String insertMember(Member member, HttpSession session, Model model) {
