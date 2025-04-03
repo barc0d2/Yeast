@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public interface StoreCService {
 
-    int selectStoreCount();
+    Integer selectStoreCount();
 
     ArrayList<Business> selectStoreList(PageInfo pi);
+
+    Integer dropBread();
 }

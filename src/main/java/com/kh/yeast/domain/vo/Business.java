@@ -16,7 +16,7 @@ public class Business {
     private String businessName;
     private String phone;
     private String location;
-    private int money;
+    private Integer money;
     private Date createTime;
     private String imageChange;
     private String imageOrigin;

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,21 +11,6 @@
 </head>
 <body>
     <div class="container">
-    <div class="filter-container">
-        <div>
-            <select id="periodSelect">
-                <option>최근 30일</option>
-                <option>최근 7일</option>
-                <option>최근 1년</option>
-            </select>
-            <select id="branchSelect">
-                <option>전체 지점</option>
-                <option>잠실점</option>
-                <option>강남점</option>
-                <option>명동점</option>
-            </select>
-        </div>
-    </div>
     <div class="table-container">
         <table id="salesTable">
             <thead>
@@ -37,131 +24,59 @@
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="bread" items="${list}">
                 <tr>
-                    <td>00001</td>
-                    <td>버터 크로와상</td>
-                    <td>크로와상</td>
-                    <td>150개</td>
-                    <td>50개</td>
-                    <td>750,000</td>
+                    <td>${bread.breadNo}</td>
+                    <td>${bread.breadName}</td>
+                    <td>${bread.categoryName}</td>
+                    <td class="saleQuantity"></td>
+                    <td class="remain" data-remain="${bread.invenCount}"></td>
+                    <td class="money" data-price="${bread.price}"></td>
                 </tr>
-                <tr>
-                    <td>00002</td>
-                    <td>초코 크로와상</td>
-                    <td>크로와상</td>
-                    <td>120개</td>
-                    <td>40개</td>
-                    <td>600,000</td>
-                </tr>
-                <tr>
-                    <td>00003</td>
-                    <td>플레인 베이글</td>
-                    <td>베이글</td>
-                    <td>200개</td>
-                    <td>75개</td>
-                    <td>1,000,000</td>
-                </tr>
-                <tr>
-                    <td>00004</td>
-                    <td>치즈 베이글</td>
-                    <td>베이글</td>
-                    <td>180개</td>
-                    <td>60개</td>
-                    <td>900,000</td>
-                </tr>
-                <tr>
-                    <td>00005</td>
-                    <td>통밀 소금빵</td>
-                    <td>소금빵</td>
-                    <td>500개</td>
-                    <td>200개</td>
-                    <td>500,000</td>
-                </tr>
-                <tr>
-                    <td>00006</td>
-                    <td>올리브 소금빵</td>
-                    <td>소금빵</td>
-                    <td>250개</td>
-                    <td>100개</td>
-                    <td>1,250,000</td>
-                </tr>
-                <tr>
-                    <td>00007</td>
-                    <td>클래식 단팥빵</td>
-                    <td>단팥빵</td>
-                    <td>120개</td>
-                    <td>30개</td>
-                    <td>600,000</td>
-                </tr>
-                <tr>
-                    <td>00008</td>
-                    <td>대만식 단팥빵</td>
-                    <td>단팥빵</td>
-                    <td>400개</td>
-                    <td>150개</td>
-                    <td>400,000</td>
-                </tr>
-                <tr>
-                    <td>00009</td>
-                    <td>통밀 식빵</td>
-                    <td>식빵</td>
-                    <td>100개</td>
-                    <td>25개</td>
-                    <td>750,000</td>
-                </tr>
-                <tr>
-                    <td>00010</td>
-                    <td>우유 식빵</td>
-                    <td>식빵</td>
-                    <td>80개</td>
-                    <td>20개</td>
-                    <td>240,000</td>
-                </tr>
-                <tr>
-                    <td>00011</td>
-                    <td>바닐라 크로와상</td>
-                    <td>크로와상</td>
-                    <td>220개</td>
-                    <td>80개</td>
-                    <td>660,000</td>
-                </tr>
-                <tr>
-                    <td>00012</td>
-                    <td>블루베리 베이글</td>
-                    <td>베이글</td>
-                    <td>90개</td>
-                    <td>30개</td>
-                    <td>450,000</td>
-                </tr>
-                <tr>
-                    <td>00013</td>
-                    <td>마늘 소금빵</td>
-                    <td>소금빵</td>
-                    <td>350개</td>
-                    <td>125개</td>
-                    <td>525,000</td>
-                </tr>
-                <tr>
-                    <td>00014</td>
-                    <td>고구마 식빵</td>
-                    <td>식빵</td>
-                    <td>180개</td>
-                    <td>60개</td>
-                    <td>900,000</td>
-                </tr>
-                <tr>
-                    <td>00015</td>
-                    <td>단옥수수 단팥빵</td>
-                    <td>단팥빵</td>
-                    <td>200개</td>
-                    <td>75개</td>
-                    <td>400,000</td>
-                </tr>
+            </c:forEach>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>총합</td>
+                    <td></td>
+                    <td></td>
+                    <td id="totalSaleQuantity">0</td>
+                    <td id="totalRemain">0</td>
+                    <td id="totalMoney">0</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let totalSaleQuantity = 0;
+            let totalRemain = 0;
+            let totalMoney = 0;
+
+            document.querySelectorAll("#salesTable tbody tr").forEach(row => {
+                let remainElement = row.querySelector(".remain");
+                let moneyElement = row.querySelector(".money")
+                let price = parseInt(moneyElement.dataset.price || "0");
+                let remain = parseInt(remainElement.dataset.remain || "0");
+
+                let saleQuantity = Math.floor((Math.random() * (remain - (remain*0.8)))+remain*0.8)* + 1;
+                let newRemain = remain - saleQuantity;
+                let rowTotalMoney = saleQuantity * price;
+
+                row.querySelector(".saleQuantity").textContent = saleQuantity + '개';
+                remainElement.textContent = newRemain + '개';
+                moneyElement.textContent = rowTotalMoney.toLocaleString() + '원';
+
+                totalSaleQuantity += saleQuantity;
+                totalRemain += newRemain;
+                totalMoney += rowTotalMoney;
+            });
+            document.getElementById("totalSaleQuantity").textContent = totalSaleQuantity + '개';
+            document.getElementById("totalRemain").textContent = totalRemain + '개';
+            document.getElementById("totalMoney").textContent = totalMoney.toLocaleString() + '원';
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const table = document.getElementById('salesTable');
             const headers = table.querySelectorAll('th');
