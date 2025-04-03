@@ -1,18 +1,97 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YEAST 회원가입</title>
-  <link rel="stylesheet" href="css/agree/global.css" />
-  <link rel="stylesheet" href="css/agree/style.css" />
-  <link rel="stylesheet" href="css/agree/styleguide.css" />
+  <link rel="stylesheet" href="/css/agree/global.css" />
+  <link rel="stylesheet" href="/css/agree/style.css" />
+  <link rel="stylesheet" href="/css/agree/styleguide.css" />
+
+  <style>
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 
   <script>
     function toggleAllTerms(source) {
       let checkboxes = document.querySelectorAll('.outline-interface');
       checkboxes.forEach(checkbox => checkbox.checked = source.checked);
+      updateNextButton();
     }
+
+    function updateNextButton() {
+      const allCheckboxes = document.querySelectorAll('.outline-interface');
+      const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+      const nextButton = document.querySelector('.next-button');
+      nextButton.disabled = !allChecked;
+      nextButton.style.opacity = allChecked ? '1' : '0.5';
+      
+      // 전체 동의 체크박스 상태 업데이트
+      const allAgreeCheckbox = document.getElementById('all-agree');
+      if (allAgreeCheckbox) {
+        allAgreeCheckbox.checked = allChecked;
+      }
+    }
+
+    // 체크박스 변경 시 다음 버튼 상태 업데이트
+    document.addEventListener('DOMContentLoaded', function() {
+      // 다음 버튼 초기 상태 설정
+      updateNextButton();
+      
+      // 개별 체크박스 이벤트 리스너 설정
+      document.querySelectorAll('.outline-interface').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          updateNextButton();
+        });
+      });
+      
+      // 다음 버튼 클릭 이벤트
+      document.querySelector('.next-button').addEventListener('click', function() {
+        const allCheckboxes = document.querySelectorAll('.outline-interface');
+        const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+        
+        if (!allChecked) {
+          alert('모든 약관에 동의해주세요.');
+          return;
+        }
+        
+        // 모든 약관에 동의한 경우 회원가입 페이지로 이동
+        window.location.href = '/member/register';
+      });
+    });
 
     function openPopup(content) {
       const popupContent = document.getElementById('popupContent');
@@ -30,7 +109,7 @@
       const termsContent = {
         '제1조 (목적)': `
             <h2>이용약관 동의</h2>
-            <p>제1조 (목적) <p>
+            <p>제1조 (목적)</p>
             <p>본 약관은 YEAST(이하 "회사")가 제공하는 ERP 시스템(이하 "서비스")의 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
             <h3>제2조 (서비스 이용)</h3>
             <ol>
@@ -165,11 +244,11 @@
             <button type="button" class="detail-view-btn" onclick="openPopup('제3자 제공')">상세보기</button>
           </div>
         </form>
-        <button type="submit" class="next-button"><span class="text-wrapper-8">다음</span></button>
+        <button type="button" class="next-button" disabled><span class="text-wrapper-8">다음</span></button>
       </section>
       <div class="view">
-        <img class="logo" src="project img/logo.png" alt="YEAST 로고" />
-        <img class="img" src="project img/logo3.png" alt="YEAST ERP 로고" />
+        <img class="logo" src="/images/logo.png" alt="YEAST 로고" />
+        <img class="img" src="/images/logo3.png" alt="YEAST ERP 로고" />
       </div>
     </div>
   </div>
@@ -182,5 +261,27 @@
     <div id="popupContent"></div>
   </div>
 </div>
+
+<script>
+  // 페이지 로드 시 초기화
+  document.addEventListener('DOMContentLoaded', function() {
+    // 다음 버튼 초기 상태 설정
+    updateNextButton();
+    
+    // 다음 버튼 클릭 이벤트
+    document.querySelector('.next-button').addEventListener('click', function() {
+      const allCheckboxes = document.querySelectorAll('.outline-interface');
+      const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+      
+      if (!allChecked) {
+        alert('모든 약관에 동의해주세요.');
+        return;
+      }
+      
+      // 모든 약관에 동의한 경우 회원가입 페이지로 이동
+      window.location.href = '/member/register';
+    });
+  });
+</script>
 </body>
 </html>

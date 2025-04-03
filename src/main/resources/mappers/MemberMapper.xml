@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.MemberMapper">
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+    <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
+        INSERT INTO MEMBER (
+        BUSINESS_NAME,
+        POSITION_NAME,
+        MANAGER_NAME,
+        USER_NAME,
+        USER_ID,
+        USER_PWD,
+        EMAIL,
+        SALARY,
+        BONUS,
+        PHONE,
+        GENDER,
+        ADDRESS,
+        IMAGE_CHANGE,
+        IMAGE_ORIGIN,
+        BIRTHDAY,
+        STATUS
+        ) VALUES (
+        #{businessNo},
+        #{positionNo},
+        #{managerNo},
+        #{userName},
+        #{userId},
+        #{userPwd},
+        #{email},
+        #{salary},
+        #{bonus},
+        #{phone},
+        #{gender},
+        #{address},
+        #{imageChange},
+        #{imageOrigin},
+        #{birthday},
+        #{status}
+        )
+    </insert>
+
+    <select id="idCheck" resultType="Integer">
+        SELECT COUNT(*)
+        FROM MEMBER
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

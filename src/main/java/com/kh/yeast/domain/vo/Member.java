@@ -31,8 +31,5 @@ public class Member {
     private String imageChange;
     private String imageOrigin;
     private Date birthday;
-
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
-    }
+    private Integer status;
 }
