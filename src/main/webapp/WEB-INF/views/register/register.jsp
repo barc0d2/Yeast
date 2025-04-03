@@ -197,8 +197,8 @@
             <select class="rectangle" name="businessNo" required>
               <c:forEach var="b" items="business">
               <option value="">소속을 선택하세요</option>
-                <option value="${b.businessNo}">${b.businessName}</option>
-              <option value="회사">회사</option>
+                <option value="branch">가맹점</option>
+              <option value="company">회사</option>
               </c:forEach>
             </select>
           </div>
@@ -224,20 +224,20 @@
                 </div>
               </div>
               <div class="group-8">
-                <input class="rectangle-2" type="text" name="userName" required></input>
+                <input class="rectangle-2" type="text" value="${m.userName}" name="userName" required></input>
                 <p class="div-2"><span class="span">이름</span> <span class="text-wrapper-4">(필수)</span></p>
               </div>
             </div>
             <div class="group-9">
               <p class="div-3"><span class="span">아이디</span> <span class="text-wrapper-4">(필수)</span></p>
               <div class="id-check-container">
-                <input class="rectangle-3 with-button" type="text" name="userId" required></input>
+                <input class="rectangle-3 with-button" type="text" value="${m.userId}" name="userId" required></input>
                 <button type="button" class="id-check-button">중복확인</button>
               </div>
               <div id="idCheckMessage" style="margin-top: 5px; font-size: 12px;"></div>
             </div>
             <div class="group-9">
-              <input class="rectangle-3" type="password" name="userPwd" required></input>
+              <input class="rectangle-3" type="password" value="${m.userPwd}" name="userPwd" required></input>
               <p class="div-3"><span class="span">비밀번호</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-9">
@@ -247,19 +247,19 @@
           </div>
           <div class="frame-5">
             <div class="group-10">
-              <input class="rectangle-3" type="email" name="email" required></input>
+              <input class="rectangle-3" type="email" value="${m.email}" name="email" required></input>
               <p class="div-4"><span class="span">이메일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
-              <input class="rectangle-3" type="date" name="birthday" required></input>
+              <input class="rectangle-3" type="date" value="${m.birthday}" name="birthday" required></input>
               <p class="div-3"><span class="span">생년월일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
-              <input class="rectangle-3" type="text" name="phone" required></input>
+              <input class="rectangle-3" type="text" value="${m.phone}" name="phone" required></input>
               <p class="div-3"><span class="span">전화번호</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
-              <input class="rectangle-3" type="text" name="address" required></input>
+              <input class="rectangle-3" type="text" value="${m.address}" name="address" required></input>
               <p class="div-3"><span class="span">주소</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
           </div>
