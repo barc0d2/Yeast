@@ -6,6 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface MemberService {
-    Integer insertMember(Member member);
-    Integer idCheck(String checkId);
+    int insertMember(Member member);
+    int idCheck(String checkId);
 }

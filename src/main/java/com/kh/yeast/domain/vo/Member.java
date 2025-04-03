@@ -2,7 +2,7 @@ package com.kh.yeast.domain.vo;
 
 import lombok.Data;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class Member {

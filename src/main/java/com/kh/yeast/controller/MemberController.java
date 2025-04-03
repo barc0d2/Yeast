@@ -39,8 +39,9 @@ public class MemberController {
     }
 
     @GetMapping("/check-id")
+    @ResponseBody
     public String checkMemberId(String checkId) {
-        Integer result = memberService.idCheck(checkId);
+        int result = memberService.idCheck(checkId);
 
         if (result > 0) {
             return "NNNNN";
