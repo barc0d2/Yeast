@@ -26,7 +26,8 @@ public class Member {
     private String phone;
     private String gender;
     private String address;
-    private Timestamp enrollDate;
+    private Date enrollDate;
+    private Timestamp createDate;
     private String imageChange;
     private String imageOrigin;
     private Date birthday;
