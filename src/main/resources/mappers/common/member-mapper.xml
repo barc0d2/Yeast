@@ -49,32 +49,43 @@
         WHERE M.USER_ID = #{userId}
         AND M.STATUS = 1
     </select>
-    <insert id="insertMember">
-        INSERT
-        INTO MEMBER(
-            USER_ID,
-            USER_PWD,
-            USER_NAME,
-            EMAIL,
-            GENDER,
-            AGE,
-            PHONE,
-            ADDRESS
-        ) VALUES(
-            #{userId},
-            #{userPwd},
-            #{userName},
-            #{email},
-            #{gender},
-            #{age},
-            #{phone},
-            #{address}
+    <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
+        INSERT INTO MEMBER (
+        BUSINESS_NO,
+        POSITION_NO,
+        MANAGER_NO,
+        USER_NAME,
+        USER_ID,
+        USER_PWD,
+        EMAIL,
+        PHONE,
+        GENDER,
+        ADDRESS,
+        ENROLL_DATE,
+        IMAGE_CHANGE_PATH,
+        IMAGE_ORIGIN_PATH,
+        BIRTHDAY
+        ) VALUES (
+        #{businessNo},
+        #{positionNo},
+        #{managerNo},
+        #{userName},
+        #{userId},
+        #{userPwd},
+        #{email},
+        #{phone},
+        #{gender},
+        #{address},
+        #{imageChangePath},
+        #{imageOriginPath},
+        #{birthday}
         )
     </insert>
-    <select id="idCheck" resultType="int">
+
+    <select id="idCheck" resultType="Integer">
         SELECT COUNT(*)
         FROM MEMBER
-        WHERE USER_ID = #{userId}
+        WHERE user_id = #{userId}
     </select>
     <select id="selectMemberCount" resultType="int">
         SELECT COUNT(*)
