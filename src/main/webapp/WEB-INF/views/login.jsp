@@ -55,9 +55,9 @@
             <img class="Text" src="images/login/logoText.png" />
         </div>
         <div id="Checkbox">
-            <div class="findIdPwd">
-                ID/PW 찾기
-            </div>
+            <button type="submit" class="findIdPwd">
+                로그인
+            </button>
             <a href="company/employee/enrollForm"><div class="Join">
                 회원가입  </div></a>
 

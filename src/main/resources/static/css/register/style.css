@@ -466,3 +466,32 @@
   align-items: center;
   color: #888;
 }
+
+.id-check-container {
+  position: relative;
+  width: 100%;
+}
+
+.id-check-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #9e896a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  z-index: 1;
+}
+
+.id-check-button:hover {
+  opacity: 0.9;
+}
+
+.register .rectangle-3.with-button {
+  padding-right: 100px;
+}

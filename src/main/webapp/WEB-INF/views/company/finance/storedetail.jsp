@@ -1,8 +1,11 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Sales Record Table</title>
+<<<<<<<< HEAD:src/main/webapp/WEB-INF/views/company/finance/storedetail.jsp
+    <link rel="stylesheet" href="css/finance/storedetail.css" />
+========
     <style>
         body {
             width: 1570px;
@@ -31,7 +34,7 @@
             width: 1494px;
             height: auto;
             border-radius: 12px;
-            background-color: #FFFCEC;
+            background-color: white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow-y: auto;
         }
@@ -45,7 +48,7 @@
             text-align: center;
         }
         th {
-            background-color: #FFAA22;
+            background-color: #f2f2f2;
             font-weight: bold;
             cursor: pointer;
             position: relative;
@@ -70,6 +73,7 @@
             color: #000;
         }
     </style>
+>>>>>>>> origin/jinyeong:src/main/webapp/WEB-INF/views/branch/finance/storedetail.jsp
 </head>
 <body>
     <div class="container">
@@ -94,132 +98,132 @@
                 <tr>
                     <th data-sort="no">NO.</th>
                     <th data-sort="date">일자</th>
-                    <th data-sort="quantity">판매 수량</th>
-                    <th data-sort="store">지점 매출</th>
-                    <th data-sort="wholesale">도매 매출</th>
-                    <th data-sort="total">전체 매출</th>
+                    <th data-sort="branch">지점</th>
+                    <th data-sort="purchase">구매수량</th>
+                    <th data-sort="quantity">판매수량</th>
+                    <th data-sort="sales">매출</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>00001</td>
                     <td>25/03/19</td>
-                    <td>150</td>
-                    <td>1,200,000</td>
-                    <td>1,800,000</td>
-                    <td>3,000,000</td>
+                    <td>잠실점</td>
+                    <td>200개</td>
+                    <td>150개</td>
+                    <td>2,400,000</td>
                 </tr>
                 <tr>
                     <td>00002</td>
                     <td>25/03/18</td>
-                    <td>120</td>
-                    <td>960,000</td>
-                    <td>1,440,000</td>
-                    <td>2,400,000</td>
+                    <td>강남점</td>
+                    <td>150개</td>
+                    <td>120개</td>
+                    <td>1,920,000</td>
                 </tr>
                 <tr>
                     <td>00003</td>
                     <td>25/03/17</td>
-                    <td>180</td>
-                    <td>1,440,000</td>
-                    <td>2,160,000</td>
-                    <td>3,600,000</td>
+                    <td>명동점</td>
+                    <td>220개</td>
+                    <td>180개</td>
+                    <td>2,880,000</td>
                 </tr>
                 <tr>
                     <td>00004</td>
                     <td>25/03/16</td>
-                    <td>200</td>
-                    <td>1,600,000</td>
-                    <td>2,400,000</td>
-                    <td>4,000,000</td>
+                    <td>잠실점</td>
+                    <td>250개</td>
+                    <td>200개</td>
+                    <td>3,200,000</td>
                 </tr>
                 <tr>
                     <td>00005</td>
                     <td>25/03/15</td>
-                    <td>90</td>
-                    <td>720,000</td>
-                    <td>1,080,000</td>
-                    <td>1,800,000</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00006</td>
-                    <td>25/03/14</td>
-                    <td>110</td>
-                    <td>880,000</td>
-                    <td>1,320,000</td>
-                    <td>2,200,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00007</td>
-                    <td>25/03/13</td>
-                    <td>130</td>
-                    <td>1,040,000</td>
-                    <td>1,560,000</td>
-                    <td>2,600,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00008</td>
-                    <td>25/03/12</td>
-                    <td>160</td>
-                    <td>1,280,000</td>
-                    <td>1,920,000</td>
-                    <td>3,200,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00009</td>
-                    <td>25/03/11</td>
-                    <td>140</td>
-                    <td>1,120,000</td>
-                    <td>1,680,000</td>
-                    <td>2,800,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00010</td>
-                    <td>25/03/10</td>
-                    <td>170</td>
-                    <td>1,360,000</td>
-                    <td>2,040,000</td>
-                    <td>3,400,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00011</td>
-                    <td>25/03/09</td>
-                    <td>100</td>
-                    <td>800,000</td>
-                    <td>1,200,000</td>
-                    <td>2,000,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00012</td>
-                    <td>25/03/09</td>
-                    <td>100</td>
-                    <td>800,000</td>
-                    <td>1,200,000</td>
-                    <td>2,000,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00013</td>
-                    <td>25/03/09</td>
-                    <td>100</td>
-                    <td>800,000</td>
-                    <td>1,200,000</td>
-                    <td>2,000,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00014</td>
-                    <td>25/03/09</td>
-                    <td>100</td>
-                    <td>800,000</td>
-                    <td>1,200,000</td>
-                    <td>2,000,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
                 <tr>
                     <td>00015</td>
-                    <td>25/03/09</td>
-                    <td>100</td>
-                    <td>800,000</td>
-                    <td>1,200,000</td>
-                    <td>2,000,000</td>
+                    <td>25/03/15</td>
+                    <td>강남점</td>
+                    <td>110개</td>
+                    <td>90개</td>
+                    <td>1,440,000</td>
                 </tr>
             </tbody>
         </table>
@@ -246,13 +250,12 @@
                     switch(type) {
                         case 'no':
                         case 'quantity':
-                        case 'store':
-                        case 'wholesale':
-                        case 'total':
+                        case 'sales':
+                        case 'purchase':
                             const numA = parseFloat(cleanValue(cellA));
                             const numB = parseFloat(cleanValue(cellB));
                             return direction === 'asc' ? numA - numB : numB - numA;
-                
+                        
                         case 'date':
                             // Convert date to comparable format
                             const parseDate = (dateStr) => {
@@ -263,6 +266,7 @@
                             const dateB = parseDate(cellB);
                             return direction === 'asc' ? dateA - dateB : dateB - dateA;
                         
+                        case 'branch':
                         default:
                             return direction === 'asc' 
                                 ? cellA.localeCompare(cellB) 
@@ -297,7 +301,7 @@
                 const rows = tbody.querySelectorAll('tr');
                 
                 rows.forEach(row => {
-                    const branchCell = row.querySelectorAll('td')[0];
+                    const branchCell = row.querySelectorAll('td')[2];
                     if (selectedBranch === '전체 지점' || branchCell.textContent === selectedBranch) {
                         row.style.display = '';
                     } else {
