@@ -10,47 +10,49 @@
     <link rel="stylesheet" href="/css/company/store/enrollForm/styleguide.css"/>
 </head>
 <body>
-<form class="store">
+<form class="store" action="/company/store/insertStore" method="post" enctype="multipart/form-data">
     <div class="form">
         <section class="thumbnail">
             <div class="overlap-group">
                 <img id="thumbnail" class="image" onclick="chooseFile('.file-image')">
                 <div style="display: none;">
-                    <input type="file" class="file-image" name="image" required onchange="loadImg(this, '#thumbnail')">
+                    <input type="file" class="file-image" name="upfile" onchange="loadImg(this, '#thumbnail')">
                 </div>
+                <input type="hidden" name="imageChange">
             </div>
         </section>
         <section class="list">
             <div class="div">
                 <label for="branch-number" class="text">지점 번호</label>
                 <div class="input">
-                    <input type="text" id="branch-number" class="text-wrapper-2" value="" readonly/>
+                    <input type="text" id="branch-number" class="text-wrapper-2"  name="businessNo" placeholder="번호 자동지정"
+                           readonly/>
                 </div>
             </div>
             <div class="div">
-                <label for="branch-name" class="text">지점명</label>
+                <label for="branch-name" class="text"><span class="span">지점명</span> <span class="text-wrapper-4" aria-label="필수 입력">*</span></label>
                 <div class="div-wrapper">
-                    <input type="text" id="branch-name" class="text-wrapper-2" value=""/>
+                    <input type="text" id="branch-name" class="text-wrapper-2" name="businessName" required  />
                 </div>
             </div>
             <div class="div">
-                <label for="phone-number" class="text">전화번호</label>
+                <label for="phone-number" class="text"><span class="span">전화번호</span> <span class="text-wrapper-4" aria-label="필수 입력">*</span></label>
                 <div class="div-wrapper">
                     <input
                             type="tel"
                             id="phone-number"
-                            class="text-wrapper-3"
-                            value=""
+                            class="text-wrapper-4"
+                            name="phone"
                             pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
+                            required
                     />
                 </div>
             </div>
             <div class="work">
-                <label for="employee-name" class="p"
-                ><span class="span">주소</span> <span class="text-wrapper-4" aria-label="필수 입력">*</span></label
-                >
+                <label for="location" class="p"
+                ><span class="span">주소</span> <span class="text-wrapper-4" aria-label="필수 입력">*</span></label>
                 <div class="input-2">
-                    <input type="text" id="employee-name" required/>
+                    <input type="text" name="location" id="location" required/>
                 </div>
             </div>
         </section>
@@ -58,22 +60,29 @@
     <header class="header">
         <div class="title">
             <h1 class="line">지점 추가</h1>
-            <p class="line-2">지점을 추가합니다</p>
+            <p class="line-2">지점을 추가합니다.</p>
         </div>
-        <div class="submit">
-            <div class="content">
-                <button type="submit" class="BUTTON">추가하기</button>
+        <div class="right-button">
+            <div class="submit">
+                <div class="content">
+                    <a href="/company/store/list"><div class="BUTTON">목록으로</div></a>
+                </div>
+            </div>
+            <div class="submit">
+                <div class="content">
+                    <button type="submit" class="BUTTON">추가하기</button>
+                </div>
             </div>
         </div>
     </header>
 </form>
 <script>
-    function loadImg(changeInput, targetImg) {
+    function loadImg(changeInput, targetImg){
         //파일객체 -> files -> 선택된파일들이 담겨있음
         console.log(changeInput.files[0])
         const img = document.querySelector(targetImg);
         console.log(img)
-        if (changeInput.files.length > 0) { //파일은 선택했을 때
+        if(changeInput.files.length > 0){ //파일은 선택했을 때
             //파일을 읽어들일 객체
             const reader = new FileReader();
 
@@ -82,7 +91,7 @@
             reader.readAsDataURL(changeInput.files[0]);
 
             //파일읽어들이기를 완료 했을 때 이벤트핸들러를 실행시켜줘
-            reader.onload = function (ev) {
+            reader.onload = function(ev){
                 img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
             }
 
@@ -92,11 +101,12 @@
         }
     }
 
-    function chooseFile(selector) {
+    function chooseFile(selector){
         const fileInput = document.querySelector(selector);
         fileInput.click();
     }
-
 </script>
+<jsp:include page="../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

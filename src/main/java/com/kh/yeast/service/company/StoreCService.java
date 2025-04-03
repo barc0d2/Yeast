@@ -13,4 +13,6 @@ public interface StoreCService {
 
     Business selectStore(int businessNo);
     Integer updateThings(Business business) throws Exception;
+    int deleteStore(int businessNo);
+    int insertStore(Business business) throws Exception;
 }

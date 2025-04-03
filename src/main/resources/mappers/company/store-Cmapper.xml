@@ -57,5 +57,25 @@
         WHERE BUSINESS_NO = #{businessNo}
         AND STATUS = 1
     </update>
+    <delete id="deleteStore">
+        UPDATE BUSINESS
+        SET STATUS = 0
+        WHERE BUSINESS_NO = #{businessNo}
+    </delete>
+    <insert id="insertStore">
+        INSERT INTO BUSINESS(
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        )VALUES(
+            #{businessName},
+            #{phone},
+            #{location},
+            #{imageChange},
+            #{imageOrigin}
+        )
+    </insert>
 
 </mapper>

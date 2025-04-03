@@ -39,5 +39,15 @@ public class StoreCSereviceImpl implements StoreCService {
         return result;
     }
 
+    @Override
+    public int deleteStore(int businessNo) {
+        return storeCMapper.deleteStore(businessNo);
+    }
+
+    @Override
+    public int insertStore(Business business){
+        return storeCMapper.insertStore(business);
+    }
+
 
 }

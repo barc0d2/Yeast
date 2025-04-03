@@ -6,6 +6,46 @@
     <link rel="stylesheet" href="/css/company/store/list/globals.css"/>
     <link rel="stylesheet" href="/css/company/store/list/style.css"/>
     <link rel="stylesheet" href="/css/company/store/list/styleguide.css"/>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .cancel-btn {
+            background: #ddd;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .confirm-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -41,7 +81,7 @@
                                         <div class="text">수정하기</div>
                                     </div>
                             </div>
-                            <div class="delete">
+                            <div class="delete" style="cursor: pointer" onclick="openDeleteModal(${s.businessNo})">
                                 <div class="in-2">
                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +93,17 @@
                                     </svg>
 
                                     <div class="text-wrapper">삭제</div>
+                                </div>
+                            </div>
+                            <div id="deleteModal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-icon">⚠️</div>
+                                    <h2>삭제하시겠습니까?</h2>
+                                    <p>해당 목록을 삭제하시겠습니까?<br>삭제된 목록은 복구되지 않습니다.</p>
+                                    <div class="modal-buttons">
+                                        <button class="cancel-btn" onclick="closeDeleteModal()">아니요</button>
+                                        <button class="confirm-btn" id="confirmDeleteBtn">네, 삭제할게요</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +170,22 @@
             </ul>
         </div>
     </div>
+    <script>
+        let deleteUrl = '';
 
+        function openDeleteModal(businessNo) {
+            deleteUrl = "/company/store/delete?businessNo=" + businessNo;
+            document.getElementById("deleteModal").style.display = "flex";
+        }
+
+        function closeDeleteModal() {
+            document.getElementById("deleteModal").style.display = "none";
+        }
+
+        document.getElementById("confirmDeleteBtn").addEventListener("click", function () {
+            window.location.href = deleteUrl;
+        });
+    </script>
 </div>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../sideBar/brownTopBar.jsp"/>

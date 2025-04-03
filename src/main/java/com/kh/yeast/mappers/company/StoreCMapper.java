@@ -17,4 +17,8 @@ public interface StoreCMapper {
     Business selectStore(@Param("businessNo") int businessNo);
 
     Integer updateThings(Business business);
+
+    int deleteStore(@Param("businessNo") int businessNo);
+
+    int insertStore(Business business);
 }

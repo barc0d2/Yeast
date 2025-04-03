@@ -8,6 +8,7 @@ import com.kh.yeast.utils.Template;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.tags.shaded.org.apache.bcel.generic.ARETURN;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,9 @@ public class StoreCController {
     private final StoreCService storeCService;
 
     @GetMapping("/company/store/enrollForm")
-    public String enrollFormStore() {
+    public String enrollFormStore(Model model) {
+        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("smallCurrentName","지점추가");
         return "company/store/enrollForm";
     }
 
@@ -76,10 +79,46 @@ public class StoreCController {
         model.addAttribute("currentName", "지점관리");
         model.addAttribute("smallCurrentName","지점수정");
         if(result > 0){
-            session.setAttribute("alertMsg", "게시글 수정 성공");
+            session.setAttribute("alertMsg", "지점 수정 성공");
             return "redirect:/company/store/updateForm?businessNo=" + business.getBusinessNo();
         } else {
-            model.addAttribute("errorMsg", "게시글 수정 실패");
+            model.addAttribute("errorMsg", "지점 수정 실패");
+            return "common/errorPage";
+        }
+    }
+
+    @GetMapping("/company/store/delete")
+    public String deleteStore(int businessNo,  HttpSession session, Model model) {
+            int result = storeCService.deleteStore(businessNo);
+      if(result > 0){
+          session.setAttribute("alertMsg", "지점 삭제 성공");
+          return "redirect:/company/store/list";
+      } else{
+          model.addAttribute("errorMsg","지점 삭제 실패");
+          return "common/errorPage";
+      }
+    }
+
+    @PostMapping("/company/store/insertStore")
+    public String insertStore(@ModelAttribute Business business, MultipartFile upfile,HttpSession session, Model model) {
+        if(!upfile.getOriginalFilename().equals("")){
+            String changeName = Template.saveFile(upfile, session, "/resources/uploadfile/");
+            business.setImageChange("/resources/uploadfile/" + changeName);
+            business.setImageOrigin(upfile.getOriginalFilename());
+        }
+
+        Integer result = null;
+        try {
+            result = storeCService.insertStore(business);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if (result > 0) {
+            session.setAttribute("alertMsg", "지점 추가 성공");
+            return "redirect:/company/store/list";
+        } else {
+            model.addAttribute("errorMsg", "지점 추가 실패");
             return "common/errorPage";
         }
     }
