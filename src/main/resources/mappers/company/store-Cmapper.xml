@@ -13,6 +13,9 @@
         <result column="IMAGE_CHANGE" property="imageChange"/>
         <result column="IMAGE_ORIGIN" property="imageOrigin"/>
     </resultMap>
+    <resultMap id="inventoryResult" type="Inventory">
+        <result column="INVEN_COUNT" property="invenCount"/>
+    </resultMap>
     <select id="selectStoreCount" resultType="int">
         SELECT COUNT(*)
         FROM BUSINESS
@@ -78,4 +81,12 @@
         )
     </insert>
 
+    <update id="dropBread">
+        UPDATE INVENTORY
+        SET INVEN_COUNT=0
+    </update>
+    <select id="selectInventoryList">
+        SELECT INVEN_COUNT
+        FROM INVENTORY
+    </select>
 </mapper>
