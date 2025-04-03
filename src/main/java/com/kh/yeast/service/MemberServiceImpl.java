@@ -1,24 +1,36 @@
 package com.kh.yeast.service;
 
 import com.kh.yeast.domain.vo.Member;
-import com.kh.yeast.mappers.company.MemberCMapper;
+import com.kh.yeast.mappers.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberCMapper memberCMapper;
+    private final MemberMapper memberMapper;
 
     @Override
     public int insertMember(Member member) {
-        return memberCMapper.insertMember(member);
+        return memberMapper.insertMember(member);
     }
 
     @Override
     public Member loginMember(String userId) {
-        return memberCMapper.loginMember(userId);
+        Member member = memberMapper.loginMember(userId);
+        Timestamp createDate = member.getCreateDate();
+        if (createDate != null) {
+            Date sqlDate = new Date(createDate.getTime());
+            member.setEnrollDate(sqlDate);
+        } else {
+            member.setEnrollDate(null);
+        }
+
+        return member;
     }
 }
