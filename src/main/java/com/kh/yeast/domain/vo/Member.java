@@ -22,8 +22,8 @@ public class Member {
     private String userId;
     private String userPwd;
     private String email;
-    private int salary;
-    private int bonus;
+    private Integer salary;
+    private Integer bonus;
     private String phone;
     private String gender;
     private String address;
@@ -32,8 +32,4 @@ public class Member {
     private String imageChange;
     private String imageOrigin;
     private Date birthday;
-
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
-    }
 }

@@ -1,6 +1,8 @@
 package com.kh.yeast.config;
 
 
+import com.kh.yeast.interceptor.LoginBranchInterceptor;
+import com.kh.yeast.interceptor.LoginCompanyInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,8 +16,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/")
                 .excludePathPatterns("/static/", "/error/");
 */
-//        registry.addInterceptor(new LoginInterceptor())
-//                .addPathPatterns("/myPage.me")
-//                .excludePathPatterns("/static/", "/error/**");
+        registry.addInterceptor(new LoginCompanyInterceptor())
+                .addPathPatterns("/company/**")
+                .excludePathPatterns("/static/", "/error/**");
+        registry.addInterceptor(new LoginBranchInterceptor())
+                .addPathPatterns("/branch/**")
+                .excludePathPatterns("/static/", "/error/**");
     }
 }

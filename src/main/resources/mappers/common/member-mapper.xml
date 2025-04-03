@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.MemberCMapper">
+<mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
         <result column="BUSINESS_NAME" property="businessName"/>
@@ -48,6 +48,7 @@
         LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
         WHERE M.USER_ID = #{userId}
         AND M.STATUS = 1
+        AND ROLE = 1
     </select>
     <insert id="insertMember">
         INSERT

@@ -50,10 +50,11 @@ public class MemberController {
 
         if(loginMember == null){
             modelAndView.addObject("errorMsg", "아이디를 찾을 수 없습니다.");
-            modelAndView.setViewName("/common/errorPage");
+            modelAndView.setViewName("common/errorPage");
         } else if(!bCryptPasswordEncoder.matches(member.getUserPwd(), loginMember.getUserPwd())){
+            System.out.println("비밀번호가 일치하지 않습니다");
             session.setAttribute("errorMsg", "비밀번호가 일치하지 않습니다.");
-            modelAndView.setViewName("/common/errorPage");
+            modelAndView.setViewName("common/errorPage");
         } else {
             session.setAttribute("loginUser", loginMember);
             if(loginMember.getUserId().startsWith("B")){

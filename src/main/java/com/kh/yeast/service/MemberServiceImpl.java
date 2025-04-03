@@ -23,6 +23,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member loginMember(String userId) {
         Member member = memberMapper.loginMember(userId);
+        System.out.println("member:"+member);
         Timestamp createDate = member.getCreateDate();
         if (createDate != null) {
             Date sqlDate = new Date(createDate.getTime());
