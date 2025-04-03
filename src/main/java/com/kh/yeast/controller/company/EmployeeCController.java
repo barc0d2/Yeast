@@ -21,6 +21,8 @@ public class EmployeeCController {
     @GetMapping("/company/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
         Member m = employeeCService.selectMember(userNo);
+        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("smallCurrentName","직원수정");
         model.addAttribute("m", m);
         return "company/employee/enrollForm";
     }
@@ -37,5 +39,7 @@ public class EmployeeCController {
         model.addAttribute("pi", pi);
         return "company/employee/list";
     }
+
+
 
 }

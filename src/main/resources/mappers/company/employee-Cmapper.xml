@@ -83,22 +83,14 @@
     <select id="selectMemberList" resultMap="memberResult">
         SELECT
                 m1.USER_NO,
-                m1.BUSINESS_NO,
                 p.POSITION_NAME,
-                m2.USER_NAME AS MANAGER_NAME,
                 m1.USER_NAME,
                 m1.USER_ID,
                 m1.EMAIL,
-                m1.SALARY,
-                m1.BONUS,
                 m1.PHONE,
                 m1.GENDER,
-                m1.ADDRESS,
-                m1.IMAGE_CHANGE,
-                m1.IMAGE_ORIGIN,
-                TO_CHAR(m1.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+                TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
         FROM MEMBER m1
-        LEFT JOIN MEMBER m2 ON m1.MANAGER_NO = m2.USER_NO
         LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
         WHERE m1.STATUS='1'
         ORDER BY m1.USER_NO

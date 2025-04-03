@@ -70,7 +70,7 @@
                 </div>
                 <div class="div-2">
                     <div class="title">전화번호</div>
-                    <input type="text" class="input" value="${m.phone}" name="phone" required>
+                    <input type="tel" class="input" value="${m.phone}" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
                 </div>
                 <div class="div-2">
                     <div class="title">생년월일</div>
