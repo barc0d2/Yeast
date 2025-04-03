@@ -11,12 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
+/*
         registry.addInterceptor(new LoginCompanyInterceptor())
                 .addPathPatterns("/company/**")
                 .excludePathPatterns("/static/", "/error/**");
         registry.addInterceptor(new LoginBranchInterceptor())
                 .addPathPatterns("/branch/**")
-                .excludePathPatterns("/static/", "/error/**");
+                .excludePathPatterns("/static/", "/error/**");*/
     }
 }
