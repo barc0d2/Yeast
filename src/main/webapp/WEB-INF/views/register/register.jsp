@@ -9,6 +9,141 @@
   <link rel="stylesheet" href="/css/register/style.css" />
   <link rel="stylesheet" href="/css/register/styleguide.css" />
   <link rel="stylesheet" href="/css/register/global.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileInput = document.getElementById('profileInput');
+      const profileImage = document.getElementById('profileImage');
+      const registrationForm = document.getElementById('registrationForm');
+      let selectedFile = null;
+
+      // 이미지 클릭 시 파일 선택 트리거
+      if (profileImage) {
+        profileImage.addEventListener('click', function() {
+          profileInput.click();
+        });
+      }
+
+      if (profileInput) {
+        profileInput.addEventListener('change', function(event) {
+          const file = event.target.files[0];
+
+          if (file) {
+            // 파일 크기 제한 (예: 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+              alert('파일 크기는 5MB를 초과할 수 없습니다.');
+              return;
+            }
+
+            const reader = new FileReader();
+            selectedFile = file;
+
+            reader.onload = function(e) {
+              profileImage.src = e.target.result;
+              profileImage.classList.remove('default-image');
+              profileImage.alt = '프로필 사진';
+            };
+
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      // 아이디 중복 체크
+      const idCheckButton = document.querySelector('.id-check-button');
+      if (idCheckButton) {
+        idCheckButton.addEventListener('click', function() {
+          const idInput = document.querySelector('input[name="userId"]');
+          idCheck(idInput);
+        });
+      }
+
+      let eventFlag;
+      function idCheck(idInput) {
+        const id = idInput.value;
+
+        if(id.trim().length >= 5) {
+          clearTimeout(eventFlag);
+          eventFlag = setTimeout(function() {
+            $.ajax({
+              url: "/member/check-id",
+              data: { checkId: id },
+              success: function(result) {
+                const messageDiv = document.getElementById('idCheckMessage');
+                if(result === "NNNNY") {
+                  messageDiv.style.color = "green";
+                  messageDiv.textContent = "사용 가능한 아이디입니다.";
+                } else {
+                  messageDiv.style.color = "red";
+                  messageDiv.textContent = "이미 사용중인 아이디입니다.";
+                }
+              },
+              error: function() {
+                console.log("아이디 중복체크 ajax 실패");
+              }
+            });
+          }, 500);
+        } else {
+          document.getElementById('idCheckMessage').textContent = "아이디는 5자 이상이어야 합니다.";
+        }
+      }
+
+      // 폼 제출 이벤트 처리
+      if (registrationForm) {
+        registrationForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          // 비밀번호 일치 확인
+          const password = document.querySelector('input[name="userPwd"]').value;
+          const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
+
+          if (password !== confirmPassword) {
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+          }
+
+          // FormData 객체 생성
+          const formData = new FormData(this);
+          
+          // 프로필 이미지가 있다면 추가
+          if (selectedFile) {
+            formData.append('profileImage', selectedFile);
+          }
+
+          // CSRF 토큰 추가
+          const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+          formData.append('_csrf', csrfToken);
+
+          // 서버로 데이터 전송
+          fetch('/member/register', {
+            method: 'POST',
+            body: formData,
+            // multipart/form-data는 자동으로 설정되므로 headers 설정하지 않음
+          })
+          .then(response => {
+            if (!response.ok) {
+              return response.text().then(text => {
+                throw new Error(text || 'Network response was not ok');
+              });
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.success) {
+              alert('회원가입이 완료되었습니다.');
+              window.location.href = '/login';
+            } else {
+              alert(data.message || '회원가입 중 오류가 발생했습니다.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
+          });
+        });
+      }
+    });
+  </script>
   <style>
     html, body {
       margin: 0;
@@ -28,12 +163,6 @@
       position: relative;
     }
   </style>
-  <script>
-    // encodeURIComponent 함수 정의
-    function encodeURIComponent(str) {
-      return encodeURIComponent(str);
-    }
-  </script>
 </head>
 <body>
 <div class="register">
@@ -59,19 +188,19 @@
             <p class="p"><span class="span">성별</span> <span class="text-wrapper-4">(필수)</span></p>
           </div>
           <div class="group-3">
-            <input class="rectangle" type="text" name="positionName"></input>
+            <input class="rectangle" type="text" name="positionNo"></input>
             <div class="text-wrapper-5">직무</div>
           </div>
           <div class="group-4">
             <div class="text-wrapper-6">소속(필수)</div>
-            <select class="rectangle" name="businessName" required>
+            <select class="rectangle" name="businessNo" required>
               <option value="">소속을 선택하세요</option>
               <option value="가맹점">가맹점</option>
               <option value="회사">회사</option>
             </select>
           </div>
           <div class="group-5">
-            <input class="rectangle" type="text" name="managerName" required></input>
+            <input class="rectangle" type="text" name="managerNo" required></input>
             <div class="text-wrapper-6">사수(필수)</div>
           </div>
 
@@ -97,8 +226,12 @@
               </div>
             </div>
             <div class="group-9">
-              <input class="rectangle-3" type="text" name="userId" required></input>
               <p class="div-3"><span class="span">아이디</span> <span class="text-wrapper-4">(필수)</span></p>
+              <div class="id-check-container">
+                <input class="rectangle-3 with-button" type="text" name="userId" required></input>
+                <button type="button" class="id-check-button">중복확인</button>
+              </div>
+              <div id="idCheckMessage" style="margin-top: 5px; font-size: 12px;"></div>
             </div>
             <div class="group-9">
               <input class="rectangle-3" type="password" name="userPwd" required></input>
@@ -119,7 +252,7 @@
               <p class="div-3"><span class="span">생년월일</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
-              <input class="rectangle-3" type="tel" name="phone" required></input>
+              <input class="rectangle-3" type="text" name="phone" required></input>
               <p class="div-3"><span class="span">전화번호</span> <span class="text-wrapper-4">(필수)</span></p>
             </div>
             <div class="group-11">
@@ -136,111 +269,5 @@
     <div class="view"><img class="logo" src="../../../../../../../../UI/project%20img/logo.png" /> <img class="logo-2" src="../../../../../../../../UI/project%20img/logo3.png" /></div>
   </div>
 </div>
-
-<script>
-  const profileInput = document.getElementById('profileInput');
-  const profileImage = document.getElementById('profileImage');
-  const registrationForm = document.getElementById('registrationForm');
-  let selectedFile = null;
-
-  // 이미지 클릭 시 파일 선택 트리거
-  profileImage.addEventListener('click', function() {
-    profileInput.click();
-  });
-
-  profileInput.addEventListener('change', function(event) {
-    const file = event.target.files[0];
-
-    if (file) {
-      // 파일 크기 제한 (예: 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert('파일 크기는 5MB를 초과할 수 없습니다.');
-        return;
-      }
-
-      const reader = new FileReader();
-      selectedFile = file;
-
-      reader.onload = function(e) {
-        profileImage.src = e.target.result;
-        profileImage.classList.remove('default-image');
-        profileImage.alt = '프로필 사진';
-      };
-
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // 아이디 중복 체크
-  const idInput = document.querySelector('input[name="userId"]');
-  let idCheckTimeout;
-
-  idInput.addEventListener('input', function() {
-    clearTimeout(idCheckTimeout);
-    idCheckTimeout = setTimeout(() => {
-      const userId = this.value;
-      if (userId.length >= 4) {
-        fetch('/member/check-id?userId=' + encodeURIComponent(userId))
-          .then(response => response.json())
-          .then(data => {
-            const messageDiv = document.getElementById('idCheckMessage');
-            messageDiv.textContent = data.message;
-            messageDiv.style.color = data.available ? 'green' : 'red';
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('아이디 중복 체크 중 오류가 발생했습니다.');
-          });
-      }
-    }, 500);
-  });
-
-  // 폼 제출 이벤트 처리
-  registrationForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // 비밀번호 일치 확인
-    const password = document.querySelector('input[name="userPwd"]').value;
-    const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
-
-    if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    // FormData 객체 생성
-    const formData = new FormData(this);
-    if (selectedFile) {
-      formData.append('profileImage', selectedFile);
-    }
-
-    // 서버로 데이터 전송
-    fetch('/member/register', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]').content
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.success) {
-        alert(data.message);
-        window.location.href = '/login'; // 로그인 페이지로 리다이렉트
-      } else {
-        alert(data.message);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
-    });
-  });
-</script>
 </body>
 </html>

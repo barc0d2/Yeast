@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberMapper {
-    int insertMember(Member member);
-    boolean existsByUserId(@Param("userId") String userId);
+   Integer insertMember(Member member);
+   Integer idCheck(@Param("userId") String userId);
 }

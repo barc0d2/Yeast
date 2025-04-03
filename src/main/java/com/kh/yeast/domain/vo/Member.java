@@ -7,9 +7,9 @@ import java.util.Date;
 @Data
 public class Member {
     private Long userNo;
-    private String businessName;
-    private String positionName;
-    private String managerName;
+    private String businessNo;
+    private String positionNo;
+    private String managerNo;
     private String userName;
     private String userId;
     private String userPwd;
@@ -21,4 +21,5 @@ public class Member {
     private String imageChangePath;
     private String imageOriginPath;
     private Date birthday;
+    private String status;
 }

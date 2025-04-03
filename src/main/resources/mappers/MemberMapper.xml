@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.MemberMapper">
     <resultMap id="memberResult" type="Member">
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
         <result column="USER_NAME" property="userName"/>
-        <result column="BUSINESS_NAME" property="b"/>
-        <result column="POSITION_NAME" property="b"/>
-        <result column="MANAGER_NAME" property="b"/>
-        <result column="SALARY" property="b"/>
-        <result column="BONUS" property="b"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="MANAGER_NAME" property="managerName"/>
         <result column="EMAIL" property="email"/>
         <result column="PHONE" property="phone"/>
         <result column="GENDER" property="gender"/>
@@ -20,12 +18,40 @@
         <result column="ENROLL_DATE" property="enrollDate"/>
         <result column="MODIFY_DATE" property="modifyDate"/>
         <result column="STATUS" property="status"/>
+        <result column="IMAGE_CHANGE_PATH" property="imageChangePath"/>
+        <result column="IMAGE_ORIGIN_PATH" property="imageOriginPath"/>
     </resultMap>
+    <select id="loginMember" parameterType="Member" resultMap="memberResult">
+        SELECT M.USER_NO,
+        BUSINESS_NAME AS BUSINESS_NAME,
+        POSITION_NAME AS POSITION_NAME,
+        E.USER_NAME AS MANAGER_NAME,
+        M.USER_NAME AS USER_NAME,
+        M.USER_ID AS USER_ID,
+        M.USER_PWD AS USER_PWD,
+        M.EMAIL AS EMAIL,
+        M.SALARY AS SALARY,
+        M.BONUS AS BONUS,
+        M.PHONE AS PHONE,
+        M.GENDER AS GENDER,
+        M.ADDRESS AS ADDRESS,
+        M.CREATE_DATE AS CREATE_DATE,
+        M.IMAGE_CHANGEPATH AS IMAGE_CHANGEPATH,
+        M.IMAGE_ORIGINPATH AS IMAGE_ORIGINPATH,
+        M.BIRTHDAY AS BIRTHDAY,
+        M.STATUS AS STATUS
+        FROM MEMBER M
+        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+        WHERE M.USER_ID = #{userId}
+        AND M.STATUS = 1
+    </select>
     <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
         INSERT INTO MEMBER (
-            USER_NO,
             BUSINESS_NO,
-            MANAGER_NAME,
+            POSITION_NO,
+            MANAGER_NO,
             USER_NAME,
             USER_ID,
             USER_PWD,
@@ -33,30 +59,32 @@
             PHONE,
             GENDER,
             ADDRESS,
-            enroll_date,
-            image_change_path,
-            image_origin_path,
-            BIRTHDAY
+            ENROLL_DATE,
+            IMAGE_CHANGE_PATH,
+            IMAGE_ORIGIN_PATH,
+            BIRTHDAY,
+            STATUS
         ) VALUES (
-                  #{businessName},
-                  #{positionName},
-                  #{managerName},
-                  #{userName},
-                  #{userId},
-                  #{userPwd},
-                  #{email},
-                  #{phone},
-                  #{gender},
-                  #{address},
-                  #{enrollDate},
-                  #{imageChangePath},
-                  #{imageOriginPath},
-                  #{birthday}
-                 )
+            #{businessNo},
+            #{positionNo},
+            #{managerNo},
+            #{userName},
+            #{userId},
+            #{userPwd},
+            #{email},
+            #{phone},
+            #{gender},
+            #{address},
+            SYSDATE,
+            #{imageChangePath},
+            #{imageOriginPath},
+            #{birthday},
+            1
+        )
     </insert>
 
-    <select id="existsByUserId" resultType="boolean">
-        SELECT COUNT(*) > 0
+    <select id="existsByUserId" resultType="Integer">
+        SELECT COUNT(*)
         FROM MEMBER
         WHERE user_id = #{userId}
     </select>
