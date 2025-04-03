@@ -195,9 +195,11 @@
           <div class="group-4">
             <div class="text-wrapper-6">소속(필수)</div>
             <select class="rectangle" name="businessNo" required>
+              <c:forEach var="b" items="business">
               <option value="">소속을 선택하세요</option>
-              <option value="가맹점">가맹점</option>
+                <option value="${b.businessNo}">${b.businessName}</option>
               <option value="회사">회사</option>
+              </c:forEach>
             </select>
           </div>
           <div class="group-5">

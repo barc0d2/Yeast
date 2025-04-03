@@ -21,12 +21,13 @@ public class Member {
     private String userId;
     private String userPwd;
     private String email;
-    private Integer salary;
-    private Integer bonus;
+    private int salary;
+    private int bonus;
     private String phone;
     private String gender;
     private String address;
-    private Timestamp enrollDate;
+    private Date enrollDate;
+    private Timestamp createDate;
     private String imageChange;
     private String imageOrigin;
     private Date birthday;

@@ -5,13 +5,12 @@ import com.kh.yeast.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,7 +42,7 @@ public class MemberController {
     @GetMapping("/check-id")
     @ResponseBody
     public String checkMemberId(String checkId) {
-        int result = memberService.idCheck(checkId);
+        Integer result = memberService.idCheck(checkId);
 
         if (result > 0) {
             return "NNNNN";
@@ -59,7 +58,7 @@ public class MemberController {
         String pwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(pwd);
 
-        int result = memberService.insertMember(member);
+        Integer result = memberService.insertMember(member);
         if (result > 0) {
             session.setAttribute("alertMsg", "성공적으로 회원가입을 완료하였습니다.");
             session.setAttribute("alertMsg", "회원가입 완료!");
