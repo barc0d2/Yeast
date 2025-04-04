@@ -13,6 +13,9 @@
         <result column="IMAGE_CHANGE" property="imageChange"/>
         <result column="IMAGE_ORIGIN" property="imageOrigin"/>
     </resultMap>
+    <resultMap id="inventoryResult" type="Inventory">
+        <result column="INVEN_COUNT" property="invenCount"/>
+    </resultMap>
     <select id="selectStoreCount" resultType="int">
         SELECT COUNT(*)
         FROM BUSINESS
@@ -32,5 +35,58 @@
         WHERE STATUS='1'
         ORDER BY BUSINESS_NO
     </select>
+    <select id="selectStore" resultMap="businessResult">
+        SELECT  BUSINESS_NO,
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                MONEY,
+                CREATE_TIME,
+                STATUS,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        FROM BUSINESS
+        WHERE STATUS='1'
+            AND BUSINESS_NO = #{businessNo}
+    </select>
+    <update id="updateThings">
+        UPDATE BUSINESS
+        SET
+            BUSINESS_NAME = #{businessName},
+            PHONE = #{phone},
+            LOCATION= #{location},
+            IMAGE_CHANGE = #{imageChange},
+            IMAGE_ORIGIN = #{imageOrigin}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND STATUS = 1
+    </update>
+    <delete id="deleteStore">
+        UPDATE BUSINESS
+        SET STATUS = 0
+        WHERE BUSINESS_NO = #{businessNo}
+    </delete>
+    <insert id="insertStore">
+        INSERT INTO BUSINESS(
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        )VALUES(
+            #{businessName},
+            #{phone},
+            #{location},
+            #{imageChange},
+            #{imageOrigin}
+        )
+    </insert>
 
+    <update id="dropBread">
+        UPDATE INVENTORY
+        SET INVEN_COUNT=0
+    </update>
+    <select id="selectInventoryList">
+        SELECT INVEN_COUNT
+        FROM INVENTORY
+    </select>
 </mapper>

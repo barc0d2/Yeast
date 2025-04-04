@@ -19,7 +19,7 @@
 <body>
 <div id="frame">
     <img class="Background" src="images/login/background.jpg" />
-    <form id="Main" action="/member/login" method="post">
+    <form id="Main" action="member/login" method="post">
         <button type="submit" style="display: none"></button>
         <div id="Title">
             빵처럼 부드럽고, <br />효율적인 통합 관리 프로그램</div>
@@ -55,10 +55,10 @@
             <img class="Text" src="images/login/logoText.png" />
         </div>
         <div id="Checkbox">
-            <div class="findIdPwd">
-                ID/PW 찾기
-            </div>
-            <a href="company/employee/enrollForm"><div class="Join">
+            <button type="submit" class="findIdPwd">
+                로그인
+            </button>
+            <a href=""><div class="Join">
                 회원가입  </div></a>
 
             <label class="Session" style="white-space: nowrap;">

@@ -97,7 +97,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
+    public ModelAndView login(@ModelAttribute Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
         try {
             loginMember = memberService.loginMember(member.getUserId());

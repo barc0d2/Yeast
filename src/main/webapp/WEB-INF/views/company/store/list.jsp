@@ -6,37 +6,82 @@
     <link rel="stylesheet" href="/css/company/store/list/globals.css"/>
     <link rel="stylesheet" href="/css/company/store/list/style.css"/>
     <link rel="stylesheet" href="/css/company/store/list/styleguide.css"/>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .cancel-btn {
+            background: #ddd;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .confirm-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+
 <div class="frame">
+    <div class="frame-top">
+        <a href="/company/store/enrollForm">
+            <div class="add">지점 추가</div>
+        </a>
+    </div>
     <div class="div">
         <div class="list">
-
             <c:forEach var="s" items="${list}">
                 <div class="detail">
                     <div class="overlap-group">
                         <div class="row">
                             <div class="update">
-                                <div class="in">
-                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g opacity="0.6">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M9.7835 10.2694L7.30884 10.6234L7.66217 8.14807L14.0262 1.78407C14.612 1.19828 15.5617 1.19828 16.1475 1.78407C16.7333 2.36986 16.7333 3.31961 16.1475 3.9054L9.7835 10.2694Z"
-                                                  stroke="black" stroke-width="1.2" stroke-linecap="round"
-                                                  stroke-linejoin="round"/>
-                                            <path d="M13.3188 2.49121L15.4402 4.61254" stroke="black" stroke-width="1.2"
-                                                  stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M13.5869 10.3452V15.3452C13.5869 15.8975 13.1392 16.3452 12.5869 16.3452H2.58691C2.03463 16.3452 1.58691 15.8975 1.58691 15.3452V5.34521C1.58691 4.79293 2.03463 4.34521 2.58691 4.34521H7.58691"
-                                                  stroke="black" stroke-width="1.2" stroke-linecap="round"
-                                                  stroke-linejoin="round"/>
-                                        </g>
-                                    </svg>
-
-                                    <div class="text">수정하기</div>
-                                </div>
+                                    <div class="in" style="cursor: pointer" onclick="location.href='updateForm?businessNo=${s.businessNo}'">
+                                        <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <g opacity="0.6">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M9.7835 10.2694L7.30884 10.6234L7.66217 8.14807L14.0262 1.78407C14.612 1.19828 15.5617 1.19828 16.1475 1.78407C16.7333 2.36986 16.7333 3.31961 16.1475 3.9054L9.7835 10.2694Z"
+                                                      stroke="black" stroke-width="1.2" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                                <path d="M13.3188 2.49121L15.4402 4.61254" stroke="black"
+                                                      stroke-width="1.2"
+                                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M13.5869 10.3452V15.3452C13.5869 15.8975 13.1392 16.3452 12.5869 16.3452H2.58691C2.03463 16.3452 1.58691 15.8975 1.58691 15.3452V5.34521C1.58691 4.79293 2.03463 4.34521 2.58691 4.34521H7.58691"
+                                                      stroke="black" stroke-width="1.2" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                            </g>
+                                        </svg>
+                                        <div class="text">수정하기</div>
+                                    </div>
                             </div>
-                            <div class="delete">
+                            <div class="delete" style="cursor: pointer" onclick="openDeleteModal(${s.businessNo})">
                                 <div class="in-2">
                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +95,17 @@
                                     <div class="text-wrapper">삭제</div>
                                 </div>
                             </div>
+                            <div id="deleteModal" class="modal">
+                                <div class="modal-content">
+                                    <div class="modal-icon">⚠️</div>
+                                    <h2>삭제하시겠습니까?</h2>
+                                    <p>해당 목록을 삭제하시겠습니까?<br>삭제된 목록은 복구되지 않습니다.</p>
+                                    <div class="modal-buttons">
+                                        <button class="cancel-btn" onclick="closeDeleteModal()">아니요</button>
+                                        <button class="confirm-btn" id="confirmDeleteBtn">네, 삭제할게요</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="name">${s.businessName}</div>
                         <div class="image">
@@ -59,55 +115,77 @@
                 </div>
             </c:forEach>
 
-            <div class="insert">
-                <div class="button">
-                    <svg width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M78 39C78 60.5391 60.5391 78 39 78C17.4609 78 0 60.5391 0 39C0 17.4609 17.4609 0 39 0C60.5391 0 78 17.4609 78 39ZM41.4375 21.9375C41.4375 20.5913 40.3462 19.5 39 19.5C37.6538 19.5 36.5625 20.5913 36.5625 21.9375V36.5625H21.9375C20.5913 36.5625 19.5 37.6538 19.5 39C19.5 40.3462 20.5913 41.4375 21.9375 41.4375H36.5625V56.0625C36.5625 57.4087 37.6538 58.5 39 58.5C40.3462 58.5 41.4375 57.4087 41.4375 56.0625V41.4375H56.0625C57.4087 41.4375 58.5 40.3462 58.5 39C58.5 37.6538 57.4087 36.5625 56.0625 36.5625H41.4375V21.9375Z"
-                              fill="#C8C8C8"/>
-                    </svg>
-                    <div class="message-wrapper">
-                        <div class="message">지점 추가</div>
-                    </div>
 
-
-                </div>
-            </div>
         </div>
-        <div class="page-bar">
-            <div class="next-page"><img class="icon-2" src="img/image.svg"/></div>
-            <div class="pre-page"><img class="icon-2" src="img/icon-2.svg"/></div>
-            <div class="page">
-                <div class="text-wrapper-2">1</div>
-            </div>
-            <div class="div-wrapper">
-                <div class="text-wrapper-2">2</div>
-            </div>
-            <div class="page-2">
-                <div class="text-wrapper-3">3</div>
-            </div>
-            <div class="page-3">
-                <div class="text-wrapper-2">4</div>
-            </div>
-            <div class="page-4">
-                <div class="text-wrapper-2">5</div>
-            </div>
-            <div class="page-5">
-                <div class="text-wrapper-2">6</div>
-            </div>
-            <div class="page-6">
-                <div class="text-wrapper-2">7</div>
-            </div>
-            <div class="page-7">
-                <div class="text-wrapper-2">8</div>
-            </div>
-            <div class="page-8">
-                <div class="text-wrapper-2">9</div>
-            </div>
-            <div class="page-9">
-                <div class="text-wrapper-4">10</div>
-            </div>
+        <div id="pagination">
+            <ul>
+                <c:choose>
+                    <c:when test="${ pi.currentPage eq 1 }">
+                    </c:when>
+                    <c:otherwise>
+                        <li class="pre-page"><a class="page-link"
+                                                href="/company/store/list?currentPage=${pi.currentPage - 1}">
+                            <svg width="29" height="26" style="transform: translateX(-8px)" viewBox="0 0 29 26"
+                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M19.9226 22.4738C20.6925 21.7753 20.6925 20.6469 19.9226 19.9484L12.2627 12.9989L19.9226 6.04936C20.6925 5.35083 20.6925 4.22243 19.9226 3.5239C19.1526 2.82537 17.9089 2.82537 17.139 3.5239L8.07745 11.7451C7.30752 12.4436 7.30752 13.572 8.07745 14.2706L17.139 22.4918C17.8891 23.1724 19.1526 23.1724 19.9226 22.4738Z"
+                                      fill="black"/>
+                            </svg>
+                        </a></li>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    <c:choose>
+                        <c:when test="${p == pi.currentPage}">
+                            <li class="cpage">
+                                <div class="text-wrapper-8">${p}</div>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page">
+                                <div class="text-wrapper-7"><a class="page-link"
+                                                               href="/company/store/list?currentPage=${p}">${p}</a>
+                                </div>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${ pi.currentPage eq pi.maxPage }">
+                    </c:when>
+                    <c:otherwise>
+                        <li class="next-page"><a class="page-link"
+                                                 href="/company/store/list?currentPage=${pi.currentPage + 1}">
+                            <svg width="29" height="26" style="transform: translateX(-6px)" viewBox="0 0 29 26"
+                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M8.07745 3.52616C7.30752 4.22469 7.30752 5.35309 8.07745 6.05163L15.7373 13.0011L8.07745 19.9506C7.30752 20.6492 7.30752 21.7776 8.07745 22.4761C8.84738 23.1746 10.0911 23.1746 10.861 22.4761L19.9226 14.2549C20.6925 13.5564 20.6925 12.428 19.9226 11.7294L10.861 3.50825C10.1109 2.82763 8.84738 2.82763 8.07745 3.52616Z"
+                                      fill="black"/>
+                            </svg>
+                        </a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
         </div>
     </div>
+    <script>
+        let deleteUrl = '';
+
+        function openDeleteModal(businessNo) {
+            deleteUrl = "/company/store/delete?businessNo=" + businessNo;
+            document.getElementById("deleteModal").style.display = "flex";
+        }
+
+        function closeDeleteModal() {
+            document.getElementById("deleteModal").style.display = "none";
+        }
+
+        document.getElementById("confirmDeleteBtn").addEventListener("click", function () {
+            window.location.href = deleteUrl;
+        });
+    </script>
 </div>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../sideBar/brownTopBar.jsp"/>

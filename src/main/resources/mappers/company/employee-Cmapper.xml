@@ -83,22 +83,14 @@
     <select id="selectMemberList" resultMap="memberResult">
         SELECT
                 m1.USER_NO,
-                m1.BUSINESS_NO,
                 p.POSITION_NAME,
-                m2.USER_NAME AS MANAGER_NAME,
                 m1.USER_NAME,
                 m1.USER_ID,
                 m1.EMAIL,
-                m1.SALARY,
-                m1.BONUS,
                 m1.PHONE,
                 m1.GENDER,
-                m1.ADDRESS,
-                m1.IMAGE_CHANGE,
-                m1.IMAGE_ORIGIN,
-                TO_CHAR(m1.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+                m1.CREATE_DATE
         FROM MEMBER m1
-        LEFT JOIN MEMBER m2 ON m1.MANAGER_NO = m2.USER_NO
         LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
         WHERE m1.STATUS='1'
         ORDER BY m1.USER_NO
@@ -127,4 +119,32 @@
         WHERE m1.STATUS='1'
             AND m1.USER_NO = #{userNo}
     </select>
+    <update id="update">
+        UPDATE MEMBER M
+            SET M.BUSINESS_NO = (
+                                SELECT B.BUSINESS_NO
+                                FROM BUSINESS B
+                                WHERE B.BUSINESS_NAME = #{businessName}
+                                ),
+            M.POSITION_NO = (
+                                SELECT P.POSITION_NO
+                                FROM POSITION P
+                                WHERE P.POSITION_NAME = #{positionName}
+                                ),
+            M.MANAGER_NO = (
+                                SELECT M2.USER_NO
+                                FROM MEMBER M2
+                                WHERE M2.USER_NAME = #{managerName}
+                                ),
+            M.USER_NAME = #{userName},
+            M.EMAIL = #{email},
+            M.PHONE = #{phone},
+            M.ADDRESS = #{address},
+            M.IMAGE_CHANGE = #{imageChange},
+            M.IMAGE_ORIGIN = #{imageOrigin},
+            M.BIRTHDAY = #{birthday}
+             WHERE M.USER_NO = #{userNo}
+
+
+    </update>
 </mapper>

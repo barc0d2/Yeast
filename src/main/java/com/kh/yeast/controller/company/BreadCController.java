@@ -10,10 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -21,11 +18,12 @@ import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/company/bread")
 public class BreadCController {
 
     private final BreadCService breadCService;
 
-    @GetMapping("/company/bread/enrollForm")
+    @GetMapping("/enrollForm")
     public String enrollFormBread(Model model) {
         ArrayList<BreadCategory> categories;
         try {
@@ -39,7 +37,7 @@ public class BreadCController {
         return "company/bread/enrollForm";
     }
 
-    @GetMapping("/company/bread/updateForm")
+    @GetMapping("/updateForm")
     public String updateFormBread(int breadNo, Model model) {
         ArrayList<BreadCategory> categories;
         Bread bread = null;
@@ -60,7 +58,7 @@ public class BreadCController {
         return "company/bread/updateForm";
     }
 
-    @GetMapping("/company/bread/detail")
+    @GetMapping("/detail")
     public String detailBread(int breadNo, Model model) {
         Bread bread = null;
         try {
@@ -74,7 +72,7 @@ public class BreadCController {
         return "company/bread/detail";
     }
 
-    @GetMapping("/company/bread/list")
+    @GetMapping("/list")
     public String selectBreadList(@RequestParam(defaultValue = "1") Integer currentPage, Model model) {
         Integer breadCount = null;
         try {
@@ -100,7 +98,7 @@ public class BreadCController {
         return "company/bread/list";
     }
 
-    @PostMapping("/company/bread/insert")
+    @PostMapping("/insert")
     public String insertBread(@ModelAttribute Bread bread, MultipartFile upfile, HttpSession session, Model model) {
         if(bread.getStatus() == null) {
             bread.setStatus(0);
@@ -128,7 +126,7 @@ public class BreadCController {
         }
     }
 
-    @PostMapping("/company/bread/update")
+    @PostMapping("/update")
     public String updateBread(@ModelAttribute Bread bread, MultipartFile reupfile, HttpSession session, Model model) {
         if(bread.getStatus() == null) {
             bread.setStatus(0);
@@ -161,7 +159,7 @@ public class BreadCController {
         }
     }
 
-    @PostMapping("/company/bread/delete")
+    @PostMapping("/delete")
     public String deleteBread(@ModelAttribute Bread bread, HttpSession session, Model model) {
         String imageChange = bread.getImageChange();
         Long breadNo = bread.getBreadNo();

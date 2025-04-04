@@ -4,6 +4,74 @@
     <meta charset="UTF-8">
     <title>Sales Record Table</title>
     <link rel="stylesheet" href="css/finance/storedetail.css" />
+    <style>
+        body {
+            width: 1570px;
+            height: 980px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1494px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .filter-container select {
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            width: auto;
+            border-radius: 12px;
+        }
+        .table-container {
+            width: 1494px;
+            height: auto;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+        th::after {
+            content: '▼▲';
+            font-size: 10px;
+            color: #999;
+            position: absolute;
+            right: 5px;
+            opacity: 0.5;
+        }
+        .sort-asc::after, .sort-desc::after {
+            opacity: 1;
+        }
+        .sort-asc::after {
+            content: '▲';
+            color: #000;
+        }
+        .sort-desc::after {
+            content: '▼';
+            color: #000;
+        }
+    </style>
+>>>>>>>> origin/jinyeong:src/main/webapp/WEB-INF/views/branch/finance/storedetail.jsp
 </head>
 <body>
     <div class="container">
@@ -29,6 +97,7 @@
                     <th data-sort="no">NO.</th>
                     <th data-sort="date">일자</th>
                     <th data-sort="branch">지점</th>
+                    <th data-sort="purchase">구매수량</th>
                     <th data-sort="quantity">판매수량</th>
                     <th data-sort="sales">매출</th>
                 </tr>
@@ -38,6 +107,7 @@
                     <td>00001</td>
                     <td>25/03/19</td>
                     <td>잠실점</td>
+                    <td>200개</td>
                     <td>150개</td>
                     <td>2,400,000</td>
                 </tr>
@@ -45,6 +115,7 @@
                     <td>00002</td>
                     <td>25/03/18</td>
                     <td>강남점</td>
+                    <td>150개</td>
                     <td>120개</td>
                     <td>1,920,000</td>
                 </tr>
@@ -52,6 +123,7 @@
                     <td>00003</td>
                     <td>25/03/17</td>
                     <td>명동점</td>
+                    <td>220개</td>
                     <td>180개</td>
                     <td>2,880,000</td>
                 </tr>
@@ -59,6 +131,7 @@
                     <td>00004</td>
                     <td>25/03/16</td>
                     <td>잠실점</td>
+                    <td>250개</td>
                     <td>200개</td>
                     <td>3,200,000</td>
                 </tr>
@@ -66,6 +139,7 @@
                     <td>00005</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -73,6 +147,7 @@
                     <td>00006</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -80,6 +155,7 @@
                     <td>00007</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -87,6 +163,7 @@
                     <td>00008</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -94,6 +171,7 @@
                     <td>00009</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -101,6 +179,7 @@
                     <td>00010</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
@@ -108,37 +187,45 @@
                     <td>00011</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
-                </tr><tr>
+                </tr>
+                <tr>
                     <td>00012</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
-                </tr><tr>
+                </tr>
+                <tr>
                     <td>00013</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
-                </tr><tr>
+                </tr>
+                <tr>
                     <td>00014</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
-                </tr><tr>
+                </tr>
+                <tr>
                     <td>00015</td>
                     <td>25/03/15</td>
                     <td>강남점</td>
+                    <td>110개</td>
                     <td>90개</td>
                     <td>1,440,000</td>
                 </tr>
             </tbody>
         </table>
-    
-</div>
+    </div>
 </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -162,6 +249,7 @@
                         case 'no':
                         case 'quantity':
                         case 'sales':
+                        case 'purchase':
                             const numA = parseFloat(cleanValue(cellA));
                             const numB = parseFloat(cleanValue(cellB));
                             return direction === 'asc' ? numA - numB : numB - numA;
@@ -219,8 +307,6 @@
                     }
                 });
             });
-
-            
         });
     </script>
 </body>

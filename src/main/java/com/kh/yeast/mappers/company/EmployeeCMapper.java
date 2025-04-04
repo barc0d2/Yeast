@@ -10,15 +10,12 @@ import java.util.ArrayList;
 
 @Mapper
 public interface EmployeeCMapper {
-    Integer insertMember(Member member);
-
-    Member loginMember(String userId);
 
     int selectMemberCount();
 
     ArrayList<Member> selectMemberList(RowBounds rowBounds);
 
-    Integer insertBread(Bread bread);
-
     Member selectMember(@Param("userNo") int userNo);
+
+    int update(Member member);
 }
