@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,7 +47,7 @@ public class EmployeeCController {
     }
 
     @PostMapping("/company/employee/update")
-    public String update(@RequestParam Member member, MultipartFile reupfile, HttpSession session, Model model) {
+    public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
         if(!reupfile.getOriginalFilename().equals("")){
             if(member.getImageChange() != null && !member.getImageChange().equals("")){
                 new File(session.getServletContext().getRealPath(member.getImageChange())).delete();
@@ -58,7 +59,11 @@ public class EmployeeCController {
         }
         int result = 0;
         try {
+            System.out.println(member.getImageChange());
+            System.out.println(member.getImageOrigin());
+            System.out.println(member.getUserNo());
             result = employeeCService.update(member);
+            System.out.println("result = "+result);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -66,7 +71,7 @@ public class EmployeeCController {
         model.addAttribute("smallCurrentName","지점수정");
         if(result > 0){
             session.setAttribute("alertMsg", "지점 수정 성공");
-            return "redirect:/company/employee/enrllForm?userNo=" + member.getUserNo();
+            return "redirect:/company/employee/enrollForm?userNo=" + member.getUserNo();
         } else {
             model.addAttribute("errorMsg", "지점 수정 실패");
             return "common/errorPage";

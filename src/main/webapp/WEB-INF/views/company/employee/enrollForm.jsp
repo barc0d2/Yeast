@@ -13,9 +13,11 @@
 <body>
 <div class="main">
     <form class="form" action="/company/employee/update" method="post" enctype="multipart/form-data">
+        <a href="/company/employee/list">
         <div class="pre">
-            <div class="text-wrapper" onclick="history.back()">이전</div>
+           <div class="text-wrapper">이전</div>
         </div>
+        </a>
         <div class="button">
             <button type="submit">
                 <div class="update">
@@ -54,17 +56,20 @@
 <%--                        </div>--%>
 <%--                    </div>--%>
                 </div>
+                <div style="display: none">
+                    <input type="text" class="input" value="${member.userNo}" name="userNo" hidden="hidden">
+                </div>
                 <div class="div-2">
                     <div class="title">이름</div>
                     <input type="text" class="input" value="${member.userName}" name="userName" required>
                 </div>
                 <div class="div-2">
                     <div class="title">아이디</div>
-                    <div class="input" aria-readonly="true">${member.userId}</div>
+                    <input type="text" class="input" value="${member.userId}" name="userId" readonly>
                 </div>
                 <div class="address">
                     <div class="title">집주소</div>
-                    <input type="text" class="input" value="${member.address}" name="userId" required>
+                    <input type="text" class="input" value="${member.address}" name="address" required>
                 </div>
             </div>
             <div class="column-2">
@@ -88,17 +93,17 @@
                     <div class="split">
                         <div class="div-3">
                             <div class="title">*가맹점</div>
-                            <input type="text" class="input" value="${member.businessName}" name="branch" required>
+                            <input type="text" class="input" value="${member.businessName}" name="businessName" required>
                         </div>
                         <div class="div-3">
                             <div class="title">직무</div>
-                            <input type="text" class="input" value="${member.positionName}" name="position">
+                            <input type="text" class="input" value="${member.positionName}" name="positionName">
                         </div>
                     </div>
                 </div>
                 <div class="gender">
                     <div class="title">성별</div>
-                    <div class="input" aria-readonly="true">${member.gender}</div>
+                    <input type="text" class="input" value="${member.gender}" name="gender" readonly>
                 </div>
             </div>
         </div>
