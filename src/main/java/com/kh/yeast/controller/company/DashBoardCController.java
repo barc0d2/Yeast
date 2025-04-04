@@ -12,4 +12,12 @@ public class DashBoardCController {
         model.addAttribute("smallCurrentName","대시보드");
         return "company/dashboard/dashboard";
     }
+
+    @GetMapping("production.cd")
+    public String production(Model model) {
+
+
+
+        return "redirect:/";
+    }
 }

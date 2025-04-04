@@ -1,8 +1,10 @@
 .frame {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   position: absolute;
   top: 97px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 250px;
   width: 1565px;
   height: 100%;
 }
@@ -376,23 +378,6 @@
   font-style: var(--head-kakao-14px-font-style);
 }
 
-.frame .notion {
-  display: flex;
-  flex-direction: column;
-  width: 47%;
-  height: 240px;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px;
-  position: absolute;
-  top: 23px;
-  left: 812px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 1px solid;
-  border-color: #cecece;
-}
-
 .frame .div-10 {
   display: flex;
   align-items: center;
@@ -474,23 +459,6 @@
   font-style: var(--head-kakao-16px-font-style);
 }
 
-.frame .inquire {
-  display: flex;
-  flex-direction: column;
-  width: 47%;
-  height: 240px;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px;
-  position: absolute;
-  top: 293px;
-  left: 812px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 1px solid;
-  border-color: #cecece;
-}
-
 .frame .text-wrapper-10 {
   position: relative;
   width: fit-content;
@@ -522,12 +490,13 @@
   display: flex;
   flex-direction: column;
   width: 47%;
-  height: 385px;
+  height: 932px;
   align-items: flex-start;
+  top: 23px;
   gap: 17px;
   padding: 10px;
   position: absolute;
-  top: 568px;
+
   left: 812px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -630,8 +599,6 @@ ul {
 
   .sales,
   .production,
-  .notion,
-  .inquire,
   .employee {
     width: 100%;
     margin-left: 0;
