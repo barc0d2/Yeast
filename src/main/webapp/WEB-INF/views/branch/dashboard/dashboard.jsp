@@ -174,8 +174,6 @@
                         금일 총 순수익 : <strong>2,004,000</strong>원
                     </div>
                 </div>
-
-
             </div>
         </section>
         <section class="employee">
