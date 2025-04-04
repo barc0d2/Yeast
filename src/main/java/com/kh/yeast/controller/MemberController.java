@@ -96,7 +96,7 @@ public class MemberController {
         return "register/register";
     }
 
-    @PostMapping("login.me")
+    @PostMapping("/login")
     public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
         try {
