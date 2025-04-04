@@ -5,7 +5,7 @@ import com.kh.yeast.domain.vo.Sell;
 
 import java.util.ArrayList;
 
-public interface StoreBService {
+public interface FinanceBService {
     ArrayList<BreadInventory> dailyBreadList(String businessName);
     Integer insertSell(Sell sell);
 }
