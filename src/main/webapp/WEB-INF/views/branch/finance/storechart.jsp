@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -8,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sales Record Table</title>
     <link rel="stylesheet" href="/css/finance/storechart.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -25,9 +27,10 @@
                 </thead>
                 <tbody>
                 <c:forEach var="bread" items="${list}">
+                    <div id="businessNo" style="display: none">${bread.businessNo}</div>
                     <tr>
                         <td>${bread.breadNo}</td>
-                        <td>${bread.breadName}</td>
+                        <td class="breadName">${bread.breadName}</td>
                         <td>${bread.categoryName}</td>
                         <td class="saleQuantity"></td>
                         <td class="remain" data-remain="${bread.invenCount}"></td>
@@ -55,12 +58,21 @@
             let totalSaleQuantity = 0;
             let totalRemain = 0;
             let totalMoney = 0;
+            let saleQuantityList = [];
+            let breadList = [];
+            let businessNo = 0;
+            let remainList = [];
 
             document.querySelectorAll("#salesTable tbody tr").forEach(row => {
                 let remainElement = row.querySelector(".remain");
                 let moneyElement = row.querySelector(".money")
+                let breadNameElement = row.querySelector(".breadName");
+                let breadName = breadNameElement.textContent;
                 let price = parseInt(moneyElement.dataset.price || "0");
                 let remain = parseInt(remainElement.dataset.remain || "0");
+                let businessNoElement = document.querySelector("#businessNo")||"0"
+                businessNo = parseInt(businessNoElement ? businessNoElement.textContent.trim() : "0");
+                remainList.push(remain);
 
                 let saleQuantity = Math.floor((Math.random() * (remain - (remain*0.8)))+remain*0.8)* + 1;
                 let newRemain = remain - saleQuantity;
@@ -73,11 +85,45 @@
                 totalSaleQuantity += saleQuantity;
                 totalRemain += newRemain;
                 totalMoney += rowTotalMoney;
+
+                saleQuantityList.push(saleQuantity);
+                breadList.push(breadName);
+
+
+                console.log("businessNo : "+businessNo);
             });
             document.getElementById("totalSaleQuantity").textContent = totalSaleQuantity + '개';
             document.getElementById("totalRemain").textContent = totalRemain + '개';
             document.getElementById("totalMoney").textContent = totalMoney.toLocaleString() + '원';
+
+
+            document.querySelector(".update-btn").addEventListener("click", function (event) {
+                event.preventDefault();
+                sendData(breadList, saleQuantityList, totalMoney, businessNo, remainList);
+            });
         });
+
+        function sendData(breadList, saleQuantityList, totalMoney, businessNo, remainList) {
+            let data = {
+                breadList: breadList.join(","),
+                quantityList: saleQuantityList.join(","),
+                totalList: remainList.join(","),
+                sellMoney: totalMoney,
+                businessNo: businessNo
+            }
+
+            $.ajax({
+                url: "/api/store/insert",
+                type:"POST",
+                data: data,
+                success: function(res){
+                    alert("저장 성공!");
+                },
+                error: function(err){
+                    alert("저장 실패!");
+                }
+            })
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             const table = document.getElementById('salesTable');
@@ -128,25 +174,6 @@
                     const sortType = header.getAttribute('data-sort');
                     sortTable(index, sortType, sortDirection);
                     sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-                });
-            });
-
-            document.getElementById('periodSelect').addEventListener('change', function() {
-                console.log('기간 필터:', this.value)
-            });
-
-            document.getElementById('branchSelect').addEventListener('change', function() {
-                console.log('지점 필터:', this.value);
-                const selectedBranch = this.value;
-                const rows = tbody.querySelectorAll('tr');
-
-                rows.forEach(row => {
-                    const branchCell = row.querySelectorAll('td')[2];
-                    if (selectedBranch === '전체 지점' || branchCell.textContent === selectedBranch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
                 });
             });
         });

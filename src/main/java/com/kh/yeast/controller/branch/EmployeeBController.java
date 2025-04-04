@@ -7,11 +7,13 @@ import com.kh.yeast.service.branch.EmployeeBService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
 @Controller
+@RequestMapping("/branch/employee")
 public class  EmployeeBController {
 
     private final EmployeeBService employeeBService;
@@ -20,12 +22,12 @@ public class  EmployeeBController {
         this.employeeBService = employeeBService;
     }
 
-    @GetMapping("/branch/employee/enrollForm")
+    @GetMapping("/enrollForm")
     public String enrollFormEmployee() {
         return "branch/employee/enrollForm";
     }
 
-    @GetMapping("/branch/employee/list")
+    @GetMapping("/list")
     public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) {
         int memberCount = employeeBService.selectMemberCount();
 

@@ -20,22 +20,15 @@
         <result column="CATEGORY_NAME" property="categoryName"/>
         <result column="PRICE" property="price"/>
         <result column="INVEN_COUNT" property="invenCount"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
     </resultMap>
-    <select id="breadList" resultMap="breadResult">
-        SELECT BREAD_NO,
-                BREAD_NAME,
-                CATEGORY_NAME,
-                PRICE
-        FROM BREAD
-        LEFT JOIN BREAD_CATEGORY USING(CATEGORY_NO)
-        WHERE STATUS = 1
-    </select>
     <select id="inventoryList" resultMap="inventoryResult">
         SELECT  BREAD_NO,
                 BREAD_NAME,
                 CATEGORY_NAME,
                 PRICE,
-                INVEN_COUNT
+                INVEN_COUNT,
+                BUSINESS_NO
         FROM INVENTORY
         INNER JOIN (SELECT BREAD_NO,
                         BREAD_NAME,
@@ -47,4 +40,9 @@
         LEFT JOIN BUSINESS USING (BUSINESS_NO)
         WHERE BUSINESS_NAME = #{breadName}
     </select>
+
+    <insert id="insertSell">
+        INSERT INTO SELL (SELL_MONEY, BREAD_LIST, QUANTITY_LIST, BUSINESS_NO, TOTAL_LIST)
+        VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList})
+    </insert>
 </mapper>

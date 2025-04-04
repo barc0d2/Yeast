@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sales Record Table</title>
-<<<<<<<< HEAD:src/main/webapp/WEB-INF/views/company/finance/storedetail.jsp
     <link rel="stylesheet" href="css/finance/storedetail.css" />
-========
     <style>
         body {
             width: 1570px;

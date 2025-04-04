@@ -7,11 +7,8 @@ import com.kh.yeast.utils.Template;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -19,12 +16,13 @@ import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/company/employee")
 public class EmployeeCController {
 
     private final EmployeeCService employeeCService;
 
 
-    @GetMapping("/company/employee/enrollForm")
+    @GetMapping("/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
         Member member = employeeCService.selectMember(userNo);
         model.addAttribute("currentName", "지점관리");
@@ -33,7 +31,7 @@ public class EmployeeCController {
         return "company/employee/enrollForm";
     }
 
-    @GetMapping("/company/employee/list")
+    @GetMapping("/list")
     public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) {
         int memberCount = employeeCService.selectMemberCount();
 
@@ -46,7 +44,7 @@ public class EmployeeCController {
         return "company/employee/list";
     }
 
-    @PostMapping("/company/employee/update")
+    @PostMapping("/update")
     public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
         if(!reupfile.getOriginalFilename().equals("")){
             if(member.getImageChange() != null && !member.getImageChange().equals("")){

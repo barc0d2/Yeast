@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.FinanceCMapper">
+    <resultMap id="sellResult" type="Sell">
+        <result column="SELL_NO" property="sellNo"/>
+        <result column="SELL_MONEY" property="sellMoney"/>
+        <result column="BREAD_LIST" property="breadList"/>
+        <result column="QUANTITY_LIST" property="quantityList"/>
+        <result column="TOTAL_LIST" property="totalList"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_Name" property="businessName"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+
+    <select id="selectSellList" resultMap="sellResult">
+        SELECT S.SELL_NO,
+                S.SELL_MONEY,
+                S.BREAD_LIST,
+                S.QUANTITY_LIST,
+                S.TOTAL_LIST,
+                S.CREATE_DATE,
+                S.BUSINESS_NO,
+                B.BUSINESS_NAME
+        FROM SELL S
+        JOIN (
+            SELECT BUSINESS_NO, MAX(SELL_NO) AS LAST_SELL
+            FROM SELL
+            GROUP BY BUSINESS_NO
+        ) LAST ON S.BUSINESS_NO = LAST.BUSINESS_NO AND S.SELL_NO = LAST.LAST_SELL
+        JOIN BUSINESS B ON S.BUSINESS_NO=B.BUSINESS_NO
+    </select>
+</mapper>
