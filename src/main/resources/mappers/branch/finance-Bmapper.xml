@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.branch.StoreBMapper">
+<mapper namespace="com.kh.yeast.mappers.branch.FinanceBMapper">
     <resultMap id="breadResult" type="Bread">
         <result column="BREAD_NO" property="breadNo"/>
         <result column="BREAD_NAME" property="breadName"/>
