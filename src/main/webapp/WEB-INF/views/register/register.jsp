@@ -239,24 +239,9 @@
           <div class="group-3">
             <select class="rectangle" name="positionNo" required>
               <option value="">직무를 선택하세요</option>
-              <option value="1">C_회장</option>
-              <option value="2">C_사장</option>
-              <option value="3">C_대표이사</option>
-              <option value="4">C_인사팀장</option>
-              <option value="5">C_인사사원</option>
-              <option value="6">C_회계팀장</option>
-              <option value="7">C_마케팅팀장</option>
-              <option value="8">C_개발팀장</option>
-              <option value="9">C_사원</option>
-              <option value="10">C_공장장</option>
-              <option value="11">C_품질관리팀장</option>
-              <option value="12">C_생산관리팀장</option>
-              <option value="13">C_생산직 사원</option>
-              <option value="14">B_점장</option>
-              <option value="15">B_매니저</option>
-              <option value="16">B_바리스타</option>
-              <option value="17">B_주방직원</option>
-              <option value="18">B_홀서빙</option>
+              <c:forEach items="${positions}" var="position">
+                <option value="${position.positionNo}">${position.positionName}</option>
+              </c:forEach>
             </select>
             <div class="text-wrapper-5">직무</div>
           </div>
@@ -264,11 +249,9 @@
             <div class="text-wrapper-6">소속(필수)</div>
             <select class="rectangle" name="businessNo" required>
               <option value="">소속을 선택하세요</option>
-              <option value="1">YEAST본사</option>
-              <option value="2">서울 강남점</option>
-              <option value="3">서울 홍대점</option>
-              <option value="4">서울 종로점</option>
-              <option value="5">서울 잠실점</option>
+              <c:forEach items="${businesses}" var="business">
+                <option value="${business.businessNo}">${business.businessName}</option>
+              </c:forEach>
             </select>
           </div>
           <div class="group-5">

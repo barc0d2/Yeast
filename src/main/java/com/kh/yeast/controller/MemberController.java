@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -26,18 +26,12 @@ public class MemberController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-
     @GetMapping("/agreement")
     public String showAgreement() {
         log.info("약관 동의 페이지 요청");
         return "register/agreement";
     }
 
-    @GetMapping("/register")
-    public String showRegisterForm() {
-        log.info("회원가입 페이지 요청");
-        return "register/register";
-    }
 
     @GetMapping("/check-id")
     @ResponseBody
@@ -62,8 +56,6 @@ public class MemberController {
             return "NNNNY";
         }
     }
-
-
 
     @PostMapping("/register")
     @ResponseBody

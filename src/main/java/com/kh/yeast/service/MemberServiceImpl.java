@@ -42,5 +42,4 @@ public class MemberServiceImpl implements MemberService {
     public Integer emailCheck(String checkEmail) {
         return memberMapper.emailCheck(checkEmail);
     }
-
 }

@@ -23,6 +23,26 @@
         <result column="BIRTHDAY" property="birthday"/>
         <result column="STATUS" property="status"/>
     </resultMap>
+    
+    <resultMap id="positionResult" type="Position">
+        <result column="POSITION_NO" property="positionNo"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="ROLE" property="role"/>
+    </resultMap>
+    
+    <resultMap id="businessResult" type="Business">
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="PHONE" property="phone"/>
+        <result column="LOCATION" property="location"/>
+        <result column="MONEY" property="money"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="STATUS" property="status"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+    </resultMap>
+
     <insert id="insertMember" parameterType="com.kh.yeast.domain.vo.Member">
         INSERT INTO MEMBER (
             BUSINESS_NO,
@@ -70,5 +90,17 @@
         FROM MEMBER
         WHERE email = #{email}
     </select>
-
+    
+    <select id="getAllPositions" resultMap="positionResult">
+        SELECT *
+        FROM POSITION
+        ORDER BY POSITION_NO
+    </select>
+    
+    <select id="getAllBusinesses" resultMap="businessResult">
+        SELECT *
+        FROM BUSINESS
+        WHERE STATUS = 1
+        ORDER BY BUSINESS_NO
+    </select>
 </mapper>
