@@ -17,6 +17,7 @@ public class Member {
     private Long businessNo;
     private Long positionNo;
     private Long managerNo;
+    private String positionName;
     private String managerName;
     private String userName;
     private String userId;
