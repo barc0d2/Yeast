@@ -2,7 +2,7 @@ package com.kh.yeast.domain.vo;
 
 import lombok.*;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @ToString
@@ -16,8 +16,9 @@ public class Business {
     private String businessName;
     private String phone;
     private String location;
-    private int money;
-    private Date createTime;
+    private Integer money;
+    private Timestamp createTime;
+    private Integer status;
     private String imageChange;
     private String imageOrigin;
 }

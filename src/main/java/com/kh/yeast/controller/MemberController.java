@@ -32,7 +32,6 @@ public class MemberController {
         return "register/agreement";
     }
 
-
     @GetMapping("/check-id")
     @ResponseBody
     public String checkMemberId(String checkId) {
@@ -73,6 +72,14 @@ public class MemberController {
             model.addAttribute("errorMsg", "회원가입 실패");
             return "error";
         }
+    }
+
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        log.info("회원가입 페이지 요청");
+        model.addAttribute("positions", memberService.getAllPositions());
+        model.addAttribute("businesses", memberService.getAllBusinesses());
+        return "register/register";
     }
 
     @PostMapping("login.me")

@@ -1,9 +1,11 @@
 package com.kh.yeast.service;
 
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Position;
+import com.kh.yeast.domain.vo.Business;
 
 import java.util.List;
-import java.util.Map;
+
 
 
 public interface MemberService {
@@ -13,4 +15,8 @@ public interface MemberService {
     Member loginMember(String userId) throws Exception;
 
     Integer emailCheck(String checkEmail);
+    
+    List<Position> getAllPositions();
+    
+    List<Business> getAllBusinesses();
 }
