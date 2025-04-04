@@ -1,14 +1,11 @@
 package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.vo.Business;
-import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.service.company.StoreCService;
 import com.kh.yeast.utils.Template;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.tags.shaded.org.apache.bcel.generic.ARETURN;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -83,7 +79,7 @@ public class StoreCController {
             return "redirect:/company/store/updateForm?businessNo=" + business.getBusinessNo();
         } else {
             model.addAttribute("errorMsg", "지점 수정 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 

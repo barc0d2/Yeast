@@ -58,7 +58,7 @@
             <button type="submit" class="findIdPwd">
                 로그인
             </button>
-            <a href="company/employee/enrollForm"><div class="Join">
+            <a href=""><div class="Join">
                 회원가입  </div></a>
 
             <label class="Session" style="white-space: nowrap;">
