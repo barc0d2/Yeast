@@ -57,7 +57,7 @@
 </head>
 <body>
     <div class="errorPage">
-        <button class="back">이전으로</button>
+        <button class="back" onclick="history.back()">이전으로</button>
         <h1 class="errorMsg">${errorMsg}</h1>
     </div>
 </body>
