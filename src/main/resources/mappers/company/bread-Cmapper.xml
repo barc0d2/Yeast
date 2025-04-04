@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.BreadCMapper">
+    <resultMap id="breadResult" type="Bread">
+        <result column="BREAD_NO" property="breadNo"/>
+        <result column="BREAD_NAME" property="breadName"/>
+        <result column="CATEGORY_NAME" property="categoryName"/>
+        <result column="PRICE" property="price"/>
+        <result column="BREAD_CONTENT" property="breadContent"/>
+        <result column="CALORIES" property="calories"/>
+        <result column="ALLERGY" property="allergy"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+    <resultMap id="breadCategoryResult" type="BreadCategory">
+        <result column="CATEGORY_NO" property="categoryNo"/>
+        <result column="CATEGORY_NAME" property="categoryName"/>
+    </resultMap>
+    <select id="selectBreadCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM BREAD
+    </select>
+    <select id="selectBreadList" resultMap="breadResult">
+        SELECT BREAD_NO,
+                BREAD_NAME,
+                CATEGORY_NAME,
+                PRICE,
+                BREAD_CONTENT,
+                CALORIES,
+                ALLERGY,
+                IMAGE_CHANGE,
+                STATUS
+        FROM BREAD
+        LEFT JOIN DETAIL_BREAD USING(BREAD_NO)
+        LEFT JOIN BREAD_CATEGORY USING(CATEGORY_NO)
+        ORDER BY STATUS DESC, BREAD_NO DESC
+    </select>
+    <insert id="insertBread">
+        INSERT ALL
+        INTO BREAD(
+            BREAD_NAME,
+            CATEGORY_NO,
+            PRICE
+        )VALUES(
+            #{breadName},
+            #{categoryNo},
+            #{price}
+        )
+        INTO DETAIL_BREAD(
+            BREAD_CONTENT,
+            CALORIES,
+            ALLERGY,
+            IMAGE_ORIGIN,
+            IMAGE_CHANGE
+        )VALUES(
+            #{breadContent},
+            #{calories},
+            #{allergy},
+            #{imageOrigin},
+            #{imageChange}
+        )
+        SELECT*FROM DUAL
+    </insert>
+
+    <update id="updateBread">
+        UPDATE BREAD
+        SET BREAD_NAME = #{breadName},
+            CATEGORY_NO = #{categoryNo},
+            PRICE = #{price},
+            STATUS = #{status}
+        WHERE BREAD_NO = #{breadNo}
+    </update>
+
+    <update id="updateBreadDetail">
+        UPDATE DETAIL_BREAD
+        SET     BREAD_CONTENT = #{breadContent},
+                CALORIES = #{calories},
+                ALLERGY = #{allergy},
+                IMAGE_ORIGIN = #{imageOrigin},
+                IMAGE_CHANGE = #{imageChange}
+        WHERE BREAD_NO = #{breadNo}
+    </update>
+    <select id="selectBreadCategories" resultMap="breadCategoryResult">
+        SELECT *
+        FROM BREAD_CATEGORY
+    </select>
+
+    <select id="selectBread" resultMap="breadResult">
+        SELECT BREAD_NO,
+            BREAD_NAME,
+            CATEGORY_NAME,
+            PRICE,
+            BREAD_CONTENT,
+            CALORIES,
+            ALLERGY,
+            IMAGE_CHANGE,
+            STATUS
+        FROM BREAD
+        LEFT JOIN DETAIL_BREAD USING(BREAD_NO)
+        LEFT JOIN BREAD_CATEGORY USING(CATEGORY_NO)
+        WHERE BREAD_NO = #{breadNo}
+    </select>
+
+    <delete id="deleteBread">
+        DELETE FROM BREAD
+        WHERE BREAD_NO=#{breadNo}
+    </delete>
+</mapper>

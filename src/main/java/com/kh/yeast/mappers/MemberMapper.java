@@ -1,11 +1,14 @@
 package com.kh.yeast.mappers;
 
+
 import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberMapper {
-    int insertMember(Member member);
+   Integer insertMember(Member member);
+   Integer idCheck(@Param("userId") String userId);
 
-    Member loginMember(String userId);
+   Member loginMember(String userId);;
 }

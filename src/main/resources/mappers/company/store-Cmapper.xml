@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.StoreCMapper">
+    <resultMap id="businessResult" type="Business">
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="PHONE" property="phone"/>
+        <result column="LOCATION" property="location"/>
+        <result column="MONEY" property="money"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+    </resultMap>
+    <resultMap id="inventoryResult" type="Inventory">
+        <result column="INVEN_COUNT" property="invenCount"/>
+    </resultMap>
+    <select id="selectStoreCount" resultType="int">
+        SELECT COUNT(*)
+        FROM BUSINESS
+        WHERE STATUS='1'
+    </select>
+    <select id="selectStoreList" resultMap="businessResult">
+        SELECT  BUSINESS_NO,
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                MONEY,
+                CREATE_TIME,
+                STATUS,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        FROM BUSINESS
+        WHERE STATUS='1'
+        ORDER BY BUSINESS_NO
+    </select>
+    <select id="selectStore" resultMap="businessResult">
+        SELECT  BUSINESS_NO,
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                MONEY,
+                CREATE_TIME,
+                STATUS,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        FROM BUSINESS
+        WHERE STATUS='1'
+            AND BUSINESS_NO = #{businessNo}
+    </select>
+    <update id="updateThings">
+        UPDATE BUSINESS
+        SET
+            BUSINESS_NAME = #{businessName},
+            PHONE = #{phone},
+            LOCATION= #{location},
+            IMAGE_CHANGE = #{imageChange},
+            IMAGE_ORIGIN = #{imageOrigin}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND STATUS = 1
+    </update>
+    <delete id="deleteStore">
+        UPDATE BUSINESS
+        SET STATUS = 0
+        WHERE BUSINESS_NO = #{businessNo}
+    </delete>
+    <insert id="insertStore">
+        INSERT INTO BUSINESS(
+                BUSINESS_NAME,
+                PHONE,
+                LOCATION,
+                IMAGE_CHANGE,
+                IMAGE_ORIGIN
+        )VALUES(
+            #{businessName},
+            #{phone},
+            #{location},
+            #{imageChange},
+            #{imageOrigin}
+        )
+    </insert>
+
+    <update id="dropBread">
+        UPDATE INVENTORY
+        SET INVEN_COUNT=0
+    </update>
+    <select id="selectInventoryList">
+        SELECT INVEN_COUNT
+        FROM INVENTORY
+    </select>
+</mapper>

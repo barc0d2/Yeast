@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Kakao OTF', sans-serif;
+    display: flex;
+}
+
+#sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    flex-shrink: 0;
+}
+
+#sidebar-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #D6BB73;
+    border-right: 1px #A9A9A9 solid;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.announcement {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.announcement-text {
+    color: #FF435C;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#menu-container {
+    width: 250px;
+    height: 954px;
+    left: 0;
+    top: 126px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item {
+    position: relative;
+    width: 248px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 18px;
+}
+
+.menu-text {
+    color: #1E1E1E;
+    font-size: 24px;
+    font-family: 'Kakao OTF', sans-serif;
+    font-weight: 700;
+    line-height: 33.6px;
+}
+
+.submenu {
+    position: relative;
+    left: 10px;
+}
+
+.submenu-item {
+    left: 60px;
+    width: 140px;
+    color: #1E1E1E;
+    font-size: 24px;
+    font-family: 'Kakao OTF', sans-serif;
+    font-weight: 400;
+    line-height: 33px;
+}
+
+
+#logo {
+    width: 250px;
+    height: 100px;
+    position: absolute;
+}
+
+#logo-main {
+    background: url('https://ifh.cc/g/lPv5kW.png');
+    width: 120.96px;
+    height: 99px;
+    top: 3px;
+    position: absolute;
+}
+
+#logo-sub {
+    background: url('https://ifh.cc/g/BB2Lkd.png');
+    width: 132.35px;
+    height: 53px;
+    left: 115px;
+    top: 25px;
+    position: absolute;
+}
+
+.arrow {
+    position: absolute;
+    right: 15px;
+}
+
+/* 메뉴 아이템 호버 효과 */
+.menu-item:hover {
+    background-color: #E4D3A4;
+    cursor: pointer;
+}
+
+/* 서브메뉴 아이템 호버 효과 */
+.submenu-item:hover {
+    background-color: #ecc137;
+    cursor: pointer;
+}
+
+/* 활성화된 메뉴 아이템 스타일 */
+.menu-item.active {
+    background-color: #E4D3A4;
+}
+.menu-item.active .menu-text {
+    color: #ed9f1f;
+}
+
+
+/* 서브메뉴 표시/숨김 효과 */
+.submenu {
+    display: none;
+    overflow: hidden;
+}
+
+.submenu.show {
+    display: block;
+}
