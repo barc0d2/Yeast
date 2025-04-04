@@ -17,4 +17,6 @@ public interface MemberMapper {
    
    List<Position> getAllPositions();
    List<Business> getAllBusinesses();
+   
+   Member findManagerByName(@Param("managerName") String managerName);
 }

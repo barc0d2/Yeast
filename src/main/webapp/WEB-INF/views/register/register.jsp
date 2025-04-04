@@ -128,6 +128,35 @@
         }
       }
 
+      // 사수 이름 검증
+      const managerNameInput = document.querySelector('input[name="managerName"]');
+      if (managerNameInput) {
+          managerNameInput.addEventListener('blur', function() {
+              const managerName = this.value;
+              if (managerName.trim() !== '') {
+                  $.ajax({
+                      url: "/member/check-manager",
+                      data: { managerName: managerName },
+                      success: function(result) {
+                          const messageDiv = document.getElementById('managerCheckMessage');
+                          if(result) {
+                              messageDiv.style.color = "green";
+                              messageDiv.textContent = "사용 가능한 사수입니다.";
+                          } else {
+                              messageDiv.style.color = "red";
+                              messageDiv.textContent = "존재하지 않는 사수입니다.";
+                          }
+                      },
+                      error: function() {
+                          console.log("사수 검증 ajax 실패");
+                      }
+                  });
+              } else {
+                  document.getElementById('managerCheckMessage').textContent = "";
+              }
+          });
+      }
+
       // 폼 제출 이벤트 처리
       if (registrationForm) {
         registrationForm.addEventListener('submit', function(event) {
@@ -145,6 +174,16 @@
           if (emailCheckMessage.style.color !== 'green') {
             alert('이메일 중복 체크를 해주세요.');
             return;
+          }
+
+          // 사수 이름 검증 확인
+          const managerName = document.querySelector('input[name="managerName"]').value;
+          if (managerName.trim() !== '') {
+            const managerCheckMessage = document.getElementById('managerCheckMessage');
+            if (managerCheckMessage.style.color !== 'green') {
+              alert('사수 이름을 확인해주세요.');
+              return;
+            }
           }
 
           // 비밀번호 일치 확인
@@ -183,7 +222,7 @@
           })
           .then(response => {
             alert('회원가입이 완료되었습니다.');
-            window.location.href = '/login';
+            window.location.href = '/';
           })
           .catch(error => {
             console.error('Error:', error);
@@ -255,8 +294,9 @@
             </select>
           </div>
           <div class="group-5">
-            <input class="rectangle" type="text" name="managerNo">
+            <input class="rectangle" type="text" name="managerName" id="managerName">
             <div class="text-wrapper-6">사수(선택)</div>
+            <div id="managerCheckMessage" style="margin-top: 10px; font-size: 12px; padding-left: 180px"></div>
           </div>
 
         </div>

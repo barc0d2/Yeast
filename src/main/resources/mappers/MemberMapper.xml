@@ -103,4 +103,11 @@
         WHERE STATUS = 1
         ORDER BY BUSINESS_NO
     </select>
+    
+    <select id="findManagerByName" resultMap="memberResult">
+        SELECT USER_NO, USER_NAME
+        FROM MEMBER
+        WHERE USER_NAME = #{managerName}
+        AND STATUS = 1
+    </select>
 </mapper>

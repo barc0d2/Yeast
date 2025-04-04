@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService {
     public List<Business> getAllBusinesses() {
         return memberMapper.getAllBusinesses();
     }
+    
+    @Override
+    public Member findManagerByName(String managerName) {
+        return memberMapper.findManagerByName(managerName);
+    }
 }

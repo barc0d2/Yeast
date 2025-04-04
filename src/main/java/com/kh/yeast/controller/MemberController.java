@@ -56,9 +56,23 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/check-manager")
+    @ResponseBody
+    public boolean checkManager(String managerName) {
+        Member manager = memberService.findManagerByName(managerName);
+        return manager != null;
+    }
+
     @PostMapping("/register")
     @ResponseBody
     public String insertMember(Member member, HttpSession session, Model model) {
+        // 사수 이름으로 사수 번호 찾기
+        if (member.getManagerName() != null && !member.getManagerName().trim().isEmpty()) {
+            Member manager = memberService.findManagerByName(member.getManagerName());
+            if (manager != null) {
+                member.setManagerNo(manager.getUserNo());
+            }
+        }
 
         String pwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(pwd);

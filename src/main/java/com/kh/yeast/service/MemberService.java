@@ -5,6 +5,7 @@ import com.kh.yeast.domain.vo.Position;
 import com.kh.yeast.domain.vo.Business;
 
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -19,4 +20,6 @@ public interface MemberService {
     List<Position> getAllPositions();
     
     List<Business> getAllBusinesses();
+    
+    Member findManagerByName(String managerName);
 }
