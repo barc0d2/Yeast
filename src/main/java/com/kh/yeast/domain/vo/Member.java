@@ -14,8 +14,9 @@ import java.sql.Timestamp;
 @EqualsAndHashCode
 public class Member {
     private Long userNo;
-    private String businessName;
-    private String positionName;
+    private Long businessNo;
+    private Long positionNo;
+    private Long managerNo;
     private String managerName;
     private String userName;
     private String userId;
@@ -26,9 +27,10 @@ public class Member {
     private String phone;
     private String gender;
     private String address;
-    private Date enrollDate;
     private Timestamp createDate;
     private String imageChange;
     private String imageOrigin;
     private Date birthday;
+    private Date enrollDate;
+    private Integer status;
 }

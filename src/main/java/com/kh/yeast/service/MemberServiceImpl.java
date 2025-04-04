@@ -1,12 +1,15 @@
 package com.kh.yeast.service;
 
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Position;
+import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.mappers.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,4 +42,23 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    @Override
+    public Integer emailCheck(String checkEmail) {
+        return memberMapper.emailCheck(checkEmail);
+    }
+    
+    @Override
+    public List<Position> getAllPositions() {
+        return memberMapper.getAllPositions();
+    }
+    
+    @Override
+    public List<Business> getAllBusinesses() {
+        return memberMapper.getAllBusinesses();
+    }
+    
+    @Override
+    public Member findManagerByName(String managerName) {
+        return memberMapper.findManagerByName(managerName);
+    }
 }

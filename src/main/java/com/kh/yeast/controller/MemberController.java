@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -26,17 +26,10 @@ public class MemberController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-
     @GetMapping("/agreement")
     public String showAgreement() {
         log.info("약관 동의 페이지 요청");
         return "register/agreement";
-    }
-
-    @GetMapping("/register")
-    public String showRegisterForm() {
-        log.info("회원가입 페이지 요청");
-        return "register/register";
     }
 
     @GetMapping("/check-id")
@@ -51,9 +44,35 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/check-email")
+    @ResponseBody
+    public String checkEmail(String checkEmail) {
+        Integer result = memberService.emailCheck(checkEmail);
+
+        if (result > 0) {
+            return "NNNNN";
+        } else {
+            return "NNNNY";
+        }
+    }
+
+    @GetMapping("/check-manager")
+    @ResponseBody
+    public boolean checkManager(String managerName) {
+        Member manager = memberService.findManagerByName(managerName);
+        return manager != null;
+    }
+
     @PostMapping("/register")
     @ResponseBody
     public String insertMember(Member member, HttpSession session, Model model) {
+        // 사수 이름으로 사수 번호 찾기
+        if (member.getManagerName() != null && !member.getManagerName().trim().isEmpty()) {
+            Member manager = memberService.findManagerByName(member.getManagerName());
+            if (manager != null) {
+                member.setManagerNo(manager.getUserNo());
+            }
+        }
 
         String pwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(pwd);
@@ -69,7 +88,15 @@ public class MemberController {
         }
     }
 
-    @PostMapping("login.me")
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        log.info("회원가입 페이지 요청");
+        model.addAttribute("positions", memberService.getAllPositions());
+        model.addAttribute("businesses", memberService.getAllBusinesses());
+        return "register/register";
+    }
+
+    @PostMapping("/login")
     public ModelAndView login(Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
         try {
