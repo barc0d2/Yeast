@@ -11,43 +11,45 @@
 </head>
 <body>
     <div class="container">
-    <div class="table-container">
-        <table id="salesTable">
-            <thead>
-                <tr>
-                    <th data-sort="no">No.</th>
-                    <th data-sort="product">상품명</th>
-                    <th data-sort="type">종류</th>
-                    <th data-sort="sales-quantity">판매개수</th>
-                    <th data-sort="remaining-quantity">남은개수</th>
-                    <th data-sort="sales">매출(원)</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="bread" items="${list}">
-                <tr>
-                    <td>${bread.breadNo}</td>
-                    <td>${bread.breadName}</td>
-                    <td>${bread.categoryName}</td>
-                    <td class="saleQuantity"></td>
-                    <td class="remain" data-remain="${bread.invenCount}"></td>
-                    <td class="money" data-price="${bread.price}"></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>총합</td>
-                    <td></td>
-                    <td></td>
-                    <td id="totalSaleQuantity">0</td>
-                    <td id="totalRemain">0</td>
-                    <td id="totalMoney">0</td>
-                </tr>
-            </tfoot>
-        </table>
+        <div class="table-container">
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th data-sort="no">No.</th>
+                        <th data-sort="product">상품명</th>
+                        <th data-sort="type">종류</th>
+                        <th data-sort="sales-quantity">판매개수</th>
+                        <th data-sort="remaining-quantity">남은개수</th>
+                        <th data-sort="sales">매출(원)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="bread" items="${list}">
+                    <tr>
+                        <td>${bread.breadNo}</td>
+                        <td>${bread.breadName}</td>
+                        <td>${bread.categoryName}</td>
+                        <td class="saleQuantity"></td>
+                        <td class="remain" data-remain="${bread.invenCount}"></td>
+                        <td class="money" data-price="${bread.price}"></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>총합</td>
+                        <td></td>
+                        <td></td>
+                        <td id="totalSaleQuantity">0</td>
+                        <td id="totalRemain">0</td>
+                        <td id="totalMoney">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <button type="submit" class="update-btn"><div class="text-wrapper-7">저장</div></button>
     </div>
-</div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let totalSaleQuantity = 0;
@@ -137,7 +139,7 @@
                 console.log('지점 필터:', this.value);
                 const selectedBranch = this.value;
                 const rows = tbody.querySelectorAll('tr');
-                
+
                 rows.forEach(row => {
                     const branchCell = row.querySelectorAll('td')[2];
                     if (selectedBranch === '전체 지점' || branchCell.textContent === selectedBranch) {
@@ -149,5 +151,7 @@
             });
         });
     </script>
+    <jsp:include page="../sideBar/whiteSideBar.jsp"/>
+    <jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </body>
 </html>

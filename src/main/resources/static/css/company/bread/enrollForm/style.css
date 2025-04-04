@@ -447,7 +447,7 @@ input{
   gap: 10px;
   padding: 10px;
   position: relative;
-  background-color: var(--buttonprimary);
+  background-color: #FFAA22FF;
   border-radius: 10px;
 }
 

@@ -27,7 +27,10 @@ public class StoreBController {
 //        String businessName =  member.getBusinessName();
         String businessName = "서울 강남점";
         ArrayList<BreadInventory> breadInventoryList = storeBService.dailyBreadList(businessName);
+        System.out.println("breadInventoryList"+breadInventoryList.size());
         model.addAttribute("list", breadInventoryList);
+        model.addAttribute("currentName", "판매기록조회");
+        model.addAttribute("smallCurrentName","판매내역");
         return "branch/finance/storechart";
     }
 }
