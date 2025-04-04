@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <button class="detail-button" onclick="">상세보기</button>
+            <button class="detail-button" onclick="location.href='/company/bread/detail?breadNo=${bread.breadNo}'">상세보기</button>
         </div>
         </c:forEach>
     </div>
