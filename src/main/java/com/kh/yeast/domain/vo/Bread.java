@@ -19,8 +19,8 @@ public class Bread {
     private String breadContent;
     private Integer calories;
     private String allergy;
-    private String imageOrigin;
     private String imageChange;
+    private String imageOrigin;
     private Date enrollDate;
     private Integer status;
 }

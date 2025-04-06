@@ -41,8 +41,25 @@
         WHERE BUSINESS_NAME = #{breadName}
     </select>
 
+    <select id="selectTodaySell" resultType="Integer">
+        SELECT COUNT(*)
+        FROM SELL
+        WHERE BUSINESS_NO = #{businessNo}
+                AND CREATE_DATE
+                BETWEEN TRUNC(SYSDATE)
+                AND TRUNC(SYSDATE)
+                + INTERVAL '1' DAY
+                - INTERVAL '1' SECOND
+    </select>
+
     <insert id="insertSell">
         INSERT INTO SELL (SELL_MONEY, BREAD_LIST, QUANTITY_LIST, BUSINESS_NO, TOTAL_LIST)
         VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList})
     </insert>
+
+    <update id="updateMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY + #{money}
+        WHERE BUSINESS_NO = #{businessNo}
+    </update>
 </mapper>

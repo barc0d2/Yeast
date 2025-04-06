@@ -13,7 +13,11 @@ public class APIFinanceController {
     private final FinanceBService financeBService;
 
     @PostMapping("/insert")
-    public String insertReply(Sell sell) {
-        return financeBService.insertSell(sell)>0 ? "success" : "fail";
+    public String insertSell(Sell sell) {
+        try {
+            return financeBService.insertSell(sell);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

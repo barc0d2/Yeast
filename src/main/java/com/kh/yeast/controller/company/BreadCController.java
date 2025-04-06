@@ -88,7 +88,6 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println("size1"+list.size());
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
@@ -115,6 +114,7 @@ public class BreadCController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
         if (result > 0) {
@@ -131,7 +131,7 @@ public class BreadCController {
         if(bread.getStatus() == null) {
             bread.setStatus(0);
         }
-        System.out.println("변환된 파일 경로: " + session.getServletContext().getRealPath(bread.getImageChange()));
+
         if(!reupfile.getOriginalFilename().equals("")){
             if(bread.getImageChange() != null && !bread.getImageChange().equals("")){
                 new File(session.getServletContext().getRealPath(bread.getImageChange())).delete();
@@ -141,7 +141,7 @@ public class BreadCController {
             bread.setImageChange("/resources/uploadfile/" + changeName);
             bread.setImageOrigin(reupfile.getOriginalFilename());
         }
-        System.out.println("bread : "+bread.getImageChange());
+
         int result = 0;
         try {
             result = breadCService.updateBread(bread);

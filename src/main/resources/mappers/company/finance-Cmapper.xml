@@ -14,8 +14,12 @@
         <result column="BUSINESS_Name" property="businessName"/>
         <result column="STATUS" property="status"/>
     </resultMap>
+    <resultMap id="businessResult" type="Business">
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+    </resultMap>
 
-    <select id="selectSellList" resultMap="sellResult">
+    <select id="selectRecentlySellList" resultMap="sellResult">
         SELECT S.SELL_NO,
                 S.SELL_MONEY,
                 S.BREAD_LIST,
@@ -31,5 +35,47 @@
             GROUP BY BUSINESS_NO
         ) LAST ON S.BUSINESS_NO = LAST.BUSINESS_NO AND S.SELL_NO = LAST.LAST_SELL
         JOIN BUSINESS B ON S.BUSINESS_NO=B.BUSINESS_NO
+    </select>
+
+    <select id="selectSellCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM SELL
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="selectSellList" resultMap="sellResult">
+        SELECT SELL_NO,
+                SELL_MONEY,
+                BREAD_LIST,
+                QUANTITY_LIST,
+                TOTAL_LIST,
+                CREATE_DATE,
+                BUSINESS_NO,
+                BUSINESS_NAME
+        FROM SELL
+        JOIN BUSINESS USING (BUSINESS_NO)
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="selectBusinessList" resultMap="businessResult">
+        SELECT BUSINESS_NO,
+                BUSINESS_NAME
+        FROM BUSINESS
     </select>
 </mapper>

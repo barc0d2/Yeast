@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매장 매출 대시보드</title>
-    <link rel="stylesheet" href="css/finance/wholesalegraph.css" />
+    <link rel="stylesheet" href="/css/finance/wholesalegraph.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -202,6 +202,8 @@
             </div>
         </div>
         <button class="detail-button">상세보기</button>
+        <jsp:include page="../sideBar/brownSideBar.jsp"/>
+        <jsp:include page="../sideBar/brownTopBar.jsp"/>
     </div>
 
     <script>

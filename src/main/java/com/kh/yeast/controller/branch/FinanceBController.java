@@ -25,8 +25,13 @@ public class FinanceBController {
         HttpSession session = request.getSession();
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
-        String businessName = "서울 홍대점";
-        ArrayList<BreadInventory> breadInventoryList = financeBService.dailyBreadList(businessName);
+        String businessName = "서울 강남점";
+        ArrayList<BreadInventory> breadInventoryList = null;
+        try {
+            breadInventoryList = financeBService.dailyBreadList(businessName);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         model.addAttribute("list", breadInventoryList);
         model.addAttribute("currentName", "판매기록조회");
         model.addAttribute("smallCurrentName","판매내역");

@@ -65,7 +65,7 @@
 
             document.querySelectorAll("#salesTable tbody tr").forEach(row => {
                 let remainElement = row.querySelector(".remain");
-                let moneyElement = row.querySelector(".money")
+                let moneyElement = row.querySelector(".money");
                 let breadNameElement = row.querySelector(".breadName");
                 let breadName = breadNameElement.textContent;
                 let price = parseInt(moneyElement.dataset.price || "0");
@@ -88,22 +88,10 @@
 
                 saleQuantityList.push(saleQuantity);
                 breadList.push(breadName);
-
-
-                console.log("businessNo : "+businessNo);
             });
             document.getElementById("totalSaleQuantity").textContent = totalSaleQuantity + '개';
             document.getElementById("totalRemain").textContent = totalRemain + '개';
             document.getElementById("totalMoney").textContent = totalMoney.toLocaleString() + '원';
-
-
-            document.querySelector(".update-btn").addEventListener("click", function (event) {
-                event.preventDefault();
-                sendData(breadList, saleQuantityList, totalMoney, businessNo, remainList);
-            });
-        });
-
-        function sendData(breadList, saleQuantityList, totalMoney, businessNo, remainList) {
             let data = {
                 breadList: breadList.join(","),
                 quantityList: saleQuantityList.join(","),
@@ -112,15 +100,23 @@
                 businessNo: businessNo
             }
 
+            document.querySelector(".update-btn").addEventListener("click", function (event) {
+                event.preventDefault();
+                sendData(data);
+            });
+        });
+
+        function sendData(data) {
             $.ajax({
-                url: "/api/store/insert",
+                url: "/api/finance/insert",
                 type:"POST",
                 data: data,
                 success: function(res){
-                    alert("저장 성공!");
+                    alert(res);
                 },
                 error: function(err){
-                    alert("저장 실패!");
+                    let errorMessage = err.responseJSON?.message
+                    alert("저장 실패 : "+errorMessage);
                 }
             })
         }

@@ -11,9 +11,8 @@ body {
     position:absolute;
     display: flex;
     flex-direction: column;
-    left:calc(50% + 125px);
-    top: 125px;
-    transform: translateX(-50%);
+    left: 300px;
+    top:147px;
 }
 .update-btn {
     display: flex;
