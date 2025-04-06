@@ -216,3 +216,162 @@
 </body>
 
 </html>
+
+
+
+document.getElementById("employeeForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+const userNameInput = document.getElementById("user-name");
+let userName = userNameInput.value.trim();
+if (!userName) {
+alert("직원 이름을 입력하세요.");
+return;
+}
+
+let encodedUserName = encodeURIComponent(userName);
+let requestUrl = "/branch/storemangement/specification/table/searchByName?userName=" + encodedUserName;
+
+fetch(requestUrl, {
+method: "GET",
+headers: { "Content-Type": "application/json" }
+})
+.then(response => {
+if (!response.ok) {
+throw new Error(`검색 실패: ${response.status}`);
+}
+return response.json();
+})
+.then(data => {
+renderEmployeeList(data); // 검색된 직원 목록 렌더링
+})
+.catch(error => console.error("Error:", error));
+});
+
+function renderEmployeeList(employees) {
+const tableBody = document.getElementById("employeeTable");
+
+if (!tableBody) {
+console.error("🚨 employeeTable 요소가 존재하지 않습니다!");
+return;
+}
+
+tableBody.innerHTML = ""; // 기존 데이터 초기화
+
+employees.forEach(employee => {
+console.log("📢 직원 데이터 확인:", employee);
+console.log("📢 positionName 확인:", employee.positionName);
+console.log("📢 salary 값:", employee.salary);
+
+console.log("📢 salary 값:", employee.salary);
+console.log("📢 salary 타입 확인:", typeof employee.salary, employee.salary);
+
+console.log("📢 innerHTML로 들어가는 값:", `
+<td>${employee.salary}</td>
+`);
+
+
+const statusText = (!employee.status || employee.status.trim() === "") ? "수급" : employee.status;
+const buttonClass = (statusText === "수급 완료") ? "pay-button" : "needpay-button";
+
+const userNameValue = employee.userName ?? "없음"; // undefined, null 방지
+const enrollDate = employee.enrollDate ?? "❌ 없음";
+const positionName = employee.positionName ?? "❌ 없음";
+const headName = employee.headName ?? "❌ 없음";
+const email = employee.email ?? "❌ 없음";
+const salary = employee.salary ? `${employee.salary.toLocaleString()}원` : "❌ 없음";
+const phone = employee.phone ?? "❌ 없음";
+const gender = employee.gender ?? "❌ 없음";
+
+// 행 (tr) 생성
+const row = document.createElement("tr");
+
+// 버튼 (수급 상태)
+const button = document.createElement("button");
+button.className = buttonClass;
+button.textContent = statusText;
+button.setAttribute("data-user-name", userNameValue);
+button.setAttribute("onclick", "goToPaySlip(this)");
+
+const tdButton = document.createElement("td");
+tdButton.appendChild(button);
+
+// 나머지 데이터 추가
+const tdUserName = document.createElement("td");
+tdUserName.textContent = userNameValue;
+
+const tdEnrollDate = document.createElement("td");
+tdEnrollDate.textContent = enrollDate;
+
+const tdPositionName = document.createElement("td");
+tdPositionName.textContent = positionName;
+
+const tdHeadName = document.createElement("td");
+tdHeadName.textContent = headName;
+
+const tdEmail = document.createElement("td");
+tdEmail.textContent = email;
+
+const tdSalary = document.createElement("td");
+tdSalary.textContent = salary;
+
+const tdPhone = document.createElement("td");
+tdPhone.textContent = phone;
+
+const tdGender = document.createElement("td");
+tdGender.textContent = gender;
+
+// 테이블 행에 추가
+row.appendChild(tdButton);
+row.appendChild(tdUserName);
+row.appendChild(tdEnrollDate);
+row.appendChild(tdPositionName);
+row.appendChild(tdHeadName);
+row.appendChild(tdEmail);
+row.appendChild(tdSalary);
+row.appendChild(tdPhone);
+row.appendChild(tdGender);
+
+// 최종적으로 테이블에 추가
+tableBody.appendChild(row);
+
+
+
+
+
+
+
+
+
+
+
+
+
+function renderEmployeeList(employees) {
+const tableBody = document.getElementById("employeeTable");
+
+if (!tableBody) {
+console.error("🚨 employeeTable 요소가 존재하지 않습니다!");
+return;
+}
+
+tableBody.innerHTML = ""; // 기존 데이터 초기화
+
+employees.forEach(employee => {
+console.log("📢 직원 데이터 확인:", employee);
+console.log("📢 salary 값:", employee.salary);
+console.log("📢 salary 타입 확인:", typeof employee.salary, employee.salary);
+
+// 🚨 salary 기본값 설정
+const salary = employee.salary ? `${employee.salary.toLocaleString()}원` : "❌ 없음";
+console.log("📢 innerHTML로 들어가는 값:", `<td>${salary}</td>`);
+
+const row = document.createElement("tr");
+
+const tdSalary = document.createElement("td");
+tdSalary.innerText = salary;  // 🚀 textContent → innerText 변경
+
+row.appendChild(tdSalary);
+tableBody.appendChild(row);
+});
+}

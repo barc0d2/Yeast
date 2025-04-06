@@ -9,9 +9,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>직원 급여 관리</title>
-  <link rel="stylesheet" href="/css/branch/storemangement/specification/globals.css" />
-  <link rel="stylesheet" href="/css/branch/storemangement/specification/style.css" />
-  <link rel="stylesheet" href="/css/branch/storemangement/specification/styleguide.css" />
+  <link rel="stylesheet" href="/css/company/storemangement/specification/globals.css" />
+  <link rel="stylesheet" href="/css/company/storemangement/specification/style.css" />
+  <link rel="stylesheet" href="/css/comapany/storemangement/specification/styleguide.css" />
 </head>
 
 <body>
@@ -181,7 +181,7 @@
   }
 </script>
 
-<jsp:include page="../../../sideBar/whiteSideBar.jsp"/>
-<jsp:include page="../../../sideBar/whiteTopBar.jsp"/>
+<jsp:include page="../../../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../../../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

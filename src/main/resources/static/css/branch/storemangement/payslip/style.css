@@ -1,16 +1,18 @@
 .store-specific {
   position: relative;
-  width: 1569px;
-  height: 980px;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .store-specific .form {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  position: absolute;
-  top: 34px;
-  left: 392px;
+  position: relative;
+  height: 1100px;
+  left: 15%;
 }
 
 .store-specific .out-frame {
@@ -142,15 +144,17 @@
   align-items: center;
   justify-content: flex-end;
   gap: 4px;
-  position: absolute;
+  position: relative;
   top: 19px;
-  left: 264px;
+  left: 200px;
+  margin-right: 50px;
 }
 
 .store-specific .text-wrapper-4 {
   position: relative;
   width: fit-content;
   margin-top: -1.00px;
+  gap: 1px;
   font-family: var(--head-kakao-24px-font-family);
   font-weight: var(--head-kakao-24px-font-weight);
   color: var(--variable-collection-font-yellow2);
@@ -788,7 +792,7 @@
 .store-specific .div-wrapper {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 4px;
   position: absolute;
   top: 19px;
@@ -1373,4 +1377,47 @@
     margin: 20px auto;
     width: 90%;
   }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .btn-list {
+    background-color: #ccc;
+    color: #000;
+  }
+
+  .btn-remit {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    max-width: 90%;
+    text-align: center;
+  }
+
+
 }

@@ -1,11 +1,10 @@
-package com.kh.yeast.service.branch;
+package com.kh.yeast.service.company;
 
 import com.kh.yeast.domain.entity.Employee;
 import org.apache.ibatis.session.RowBounds;
-
 import java.util.List;
 
-public interface STableBService {
+public interface STableCService {
 
     Integer getEmployeeCount();
 

@@ -7,14 +7,15 @@
 }
 
 .frame {
-  left: 15%;
+  left: 5%;
   top: 15%;
   display: flex;
   flex-direction: column;
-  width: 1519px;
+  width: auto;
+  width: auto;
   height: 919px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
   position: relative;
   background-color: #ffffff;
@@ -200,6 +201,8 @@
 
 .table-container {
   width: 100%;
+  justify-content: space-between;
+  gap: 100px;
   align-items: center;
   border-collapse: separate;
   border-spacing: 0 10px;
@@ -239,6 +242,7 @@ td>button {
 }
 .pay-button{
   color: #ADADAD;
+  width: 100px;
   background-color: var(--backgroundwhite);
   border-radius: 10px;
   border: 1px solid;
@@ -246,6 +250,7 @@ td>button {
   
 }
 .needpay-button{
+  width: 100px;
   color: white;
   background-color: var(--stateinfo);
   border-radius: 10px;
@@ -266,6 +271,19 @@ td>button {
 
 #employeeTable{
   left: 30%;
+}
+
+.table-container th,
+.table-container td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-container button {
+  width: 100%;
+  min-width: auto;
+  padding: 5px 10px;
+  height: auto;
 }
 
 .product-name-input {
@@ -303,5 +321,12 @@ input:focus {
   .row {
     width: 100%;
     overflow-x: auto;
+  }
+
+  #employeeTable-button{
+    width: 70px;
+    height: 25px;
+    border: 1px solid #000000;
+    border-radius: 10%;
   }
 }
