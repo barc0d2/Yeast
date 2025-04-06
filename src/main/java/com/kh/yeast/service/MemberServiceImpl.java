@@ -37,7 +37,6 @@ public class MemberServiceImpl implements MemberService {
         } else {
             member.setEnrollDate(null);
         }
-
         return member;
     }
 
