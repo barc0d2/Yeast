@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.DashBoardCMapper">
+    <!-- Inventory 결과 매핑 -->
+    <resultMap id="inventoryResultMap" type="com.kh.yeast.domain.vo.Inventory">
+        <result property="categoryName" column="categoryName"/>
+        <result property="invenCount" column="invenCount"/>
+    </resultMap>
+
+    <!-- 카테고리별 재고 데이터 조회 -->
+    <select id="selectInventoryByCategory" resultMap="inventoryResultMap">
+        SELECT c.CATEGORY_NAME as categoryName, SUM(i.INVEN_COUNT) as invenCount
+        FROM INVENTORY i
+        JOIN BREAD b ON i.BREAD_NO = b.BREAD_NO
+        JOIN BREAD_CATEGORY c ON b.CATEGORY_NO = c.CATEGORY_NO
+        GROUP BY c.CATEGORY_NAME
+        ORDER BY c.CATEGORY_NAME
+    </select>
+    
+    <!-- 총 재고 금액 조회 -->
+    <select id="selectTotalInventoryAmount" resultType="int">
+        SELECT SUM(i.INVEN_COUNT * b.PRICE) as TOTAL_AMOUNT
+        FROM INVENTORY i
+        JOIN BREAD b ON i.BREAD_NO = b.BREAD_NO
+    </select>
+</mapper>
