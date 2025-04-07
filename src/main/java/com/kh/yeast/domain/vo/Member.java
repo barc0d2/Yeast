@@ -15,9 +15,10 @@ import java.sql.Timestamp;
 public class Member {
     private Long userNo;
     private Long businessNo;
+    private String businessName;
     private Long positionNo;
-    private Long managerNo;
     private String positionName;
+    private Long managerNo;
     private String managerName;
     private String userName;
     private String userId;
