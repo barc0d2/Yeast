@@ -89,7 +89,7 @@
                 m1.EMAIL,
                 m1.PHONE,
                 m1.GENDER,
-                TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+                m1.CREATE_DATE
         FROM MEMBER m1
         LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
         WHERE m1.STATUS='1'
@@ -119,4 +119,32 @@
         WHERE m1.STATUS='1'
             AND m1.USER_NO = #{userNo}
     </select>
+    <update id="update">
+        UPDATE MEMBER M
+            SET M.BUSINESS_NO = (
+                                SELECT B.BUSINESS_NO
+                                FROM BUSINESS B
+                                WHERE B.BUSINESS_NAME = #{businessName}
+                                ),
+            M.POSITION_NO = (
+                                SELECT P.POSITION_NO
+                                FROM POSITION P
+                                WHERE P.POSITION_NAME = #{positionName}
+                                ),
+            M.MANAGER_NO = (
+                                SELECT M2.USER_NO
+                                FROM MEMBER M2
+                                WHERE M2.USER_NAME = #{managerName}
+                                ),
+            M.USER_NAME = #{userName},
+            M.EMAIL = #{email},
+            M.PHONE = #{phone},
+            M.ADDRESS = #{address},
+            M.IMAGE_CHANGE = #{imageChange},
+            M.IMAGE_ORIGIN = #{imageOrigin},
+            M.BIRTHDAY = #{birthday}
+             WHERE M.USER_NO = #{userNo}
+
+
+    </update>
 </mapper>

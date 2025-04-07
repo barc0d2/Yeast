@@ -64,9 +64,11 @@
         </div>
         <div class="right-button">
             <div class="submit">
+                <a href="/company/store/list">
                 <div class="content">
-                    <a href="/company/store/list"><div class="BUTTON">목록으로</div></a>
+                   <div class="BUTTON">목록으로</div>
                 </div>
+                </a>
             </div>
             <div class="submit">
                 <div class="content">

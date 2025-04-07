@@ -1,9 +1,18 @@
 body {
-    width: 1570px;
-    height: 980px;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
     display: flex;
+    position:relative;
+}
+.container{
+    position:absolute;
+    height: 900px;
+    left: 300px;
+    top: 147px;
+    width: 1494px;
     align-items: center;
-    justify-content: center;
 }
 
 .filter-container {
@@ -65,3 +74,115 @@ th::after {
     content: '▼';
     color: #000;
 }
+a{
+    color:black;
+    text-decoration: none;
+}
+
+#pagination{
+    position : absolute;
+    bottom : 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+ul, li{
+    display:flex;
+    list-style: none;
+    list-style-type: none;
+    padding: 0; /* 기본 여백 제거 */
+    margin: 0; /* 기본 마진 제거 */
+    flex-direction: row;
+    gap:20px;
+}
+.page {
+    display: flex;
+    flex-direction: row;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid;
+    border-color: #9e9e9e;
+}
+.unSelectPage {
+    color: #000000;
+    position: relative;
+    width: fit-content;
+    margin-top: -10.00px;
+    margin-bottom: -8.00px;
+    font-family: "Kakao OTF", Helvetica;
+    font-weight:  700;
+    font-size:24px;
+    letter-spacing: 0px;
+    line-height: 139.9999976158142%;
+    white-space: nowrap;
+    font-style: normal;
+}
+
+.selectPage {
+    color: #ffffff;
+    position: relative;
+    width: fit-content;
+    margin-top: -10.00px;
+    margin-bottom: -8.00px;
+    font-family: "Kakao OTF", Helvetica;
+    font-weight:  700;
+    font-size:24px;
+    letter-spacing:0px;
+    line-height: 139.9999976158142%;
+    white-space: nowrap;
+    font-style: normal;
+}
+
+.pre-page {
+    display: flex;
+    flex-direction: row;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid;
+    border-color: rgba(232, 232, 232, 1);
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.06);
+}
+
+.next-page {
+    display: flex;
+    flex-direction: row;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid;
+    border-color: rgba(232, 232, 232, 1);
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.06);
+}
+
+.cpage {
+    display: flex;
+    flex-direction: row;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: #ff9538;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid;
+    border-color: #9e9e9e;
+}
+

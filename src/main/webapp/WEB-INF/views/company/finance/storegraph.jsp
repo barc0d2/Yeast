@@ -1,212 +1,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매장 매출 대시보드</title>
-    <link rel="stylesheet" href="css/finance/storegraph.css" />
+    <link rel="stylesheet" href="/css/finance/storegraph.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
 
-    </style>
 </head>
 <body>
-    <!-- 잠실 지점 -->
-    <div class="dashboard">
-        <div class="header">잠실 지점</div>
-        <div class="chart-container">
-            <canvas id="chartjs-doughnut-1"></canvas>
-        </div>
-        <table class="sales-table">
-            <tr>
-                <td class="rank">Top 5</td>
-            </tr>
-            <tr>
-                <td class="rank">1</td>
-                <td class="product">초코소보로</td>
-                <td class="quantity">30</td>
-            </tr>
-            <tr>
-                <td class="rank">2</td>
-                <td class="product">크로아상</td>
-                <td class="quantity">20</td>
-            </tr>
-            <tr>
-                <td class="rank">3</td>
-                <td class="product">소금빵</td>
-                <td class="quantity">15</td>
-            </tr>
-            <tr>
-                <td class="rank">4</td>
-                <td class="product">단팥빵</td>
-                <td class="quantity">10</td>
-            </tr>
-            <tr>
-                <td class="rank">5</td>
-                <td class="product">베이글</td>
-                <td class="quantity">5</td>
-            </tr>
-        </table>
-        <div class="summary">
-            <div class="summary-item">
-                <div class="summary-label">판매개수</div>
-                <div class="summary-value">80 개</div>
+    <div class="container">
+        <c:forEach var="sell" items="${list}">
+        <div class="dashboard">
+            <div class="header">${sell.businessName}</div>
+            <div class="quantityList" style="display: none">${sell.quantityList}</div>
+            <div class="breadList" style="display: none">${sell.breadList}</div>
+            <div class="chart-container">
+                <canvas class="chart-canvas"></canvas>
             </div>
-            <div class="summary-item">
-                <div class="summary-label">총매출</div>
-                <div class="summary-value">2,300,000 원</div>
+            <table class="sales-table">
+                <tr>
+                    <td class="rank">Top 5</td>
+                </tr>
+                <tr>
+                    <td class="rank"></td>
+                    <td class="product"></td>
+                    <td class="quantity"></td>
+                </tr>
+            </table>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="summary-label">판매개수</div>
+                    <div class="summary-value totalSales"></div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">총매출</div>
+                    <div class="summary-value">
+                        <fmt:formatNumber value="${sell.sellMoney}" pattern="#,###" />
+                    </div>
+                </div>
             </div>
+            <button class="detail-button" onclick="location.href='/company/finance/storeDetail?businessNo=${sell.businessNo}'">상세보기</button>
         </div>
-        <button class="detail-button">상세보기</button>
+        </c:forEach>
     </div>
-
-    <!-- 강남 지점 -->
-    <div class="dashboard">
-        <div class="header">잠실 지점</div>
-        <div class="chart-container">
-            <canvas id="chartjs-doughnut-2"></canvas>
-        </div>
-        <table class="sales-table">
-            <tr>
-                <td class="rank">Top 5</td>
-            </tr>
-            <tr>
-                <td class="rank">1</td>
-                <td class="product">초코소보로</td>
-                <td class="quantity">30</td>
-            </tr>
-            <tr>
-                <td class="rank">2</td>
-                <td class="product">크로아상</td>
-                <td class="quantity">20</td>
-            </tr>
-            <tr>
-                <td class="rank">3</td>
-                <td class="product">소금빵</td>
-                <td class="quantity">15</td>
-            </tr>
-            <tr>
-                <td class="rank">4</td>
-                <td class="product">단팥빵</td>
-                <td class="quantity">10</td>
-            </tr>
-            <tr>
-                <td class="rank">5</td>
-                <td class="product">베이글</td>
-                <td class="quantity">5</td>
-            </tr>
-        </table>
-        <div class="summary">
-            <div class="summary-item">
-                <div class="summary-label">판매개수</div>
-                <div class="summary-value">80 개</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">총매출</div>
-                <div class="summary-value">2,300,000 원</div>
-            </div>
-        </div>
-        <button class="detail-button">상세보기</button>
-    </div>
-
-    <!-- 홍대 지점 -->
-    <div class="dashboard">
-        <div class="header">잠실 지점</div>
-        <div class="chart-container">
-            <canvas id="chartjs-doughnut-3"></canvas>
-        </div>
-        <table class="sales-table">
-            <tr>
-                <td class="rank">Top 5</td>
-            </tr>
-            <tr>
-                <td class="rank">1</td>
-                <td class="product">초코소보로</td>
-                <td class="quantity">30</td>
-            </tr>
-            <tr>
-                <td class="rank">2</td>
-                <td class="product">크로아상</td>
-                <td class="quantity">20</td>
-            </tr>
-            <tr>
-                <td class="rank">3</td>
-                <td class="product">소금빵</td>
-                <td class="quantity">15</td>
-            </tr>
-            <tr>
-                <td class="rank">4</td>
-                <td class="product">단팥빵</td>
-                <td class="quantity">10</td>
-            </tr>
-            <tr>
-                <td class="rank">5</td>
-                <td class="product">베이글</td>
-                <td class="quantity">5</td>
-            </tr>
-        </table>
-        <div class="summary">
-            <div class="summary-item">
-                <div class="summary-label">판매개수</div>
-                <div class="summary-value">80 개</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">총매출</div>
-                <div class="summary-value">2,300,000 원</div>
-            </div>
-        </div>
-        <button class="detail-button">상세보기</button>
-    </div>
-
-    <!-- 서초 지점 -->
-    <div class="dashboard">
-        <div class="header">잠실 지점</div>
-        <div class="chart-container">
-            <canvas id="chartjs-doughnut-4"></canvas>
-        </div>
-        <table class="sales-table">
-            <tr>
-                <td class="rank">Top 5</td>
-            </tr>
-            <tr>
-                <td class="rank">1</td>
-                <td class="product">초코소보로</td>
-                <td class="quantity">30</td>
-            </tr>
-            <tr>
-                <td class="rank">2</td>
-                <td class="product">크로아상</td>
-                <td class="quantity">20</td>
-            </tr>
-            <tr>
-                <td class="rank">3</td>
-                <td class="product">소금빵</td>
-                <td class="quantity">15</td>
-            </tr>
-            <tr>
-                <td class="rank">4</td>
-                <td class="product">단팥빵</td>
-                <td class="quantity">10</td>
-            </tr>
-            <tr>
-                <td class="rank">5</td>
-                <td class="product">베이글</td>
-                <td class="quantity">5</td>
-            </tr>
-        </table>
-        <div class="summary">
-            <div class="summary-item">
-                <div class="summary-label">판매개수</div>
-                <div class="summary-value">80 개</div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-label">총매출</div>
-                <div class="summary-value">2,300,000 원</div>
-            </div>
-        </div>
-        <button class="detail-button">상세보기</button>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             window.theme = {
@@ -215,90 +54,79 @@
                 warning: '#ffc107'
             };
 
-            // 잠실 지점 차트
-            new Chart(document.getElementById("chartjs-doughnut-1"), {
-                type: "pie",
-                data: {
-                    labels: ["초코소보로", "크로아상", "소금빵", "단팥빵", "베이글", "그 외"],
-                    datasets: [{
-                        data: [30, 20, 15, 10, 5, 4],
-                        backgroundColor: [
-                            "#8A4DF2", 
-                            window.theme.success, 
-                            window.theme.warning, 
-                            "#dee2e6", "#EA3A88", "#5286F8"
-                        ],
-                        borderColor: "transparent"
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                }
-            });
+            document.querySelectorAll(".dashboard").forEach(row =>{
+                let quantityList = row.querySelector(".quantityList").textContent.trim();
+                let breadList = row.querySelector(".breadList").textContent.trim();
 
-            // 강남 지점 차트
-            new Chart(document.getElementById("chartjs-doughnut-2"), {
-                type: "pie",
-                data: {
-                    labels: ["초코소보로", "크로아상", "소금빵", "단팥빵", "베이글", "그 외"],
-                    datasets: [{
-                        data: [30, 20, 15, 10, 5, 4],
-                        backgroundColor: [
-                            "#8A4DF2", 
-                            window.theme.success, 
-                            window.theme.warning, 
-                            "#dee2e6", "#EA3A88", "#5286F8"
-                        ],
-                        borderColor: "transparent"
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                }
-            });
+                let quantityArray = quantityList.split(",").map(Number);
+                let breadArray = breadList.split(",");
 
-            // 홍대 지점 차트
-            new Chart(document.getElementById("chartjs-doughnut-3"), {
-                type: "pie",
-                data: {
-                    labels: ["초코소보로", "크로아상", "소금빵", "단팥빵", "베이글", "그 외"],
-                    datasets: [{
-                        data: [30, 20, 15, 10, 5, 4],
-                        backgroundColor: [
-                            "#8A4DF2", 
-                            window.theme.success, 
-                            window.theme.warning, 
-                            "#dee2e6", "#EA3A88", "#5286F8"
-                        ],
-                        borderColor: "transparent"
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                }
-            });
+                let breadSales = breadArray.map((bread, index) => ({
+                    breadName: bread,
+                    quantity: quantityArray[index]
+                }));
 
-            // 서초 지점 차트
-            new Chart(document.getElementById("chartjs-doughnut-4"), {
-                type: "pie",
-                data: {
-                    labels: ["초코소보로", "크로아상", "소금빵", "단팥빵", "베이글", "그 외"],
-                    datasets: [{
-                        data: [30, 20, 15, 10, 5, 4],
-                        backgroundColor: [
-                            "#8A4DF2", 
-                            window.theme.success, 
-                            window.theme.warning, 
-                            "#dee2e6", "#EA3A88", "#5286F8"
-                        ],
-                        borderColor: "transparent"
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                }
-            });
+                breadSales.sort((a, b) => b.quantity - a.quantity);
+                let top5BreadSales = breadSales.slice(0, 5);
+
+                let table = row.querySelector(".sales-table");
+                let canvas = row.querySelector(".chart-canvas");
+                let totalElement = row.querySelector(".totalSales")
+                renderTop5Sales(table, top5BreadSales, canvas, totalElement);
+            })
+
+            function renderTop5Sales(table, salesData, canvas, totalElement) {
+
+                let labels = [];
+                let data = [];
+                let totalSales = 0;
+
+                if (!table) return;
+
+                // 기존 데이터 제거 (Top 5 행 제외)
+                table.querySelectorAll("tr:not(:first-child)").forEach(row => row.remove());
+                // 상위 5개 데이터 삽입
+                salesData.forEach((item, index) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = '<td class="rank">' + (index + 1) + '</td>'
+                                + '<td class="product">' + (item.breadName) +'</td>'
+                                + '<td class="quantity">' + (item.quantity) + '</td>'
+                    ;
+                    table.appendChild(row);
+
+                    labels.push(item.breadName);
+                    data.push(item.quantity);
+                    totalSales += item.quantity;
+                });
+                totalElement.textContent = totalSales + " 개";
+                renderPieChart(canvas, labels, data);
+            }
+
+
+            function renderPieChart(canvas, labels, data) {
+                new Chart(canvas, {
+                    type: "pie",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: [
+                                "#8A4DF2",
+                                window.theme.success,
+                                window.theme.warning,
+                                "#dee2e6", "#EA3A88", "#5286F8"
+                            ],
+                            borderColor: "transparent"
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                    }
+                });
+            }
         });
     </script>
+    <jsp:include page="../sideBar/brownSideBar.jsp"/>
+    <jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

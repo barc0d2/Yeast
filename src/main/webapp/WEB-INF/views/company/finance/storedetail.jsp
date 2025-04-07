@@ -1,94 +1,22 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Sales Record Table</title>
-<<<<<<<< HEAD:src/main/webapp/WEB-INF/views/company/finance/storedetail.jsp
-    <link rel="stylesheet" href="css/finance/storedetail.css" />
-========
-    <style>
-        body {
-            width: 1570px;
-            height: 980px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    <link rel="stylesheet" href="/css/finance/storedetail.css" />
 
-        .filter-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 1494px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-        .filter-container select {
-            padding: 5px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            width: auto;
-            border-radius: 12px;
-        }
-        .table-container {
-            width: 1494px;
-            height: auto;
-            border-radius: 12px;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow-y: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-        }
-        th::after {
-            content: '▼▲';
-            font-size: 10px;
-            color: #999;
-            position: absolute;
-            right: 5px;
-            opacity: 0.5;
-        }
-        .sort-asc::after, .sort-desc::after {
-            opacity: 1;
-        }
-        .sort-asc::after {
-            content: '▲';
-            color: #000;
-        }
-        .sort-desc::after {
-            content: '▼';
-            color: #000;
-        }
-    </style>
->>>>>>>> origin/jinyeong:src/main/webapp/WEB-INF/views/branch/finance/storedetail.jsp
 </head>
 <body>
     <div class="container">
     <div class="filter-container">
         <div>
+            <div id="businessNo" style="display: none;" value="${param.businessNo}"></div>
             <select id="periodSelect">
-                <option>최근 30일</option>
-                <option>최근 7일</option>
-                <option>최근 1년</option>
-            </select>
-            <select id="branchSelect">
-                <option>전체 지점</option>
-                <option>잠실점</option>
-                <option>강남점</option>
-                <option>명동점</option>
+                <option value="week" <c:if test="${param.period == 'week'}">selected</c:if>>최근 7일</option>
+                <option value="month" <c:if test="${param.period == 'month'}">selected</c:if>>최근 한달</option>
+                <option value="year" <c:if test="${param.period == 'year'}">selected</c:if>>최근 1년</option>
             </select>
         </div>
     </div>
@@ -98,139 +26,104 @@
                 <tr>
                     <th data-sort="no">NO.</th>
                     <th data-sort="date">일자</th>
-                    <th data-sort="branch">지점</th>
                     <th data-sort="purchase">구매수량</th>
                     <th data-sort="quantity">판매수량</th>
                     <th data-sort="sales">매출</th>
                 </tr>
             </thead>
             <tbody>
+            <c:forEach var="sell" items="${sellList}">
                 <tr>
-                    <td>00001</td>
-                    <td>25/03/19</td>
-                    <td>잠실점</td>
-                    <td>200개</td>
-                    <td>150개</td>
-                    <td>2,400,000</td>
+                    <td>${sell.sellNo}</td>
+                    <td>${sell.enrollDate}</td>
+                    <td class="total" data-total="${sell.totalList}"></td>
+                    <td class="quantity" data-quantity="${sell.quantityList}"></td>
+                    <td><fmt:formatNumber value="${sell.sellMoney}" pattern="#,###" /></td>
                 </tr>
-                <tr>
-                    <td>00002</td>
-                    <td>25/03/18</td>
-                    <td>강남점</td>
-                    <td>150개</td>
-                    <td>120개</td>
-                    <td>1,920,000</td>
-                </tr>
-                <tr>
-                    <td>00003</td>
-                    <td>25/03/17</td>
-                    <td>명동점</td>
-                    <td>220개</td>
-                    <td>180개</td>
-                    <td>2,880,000</td>
-                </tr>
-                <tr>
-                    <td>00004</td>
-                    <td>25/03/16</td>
-                    <td>잠실점</td>
-                    <td>250개</td>
-                    <td>200개</td>
-                    <td>3,200,000</td>
-                </tr>
-                <tr>
-                    <td>00005</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00006</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00007</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00008</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00009</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00010</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00011</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00012</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00013</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00014</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
-                <tr>
-                    <td>00015</td>
-                    <td>25/03/15</td>
-                    <td>강남점</td>
-                    <td>110개</td>
-                    <td>90개</td>
-                    <td>1,440,000</td>
-                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
-</div>
+        <div id="pagination">
+            <ul>
+                <c:choose>
+                    <c:when test="${ pi.currentPage eq 1 }">
+                    </c:when>
+                    <c:otherwise>
+                        <li class="pre-page">
+                            <a class="page-link" href="/company/finance/totalSaleDetail?cpage=${pi.currentPage - 1}&businessNo=${param.businessNo}&period=${param.period}">
+                                <svg width="29" height="26" style="transform: translateX(-8px)" viewBox="0 0 29 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9226 22.4738C20.6925 21.7753 20.6925 20.6469 19.9226 19.9484L12.2627 12.9989L19.9226 6.04936C20.6925 5.35083 20.6925 4.22243 19.9226 3.5239C19.1526 2.82537 17.9089 2.82537 17.139 3.5239L8.07745 11.7451C7.30752 12.4436 7.30752 13.572 8.07745 14.2706L17.139 22.4918C17.8891 23.1724 19.1526 23.1724 19.9226 22.4738Z" fill="black"/>
+                                </svg></a></li>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                    <c:choose>
+                        <c:when test="${p == pi.currentPage}">
+                            <li class="cpage">
+                                <div class="selectPage">${p}</div>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page">
+                                <div class="unSelectPage">
+                                    <a class="page-link" href="/company/finance/totalSaleDetail?cpage=${p}&businessNo=${param.businessNo}&period=${param.period}">${p}</a>
+                                </div>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${ pi.currentPage eq pi.maxPage }">
+                    </c:when>
+                    <c:otherwise>
+                        <li class="next-page">
+                            <a class="page-link" href="/company/finance/totalSaleDetail?cpage=${pi.currentPage + 1}&businessNo=${param.businessNo}&period=${param.period}">
+                                <svg width="29" height="26" style="transform: translateX(-6px)" viewBox="0 0 29 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.07745 3.52616C7.30752 4.22469 7.30752 5.35309 8.07745 6.05163L15.7373 13.0011L8.07745 19.9506C7.30752 20.6492 7.30752 21.7776 8.07745 22.4761C8.84738 23.1746 10.0911 23.1746 10.861 22.4761L19.9226 14.2549C20.6925 13.5564 20.6925 12.428 19.9226 11.7294L10.861 3.50825C10.1109 2.82763 8.84738 2.82763 8.07745 3.52616Z" fill="black"/>
+                                </svg></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+    <jsp:include page="../sideBar/brownSideBar.jsp"/>
+    <jsp:include page="../sideBar/brownTopBar.jsp"/>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            function updateURL() {
+                const businessNo = document.getElementById('businessNo').value;
+                const period = document.getElementById('periodSelect').value;
+
+                let url = "/company/finance/totalSaleDetail?businessNo="+businessNo+"&period="+period;
+
+                window.location.href = url;
+            }
+
+            document.getElementById('periodSelect').addEventListener('change', updateURL);
+
+            document.querySelectorAll(".quantity").forEach(td => {
+                const quantityData = td.dataset.quantity;
+                if (quantityData) {
+                    const sum = quantityData.split(",")
+                        .map(Number)
+                        .reduce((acc, num) => acc + num, 0);
+                    td.textContent = sum;
+                }
+            });
+
+            document.querySelectorAll(".total").forEach(td => {
+                const totalData = td.dataset.total;
+                if (totalData) {
+                    const sum = totalData.split(",")
+                        .map(Number)
+                        .reduce((acc, num) => acc + num, 0);
+                    td.textContent = sum;
+                }
+            });
+
             const table = document.getElementById('salesTable');
             const headers = table.querySelectorAll('th');
             const tbody = table.querySelector('tbody');
@@ -293,21 +186,6 @@
 
             document.getElementById('periodSelect').addEventListener('change', function() {
                 console.log('기간 필터:', this.value)
-            });
-
-            document.getElementById('branchSelect').addEventListener('change', function() {
-                console.log('지점 필터:', this.value);
-                const selectedBranch = this.value;
-                const rows = tbody.querySelectorAll('tr');
-                
-                rows.forEach(row => {
-                    const branchCell = row.querySelectorAll('td')[2];
-                    if (selectedBranch === '전체 지점' || branchCell.textContent === selectedBranch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
             });
         });
     </script>

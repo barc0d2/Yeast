@@ -162,8 +162,8 @@
             </div>
         </div>
         <div class="submenu">
-            <div class="submenu-item">메뉴조회</div>
-            <div class="submenu-item">메뉴등록</div>
+            <a href="/company/bread/list"><div class="submenu-item">메뉴조회</div></a>
+            <a href="/company/bread/enrollForm"><div class="submenu-item">메뉴등록</div></a>
         </div>
         <div class="menu-item">
             <div class="menu-icon">

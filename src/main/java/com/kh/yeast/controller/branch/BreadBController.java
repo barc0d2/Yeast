@@ -7,17 +7,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/branch/bread")
 public class BreadBController {
 
     private final BreadBService breadBService;
 
-    @GetMapping("/branch/bread/list")
+    @GetMapping("/list")
     public String selectBreadList(@RequestParam(defaultValue = "1") int currentPage, Model model) {
         Integer breadCount = null;
         try {

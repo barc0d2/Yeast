@@ -15,4 +15,5 @@ public class BreadInventory {
     private String categoryName;
     private Integer price;
     private Integer invenCount;
+    private Long businessNo;
 }

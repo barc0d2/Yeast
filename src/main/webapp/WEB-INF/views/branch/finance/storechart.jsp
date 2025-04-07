@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -8,57 +9,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sales Record Table</title>
     <link rel="stylesheet" href="/css/finance/storechart.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
-    <div class="table-container">
-        <table id="salesTable">
-            <thead>
-                <tr>
-                    <th data-sort="no">No.</th>
-                    <th data-sort="product">상품명</th>
-                    <th data-sort="type">종류</th>
-                    <th data-sort="sales-quantity">판매개수</th>
-                    <th data-sort="remaining-quantity">남은개수</th>
-                    <th data-sort="sales">매출(원)</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="bread" items="${list}">
-                <tr>
-                    <td>${bread.breadNo}</td>
-                    <td>${bread.breadName}</td>
-                    <td>${bread.categoryName}</td>
-                    <td class="saleQuantity"></td>
-                    <td class="remain" data-remain="${bread.invenCount}"></td>
-                    <td class="money" data-price="${bread.price}"></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>총합</td>
-                    <td></td>
-                    <td></td>
-                    <td id="totalSaleQuantity">0</td>
-                    <td id="totalRemain">0</td>
-                    <td id="totalMoney">0</td>
-                </tr>
-            </tfoot>
-        </table>
+        <div class="table-container">
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th data-sort="no">No.</th>
+                        <th data-sort="product">상품명</th>
+                        <th data-sort="type">종류</th>
+                        <th data-sort="sales-quantity">판매개수</th>
+                        <th data-sort="remaining-quantity">남은개수</th>
+                        <th data-sort="sales">매출(원)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="bread" items="${list}">
+                    <div id="businessNo" style="display: none">${bread.businessNo}</div>
+                    <tr>
+                        <td>${bread.breadNo}</td>
+                        <td class="breadName">${bread.breadName}</td>
+                        <td>${bread.categoryName}</td>
+                        <td class="saleQuantity"></td>
+                        <td class="remain" data-remain="${bread.invenCount}"></td>
+                        <td class="money" data-price="${bread.price}"></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>총합</td>
+                        <td></td>
+                        <td></td>
+                        <td id="totalSaleQuantity">0</td>
+                        <td id="totalRemain">0</td>
+                        <td id="totalMoney">0</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <button type="submit" class="update-btn"><div class="text-wrapper-7">저장</div></button>
     </div>
-</div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let totalSaleQuantity = 0;
             let totalRemain = 0;
             let totalMoney = 0;
+            let saleQuantityList = [];
+            let breadList = [];
+            let businessNo = 0;
+            let remainList = [];
 
             document.querySelectorAll("#salesTable tbody tr").forEach(row => {
                 let remainElement = row.querySelector(".remain");
-                let moneyElement = row.querySelector(".money")
+                let moneyElement = row.querySelector(".money");
+                let breadNameElement = row.querySelector(".breadName");
+                let breadName = breadNameElement.textContent;
                 let price = parseInt(moneyElement.dataset.price || "0");
                 let remain = parseInt(remainElement.dataset.remain || "0");
+                let businessNoElement = document.querySelector("#businessNo")||"0"
+                businessNo = parseInt(businessNoElement ? businessNoElement.textContent.trim() : "0");
+                remainList.push(remain);
 
                 let saleQuantity = Math.floor((Math.random() * (remain - (remain*0.8)))+remain*0.8)* + 1;
                 let newRemain = remain - saleQuantity;
@@ -71,11 +85,41 @@
                 totalSaleQuantity += saleQuantity;
                 totalRemain += newRemain;
                 totalMoney += rowTotalMoney;
+
+                saleQuantityList.push(saleQuantity);
+                breadList.push(breadName);
             });
             document.getElementById("totalSaleQuantity").textContent = totalSaleQuantity + '개';
             document.getElementById("totalRemain").textContent = totalRemain + '개';
             document.getElementById("totalMoney").textContent = totalMoney.toLocaleString() + '원';
+            let data = {
+                breadList: breadList.join(","),
+                quantityList: saleQuantityList.join(","),
+                totalList: remainList.join(","),
+                sellMoney: totalMoney,
+                businessNo: businessNo
+            }
+
+            document.querySelector(".update-btn").addEventListener("click", function (event) {
+                event.preventDefault();
+                sendData(data);
+            });
         });
+
+        function sendData(data) {
+            $.ajax({
+                url: "/api/finance/insert",
+                type:"POST",
+                data: data,
+                success: function(res){
+                    alert(res);
+                },
+                error: function(err){
+                    let errorMessage = err.responseJSON?.message
+                    alert("저장 실패 : "+errorMessage);
+                }
+            })
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             const table = document.getElementById('salesTable');
@@ -128,26 +172,9 @@
                     sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
                 });
             });
-
-            document.getElementById('periodSelect').addEventListener('change', function() {
-                console.log('기간 필터:', this.value)
-            });
-
-            document.getElementById('branchSelect').addEventListener('change', function() {
-                console.log('지점 필터:', this.value);
-                const selectedBranch = this.value;
-                const rows = tbody.querySelectorAll('tr');
-                
-                rows.forEach(row => {
-                    const branchCell = row.querySelectorAll('td')[2];
-                    if (selectedBranch === '전체 지점' || branchCell.textContent === selectedBranch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
         });
     </script>
+    <jsp:include page="../sideBar/whiteSideBar.jsp"/>
+    <jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </body>
 </html>
