@@ -2,15 +2,21 @@
     width: 100%;
     min-height: 100vh;
     height: auto;
+    background: #FFFCEC;
     overflow-y: auto;
   }
   
   .screen .container {
-    position: relative;
+    position: absolute;
+    border: solid 1px #cecece ;
+    border-radius: 10px;
     width: 1475px;
     height: 827px;
-    top: 77px;
-    left: 48px;
+    position:absolute;
+    top : 200px;
+    left : 50%;
+    padding: 10px;
+    transform: translateX(-50%);
     background-color: #ffffff;
   }
   
@@ -22,8 +28,8 @@
     justify-content: center;
     gap: 10px;
     position: absolute;
-    top: 747px;
-    left: 1196px;
+    top: 650px;
+    left: 1170px;
     background-color: var(--buttonprimary);
     border-radius: 15px;
     transition: transform 0.3s ease-in-out;
@@ -55,8 +61,8 @@
     justify-content: center;
     gap: 10px;
     position: absolute;
-    top: 747px;
-    left: 1351px;
+    top: 650px;
+    left: 1330px;
     background-color: var(--buttonprimary);
     border-radius: 15px;
     transition: transform 0.3s ease-in-out;
@@ -88,7 +94,7 @@
     gap: 15px;
     padding: 0px 15px;
     position: absolute;
-    top: 165px;
+    top: 50px;
     left: 0;
   }
   
@@ -113,6 +119,7 @@
     align-self: stretch;
     width: 100%;
     flex: 0 0 auto;
+    gap: 10px;
   }
   
   .screen .div {
@@ -156,6 +163,14 @@
     border-radius: 8px;
     border: 1px solid;
     border-color: var(--linelightgray);
+    padding-left: 10px;
+    font-family: var(--head-kakao-20px-font-family);
+    font-weight: var(--head-kakao-20px-font-weight);
+    font-size: var(--head-kakao-20px-font-size);
+    letter-spacing: var(--head-kakao-20px-letter-spacing);
+    line-height: var(--head-kakao-20px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-20px-font-style);
   }
   
   .screen .text-wrapper-2 {
@@ -192,6 +207,13 @@
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid;
+    font-family: var(--head-kakao-20px-font-family);
+    font-weight: var(--head-kakao-20px-font-weight);
+    font-size: var(--head-kakao-20px-font-size);
+    letter-spacing: var(--head-kakao-20px-letter-spacing);
+    line-height: var(--head-kakao-20px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-20px-font-style);
     border-color: var(--linelightgray);
   }
   
@@ -237,6 +259,7 @@
     gap: 50px;
     position: relative;
     flex: 0 0 auto;
+    cursor: pointer;
   }
   
   .screen .div-wrapper {
@@ -298,7 +321,7 @@
     align-items: center;
     gap: 30px;
     position: absolute;
-    top: 606px;
+    top: 470px;
     left: 903px;
   }
   
@@ -328,7 +351,7 @@
     position: absolute;
     width: 947px;
     height: 474px;
-    top: 103px;
+    top: 50px;
     left: 467px;
   }
   
@@ -410,16 +433,12 @@
   }
   
   .screen .table {
-    display: flex;
-    flex-direction: column;
-    width: 947px;
+    width: 100%;
     height: 392px;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
     position: absolute;
-    top: 82px;
+    padding: 10px;
+    top: 0px;
     left: 0;
     border-radius: 8px;
     border: 1px solid;
@@ -653,4 +672,43 @@
     white-space: nowrap;
     font-style: var(--head-kakao-32px-font-style);
   }
+
+  #order-table{
+    width: 100%;
+    font-family: var(--head-kakao-20px-font-family);
+    font-weight: var(--head-kakao-20px-font-weight);
+    font-size: var(--head-kakao-20px-font-size);
+    letter-spacing: var(--head-kakao-20px-letter-spacing);
+    line-height: var(--head-kakao-20px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-20px-font-style);
+  }
+
+#order-table td{
+  text-align: center;
+}
+.modal{
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 850px;
+  height: 300px;
+  padding: 10px
+;
+  background: #6e6e6e;
+  z-index: 999;
+  font-family: var(--head-kakao-24px-font-family);
+  font-size: var(--head-kakao-24px-font-size);
+  letter-spacing: var(--head-kakao-24px-letter-spacing);
+  line-height: var(--head-kakao-24px-line-height);
+  white-space: nowrap;
+  font-style: var(--head-kakao-24px-font-style);
+
+}
+.box{
+  display: flex;
+  gap: 50px;
+}
+
   

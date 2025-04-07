@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.branch.StoreBMapper">
+<mapper namespace="com.kh.yeast.mappers.branch.FinanceBMapper">
     <resultMap id="breadResult" type="Bread">
         <result column="BREAD_NO" property="breadNo"/>
         <result column="BREAD_NAME" property="breadName"/>
@@ -21,6 +21,13 @@
         <result column="PRICE" property="price"/>
         <result column="INVEN_COUNT" property="invenCount"/>
         <result column="BUSINESS_NO" property="businessNo"/>
+    </resultMap>
+    <resultMap id="sellResult" type="Sell">
+        <result column="SELL_NO" property="sellNo"/>
+        <result column="CREATE_DATE" property="createDate"/>
+    </resultMap>
+    <resultMap id="businessResult" type="Business">
+        <result column="UPDATE_AT" property="updateAt"/>
     </resultMap>
     <select id="inventoryList" resultMap="inventoryResult">
         SELECT  BREAD_NO,
@@ -41,8 +48,34 @@
         WHERE BUSINESS_NAME = #{breadName}
     </select>
 
+    <select id="selectTodaySell" resultMap="sellResult">
+        SELECT SELL_NO,
+                CREATE_DATE
+        FROM SELL
+        WHERE BUSINESS_NO = #{businessNo}
+                AND CREATE_DATE
+                BETWEEN TRUNC(SYSDATE)
+                AND TRUNC(SYSDATE)
+                + INTERVAL '1' DAY
+                - INTERVAL '1' SECOND
+    </select>
+
     <insert id="insertSell">
         INSERT INTO SELL (SELL_MONEY, BREAD_LIST, QUANTITY_LIST, BUSINESS_NO, TOTAL_LIST)
         VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList})
     </insert>
+
+    <select id="selectBusinessUpdate" resultMap="businessResult">
+        SELECT UPDATE_AT
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
+    <update id="updateMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY + #{money},
+        UPDATE_AT = SYSTIMESTAMP
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
+    </update>
 </mapper>

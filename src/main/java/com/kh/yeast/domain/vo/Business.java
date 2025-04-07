@@ -21,5 +21,6 @@ public class Business {
     private Integer status;
     private String imageChange;
     private String imageOrigin;
+    private Timestamp updateAt;
 }
 

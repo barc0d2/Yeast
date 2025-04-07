@@ -1,6 +1,10 @@
 .main {
     width: 1567px;
     height: 981px;
+    position: absolute;
+  top : 120px;
+  left : 55%;
+  transform: translateX(-50%);
   }
   
   .main .container {
@@ -9,9 +13,8 @@
     width: 1426px;
     align-items: flex-end;
     gap: 16px;
-    position: relative;
-    top: 38px;
-    left: 71px;
+    position:absolute;
+
   }
   
   .main .content {
@@ -30,9 +33,10 @@
   
   .main .header {
     width: 1423.24px;
-    height: 102.92px;
+    height: fit-content;
     align-items: flex-start;
     justify-content: flex-end;
+    align-items: center;
     gap: 28px;
     padding: 12px 11px;
     background-color: transparent;
@@ -209,8 +213,6 @@
   }
   .navbar table tr{
     border-bottom: solid 1px #cecece;
-    
-
   }
   .navbar table thead tr{
     height: 56px;
@@ -244,7 +246,7 @@
    
   }
   .button{
-        color: #FF435C;
+        color: #5687F2;
         background: #FFFCEC;
         border: solid 2px black ;
         border-radius: 15px;
@@ -262,3 +264,9 @@
         font-style: var(--head-kakao-32px-font-style);
         
   }
+
+.input{
+  width: 150px;
+  height: 30px;
+  font-size: var(--head-kakao-20px-font-size);
+}

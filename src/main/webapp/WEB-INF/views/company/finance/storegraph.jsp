@@ -12,7 +12,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- 잠실 지점 -->
         <c:forEach var="sell" items="${list}">
         <div class="dashboard">
             <div class="header">${sell.businessName}</div>
@@ -43,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <button class="detail-button">상세보기</button>
+            <button class="detail-button" onclick="location.href='/company/finance/storeDetail?businessNo=${sell.businessNo}'">상세보기</button>
         </div>
         </c:forEach>
     </div>
