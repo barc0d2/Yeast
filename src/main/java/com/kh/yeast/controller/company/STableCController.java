@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/company/storemangement/specification")
+@RequestMapping("/company/specification")
 public class STableCController {
 
     private final STableCService stableCService;
@@ -20,9 +20,9 @@ public class STableCController {
         this.stableCService = stableCService;
     }
 
-    @GetMapping("/Table/table")
+    @GetMapping("/list")
     public String specificationTable() {
-        return "company/storemangement/specification/Table/table";
+        return "company/specification/list";
     }
 
     @GetMapping("/Table/searchByName")

@@ -21,8 +21,6 @@
   background-color: #ffffff;
 }
 
-
-
 .frame .date {
   display: inline-flex;
   height: 39.78px;
@@ -167,10 +165,10 @@
 }
 
 .content {
+  left: 200px;
   display: flex;
   flex-direction: column;
   height: 717px;
-  align-items: flex-end;
   gap: 49px;
   position: relative;
   align-self: stretch;
