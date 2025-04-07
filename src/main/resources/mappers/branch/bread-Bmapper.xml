@@ -17,6 +17,7 @@
     <select id="selectBreadCount" resultType="Integer">
         SELECT COUNT(*)
         FROM BREAD
+        WHERE STATUS = 1
     </select>
     <select id="selectBreadList" resultMap="breadResult">
         SELECT BREAD_NO,

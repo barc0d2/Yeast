@@ -1,18 +1,25 @@
 package com.kh.yeast.service;
 
-import com.kh.yeast.domain.entity.Member;
-import com.kh.yeast.domain.entity.PageInfo;
-import java.util.ArrayList;
+import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Position;
+import com.kh.yeast.domain.vo.Business;
+
+import java.util.List;
+import java.util.Map;
+
+
 
 public interface MemberService {
-
-    int insertMember(Member member) throws Exception;
+    Integer insertMember(Member member);
+    Integer idCheck(String checkId);
 
     Member loginMember(String userId) throws Exception;
 
-
-    int selectMemberCount();
-
-    ArrayList<Member> selectMemberList(PageInfo pi);
-
+    Integer emailCheck(String checkEmail);
+    
+    List<Position> getAllPositions();
+    
+    List<Business> getAllBusinesses();
+    
+    Member findManagerByName(String managerName);
 }

@@ -68,7 +68,7 @@
         </div>
         <div class="submenu">
             <a href="/company/employee/list"><div class="submenu-item">직원관리</div></a>
-            <div class="submenu-item">지점 수정/추가</div>
+            <a href="/company/store/list"><div class="submenu-item">지점 수정/추가</div></a>
         </div>
         <div id="order-menu" class="menu-item">
             <div class="menu-icon">
@@ -151,10 +151,19 @@
                 </svg>
             </div>
             <div class="menu-text">메뉴관리</div>
+            <div class="arrow">
+                <svg width="14" height="24" viewBox="0 0 14 24" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M2.85972 21.4274L10.4664 13.8208C11.3647 12.9224 11.3647 11.4524 10.4664 10.5541L2.85972 2.94744"
+                            stroke="#1E1E1E" stroke-width="4.8" stroke-miterlimit="10" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                </svg>
+            </div>
         </div>
         <div class="submenu">
-            <div class="submenu-item">메뉴조회</div>
-            <div class="submenu-item">메뉴등록</div>
+            <a href="/company/bread/list"><div class="submenu-item">메뉴조회</div></a>
+            <a href="/company/bread/enrollForm"><div class="submenu-item">메뉴등록</div></a>
         </div>
         <div class="menu-item">
             <div class="menu-icon">

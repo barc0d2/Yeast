@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,7 +19,8 @@ public class Bread {
     private String breadContent;
     private Integer calories;
     private String allergy;
-    private String imageOrigin;
     private String imageChange;
+    private String imageOrigin;
     private Date enrollDate;
+    private Integer status;
 }

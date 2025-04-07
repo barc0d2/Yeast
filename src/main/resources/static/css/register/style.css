@@ -466,3 +466,71 @@
   align-items: center;
   color: #888;
 }
+
+.id-check-container {
+  position: relative;
+  width: 100%;
+}
+
+.id-check-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+
+  background-color: #9e896a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  z-index: 1;
+}
+
+.id-check-button:hover {
+  opacity: 0.9;
+}
+
+.email-check-container {
+  position: absolute;
+  width: 100%;
+}
+
+.email-check-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+
+  background-color: #9e896a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "Kakao OTF-Regular", Helvetica;
+  z-index: 1;
+}
+
+.email-check-button:hover {
+  opacity: 0.9;
+}
+
+.register .rectangle-3.with-button {
+  padding-right: 100px;
+}
+
+.register .rectangle-sa {
+  position: absolute;
+  width: 214px;
+  height: 59px;
+  top: 39px;
+  left: 0;
+  text-align: start;
+  padding-inline: 5%;
+  font-size: 15px;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9e896a;
+}

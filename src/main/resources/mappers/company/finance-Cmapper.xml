@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.FinanceCMapper">
+    <resultMap id="sellResult" type="Sell">
+        <result column="SELL_NO" property="sellNo"/>
+        <result column="SELL_MONEY" property="sellMoney"/>
+        <result column="BREAD_LIST" property="breadList"/>
+        <result column="QUANTITY_LIST" property="quantityList"/>
+        <result column="TOTAL_LIST" property="totalList"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_Name" property="businessName"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+    <resultMap id="businessResult" type="Business">
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+    </resultMap>
+
+    <select id="selectRecentlySellList" resultMap="sellResult">
+        SELECT S.SELL_NO,
+                S.SELL_MONEY,
+                S.BREAD_LIST,
+                S.QUANTITY_LIST,
+                S.TOTAL_LIST,
+                S.CREATE_DATE,
+                S.BUSINESS_NO,
+                B.BUSINESS_NAME
+        FROM SELL S
+        JOIN (
+            SELECT BUSINESS_NO, MAX(SELL_NO) AS LAST_SELL
+            FROM SELL
+            GROUP BY BUSINESS_NO
+        ) LAST ON S.BUSINESS_NO = LAST.BUSINESS_NO AND S.SELL_NO = LAST.LAST_SELL
+        JOIN BUSINESS B ON S.BUSINESS_NO=B.BUSINESS_NO
+    </select>
+
+    <select id="selectSellCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM SELL
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="selectSellList" resultMap="sellResult">
+        SELECT SELL_NO,
+                SELL_MONEY,
+                BREAD_LIST,
+                QUANTITY_LIST,
+                TOTAL_LIST,
+                CREATE_DATE,
+                BUSINESS_NO,
+                BUSINESS_NAME
+        FROM SELL
+        JOIN BUSINESS USING (BUSINESS_NO)
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="selectBusinessList" resultMap="businessResult">
+        SELECT BUSINESS_NO,
+                BUSINESS_NAME
+        FROM BUSINESS
+    </select>
+</mapper>

@@ -22,7 +22,7 @@ public class BreadBServiceImpl implements BreadBService {
     }
 
     @Override
-    public ArrayList<Bread> selectBreadList(PageInfo pi) {
+    public ArrayList<Bread> selectBreadList(PageInfo pi){
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 

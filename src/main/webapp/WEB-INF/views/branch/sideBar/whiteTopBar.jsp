@@ -36,6 +36,7 @@
             .menu-management {
                 display: flex;
                 flex-direction: column;
+                gap: 10px;
             }
 
             .menu-icons {
@@ -133,9 +134,9 @@
                             stroke-linejoin="round" />
                         <path d="M1 17.5385H9.07692" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <div class="menu-label">메뉴관리</div>
+                    <div class="menu-label">${currentName}</div>
                 </div>
-                <div class="page-title">메뉴조회</div>
+                <div class="page-title">${smallCurrentName}</div>
             </div>
 
             <div class="branch-info">
@@ -149,6 +150,7 @@
                                 stroke="#575757" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
+
                     </div>
                     <div class="dropdown-menu">
                         <a href="/branch/mypage/myPage">

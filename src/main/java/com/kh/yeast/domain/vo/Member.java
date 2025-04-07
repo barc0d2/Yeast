@@ -13,26 +13,26 @@ import java.sql.Timestamp;
 @Builder
 @EqualsAndHashCode
 public class Member {
-
     private Long userNo;
+    private Long businessNo;
     private String businessName;
+    private Long positionNo;
     private String positionName;
+    private Long managerNo;
     private String managerName;
     private String userName;
     private String userId;
     private String userPwd;
     private String email;
-    private int salary;
-    private int bonus;
+    private Integer salary;
+    private Integer bonus;
     private String phone;
     private String gender;
     private String address;
-    private Timestamp enrollDate;
-    private String imageChangePath;
-    private String imageOriginPath;
+    private Timestamp createDate;
+    private String imageChange;
+    private String imageOrigin;
     private Date birthday;
-
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
-    }
+    private Date enrollDate;
+    private Integer status;
 }
