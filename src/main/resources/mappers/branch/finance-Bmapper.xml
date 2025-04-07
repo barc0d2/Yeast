@@ -22,6 +22,10 @@
         <result column="INVEN_COUNT" property="invenCount"/>
         <result column="BUSINESS_NO" property="businessNo"/>
     </resultMap>
+    <resultMap id="sellResult" type="Sell">
+        <result column="SELL_NO" property="sellNo"/>
+        <result column="CREATE_DATE" property="createDate"/>
+    </resultMap>
     <select id="inventoryList" resultMap="inventoryResult">
         SELECT  BREAD_NO,
                 BREAD_NAME,
@@ -41,8 +45,10 @@
         WHERE BUSINESS_NAME = #{breadName}
     </select>
 
-    <select id="selectTodaySell" resultType="Integer">
-        SELECT COUNT(*)
+    <select id="selectTodaySell" resultMap="sellResult">
+        SELECT SELL_NO,
+                CREATE_DATE
+
         FROM SELL
         WHERE BUSINESS_NO = #{businessNo}
                 AND CREATE_DATE
@@ -59,7 +65,9 @@
 
     <update id="updateMoney">
         UPDATE BUSINESS
-        SET MONEY = MONEY + #{money}
-        WHERE BUSINESS_NO = #{businessNo}
+        SET MONEY = MONEY + #{money},
+            UPDATE_AT = #{createDate}
+        WHERE BUSINESS_NO = #{businessNo} AND
+            UPDATE_AT &lt;= #{createDate}
     </update>
 </mapper>
