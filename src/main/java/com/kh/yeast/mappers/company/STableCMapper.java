@@ -1,6 +1,6 @@
 package com.kh.yeast.mappers.company;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -11,13 +11,13 @@ public interface STableCMapper {
 
     Integer selectEmployeeCount();
 
-    List<Employee> selectEmployeeList(RowBounds rowBounds);
+    List<Member> selectEmployeeList(RowBounds rowBounds);
 
-    List<Employee> getAllEmployees();
+//    List<Member> getAllEmployees();
 
-    List<Employee> findEmployeesByName(@Param("userName") String userName);
+    List<Member> findEmployeesByName(@Param("userName") String userName);
 
-    Employee findByUserNo(Long userNo);
+    Member findByUserNo(Long userNo);
 
-    Employee findByUserName(String userName);
+    Member findByUserName(String userName);
 }

@@ -1,19 +1,16 @@
 package com.kh.yeast.service.company;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.company.MyPageCMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service("myPageCService")
 public class MyPageCServiceImpl implements MyPageCService {
 
     private final MyPageCMapper myPageCMapper;
 
-    @Autowired
-    public MyPageCServiceImpl(MyPageCMapper myPageCMapper) {
-        this.myPageCMapper = myPageCMapper;
-    }
 
     @Override
     public Member getCMemberInfo(String userId) {

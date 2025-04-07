@@ -1,7 +1,9 @@
 package com.kh.yeast.mappers.company;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface MyPageCMapper {
 
     Member selectCMemberById(String userId);
@@ -10,5 +12,5 @@ public interface MyPageCMapper {
 
     int updateCMember(Member member);
 
-    String findCManagerByUserNo(Long userNo);
+//    String findCManagerByUserNo(Long userNo);
 }

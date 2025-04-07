@@ -1,6 +1,6 @@
 package com.kh.yeast.mappers.branch;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

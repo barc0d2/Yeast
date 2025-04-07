@@ -1,6 +1,6 @@
 package com.kh.yeast.service.branch;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
@@ -9,11 +9,11 @@ public interface STableBService {
 
     Integer getEmployeeCount();
 
-    List<Employee> getEmployeeList(RowBounds rowBounds);
+    List<Member> getEmployeeList(RowBounds rowBounds);
 
-    List<Employee> findEmployeesByName(String userName);
+    List<Member> findEmployeesByName(String userName);
 
-    Employee findByUserNo(Long userNo);
+    Member findByUserNo(Long userNo);
 
-    Employee findByUserName(String userName);
+    Member findByUserName(String userName);
 }

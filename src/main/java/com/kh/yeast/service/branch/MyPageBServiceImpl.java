@@ -1,6 +1,6 @@
 package com.kh.yeast.service.branch;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.branch.MyPageBMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

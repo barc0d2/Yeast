@@ -1,7 +1,7 @@
 package com.kh.yeast.service.branch;
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 
 public interface MyPagePopUpBService {
 
-        boolean updateBMemberInfo(Member member) throws Exception;
+        boolean updateBMemberInfo(Member member);
 }

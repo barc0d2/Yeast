@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.company.STableCMapper">
-    <resultMap id="employeeResult" type="com.kh.yeast.domain.entity.Employee">
+    <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
         <result column="USER_ID" property="userId"/>
-        <result column="USER_PWD" property="password"/>
+        <result column="USER_PWD" property="userPwd"/>
         <result column="USER_NAME" property="userName"/>
         <result column="BUSINESS_NAME" property="businessName"/>
         <result column="BUSINESS_NO" property="businessNo"/>
-        <result column="POSITION_NO" property="positionNo"/>
         <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
         <result column="MANAGER_NAME" property="managerName"/>
+        <result column="EMAIL" property="email"/>
         <result column="SALARY" property="salary"/>
         <result column="BONUS" property="bonus"/>
         <result column="PHONE" property="phone"/>
         <result column="GENDER" property="gender"/>
         <result column="ADDRESS" property="address"/>
-        <result column="CREATE_DATE" property="enrollDate"/>
-        <result column="IMAGE_CHANGE" property="imageChangePath"/>
-        <result column="IMAGE_ORIGIN" property="imageOriginPath"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
         <result column="BIRTHDAY" property="birthday"/>
-        <result column="status" property="status"/>
+        <result column="STATUS" property="status"/>
         <result column="HEAD_NAME" property="headName"/>
     </resultMap>
 
-    <select id="findByUserNo" parameterType="long" resultType="com.kh.yeast.domain.entity.Employee">
+
+    <select id="findByUserNo" resultMap="memberResult">
         SELECT *
         FROM MEMBER
         WHERE USER_NO = #{userNo}
     </select>
 
-    <select id="findByUserName" parameterType="String" resultType="com.kh.yeast.domain.entity.Employee">
+    <select id="findByUserName" resultMap="memberResult">
         SELECT *
         FROM employees
         WHERE user_name = #{userName}
     </select>
 
-    <select id="getAllEmployees" resultMap="employeeResult">
+<!--    <select id="getAllEmployees" resultMap="employeeResult">
         SELECT * FROM MEMBER;
-    </select>
+    </select>-->
 
-    <select id="findEmployeesByName" resultType="Employee">
+    <select id="findEmployeesByName" resultMap="memberResult">
         SELECT
         m.USER_NO AS userNo,
         m.USER_ID AS userId,

@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.branch.MyPagePopUpBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

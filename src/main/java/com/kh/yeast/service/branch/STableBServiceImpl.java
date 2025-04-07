@@ -1,11 +1,12 @@
 package com.kh.yeast.service.branch;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.branch.STableBMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,16 +25,16 @@ public class STableBServiceImpl implements STableBService {
         }
 
         @Override
-        public List<Employee> getEmployeeList(RowBounds rowBounds) {
+        public List<Member> getEmployeeList(RowBounds rowBounds) {
             return stableBMapper.selectEmployeeList(rowBounds);
         }
 
     @Override
-    public List<Employee> findEmployeesByName(String userName) {
-        List<Employee> employees = stableBMapper.findEmployeesByName(userName);
+    public List<Member> findEmployeesByName(String userName) {
+        List<Member> employees = stableBMapper.findEmployeesByName(userName);
         LocalDate now = LocalDate.now();
 
-        for (Employee employee : employees) {
+        for (Member employee : employees) {
             if (employee.getHeadName() == null) {
                 employee.setHeadName("없음");
             }
@@ -43,9 +44,9 @@ public class STableBServiceImpl implements STableBService {
                 LocalDate updateAt = employee.getUpdateAt();
                 boolean sameYearAndMonth = updateAt.getYear() == now.getYear() &&
                         updateAt.getMonth() == now.getMonth();
-                employee.setStatus(sameYearAndMonth ? "수급 완료" : "수급");
+                employee.setStatus(sameYearAndMonth ? 1 : 0);
             } else {
-                employee.setStatus("수급");
+                employee.setStatus(0);
             }
             System.out.println("사용자: " + employee.getUserName() + " / updateAt: " + employee.getUpdateAt());
         }
@@ -55,12 +56,12 @@ public class STableBServiceImpl implements STableBService {
     }
 
     @Override
-    public Employee findByUserNo(Long userNo) {
+    public Member findByUserNo(Long userNo) {
         return stableBMapper.findByUserNo(userNo);
     }
 
     @Override
-    public Employee findByUserName(String userName) {
+    public Member findByUserName(String userName) {
         return stableBMapper.findByUserName(userName);
     }
 

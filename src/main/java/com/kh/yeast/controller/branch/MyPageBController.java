@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.branch.MyPageBService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

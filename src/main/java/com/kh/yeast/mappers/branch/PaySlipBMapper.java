@@ -1,7 +1,7 @@
 package com.kh.yeast.mappers.branch;
 
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,6 +12,6 @@ public interface PaySlipBMapper {
 
     Map<String, Object> getEmployeePaySlip(@Param("userNo") Long userNo);
 
-    Employee findEmployeeByUserName(@Param("userName") String userName);
+    Member findEmployeeByUserName(@Param("userName") String userName);
 
 }

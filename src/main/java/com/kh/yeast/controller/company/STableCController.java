@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.company;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.company.STableCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class STableCController {
 
     @GetMapping("/Table/searchByName")
     public ResponseEntity<?> searchByName(@RequestParam String userName) {
-        List<Employee> employees = stableCService.findEmployeesByName(userName);
+        List<Member> employees = stableCService.findEmployeesByName(userName);
         System.out.println(employees);
         System.out.println("🔍 검색 요청 userName: " + userName);
 

@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.branch.PaySlipBService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +38,7 @@ public class PaySlipBController {
             return "redirect:/errorPage";
         }
 
-        Employee employee = payslipBService.findByUserName(userName);
+        Member employee = payslipBService.findByUserName(userName);
 
         if (employee == null) {
             System.out.println("❌ 해당 직원 정보 없음!");

@@ -1,6 +1,6 @@
 package com.kh.yeast.service.branch;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.branch.PaySlipBMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class PaySlipBServiceImpl implements PaySlipBService {
         return result;
     }
 
-    public Employee findByUserName(String userName) {
+    public Member findByUserName(String userName) {
         return paySlipBMapper.findEmployeeByUserName(userName);
     }
 

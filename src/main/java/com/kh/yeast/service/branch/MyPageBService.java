@@ -1,7 +1,6 @@
 package com.kh.yeast.service.branch;
 
-import com.kh.yeast.domain.entity.Employee;
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 

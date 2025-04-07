@@ -1,6 +1,7 @@
 package com.kh.yeast.mappers.branch;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -11,15 +12,14 @@ public interface STableBMapper {
 
     Integer selectEmployeeCount();
 
-    List<Employee> selectEmployeeList(RowBounds rowBounds);
+    List<Member> selectEmployeeList(RowBounds rowBounds);
 
+    List<Member> getAllEmployees();
 
-    List<Employee> getAllEmployees();
+    List<Member> findEmployeesByName(@Param("userName") String userName);
 
-    List<Employee> findEmployeesByName(@Param("userName") String userName);
+    Member findByUserNo(Long userNo);
 
-    Employee findByUserNo(Long userNo);
-
-    Employee findByUserName(String userName);
+    Member findByUserName(String userName);
 
 }

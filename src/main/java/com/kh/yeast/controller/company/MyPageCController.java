@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.company;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.company.MyPageCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

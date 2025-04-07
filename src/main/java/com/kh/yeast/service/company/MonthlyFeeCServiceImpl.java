@@ -1,6 +1,6 @@
 package com.kh.yeast.service.company;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.company.MonthlyFeeCMapper;
 import org.springframework.stereotype.Service;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class MonthlyFeeCServiceImpl implements MonthlyFeeCService {
     }
 
     @Override
-    public Employee findByUserName(String userName) {
+    public Member findByUserName(String userName) {
         return monthlyFeeCMapper.findEmployeeByUserName(userName);
     }
 

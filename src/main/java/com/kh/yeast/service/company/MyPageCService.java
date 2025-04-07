@@ -1,6 +1,6 @@
 package com.kh.yeast.service.company;
 
-import com.kh.yeast.domain.entity.Member;
+import com.kh.yeast.domain.vo.Member;
 
 public interface MyPageCService {
 

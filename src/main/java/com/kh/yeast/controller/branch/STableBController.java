@@ -1,7 +1,7 @@
 package com.kh.yeast.controller.branch;
 
+import com.kh.yeast.domain.vo.Member;
 import org.springframework.ui.Model;
-import com.kh.yeast.domain.entity.Employee;
 import com.kh.yeast.service.branch.STableBService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class STableBController {
 
     @GetMapping("/table/searchByName")
     public ResponseEntity<?> searchByName(@RequestParam String userName) {
-        List<Employee> employees = stableBService.findEmployeesByName(userName);
+        List<Member> employees = stableBService.findEmployeesByName(userName);
         System.out.println(employees);
         System.out.println("userName: " + userName);
 

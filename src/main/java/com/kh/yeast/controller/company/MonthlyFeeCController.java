@@ -1,6 +1,6 @@
 package com.kh.yeast.controller.company;
 
-import com.kh.yeast.domain.entity.Employee;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.company.MonthlyFeeCService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +30,7 @@ public class MonthlyFeeCController {
     @GetMapping("/monthlyFee")
     public String goToMonthlyFee(@RequestParam(value = "userName", required = false) String userName, Model model) {
         System.out.println("🚀 받은 요청 - userName: " + userName);
-        Employee employee = monthlyFeeCService.findByUserName(userName);
+        Member employee = monthlyFeeCService.findByUserName(userName);
         if (employee == null) {
             System.out.println("❌ 해당 직원 정보 없음!");
             return "redirect:/errorPage";
