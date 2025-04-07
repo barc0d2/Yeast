@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<pre>${employee.salary}</pre>
+<pre>${member.salary}</pre>
 <div class="first">
   <main class="frame">
     <section class="content">
@@ -45,18 +45,18 @@
           </tr>
           </thead>
           <tbody id="employeeTable">
-          <c:forEach var="employee" items="${employees}">
+          <c:forEach var="member" items="${members}">
             <tr>
               <td>
                 <c:choose>
-                  <c:when test="${employee.status eq '수급 완료'}">
+                  <c:when test="${member.status eq '수급 완료'}">
                     <button class="pay-button" disabled>
                       수급 완료
                     </button>
                   </c:when>
                   <c:otherwise>
                     <button class="pay-button"
-                            data-user-name="${employee.userName}"
+                            data-user-name="${member.userName}"
                             onclick="goToPayslip(this)">
                       수급
                     </button>
@@ -64,14 +64,14 @@
                 </c:choose>
 
               </td>
-              <td>${employee.userName}</td>
-              <td>${employee.UpdateAt}</td>
-              <td>${employee.positionName}</td>
-              <td>${employee.headName}</td>
-              <td>${employee.email}</td>
-              <td>${employee.salary}</td>
-              <td>${employee.phone}</td>
-              <td>${employee.gender}</td>
+              <td>${member.userName}</td>
+              <td>${member.UpdateAt}</td>
+              <td>${member.positionName}</td>
+              <td>${member.headName}</td>
+              <td>${member.email}</td>
+              <td>${member.salary}</td>
+              <td>${member.phone}</td>
+              <td>${member.gender}</td>
             </tr>
           </c:forEach>
           </tbody>
@@ -113,7 +113,7 @@
   });
 
   // ✅ 검색 후 직원 목록 동적 렌더링 유지
-  function renderEmployeeList(employees) {
+  function renderEmployeeList(members) {
     const tableBody = document.getElementById("employeeTable");
     if (!tableBody) {
       console.error("employeeTable 요소가 존재하지 않습니다!");
@@ -122,9 +122,9 @@
 
     tableBody.innerHTML = "";
 
-    employees.forEach(employee => {
+    members.forEach(member => {
 
-      let statusText = employee.status ?? "수급";
+      let statusText = member.status ?? "수급";
       let isCompleted = statusText === "수급 완료";
       let buttonClass = "pay-button";
 
@@ -134,7 +134,7 @@
       const button = document.createElement("button");
       button.className = buttonClass;
       button.textContent = statusText;
-      button.setAttribute("data-user-name", employee.userName);
+      button.setAttribute("data-user-name", member.userName);
 
       if (!isCompleted) {
         button.setAttribute("onclick", "goToPayslip(this)");
@@ -146,29 +146,29 @@
       tdButton.appendChild(button);
 
       const tdUserName = document.createElement("td");
-      tdUserName.textContent = employee.userName ?? "없음";
+      tdUserName.textContent = member.userName ?? "없음";
 
       const tdUpdateAt = document.createElement("td");
-      tdUpdateAt.textContent = employee.updateAt ?? "없음";
+      tdUpdateAt.textContent = member.updateAt ?? "없음";
 
       const tdPositionName = document.createElement("td");
-      tdPositionName.textContent = employee.positionName ?? " 없음";
+      tdPositionName.textContent = member.positionName ?? " 없음";
 
       const tdHeadName = document.createElement("td");
-      tdHeadName.textContent = employee.headName ?? " 없음";
+      tdHeadName.textContent = member.headName ?? " 없음";
 
       const tdEmail = document.createElement("td");
-      tdEmail.textContent = employee.email ?? " 없음";
+      tdEmail.textContent = member.email ?? " 없음";
 
       const tdSalary = document.createElement("td");
-      tdSalary.textContent = employee.salary ? `${employee.salary}원` : " 없음";
+      tdSalary.textContent = member.salary ? `${member.salary}원` : " 없음";
       console.log("td샐러리", tdSalary);
 
       const tdPhone = document.createElement("td");
-      tdPhone.textContent = employee.phone ?? " 없음";
+      tdPhone.textContent = member.phone ?? " 없음";
 
       const tdGender = document.createElement("td");
-      tdGender.textContent = employee.gender ?? "없음";
+      tdGender.textContent = member.gender ?? "없음";
 
       row.appendChild(tdButton);
       row.appendChild(tdUserName);

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="com.kh.yeast.domain.entity.Member" %>
+<%@ page import="com.kh.yeast.domain.vo.Member" %>
 <%
   Member member = (Member) request.getAttribute("member");
 %>
@@ -34,17 +34,17 @@
       </div>
       <div class="div">
         <p class="p"><span class="span">이름&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="name" id="name" class="blank" value="${userName}" />
+        <input type="text" name="name" id="name" class="blank" value="${member.userName}" />
       </div>
       <div class="div">
         <p class="p"><span class="span">아이디&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="userId" id="userId" class="blank" value="${userId}" />
+        <input type="text" name="userId" id="userId" class="blank" value="${member.userId}" />
       </div>
     </div>
     <div class="column-2">
       <div class="div">
         <p class="p"><span class="span">비밀번호&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="password" name="password" id="password" class="blank" value="${userPwd}"/>
+        <input type="password" name="password" id="password" class="blank" value="${member.userPwd}"/>
       </div>
       <div class="div">
         <p class="p"><span class="span">주소&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
@@ -56,15 +56,15 @@
       </div>
       <div class="div">
         <p class="p"><span class="span">생년월일&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="date" name="birthdate" id="birthdate" class="blank" value="${member.birthdate}" />
+        <input type="date" name="birthdate" id="birthdate" class="blank" value="${member.birthday}" />
       </div>
       <div class="div-2">
         <p class="p"><span class="span">직무&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="position" class="blank-2" value="${member.position}" />
+        <input type="text" name="address" id="position" class="blank-2" value="${member.positionName}" />
       </div>
       <div class="div-2">
         <p class="p"><span class="span">부서&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="business" class="blank-2" value="${member.business}" />
+        <input type="text" name="address" id="business" class="blank-2" value="${member.businessName}" />
       </div>
       <div class="div-2">
         <p class="p"><span class="span">성별&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
@@ -72,7 +72,7 @@
       </div>
       <div class="div-2">
         <p class="p"><span class="span">사수&nbsp;&nbsp;</span> <span class="span">(이름)</span></p>
-        <input type="text" name="manager" id="manager" class="blank-2" value="${managerName}" readonly/>
+        <input type="text" name="manager" id="manager" class="blank-2" value="${member.managerName}" readonly/>
       </div>
     </div>
   </div>
@@ -95,9 +95,9 @@
       password: document.getElementById("password").value,
       address: document.getElementById("address").value,
       phone: document.getElementById("phone").value,
-      birthdate: document.getElementById("birthdate").value,
-      position: document.getElementById("position").value,
-      business: document.getElementById("business").value,
+      birthday: document.getElementById("birthday").value,
+      positionName: document.getElementById("positionName").value,
+      businessName: document.getElementById("businessName").value,
       gender: document.getElementById("gender").value,
       managerName: document.getElementById("managerName").value
     };

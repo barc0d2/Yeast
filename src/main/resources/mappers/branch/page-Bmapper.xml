@@ -39,8 +39,8 @@
 
     <select id="selectBMemberByUserNo" resultMap="memberResult">
         SELECT m.*,
-        p.POSITION_NAME AS position,
-        b.BUSINESS_NAME AS business
+        p.POSITION_NAME AS POSITION_NAME,
+        b.BUSINESS_NAME AS BUSINESS_NAME
         FROM MEMBER m
         LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO
         LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO

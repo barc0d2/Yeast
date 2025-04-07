@@ -27,19 +27,19 @@ public class STableBController {
 
     @GetMapping("/table/searchByName")
     public ResponseEntity<?> searchByName(@RequestParam String userName) {
-        List<Member> employees = stableBService.findEmployeesByName(userName);
-        System.out.println(employees);
+        List<Member> members = stableBService.findEmployeesByName(userName);
+        System.out.println(members);
         System.out.println("userName: " + userName);
 
-        employees.forEach(emp -> System.out.println("직원: " + emp));
+        members.forEach(emp -> System.out.println("직원: " + emp));
 
 
 
-        if (employees.isEmpty()) {
+        if (members.isEmpty()) {
             return ResponseEntity.ok(Collections.emptyList());
         }
 
-        return ResponseEntity.ok(employees);
+        return ResponseEntity.ok(members);
 
     }
 

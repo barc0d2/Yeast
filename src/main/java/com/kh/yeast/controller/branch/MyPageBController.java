@@ -40,10 +40,11 @@ public class MyPageBController {
             return "redirect:/branch/errorPage";
         }
 
-        Member managerName = myPageBService.getBManagerName(userNo);
-
+        Member manager = myPageBService.getBManagerName(userNo);
+        if (manager != null) {
+            member.setManagerName(manager.getUserName());
+        }
         model.addAttribute("member", member);
-        model.addAttribute("managerName", managerName);
 
         return "branch/mypage/myPage";
     }

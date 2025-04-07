@@ -31,28 +31,27 @@ public class STableBServiceImpl implements STableBService {
 
     @Override
     public List<Member> findEmployeesByName(String userName) {
-        List<Member> employees = stableBMapper.findEmployeesByName(userName);
-        LocalDate now = LocalDate.now();
+        List<Member> members = stableBMapper.findEmployeesByName(userName);
 
-        for (Member employee : employees) {
-            if (employee.getHeadName() == null) {
-                employee.setHeadName("없음");
+        for (Member member : members) {
+            if (member.getHeadName() == null) {
+                member.setHeadName("없음");
             }
 
 
-            if (employee.getUpdateAt() != null) {
-                LocalDate updateAt = employee.getUpdateAt();
-                boolean sameYearAndMonth = updateAt.getYear() == now.getYear() &&
-                        updateAt.getMonth() == now.getMonth();
-                employee.setStatus(sameYearAndMonth ? 1 : 0);
+            if (member.getUpdateAt() != null) {
+                LocalDate now = LocalDate.now();
+                boolean sameMonth = member.getUpdateAt().getYear() == now.getYear() &&
+                        member.getUpdateAt().getMonth() == now.getMonth();
+                member.setStatus(sameMonth ? 1 : 0);
             } else {
-                employee.setStatus(0);
+                member.setStatus(0);
             }
-            System.out.println("사용자: " + employee.getUserName() + " / updateAt: " + employee.getUpdateAt());
+            System.out.println("사용자: " + member.getUserName() + " / updateAt: " + member.getUpdateAt());
         }
 
 
-        return employees;
+        return members;
     }
 
     @Override

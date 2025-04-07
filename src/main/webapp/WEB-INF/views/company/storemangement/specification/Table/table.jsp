@@ -120,8 +120,8 @@
       tdButton.appendChild(button);
       const tdUserName = document.createElement("td");
       tdUserName.textContent = employee.userName ?? "없음";
-      const tdEnrollDate = document.createElement("td");
-      tdEnrollDate.textContent = employee.enrollDate ?? "❌ 없음";
+      const tdUpdateAt = document.createElement("td");
+      tdUpdateAt.textContent = employee.updateAt ?? "❌ 없음";
       const tdPositionName = document.createElement("td");
       tdPositionName.textContent = employee.positionName ?? "❌ 없음";
       const tdHeadName = document.createElement("td");
