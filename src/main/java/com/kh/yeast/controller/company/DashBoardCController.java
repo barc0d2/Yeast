@@ -28,9 +28,7 @@ public class DashBoardCController {
         
         // 데이터가 비어있는지 확인하고 로그 출력
         if (productionData == null || productionData.isEmpty()) {
-            System.out.println("경고: 생산 데이터가 없습니다. 차트에 더미 데이터가 표시됩니다.");
-            // 더미 데이터 생성
-            productionData = createDummyProductionData();
+            System.out.println("경고: 생산 데이터가 존재하지 않습니다.");
         } else {
             System.out.println("생산 데이터 로드 성공: " + productionData.size() + "개 카테고리");
         }
@@ -54,23 +52,5 @@ public class DashBoardCController {
             model.addAttribute("errorMsg", "생산 데이터 불러오기 실패");
             return "common/errorPage";
         }
-    }
-    
-    // 데이터가 없을 경우 더미 데이터 생성
-    private ArrayList<Inventory> createDummyProductionData() {
-        ArrayList<Inventory> dummyData = new ArrayList<>();
-        
-        // 각 카테고리별 더미 데이터 추가
-        String[] categories = {"단과자", "식빵", "간식빵", "건강빵", "도넛", "페스츄리"};
-        int[] counts = {260, 125, 54, 146, 100, 70};
-        
-        for (int i = 0; i < categories.length; i++) {
-            Inventory item = new Inventory();
-            item.setCategoryName(categories[i]);
-            item.setInvenCount(counts[i]);
-            dummyData.add(item);
-        }
-        
-        return dummyData;
     }
 }
