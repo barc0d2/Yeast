@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/css/branch/order/orderPage/style.css"/>
     <link rel="stylesheet" href="/css/branch/order/orderPage/global.css"/>
     <link rel="stylesheet" href="/css/branch/order/orderPage/styleguide.css"/>
@@ -15,16 +16,16 @@
         <div id="myModal" class="modal">
             <div class="modalHead">
                 빵 품목리스트
-                <select name="빵종류" id="">
+                <select name="빵종류">
                     <option value="" disabled selected>빵 종류</option>
                     <option>소금빵</option>
                 </select>
-                <select name="" id="">
-
+                <select name="빵이름">
+                    <option value="" disabled selected>빵 이름</option>
                 </select>
                 <button id="modalClose">닫기</button>
             </div>
-            <div class="modalBody">
+            <div id="modalBody">
 
             </div>
         </div>
@@ -124,17 +125,63 @@
     const modal = document.getElementById('modalOpen');
     const mymodal = document.getElementById('myModal');
     const modalClose = document.getElementById('modalClose');
+    const modalBody = document.getElementById('modalBody');
 
-    modal.onclick = function () {
-        mymodal.style.display = "block";
-    }
+    modal.onclick = function (data) {
+        $.ajax({
+            url: `/api/order/modalOpen`,
+            type: 'GET',
+            success: function (data) {
+                let html = `
+                <table style="width: 100%; text-align: center;">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>카테고리</th>
+                            <th>빵 이름</th>
+                            <th>가격</th>
+                            <th>재고</th>
+                            <th>선택</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+                data.forEach(item => {
+                    html += `
+                    <tr>
+                        <td>${item.breadNo}</td>
+                        <td>${item.categoryName}</td>
+                        <td>${item.breadName}</td>
+                        <td>${item.price}원</td>
+                        <td>${item.invenCount}개</td>
+                        <td><input type="radio" name="breadCheckbox" style="transform: scale(1.5);" value="${item.breadNo}"></td>
+                    </tr>
+                `;
+                });
+
+                html += `
+                    </tbody>
+                </table>
+            `;
+
+                modalBody.innerHTML = html;
+                mymodal.style.display = "block";
+            },
+            error: function () {
+                alert('데이터를 불러오는데 실패하였습니다.');
+            }
+        });
+    };
+
+
     modalClose.onclick = function () {
         mymodal.style.display = "none";
-    }
-
-
+    };
 </script>
-<jsp:include page="../sideBar/whiteSideBar.jsp"/>
-<jsp:include page="../sideBar/whiteTopBar.jsp"/>
+
+<%--<jsp:include page="../sideBar/whiteSideBar.jsp"/>--%>
+<%--<jsp:include page="../sideBar/whiteTopBar.jsp"/>--%>
 </body>
 </html>

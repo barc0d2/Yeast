@@ -17,11 +17,15 @@ public class Supply {
     private Long branchNo;
     private Long companyNo;
     private Integer quantity;
-    private Integer status;
+    private String status;
     private Date orderDate;
     private Timestamp createDate;
     private Timestamp updateAt;
     private String separate;
-    private String client;
+    private String categoryName;
+    private String breadName;
+    private Integer price;
+    private Integer invenCount;
     private String manager;
+    private String client;
 }

@@ -136,7 +136,7 @@
                 </div>
                 <div class="submenu">
                     <div class="submenu-item">발주신청</div>
-                    <div class="submenu-item">발주신청 내역</div>
+                    <a href="/branch/order/list"><div class="submenu-item">발주신청 내역</div></a>
                 </div>
 
                 <div class="menu-item">

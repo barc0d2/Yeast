@@ -69,16 +69,16 @@
                 <div class="enroll-date">입사일</div>
             </div>
 
-            <c:forEach var="m" items="${list}">
-                <div class="list-2" onclick="location.href='enrollForm?userNo=${m.userNo}'">
-                    <div class="email-2">${m.email}</div>
-                    <div class="no-2">${m.userNo}</div>
-                    <div class="name-2">${m.userName}</div>
-                    <div class="id-2">${m.userId}</div>
-                    <div class="phone-2">${m.phone}</div>
-                    <div class="text-wrapper-3">${m.gender}</div>
-                    <div class="text-wrapper-3">${m.positionName}</div>
-                    <div class="enroll-date-2">${m.enrollDate}</div>
+            <c:forEach var="member" items="${list}">
+                <div class="list-2" onclick="location.href='enrollForm?userNo=${member.userNo}'">
+                    <div class="email-2">${member.email}</div>
+                    <div class="no-2">${member.userNo}</div>
+                    <div class="name-2">${member.userName}</div>
+                    <div class="id-2">${member.userId}</div>
+                    <div class="phone-2">${member.phone}</div>
+                    <div class="text-wrapper-3">${member.gender}</div>
+                    <div class="text-wrapper-3">${member.positionName}</div>
+                    <div class="enroll-date-2">${member.enrollDate}</div>
                 </div>
             </c:forEach>
         </div>
