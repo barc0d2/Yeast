@@ -60,13 +60,14 @@ public class MyPageBController {
         Member managerName = myPageBService.getBManagerName(member.getUserNo());
 
         request.setAttribute("email", member.getEmail());
-        request.setAttribute("name", member.getName());
+        request.setAttribute("name", member.getUserName());
         request.setAttribute("userId", member.getUserId());
+        request.setAttribute("password", member.getUserPwd() );
         request.setAttribute("address", member.getAddress());
         request.setAttribute("phone", member.getPhone());
-        request.setAttribute("birthdate", member.getBirthday()); // ✅ 수정
-        request.setAttribute("position", member.getPositionNo()); // ✅ 수정
-        request.setAttribute("business", member.getBusinessNo()); // ✅ 수정
+        request.setAttribute("birthdate", member.getBirthday());
+        request.setAttribute("position", member.getPositionNo());
+        request.setAttribute("business", member.getBusinessNo());
         request.setAttribute("gender", member.getGender());
         request.setAttribute("managerName", managerName);
 

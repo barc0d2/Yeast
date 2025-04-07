@@ -50,7 +50,7 @@
               <td>
                 <button class="pay-button"
                         data-user-name="${employee.userName}"
-                        onclick="goToPayslip(this)">
+                        onclick="goToMonthlyFee(this)">
                   수급
                 </button>
               </td>
@@ -72,20 +72,16 @@
 </div>
 
 <script>
-  // ✅ 직원 검색 기능 유지
   document.getElementById("employeeForm").addEventListener("submit", function(event) {
     event.preventDefault();
-
     const userNameInput = document.getElementById("user-name");
     let userName = userNameInput.value.trim();
     if (!userName) {
       alert("직원 이름을 입력하세요.");
       return;
     }
-
     let encodedUserName = encodeURIComponent(userName);
     let requestUrl = "/branch/storemangement/specification/table/searchByName?userName=" + encodedUserName;
-
     fetch(requestUrl, {
       method: "GET",
       headers: { "Content-Type": "application/json" }
@@ -102,57 +98,43 @@
             .catch(error => console.error("Error:", error));
   });
 
-  // ✅ 검색 후 직원 목록 동적 렌더링 유지
   function renderEmployeeList(employees) {
     const tableBody = document.getElementById("employeeTable");
     if (!tableBody) {
       console.error("🚨 employeeTable 요소가 존재하지 않습니다!");
       return;
     }
-
-    tableBody.innerHTML = ""; // 기존 데이터 초기화
+    tableBody.innerHTML = "";
 
     employees.forEach(employee => {
       console.log("샐러리", employee.salary);
       let statusText = "수급";
       let buttonClass = "pay-button";
-
       const row = document.createElement("tr");
-
       const button = document.createElement("button");
       button.className = buttonClass;
       button.textContent = statusText;
       button.setAttribute("data-user-name", employee.userName);
-      button.setAttribute("onclick", "goToPayslip(this)");
-
+      button.setAttribute("onclick", "goToMonthlyFee(this)");
       const tdButton = document.createElement("td");
       tdButton.appendChild(button);
-
       const tdUserName = document.createElement("td");
       tdUserName.textContent = employee.userName ?? "없음";
-
       const tdEnrollDate = document.createElement("td");
       tdEnrollDate.textContent = employee.enrollDate ?? "❌ 없음";
-
       const tdPositionName = document.createElement("td");
       tdPositionName.textContent = employee.positionName ?? "❌ 없음";
-
       const tdHeadName = document.createElement("td");
       tdHeadName.textContent = employee.headName ?? "❌ 없음";
-
       const tdEmail = document.createElement("td");
       tdEmail.textContent = employee.email ?? "❌ 없음";
-
       const tdSalary = document.createElement("td");
       tdSalary.textContent = employee.salary ? `${employee.salary}원` : "❌ 없음";
       console.log("td샐러리", tdSalary);
-
       const tdPhone = document.createElement("td");
       tdPhone.textContent = employee.phone ?? "❌ 없음";
-
       const tdGender = document.createElement("td");
       tdGender.textContent = employee.gender ?? "❌ 없음";
-
       row.appendChild(tdButton);
       row.appendChild(tdUserName);
       row.appendChild(tdEnrollDate);
@@ -162,22 +144,20 @@
       row.appendChild(tdSalary);
       row.appendChild(tdPhone);
       row.appendChild(tdGender);
-
       tableBody.appendChild(row);
-
       console.log(row);
     });
   }
 
-  function goToPayslip(button) {
+  function goToMonthlyFee(button) {
     let userName = button.getAttribute("data-user-name");
     if (!userName) {
       alert("직원 정보가 없습니다.");
       return;
     }
     let encodedUserName = encodeURIComponent(userName);
-    let payslipUrl = "../payslip/paySlip?userName=" + encodedUserName;
-    window.location.href = payslipUrl;
+    let monthlyFeeUrl = "/company/storemangement/specification/monthlyFee/monthlyFee?userName=" + encodedUserName;
+    window.location.href = monthlyFeeUrl;
   }
 </script>
 

@@ -5,6 +5,7 @@ import com.kh.yeast.mappers.branch.STableBMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,14 +31,26 @@ public class STableBServiceImpl implements STableBService {
     @Override
     public List<Employee> findEmployeesByName(String userName) {
         List<Employee> employees = stableBMapper.findEmployeesByName(userName);
+        LocalDate now = LocalDate.now();
+
         for (Employee employee : employees) {
             if (employee.getHeadName() == null) {
                 employee.setHeadName("없음");
             }
-            if (employee.getStatus() != null) {
-                employee.setStatus(employee.getStatus().equals("1") ? "수급 완료" : "미완료");
+
+
+            if (employee.getUpdateAt() != null) {
+                LocalDate updateAt = employee.getUpdateAt();
+                boolean sameYearAndMonth = updateAt.getYear() == now.getYear() &&
+                        updateAt.getMonth() == now.getMonth();
+                employee.setStatus(sameYearAndMonth ? "수급 완료" : "수급");
+            } else {
+                employee.setStatus("수급");
             }
+            System.out.println("사용자: " + employee.getUserName() + " / updateAt: " + employee.getUpdateAt());
         }
+
+
         return employees;
     }
 

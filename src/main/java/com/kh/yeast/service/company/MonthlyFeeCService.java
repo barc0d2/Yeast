@@ -8,4 +8,13 @@ public interface MonthlyFeeCService {
     Map<String, Object> getEmployeePaySlip(Long userNo);
 
     Employee findByUserName(String userName);
+
+    Long getCompanyMoneyByUserNo(Long userNo);
+
+    boolean deductSalaryFromCompany(Long userNo, int salary);
+
+    Long getCSalaryByUserNo(Long userNo);
+
+    Long getMonthlySellMoneyByBusinessNo(Long businessNo);
+
 }

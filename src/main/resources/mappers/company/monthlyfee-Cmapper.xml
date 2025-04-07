@@ -52,7 +52,6 @@
         LEFT JOIN POSITION p ON e.POSITION_NO = p.POSITION_NO
         WHERE e.USER_NO = #{userNo}
     </select>
-
     <select id="findEmployeeByUserName" parameterType="String" resultMap="employeeResult">
         SELECT
         e.USER_NO,
@@ -78,4 +77,37 @@
         LEFT JOIN POSITION p ON e.POSITION_NO = p.POSITION_NO
         WHERE e.USER_NAME = #{userName}
     </select>
+    <select id="getCompanyMoneyByUserNo" resultType="Long" parameterType="Long">
+        SELECT B.MONEY
+        FROM BUSINESS B
+        JOIN MEMBER m ON B.BUSINESS_NO = m.BUSINESS_NO
+        WHERE m.USER_NO = #{userNo}
+    </select>
+    <update id="updateCompanyMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY - #{salary}
+        WHERE BUSINESS_NO = (
+        SELECT BUSINESS_NO FROM MEMBER WHERE USER_NO = #{userNo}
+        )
+    </update>
+    <select id="selectCSalaryByUserNo" parameterType="Long" resultType="Long">
+        SELECT SALARY
+        FROM MEMBER
+        WHERE USER_NO = #{userNo}
+    </select>
+
+    <select id="selectMoneyByUserNo" parameterType="Long" resultType="Long">
+        SELECT B.MONEY
+        FROM MEMBER E
+        JOIN BUSINESS B ON E.BUSINESS_NO = B.BUSINESS_NO
+        WHERE E.USER_NO = #{userNo}
+    </select>
+    <select id="selectMonthlySellMoneyByBusinessNo" resultType="Long" parameterType="Long">
+        SELECT
+        SUM(SELL_MONEY)
+        FROM SELL
+        WHERE BUSINESS_NO = #{businessNo}
+        AND TO_CHAR(CREATE_DATE, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')
+    </select>
+
 </mapper>

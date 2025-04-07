@@ -28,24 +28,41 @@ public class MonthlyFeeCController {
     }
 
     @GetMapping("/monthlyFee")
-    public String goToPaySlip(@RequestParam(value = "userName", required = false) String userName, Model model) {
+    public String goToMonthlyFee(@RequestParam(value = "userName", required = false) String userName, Model model) {
         System.out.println("🚀 받은 요청 - userName: " + userName);
-
-//        if (userName == null || userName.isEmpty()) {
-//            System.out.println("❌ userName이 비어 있음!");
-//            return "redirect:/errorPage";
-//        }
-
         Employee employee = monthlyFeeCService.findByUserName(userName);
-
         if (employee == null) {
             System.out.println("❌ 해당 직원 정보 없음!");
             return "redirect:/errorPage";
         }
 
-        model.addAttribute("employee", employee);
+        Long businessNo = employee.getBusinessNo().longValue();
 
-        System.out.println("🚀 받은 요청 - employee: " + employee);
+        Long totalSellMoney = monthlyFeeCService.getMonthlySellMoneyByBusinessNo(businessNo);
+        if (totalSellMoney == null) {
+            totalSellMoney = 80000000L;
+            System.out.println("totalsellMoney: " + totalSellMoney);
+        }
+
+        Long salary = totalSellMoney * 5 / 100;
+
+        Long money = monthlyFeeCService.getCompanyMoneyByUserNo(employee.getUserNo());
+
+        Long remaining = (money - salary);
+
+        model.addAttribute("employee", employee);
+        model.addAttribute("totalSellMoney", totalSellMoney);
+        model.addAttribute("salary", salary);
+        model.addAttribute("money", money);
+        model.addAttribute("remaining", remaining);
+
+        System.out.println("받은 요청 employee: " + employee);
         return "company/storemangement/specification/monthlyFee/monthlyFee";
     }
+
+    @GetMapping("/gototable")
+    public String gototable() {
+        return "company/storemangement/specification/Table/table";
+    }
+
 }

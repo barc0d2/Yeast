@@ -1,16 +1,19 @@
 .company {
   position: relative;
-  width: 1569px;
-  height: 974px;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .company .form {
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  position: absolute;
-  top: 31px;
-  left: 392px;
+  position: relative;
+  top: 100px;
+  left: 400px;
 }
 
 .company .out-frame {
@@ -484,4 +487,14 @@ button{
 
 .click:hover{
   background-color: #f0f0f0;
+}
+
+
+.status-pending {
+  background-color: #ffe7e0 !important; /* 기존 핑크 */
+}
+
+
+.status-done {
+  background-color: #e0f7ff !important; /* 하늘색 */
 }

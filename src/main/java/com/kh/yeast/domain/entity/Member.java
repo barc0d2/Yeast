@@ -71,6 +71,8 @@ public class Member {
     @Setter
     private String business;  // 사업명
 
+    private LocalDate updateAt;
+
     // 기존 getter 메소드 추가
     public String getPosition() {
         return position != null ? position : "";  // 직급명 반환

@@ -32,4 +32,26 @@ public class MonthlyFeeCServiceImpl implements MonthlyFeeCService {
     public Employee findByUserName(String userName) {
         return monthlyFeeCMapper.findEmployeeByUserName(userName);
     }
+
+    @Override
+    public Long getCompanyMoneyByUserNo(Long userNo) {
+        return monthlyFeeCMapper.getCompanyMoneyByUserNo(userNo);
+    }
+
+    @Override
+    public boolean deductSalaryFromCompany(Long userNo, int salary) {
+        Long result = monthlyFeeCMapper.updateCompanyMoney(userNo, salary);
+        return result > 0;
+    }
+
+    @Override
+    public Long getCSalaryByUserNo(Long userNo) {
+        return monthlyFeeCMapper.selectCSalaryByUserNo(userNo);
+    }
+
+    @Override
+    public Long getMonthlySellMoneyByBusinessNo(Long businessNo) {
+        return monthlyFeeCMapper.selectMonthlySellMoneyByBusinessNo(businessNo);
+    }
+
 }

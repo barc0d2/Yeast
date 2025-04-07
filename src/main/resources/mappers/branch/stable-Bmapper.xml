@@ -22,6 +22,7 @@
         <result column="BIRTHDAY" property="birthday"/>
         <result column="status" property="status"/>
         <result column="HEAD_NAME" property="headName"/>
+        <result column="UPDATE_AT" property="updateAt"/>
     </resultMap>
     <select id="findByUserNo" parameterType="long" resultType="com.kh.yeast.domain.entity.Employee">
         SELECT *
@@ -36,28 +37,29 @@
     <select id="getAllEmployees" resultMap="employeeResult">
         SELECT * FROM MEMBER;
     </select>
-    <select id="findEmployeesByName" resultType="Employee">
-            SELECT
-            m.USER_NO AS userNo,
-            m.USER_ID AS userId,
-            m.USER_NAME AS userName,
-            m.EMAIL,
-            m.PHONE,
-            m.GENDER,
-            m.POSITION_NO AS positionNo,
-            p.POSITION_NAME AS positionName,  -- ✅ 추가된 부분
-            m.BUSINESS_NO AS businessNo,
-            m.SALARY,
-            m.CREATE_DATE AS enrollDate,
-            m.STATUS AS status,
-            COALESCE(h.headName, '없음') AS headName
-            FROM MEMBER m
-            LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO  -- ✅ 조인 추가
-            LEFT JOIN (
-            SELECT mm.BUSINESS_NO, mm.USER_NAME AS headName
-            FROM MEMBER mm
-            WHERE mm.POSITION_NO = 14
-            ) h ON m.BUSINESS_NO = h.BUSINESS_NO
-            WHERE m.USER_NAME = #{userName}
-        </select>
+    <select id="findEmployeesByName" resultMap="employeeResult">
+        SELECT
+        m.USER_NO AS USER_NO,
+        m.USER_ID AS USER_ID,
+        m.USER_NAME AS USER_NAME,
+        m.EMAIL,
+        m.PHONE,
+        m.GENDER,
+        m.POSITION_NO AS POSITION_NO,
+        p.POSITION_NAME AS POSITION_NAME,
+        m.BUSINESS_NO AS BUSINESS_NO,
+        m.SALARY,
+        m.CREATE_DATE AS CREATE_DATE,
+        m.STATUS AS status,
+        m.UPDATE_AT AS UPDATE_AT,
+        COALESCE(h.headName, '없음') AS HEAD_NAME
+        FROM MEMBER m
+        LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO
+        LEFT JOIN (
+        SELECT mm.BUSINESS_NO, mm.USER_NAME AS headName
+        FROM MEMBER mm
+        WHERE mm.POSITION_NO = 14
+        ) h ON m.BUSINESS_NO = h.BUSINESS_NO
+        WHERE m.USER_NAME = #{userName}
+    </select>
 </mapper>

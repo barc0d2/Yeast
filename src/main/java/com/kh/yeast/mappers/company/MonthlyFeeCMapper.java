@@ -12,4 +12,13 @@ public interface MonthlyFeeCMapper {
     Map<String, Object> getEmployeePaySlip(@Param("userNo") Long userNo);
 
     Employee findEmployeeByUserName(@Param("userName") String userName);
+
+    Long getCompanyMoneyByUserNo(@Param("userNo") Long userNo);
+
+    Long updateCompanyMoney(@Param("userNo") Long userNo, @Param("salary") int salary);
+
+    Long selectCSalaryByUserNo(@Param("userNo") Long userNo);
+
+    Long selectMonthlySellMoneyByBusinessNo(@Param("businessNo") Long businessNo);
+
 }

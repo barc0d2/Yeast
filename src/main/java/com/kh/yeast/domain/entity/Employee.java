@@ -22,11 +22,11 @@ public class Employee {
 
     private String businessName;
 
-    private Integer businessNo;
+    private Long businessNo;
 
     private String positionName;
 
-    private Integer positionNo;
+    private Long positionNo;
 
     private String managerName;
 
@@ -63,12 +63,7 @@ public class Employee {
 
     private String status;
 
-    @PrePersist
-    public void prePersist() {
-        if (this.enrollDate == null) {
-            this.enrollDate = LocalDate.now();
-        }
-    }
+    private LocalDate updateAt;
 
     @Override
     public String toString() {
@@ -87,7 +82,7 @@ public class Employee {
                 ", salary=" + salary +
                 ", bonus=" + bonus +
                 ", birthday=" + birthday +
-                ", enrollDate=" + (enrollDate != null ? enrollDate.toString() : "N/A") +
+                ", updateAt=" + (updateAt != null ? updateAt.toString() : "N/A") +
                 ", status=" + status +
                 '}';
     }

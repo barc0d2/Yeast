@@ -48,14 +48,24 @@
           <c:forEach var="employee" items="${employees}">
             <tr>
               <td>
-                <button class="pay-button"
-                        data-user-name="${employee.userName}"
-                        onclick="goToPayslip(this)">
-                  수급
-                </button>
+                <c:choose>
+                  <c:when test="${employee.status eq '수급 완료'}">
+                    <button class="pay-button" disabled>
+                      수급 완료
+                    </button>
+                  </c:when>
+                  <c:otherwise>
+                    <button class="pay-button"
+                            data-user-name="${employee.userName}"
+                            onclick="goToPayslip(this)">
+                      수급
+                    </button>
+                  </c:otherwise>
+                </c:choose>
+
               </td>
               <td>${employee.userName}</td>
-              <td>${employee.enrollDate}</td>
+              <td>${employee.UpdateAt}</td>
               <td>${employee.positionName}</td>
               <td>${employee.headName}</td>
               <td>${employee.email}</td>
@@ -106,16 +116,18 @@
   function renderEmployeeList(employees) {
     const tableBody = document.getElementById("employeeTable");
     if (!tableBody) {
-      console.error("🚨 employeeTable 요소가 존재하지 않습니다!");
+      console.error("employeeTable 요소가 존재하지 않습니다!");
       return;
     }
 
-    tableBody.innerHTML = ""; // 기존 데이터 초기화
+    tableBody.innerHTML = "";
 
     employees.forEach(employee => {
-      console.log("샐러리", employee.salary);
-      let statusText = "수급";
+
+      let statusText = employee.status ?? "수급";
+      let isCompleted = statusText === "수급 완료";
       let buttonClass = "pay-button";
+
 
       const row = document.createElement("tr");
 
@@ -123,7 +135,12 @@
       button.className = buttonClass;
       button.textContent = statusText;
       button.setAttribute("data-user-name", employee.userName);
-      button.setAttribute("onclick", "goToPayslip(this)");
+
+      if (!isCompleted) {
+        button.setAttribute("onclick", "goToPayslip(this)");
+      } else {
+        button.disabled = true;
+      }
 
       const tdButton = document.createElement("td");
       tdButton.appendChild(button);
@@ -131,31 +148,31 @@
       const tdUserName = document.createElement("td");
       tdUserName.textContent = employee.userName ?? "없음";
 
-      const tdEnrollDate = document.createElement("td");
-      tdEnrollDate.textContent = employee.enrollDate ?? "❌ 없음";
+      const tdUpdateAt = document.createElement("td");
+      tdUpdateAt.textContent = employee.updateAt ?? "없음";
 
       const tdPositionName = document.createElement("td");
-      tdPositionName.textContent = employee.positionName ?? "❌ 없음";
+      tdPositionName.textContent = employee.positionName ?? " 없음";
 
       const tdHeadName = document.createElement("td");
-      tdHeadName.textContent = employee.headName ?? "❌ 없음";
+      tdHeadName.textContent = employee.headName ?? " 없음";
 
       const tdEmail = document.createElement("td");
-      tdEmail.textContent = employee.email ?? "❌ 없음";
+      tdEmail.textContent = employee.email ?? " 없음";
 
       const tdSalary = document.createElement("td");
-      tdSalary.textContent = employee.salary ? `${employee.salary}원` : "❌ 없음";
+      tdSalary.textContent = employee.salary ? `${employee.salary}원` : " 없음";
       console.log("td샐러리", tdSalary);
 
       const tdPhone = document.createElement("td");
-      tdPhone.textContent = employee.phone ?? "❌ 없음";
+      tdPhone.textContent = employee.phone ?? " 없음";
 
       const tdGender = document.createElement("td");
-      tdGender.textContent = employee.gender ?? "❌ 없음";
+      tdGender.textContent = employee.gender ?? "없음";
 
       row.appendChild(tdButton);
       row.appendChild(tdUserName);
-      row.appendChild(tdEnrollDate);
+      row.appendChild(tdUpdateAt);
       row.appendChild(tdPositionName);
       row.appendChild(tdHeadName);
       row.appendChild(tdEmail);

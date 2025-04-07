@@ -8,11 +8,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/branch/storemangement/payslip/globals.css" />
-    <link rel="stylesheet" href="/css/branch/storemangement/payslip/styleguide.css" />
-    <link rel="stylesheet" href="/css/branch/storemangement/payslip/style.css" />
+    <link rel="stylesheet" href="/css/company/storemangement/monthlyFee/globals.css" />
+    <link rel="stylesheet" href="/css/company/storemangement/monthlyFee/styleguide.css" />
+    <link rel="stylesheet" href="/css/company/storemangement/monthlyFee/style.css" />
 </head>
 <body>
+<h1>디버깅</h1>
+<p>salary: ${salary}</p>
+<p>totalSellMoney: ${totalSellMoney}</p>
+<p>money: ${money}</p>
 <div class="company">
     <div class="form">
         <div class="out-frame">
@@ -44,7 +48,7 @@
                         </div>
                         <div class="line-2">
                             <div class="input-3">
-                                <div class="text-wrapper-4">70,998,020</div>
+                                <div class="text-wrapper-4"><fmt:formatNumber value="${totalSellMoney}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                             <div class="total-salary"><div class="text-wrapper-3">월 수익 총액</div></div>
@@ -61,10 +65,10 @@
                                             </svg>
                                         </div>
                                         <div class="input-in-wrapper">
-                                            <div class="input-in"><div class="text-wrapper-5">70,998,020원×5%</div></div>
+                                            <div class="input-in"><div class="text-wrapper-5"><fmt:formatNumber value="${totalSellMoney}" type="number" />원×5%</div></div>
                                         </div>
                                         <div class="money">
-                                            <div class="number"><fmt:formatNumber value="${employee.salary}" type="number" /></div>
+                                            <div class="number"><fmt:formatNumber value="${salary}" type="number" /></div>
                                             <div class="won-2">원</div>
                                         </div>
                                     </div>
@@ -74,31 +78,53 @@
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">공제액 합계</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${employee.salary}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${salary}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">예상 실수령액(월)</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${employee.salary}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${salary}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
-                        <div class="line-5">
-                            <div class="text-3"><div class="text-wrapper-6">지급 여부</div></div>
-                            <div class="incomplete-wrapper"><div class="text-wrapper-3">미완료</div></div>
+                        <div class="line-5" id="statusBox">
+                            <div class="text-3">
+                                <div class="text-wrapper-6">지급 여부</div>
+                            </div>
+                            <div class="incomplete-wrapper">
+                                <div class="text-wrapper-3" id="statusText">미완료</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="click">
+    <a href="/company/storemangement/specification/monthlyFee/gototable" class="click">
         <button class="list">목록으로</button>
-    </div>
+    </a>
 </div>
 <jsp:include page="../../../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../../../sideBar/brownTopBar.jsp"/>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const statusBox = document.getElementById("statusBox");
+        const statusText = document.getElementById("statusText");
+
+        statusBox.addEventListener("click", function () {
+        if (statusText.innerText === "미완료") {
+        statusText.innerText = "완료";
+        statusBox.classList.remove("status-pending");
+        statusBox.classList.add("status-done");
+    } else {
+        statusText.innerText = "미완료";
+        statusBox.classList.remove("status-done");
+        statusBox.classList.add("status-pending");
+    }
+    });
+    });
+</script>
 </body>
 </html>

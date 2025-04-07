@@ -29,9 +29,9 @@ public class STableBController {
     public ResponseEntity<?> searchByName(@RequestParam String userName) {
         List<Employee> employees = stableBService.findEmployeesByName(userName);
         System.out.println(employees);
-        System.out.println("🔍 검색 요청 userName: " + userName);
+        System.out.println("userName: " + userName);
 
-        employees.forEach(emp -> System.out.println("🔍 검색된 직원: " + emp));
+        employees.forEach(emp -> System.out.println("직원: " + emp));
 
 
 
