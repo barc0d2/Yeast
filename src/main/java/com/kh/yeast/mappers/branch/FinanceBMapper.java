@@ -1,6 +1,7 @@
 package com.kh.yeast.mappers.branch;
 
 import com.kh.yeast.domain.vo.BreadInventory;
+import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Sell;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,5 +13,6 @@ public interface FinanceBMapper {
     ArrayList<BreadInventory> inventoryList(String businessName);
     ArrayList<Sell> selectTodaySell(Long businessNo);
     Integer insertSell(Sell sell);
-    Integer updateMoney(Integer money, Long businessNo, Timestamp createDate);
+    Integer updateMoney(Integer money, Long businessNo, Timestamp updateVersion);
+    ArrayList<Business> selectBusinessUpdate(Long businessNo);
 }

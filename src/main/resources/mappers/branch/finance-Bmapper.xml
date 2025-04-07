@@ -26,6 +26,9 @@
         <result column="SELL_NO" property="sellNo"/>
         <result column="CREATE_DATE" property="createDate"/>
     </resultMap>
+    <resultMap id="businessResult" type="Business">
+        <result column="UPDATE_AT" property="updateAt"/>
+    </resultMap>
     <select id="inventoryList" resultMap="inventoryResult">
         SELECT  BREAD_NO,
                 BREAD_NAME,
@@ -48,7 +51,6 @@
     <select id="selectTodaySell" resultMap="sellResult">
         SELECT SELL_NO,
                 CREATE_DATE
-
         FROM SELL
         WHERE BUSINESS_NO = #{businessNo}
                 AND CREATE_DATE
@@ -63,11 +65,17 @@
         VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList})
     </insert>
 
+    <select id="selectBusinessUpdate" resultMap="businessResult">
+        SELECT UPDATE_AT
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
     <update id="updateMoney">
         UPDATE BUSINESS
         SET MONEY = MONEY + #{money},
-            UPDATE_AT = #{createDate}
-        WHERE BUSINESS_NO = #{businessNo} AND
-            UPDATE_AT &lt;= #{createDate}
+        UPDATE_AT = #{createDate}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
     </update>
 </mapper>
