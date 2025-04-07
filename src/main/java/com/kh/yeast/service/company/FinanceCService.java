@@ -12,4 +12,6 @@ public interface FinanceCService {
     ArrayList<Sell> selectRecentlySellList();
 
     Model selectSellList(Long businessNo, Integer cpage, String period, Model model);
+
+    Model allSellList(Integer cpage, String period, Model model);
 }
