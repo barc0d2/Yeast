@@ -3,6 +3,8 @@ package com.kh.yeast.service.company;
 import com.kh.yeast.domain.vo.Bread;
 import com.kh.yeast.domain.vo.BreadCategory;
 import com.kh.yeast.domain.vo.PageInfo;
+import com.kh.yeast.domain.entity.Bread;
+import com.kh.yeast.domain.entity.PageInfo;
 import com.kh.yeast.mappers.company.BreadCMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;

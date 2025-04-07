@@ -30,7 +30,7 @@ public class FinanceBServiceImpl implements FinanceBService {
         Integer money = sell.getSellMoney();
 
         ArrayList<Business> businesses = financeBMapper.selectBusinessUpdate(businessNo);
-        Timestamp updateVersion = businesses.get(0).getUpdateAt();
+        Timestamp updateAt = businesses.get(0).getUpdateAt();
 
         ArrayList<Sell> sellList = financeBMapper.selectTodaySell(businessNo);
         if(!sellList.isEmpty()){
@@ -42,7 +42,7 @@ public class FinanceBServiceImpl implements FinanceBService {
             throw new RuntimeException("하루 매출 내역이 저장되지 않았습니다.");
         }
 
-        Integer result2 = financeBMapper.updateMoney(money, businessNo, updateVersion);
+        Integer result2 = financeBMapper.updateMoney(money, businessNo, updateAt);
         if(result2==0){
             throw new RuntimeException("가맹점에 입금 실패");
         }

@@ -1,0 +1,14 @@
+.box {
+  height: 2393px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.box .group {
+  min-width: 1200px;
+  width: 100%;
+  background: url("../../image/companyIntroduce/fullmain.png") no-repeat;
+  background-size: cover;
+  height: 2393px;
+  top: 0;
+}

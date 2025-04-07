@@ -153,7 +153,9 @@
 
                     </div>
                     <div class="dropdown-menu">
+                        <a href="/branch/mypage/myPage">
                         <div class="dropdown-item">마이페이지</div>
+                        </a>
                         <div class="dropdown-item">로그아웃</div>
                     </div>
                 </div>
