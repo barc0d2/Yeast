@@ -13,6 +13,6 @@ public interface FinanceBMapper {
     ArrayList<BreadInventory> inventoryList(String businessName);
     ArrayList<Sell> selectTodaySell(Long businessNo);
     Integer insertSell(Sell sell);
-    Integer updateMoney(Integer money, Long businessNo, Timestamp updateVersion);
+    Integer updateMoney(Integer money, Long businessNo, Timestamp updateAt);
     ArrayList<Business> selectBusinessUpdate(Long businessNo);
 }

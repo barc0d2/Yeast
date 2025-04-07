@@ -74,7 +74,7 @@
     <update id="updateMoney">
         UPDATE BUSINESS
         SET MONEY = MONEY + #{money},
-        UPDATE_AT = #{createDate}
+        UPDATE_AT = SYSTIMESTAMP
         WHERE BUSINESS_NO = #{businessNo}
         AND UPDATE_AT = #{updateAt}
     </update>
