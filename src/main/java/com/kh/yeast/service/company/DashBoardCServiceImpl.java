@@ -1,6 +1,7 @@
 package com.kh.yeast.service.company;
 
 import com.kh.yeast.domain.vo.Inventory;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.Sell;
 import com.kh.yeast.mappers.company.DashBoardCMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,10 @@ public class DashBoardCServiceImpl implements DashBoardCService {
     @Override
     public int getTotalInventoryAmount() {
         return dashBoardCMapper.selectTotalInventoryAmount();
+    }
+    
+    @Override
+    public ArrayList<Member> getAllMembers() {
+        return dashBoardCMapper.selectAllMembers();
     }
 }

@@ -116,7 +116,7 @@ public class MemberController {
             if(loginMember.getUserId().startsWith("B")){
                 modelAndView.setViewName("redirect:/branch/dashboard/dashboard");
             }else{
-                modelAndView.setViewName("redirect:/company/dashboard/dashboard");
+                modelAndView.setViewName("redirect:/company/dashboard");
             }
         }
         return modelAndView;

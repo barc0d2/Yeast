@@ -61,8 +61,8 @@
     </select>
 
     <insert id="insertSell">
-        INSERT INTO SELL (SELL_MONEY, BREAD_LIST, QUANTITY_LIST, BUSINESS_NO, TOTAL_LIST)
-        VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList})
+        INSERT INTO SELL (SELL_MONEY, BREAD_LIST, QUANTITY_LIST, BUSINESS_NO, TOTAL_LIST, CATEGORY_LIST)
+        VALUES (#{sellMoney}, #{breadList}, #{quantityList}, #{businessNo}, #{totalList}, #{categoryList})
     </insert>
 
     <select id="selectBusinessUpdate" resultMap="businessResult">

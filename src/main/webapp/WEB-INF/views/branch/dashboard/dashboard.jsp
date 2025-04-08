@@ -194,108 +194,37 @@
                     </div>
                 </div>
                 <ul class="div-8">
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    <li class="div-2">
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">최지원</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회사</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">회장</p>
-                        </div>
-                        <div class="div-wrapper-2">
-                            <p class="text-wrapper-13">010-7777-7777</p>
-                        </div>
-                    </li>
-                    
+                    <c:choose>
+                        <c:when test="${empty memberList}">
+                            <!-- 데이터가 없을 경우 메시지 표시 -->
+                            <li class="div-2">
+                                <div class="div-wrapper-2 text-center" style="width: 100%;">
+                                    <p class="text-wrapper-13">등록된 직원 정보가 없습니다.</p>
+                                </div>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <!-- memberList에서 데이터 반복 표시 -->
+                            <c:forEach var="member" items="${memberList}">
+                                <li class="div-2">
+                                    <div class="div-wrapper-2">
+                                        <p class="text-wrapper-13">${member.userName}</p>
+                                    </div>
+                                    <div class="div-wrapper-2">
+                                        <p class="text-wrapper-13">${member.businessName}</p>
+                                    </div>
+                                    <div class="div-wrapper-2">
+                                        <p class="text-wrapper-13">${member.positionName}</p>
+                                    </div>
+                                    <div class="div-wrapper-2">
+                                        <p class="text-wrapper-13">${member.phone}</p>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
-
         </section>
     </main>
 

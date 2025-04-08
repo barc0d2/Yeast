@@ -7,11 +7,14 @@
     <resultMap id="inventoryResultMap" type="com.kh.yeast.domain.vo.Inventory">
         <result property="categoryName" column="categoryName"/>
         <result property="invenCount" column="invenCount"/>
+        <result property="createTime" column="createTime"/>
     </resultMap>
 
     <!-- 카테고리별 재고 데이터 조회 -->
     <select id="selectInventoryByCategory" resultMap="inventoryResultMap">
-        SELECT c.CATEGORY_NAME as categoryName, SUM(i.INVEN_COUNT) as invenCount
+        SELECT c.CATEGORY_NAME as categoryName, 
+               SUM(i.INVEN_COUNT) as invenCount,
+               MAX(i.CREATE_TIME) as createTime
         FROM INVENTORY i
         JOIN BREAD b ON i.BREAD_NO = b.BREAD_NO
         JOIN BREAD_CATEGORY c ON b.CATEGORY_NO = c.CATEGORY_NO
@@ -24,5 +27,25 @@
         SELECT SUM(i.INVEN_COUNT * b.PRICE) as TOTAL_AMOUNT
         FROM INVENTORY i
         JOIN BREAD b ON i.BREAD_NO = b.BREAD_NO
+    </select>
+    
+    <!-- 전체 직원 목록 조회 -->
+    <select id="selectAllMembers" resultType="Member">
+        SELECT 
+            m.USER_NO as userNo,
+            m.USER_NAME as userName,
+            b.BUSINESS_NAME as businessName,
+            p.POSITION_NAME as positionName,
+            m.PHONE as phone
+        FROM 
+            "MEMBER" m
+        JOIN 
+            "BUSINESS" b ON m.BUSINESS_NO = b.BUSINESS_NO
+        JOIN 
+            "POSITION" p ON m.POSITION_NO = p.POSITION_NO
+        WHERE 
+            m.STATUS = 1
+        ORDER BY 
+            m.USER_NO ASC
     </select>
 </mapper>

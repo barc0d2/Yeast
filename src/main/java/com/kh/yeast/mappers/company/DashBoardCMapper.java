@@ -2,6 +2,7 @@ package com.kh.yeast.mappers.company;
 
 
 import com.kh.yeast.domain.vo.Inventory;
+import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
@@ -13,4 +14,7 @@ public interface DashBoardCMapper {
     
     // 총 재고 금액 조회
     int selectTotalInventoryAmount();
+    
+    // 전체 직원 목록 조회
+    ArrayList<Member> selectAllMembers();
 }

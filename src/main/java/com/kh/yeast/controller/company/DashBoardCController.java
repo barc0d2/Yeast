@@ -33,8 +33,17 @@ public class DashBoardCController {
             System.out.println("생산 데이터 로드 성공: " + productionData.size() + "개 카테고리");
         }
         
+        // 전체 직원 목록 데이터 추가
+        ArrayList<Member> memberList = dashBoardCService.getAllMembers();
+        if (memberList == null || memberList.isEmpty()) {
+            System.out.println("경고: 직원 데이터가 존재하지 않습니다.");
+        } else {
+            System.out.println("직원 데이터 로드 성공: " + memberList.size() + "명");
+        }
+        
         model.addAttribute("productionData", productionData);
         model.addAttribute("totalAmount", totalAmount > 0 ? totalAmount : 11040000);
+        model.addAttribute("memberList", memberList);
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName","대시보드");
         return "company/dashboard/dashboard";
