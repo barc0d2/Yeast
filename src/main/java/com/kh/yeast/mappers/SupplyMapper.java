@@ -15,4 +15,6 @@ public interface SupplyMapper {
     int selectOrderCount();
 
     ArrayList<Supply> selectOrderList(PageInfo pi);
+
+    ArrayList<Supply> selectValue();
 }

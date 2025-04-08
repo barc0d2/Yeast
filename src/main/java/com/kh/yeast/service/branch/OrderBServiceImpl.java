@@ -21,8 +21,8 @@ public class OrderBServiceImpl implements OrderBService {
     }
 
     @Override
-    public List<Supply> modalOpen() {
-        return supplyMapper.modalOpen();
+    public ArrayList<Supply> selectValue() {
+        return supplyMapper.selectValue();
     }
 
     @Override

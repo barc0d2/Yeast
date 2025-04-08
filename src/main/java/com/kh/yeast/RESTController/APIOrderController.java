@@ -17,13 +17,6 @@ public class APIOrderController {
     private final OrderBService orderBService;
 
 
-    @GetMapping("modalOpen")
-    public List<Supply> modalOpen() {
-        List<Supply> supplies = orderBService.modalOpen();
-        System.out.println(supplies);
-        return supplies;
-    }
-
 
 
 }

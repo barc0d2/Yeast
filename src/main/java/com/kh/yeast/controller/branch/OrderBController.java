@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -37,6 +39,17 @@ public class OrderBController {
     public String orderPage(Model model){
         model.addAttribute("currentName", "발주신청");
         model.addAttribute("smallCurrentName","발주신청");
+        ArrayList<Supply> list = orderBService.selectValue();
+        System.out.println(list);
+        model.addAttribute("list", list);
+
+        List<String> categoryList = list.stream()
+                .map(Supply::getCategoryName)
+                .distinct()
+                .collect(Collectors.toList());
+
+        model.addAttribute("categoryList", categoryList);
+
         return "branch/order/orderPage";
     }
 }

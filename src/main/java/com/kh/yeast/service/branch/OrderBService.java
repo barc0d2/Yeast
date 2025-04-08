@@ -10,7 +10,7 @@ public interface OrderBService {
 
    int selectOrderCount();
 
-   List<Supply> modalOpen();
+   ArrayList<Supply> selectValue();
 
    ArrayList<Supply> selectOrderList(PageInfo pi);
 }

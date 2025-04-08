@@ -35,26 +35,39 @@
         MAX(S.STATUS) AS STATUS,
         MAX(S.ORDER_DATE) AS ORDER_DATE,
         MAX(S.CREATE_DATE) AS CREATE_DATE,
-        SUM(BR.PRICE * S.QUANTITY) AS PRICE,
+        SUM(BR.PRICE * SD.QUANTITY) AS TOTAL_PRICE,
         MAX(BU.BUSINESS_NAME) AS CLIENT
-        FROM SUPPLY S
-        JOIN BREAD BR ON S.BREAD_NO = BR.BREAD_NO
+        FROM
+        SUPPLY S
+        JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
+        JOIN BREAD BR ON SD.BREAD_NO = BR.BREAD_NO
         JOIN BUSINESS BU ON S.BRANCH_NO = BU.BUSINESS_NO
-        WHERE S.SEPARATE = 'O'
-        GROUP BY S.SUPPLY_NO
-        ORDER BY S.SUPPLY_NO
+        WHERE
+        S.SEPARATE = 'O'
+        GROUP BY
+        S.SUPPLY_NO
+        ORDER BY
+        S.SUPPLY_NO
+
     </select>
 
-    <select id="modalOpen" resultMap="supplyResult">
-        SELECT  B.BREAD_NO,
-                BC.CATEGORY_NAME,
-                B.BREAD_NAME,
-                B.PRICE,
-                I.INVEN_COUNT
+    <select id="selectValue" resultMap="supplyResult">
+        SELECT
+        B.BREAD_NO,
+        BC.CATEGORY_NAME,
+        B.BREAD_NAME,
+        B.PRICE,
+        I.INVEN_COUNT
         FROM BREAD B
         LEFT JOIN BREAD_CATEGORY BC ON B.CATEGORY_NO = BC.CATEGORY_NO
         LEFT JOIN INVENTORY I ON B.BREAD_NO = I.BREAD_NO
         WHERE B.STATUS = 1
-        ORDER BY B.BREAD_NO
+        AND I.CREATE_TIME = (
+        SELECT MAX(I2.CREATE_TIME)
+        FROM INVENTORY I2
+        WHERE I2.BREAD_NO = B.BREAD_NO
+        )
+        ORDER BY B.BREAD_NO ASC
+
     </select>
 </mapper>

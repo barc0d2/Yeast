@@ -135,7 +135,7 @@
                         </svg></div>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">발주신청</div>
+                    <a href="/branch/order/orderPage"><div class="submenu-item">발주신청</div></a>
                     <a href="/branch/order/list"><div class="submenu-item">발주신청 내역</div></a>
                 </div>
 
