@@ -1,0 +1,366 @@
+.main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    background-color: var(--variable-collection-button-white);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.main .container {
+    display: flex;
+    width: 1200px;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 140px;
+    left: 20%;
+    background-color: var(--variable-collection-button-white);
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: var(--variable-collection-button-lightyellow);
+}
+
+.main .column {
+    display: flex;
+    flex-wrap: wrap;
+    width: 426px;
+    height: 538px;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 92px;
+    position: relative;
+}
+
+.main .image {
+    display: flex;
+    flex-direction: column;
+    width: 382px;
+    align-items: flex-start;
+    gap: 5px;
+    position: relative;
+}
+
+.main .insert-photo {
+    display: flex;
+    height: 304px;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 106px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+}
+
+.main .frame {
+    display: flex;
+    flex-direction: column;
+    width: 382px;
+    height: 304px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: var(--variable-collection-button-lightyellow);
+}
+
+.main .plus-circle-fill {
+    position: relative;
+    width: 78px;
+    height: 78px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.plus-circle-fill:hover{
+    transform: scale(1.1);
+}
+
+.main .text-wrapper {
+    position: relative;
+    width: 160px;
+    height: 38.62px;
+    font-family: "Kakao OTF-Regular", Helvetica;
+    font-weight: 400;
+    color: var(--fontdeepdarkgray);
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+
+.main .inser-new-img {
+    display: flex;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    background-color: #f5f6fa;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: #f9c168;
+    transition: transform 0.3s ease-in-out;
+}
+
+.inser-new-img:hover{
+    transform: scale(1.1);
+}
+
+.main .new-img {
+    position: relative;
+    width: fit-content;
+    margin-top: -8.50px;
+    margin-bottom: -6.50px;
+    font-family: "Kakao OTF-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 32px;
+    white-space: nowrap;
+}
+
+.main .div {
+    display: flex;
+    flex-direction: column;
+    width: 376px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.main .p {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: var(--head-kakao-14px-font-family);
+    font-weight: var(--head-kakao-14px-font-weight);
+    color: #5f5f5f;
+    font-size: var(--head-kakao-14px-font-size);
+    letter-spacing: var(--head-kakao-14px-letter-spacing);
+    line-height: var(--head-kakao-14px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-14px-font-style);
+}
+
+.main .span {
+    font-weight: var(--head-kakao-14px-font-weight);
+    font-family: var(--head-kakao-14px-font-family);
+    font-style: var(--head-kakao-14px-font-style);
+    letter-spacing: var(--head-kakao-14px-letter-spacing);
+    line-height: var(--head-kakao-14px-line-height);
+    font-size: var(--head-kakao-14px-font-size);
+}
+
+.main .blank {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+    align-self: stretch;
+    width: 100%;
+    height: 54.43px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: #f5f6fa;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: var(--variable-collection-button-lightyellow);
+}
+
+.main .column-2 {
+    flex-wrap: wrap;
+    width: 478px;
+    height: 581px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px 5px;
+    display: flex;
+    position: relative;
+}
+
+.main .image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+    align-self: stretch;
+    width: 100%;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: #f5f6fa;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: var(--variable-collection-button-lightyellow);
+}
+
+.main .img {
+    position: relative;
+    width: 27px;
+    height: 33px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.img:hover{
+    transform: scale(1.1);
+}
+
+.main .div-2 {
+    display: flex;
+    flex-direction: column;
+    width: 188px;
+    align-items: flex-start;
+    gap: 13px;
+    position: relative;
+}
+
+.main .text-wrapper-2 {
+    font-weight: var(--head-kakao-14px-font-weight);
+    font-family: var(--head-kakao-14px-font-family);
+    font-style: var(--head-kakao-14px-font-style);
+    letter-spacing: var(--head-kakao-14px-letter-spacing);
+    line-height: var(--head-kakao-14px-line-height);
+    font-size: var(--head-kakao-14px-font-size);
+    color: #5f5f5f;
+}
+
+.main .blank-2 {
+    position: relative;
+    flex: 0 0 auto;
+    height: 54.33px;
+    width: 100%;
+    background-color: #f5f6fa;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: var(--variable-collection-button-lightyellow);
+}
+
+.main select option {
+    font-family: var(--head-kakao-14px-font-family);
+    font-weight: var(--head-kakao-14px-font-weight);
+    color: #5f5f5f;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.main select {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-color: var(--variable-collection-button-lightyellow);
+    background-color: #f5f6fa;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.position{
+    font-family: var(--head-kakao-14px-font-family);
+    font-weight: var(--head-kakao-14px-font-weight);
+    color: #5f5f5f;
+    font-size: 16px;
+    padding: 10px;
+}
+.main .gender {
+    font-weight: var(--head-kakao-14px-font-weight);
+    font-family: var(--head-kakao-14px-font-family);
+    font-style: var(--head-kakao-14px-font-style);
+    letter-spacing: var(--head-kakao-14px-letter-spacing);
+    line-height: var(--head-kakao-14px-line-height);
+    font-size: var(--head-kakao-14px-font-size);
+    color: #5f5f5f;
+}
+
+.main .drop-down-2 {
+    position: absolute;
+    width: 30px;
+    height: 25px;
+    top: 43px;
+    left: 157px;
+}
+
+.main .edit-btn {
+    display: flex;
+    width: 118px;
+    height: 63px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 846px;
+    left: 1130px;
+    background-color: var(--buttonprimary);
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: var(--fontdeepyellow);
+    transition: transform 0.3s ease-in-out;
+}
+
+.edit-btn:hover{
+    transform: scale(1.1);
+}
+
+.main .edit {
+    position: relative;
+    width: 120px;
+    height: 33px;
+    align-items: center;
+    justify-content: center;
+    margin-top: -1.00px;
+    font-family: "Kakao OTF-Bold", Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 33.6px;
+    white-space: nowrap;
+}
+
+.text-wrapper-3{
+    position: relative;
+    width: fit-content;
+    font-family: var(--head-kakao-32px-font-family);
+    font-weight: var(--head-kakao-32px-font-weight);
+    color: #ffffff;
+    font-size: var(--head-kakao-32px-font-size);
+    letter-spacing: var(--head-kakao-32px-letter-spacing);
+    line-height: var(--head-kakao-32px-line-height);
+    white-space: nowrap;
+    font-style: var(--head-kakao-32px-font-style);
+}
+
+.main .save-btn {
+    display: flex;
+    width: 118px;
+    height: 63px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 846px;
+    left: 1265px;
+    background-color: var(--buttonprimary);
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: var(--fontdeepyellow);
+    transition: transform 0.3s ease-in-out;
+}
+
+.save-btn:hover{
+    transform: scale(1.1);
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.branch.MyPageBMapper">
+<!--    <select id="selectBMemberById" resultType="com.kh.yeast.domain.entity.Member">-->
+<!--        SELECT-->
+<!--        m.*,-->
+<!--        b.BUSINESS_NAME AS businessName,-->
+<!--        mgr.USER_NAME AS managerName,-->
+<!--        m.IMAGE_CHANGE AS imageChangePath,-->
+<!--        m.IMAGE_ORIGIN AS imageOriginPath-->
+<!--        FROM MEMBER m-->
+<!--        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO-->
+<!--        LEFT JOIN MEMBER mgr ON m.MANAGER_NO = mgr.USER_NO-->
+<!--        WHERE m.USER_ID = #{userId}-->
+<!--    </select>-->
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="STATUS" property="status"/>
+        <result column="HEAD_NAME" property="headName"/>
+    </resultMap>
+
+    <select id="selectBMemberByUserNo" resultMap="memberResult">
+        SELECT m.*,
+        p.POSITION_NAME AS POSITION_NAME,
+        b.BUSINESS_NAME AS BUSINESS_NAME
+        FROM MEMBER m
+        LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO
+        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO
+        WHERE m.USER_NO = #{userNo}
+    </select>
+    <update id="updateBMember">
+        UPDATE MEMBER
+        SET
+        EMAIL = #{email},
+        USER_NAME = #{userName},
+        PASSWORD = #{password},
+        ADDRESS = #{address},
+        PHONE = #{phone},
+        BIRTHDAY = #{birthday},
+        POSITION_NO = #{positionNo},
+        BUSINESS_NO = #{businessNo},
+        GENDER = #{gender},
+        IMAGE_CHANGE = #{imageChangePath},
+        IMAGE_ORIGIN = #{imageOriginPath}
+        WHERE USER_NO = #{userNo}
+    </update>
+    <select id="findBManagerByUserNo" resultMap="memberResult">
+        SELECT m.*
+        FROM MEMBER m
+        WHERE m.USER_NO = (SELECT manager_no FROM MEMBER WHERE USER_NO = #{userNo})
+    </select>
+</mapper>

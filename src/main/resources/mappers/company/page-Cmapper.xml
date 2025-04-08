@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.MyPageCMapper">
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="STATUS" property="status"/>
+        <result column="HEAD_NAME" property="headName"/>
+    </resultMap>
+
+
+    <select id="selectCMemberById" resultMap="memberResult">
+        SELECT MEMBER m, b.BUSINESS_NAME AS businessName
+        FROM MEMBER m
+        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO
+        WHERE m.USER_ID = #{userId}
+    </select>
+    <select id="selectCMemberByUserNo" resultMap="memberResult">
+        SELECT MEMBER m, b.BUSINESS_NAME AS businessName
+        FROM MEMBER m
+        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO
+        WHERE m.USER_NO = #{userNo}
+    </select>
+    <update id="updateCMember">
+        UPDATE members
+        SET
+            EMAIL = #{email},
+            USER_NAME = #{userName},
+            PASSWORD = #{password},
+            ADDRESS = #{address},
+            PHONE = #{phone},
+            BIRTHDAY = #{birthdate},
+            POSITION = #{position},
+            BUSINESS = #{business},
+            GENDER = #{gender}
+        WHERE USER_ID = #{userId}
+    </update>
+</mapper>

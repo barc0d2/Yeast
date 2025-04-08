@@ -1,23 +1,26 @@
 package com.kh.yeast.controller.branch;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RequiredArgsConstructor
 @Controller
-@RequestMapping("/branch/dashboard")
 public class DashBoardBController {
 
-    @GetMapping("/dashboard")
+    @GetMapping("/branch/dashboard/dashboard")
     public String dashboard(Model model) {
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName","대시보드");
         return "branch/dashboard/dashboard";
     }
 
+    @GetMapping("/dashboard/mypage")
+    public String redirectToBMyPage(@RequestParam(value = "userId", required = false) String userId) {
+//        if (userId == null) {
+//            return "redirect:/branch/errorPage";
+//        }
+        return "redirect:/branch/mypage/myPage?userId=" + userId;
+    }
 
-    
 }
