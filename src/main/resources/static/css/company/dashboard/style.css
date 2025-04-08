@@ -121,7 +121,7 @@
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: var(--head-kakao-10px-letter-spacing);
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;
@@ -161,7 +161,7 @@
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;
   position: relative;
@@ -184,7 +184,7 @@
 
 .frame .element {
   flex: 1;
-  margin-top: -1.00px;
+  top: 30px;
   font-family: var(--head-kakao-14px-font-family);
   font-weight: var(--head-kakao-14px-font-weight);
   color: #000000;

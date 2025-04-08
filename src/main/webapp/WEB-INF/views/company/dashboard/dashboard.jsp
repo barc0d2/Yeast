@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -23,9 +24,17 @@
             <div class="inbody">
                 <article class="branch">
                     <header class="title">
-                        <h2 class="text-wrapper-12">전체 판매내역</h2>
+                        <h2 class="text-wrapper-12">금일 판매내역 
+                            <select id="businessSelect" onchange="changeBusiness(this.value)" style="margin-left: 10px; padding: 5px; border-radius: 5px; border: 1px solid #cecece;">
+                                <c:forEach var="business" items="${businessList}">
+                                    <option value="${business.businessNo}" ${not empty todaySales and todaySales[0].businessNo eq business.businessNo ? 'selected' : ''}>
+                                        ${business.businessName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </h2>
                     </header>
-                    <div class="body-2">
+                    <div id="salesContent" class="body-2">
                         <div class="header">
                             <div class="div-wrapper">
                                 <h4 class="text-wrapper-2">No.</h4>
@@ -44,114 +53,57 @@
                             </div>
                         </div>
                         <div class="line-wrapper">
+                            <c:choose>
+                                <c:when test="${empty todaySales}">
                             <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">단과자</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
+                                        <div class="div-wrapper" style="width: 100%; text-align: center;">
+                                            <p class="text-wrapper-3">금일 판매 데이터가 없습니다.</p>
                                 </div>
                             </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="sale" items="${todaySales}" varStatus="status">
+                                        <c:set var="categoryArray" value="${fn:split(sale.categoryList, ',')}" />
+                                        <c:set var="breadArray" value="${fn:split(sale.breadList, ',')}" />
+                                        <c:set var="quantityArray" value="${fn:split(sale.quantityList, ',')}" />
+                                        
+                                        <c:forEach var="category" items="${categoryArray}" varStatus="itemStatus">
                             <div class="div-2">
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-3">식빵</p>
+                                                    <p class="text-wrapper-2">${itemStatus.count}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
+                                                    <p class="text-wrapper-3">${category}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
+                                                    <p class="text-wrapper-2">${breadArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
+                                                    <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
+                                                    <p class="text-wrapper-2">
+                                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]] != null ? breadPriceMap[breadArray[itemStatus.index]] : 2000)}" pattern="#,###" />
+                                                    </p>
                             </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">간식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">건강빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">도넛</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">페스츄리</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
+                        </div>
+                                        </c:forEach>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <footer class="total">
                         <p class="element">
                             <span class="span">금일 총 매출 금액 : </span>
-                            <span class="text-wrapper-4">3,340,000</span>
+                            <span class="text-wrapper-4">
+                                <c:choose>
+                                    <c:when test="${empty todaySales}">0</c:when>
+                                    <c:otherwise>
+                                        <fmt:formatNumber value="${todaySales[0].sellMoney}" pattern="#,###,###"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
                             <span class="span">원</span>
                         </p>
                     </footer>
@@ -226,16 +178,16 @@
                         <c:forEach var="member" items="${memberList}">
                 <li class="div-2">
                     <div class="div-wrapper-2">
-                                    <p class="text-wrapper-13">${member.userName}</p>
+                        <p class="text-wrapper-13">${member.userName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                                    <p class="text-wrapper-13">${member.businessName}</p>
+                        <p class="text-wrapper-13">${member.businessName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                                    <p class="text-wrapper-13">${member.positionName}</p>
+                        <p class="text-wrapper-13">${member.positionName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                                    <p class="text-wrapper-13">${member.phone}</p>
+                        <p class="text-wrapper-13">${member.phone}</p>
                     </div>
                 </li>
                         </c:forEach>
@@ -307,6 +259,20 @@
             plugins: [ChartDataLabels]
         });
     });
+
+    function changeBusiness(businessNo) {
+        $.ajax({
+            url: '/company/dashboard/sales',
+            type: 'GET',
+            data: { businessNo: businessNo },
+            success: function(response) {
+                $('#salesContent').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
 </script>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../sideBar/brownTopBar.jsp"/>
