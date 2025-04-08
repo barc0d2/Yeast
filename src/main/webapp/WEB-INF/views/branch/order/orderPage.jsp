@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/css/branch/order/orderPage/style.css"/>
     <link rel="stylesheet" href="/css/branch/order/orderPage/global.css"/>
     <link rel="stylesheet" href="/css/branch/order/orderPage/styleguide.css"/>
@@ -15,18 +17,47 @@
         <div id="myModal" class="modal">
             <div class="modalHead">
                 빵 품목리스트
-                <select name="빵종류" id="">
+                <select name="빵종류">
                     <option value="" disabled selected>빵 종류</option>
-                    <option>소금빵</option>
-                </select>
-                <select name="" id="">
-
+                    <c:forEach var="c" items="${categoryList}">
+                        <option value="c">${c}</option>
+                    </c:forEach>
                 </select>
                 <button id="modalClose">닫기</button>
             </div>
-            <div class="modalBody">
-
+            <div id="modalSecond">
+                <div id="modalBody">
+                    <table class="listTable">
+                        <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>빵 종류</th>
+                            <th>빵 이름</th>
+                            <th>가격</th>
+                            <th>선택</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="bread" items="${list}">
+                            <tr>
+                                <td>${bread.breadNo}</td>
+                                <td>${bread.categoryName}</td>
+                                <td class="breadName">${bread.breadName}</td>
+                                <td class="price">${bread.price}</td>
+                                <td><input name="select" onclick="select()" style="transform: scale(1.5)" type="radio"></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="modalFooter">
+                    <div id="breadCount">수량: <input id="quantityInput" type="number" min="0" max="200" step="1" value="0"/></div>
+                    <p id="priceCalc">갯수 X 가격 : ? X ?</p>
+                    <p id="totalPrice">합산: ?</p>
+                    <button id="push">가져오기</button>
+                </div>
             </div>
+
         </div>
 
         <div class="cancel">
@@ -127,14 +158,17 @@
 
     modal.onclick = function () {
         mymodal.style.display = "block";
-    }
+    };
+
     modalClose.onclick = function () {
         mymodal.style.display = "none";
-    }
+    };
 
 
-</script>
-<jsp:include page="../sideBar/whiteSideBar.jsp"/>
-<jsp:include page="../sideBar/whiteTopBar.jsp"/>
+   </script>
+
+
+<%--<jsp:include page="../sideBar/whiteSideBar.jsp"/>--%>
+<%--<jsp:include page="../sideBar/whiteTopBar.jsp"/>--%>
 </body>
 </html>
