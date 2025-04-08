@@ -14,4 +14,8 @@ public interface FinanceCMapper {
     Integer selectSellCount(Long businessNo, String period);
     ArrayList<Sell> selectSellList(Long businessNo, String period, RowBounds rowBounds);
     ArrayList<Business> selectBusinessList(RowBounds rowBounds);
+
+    Integer allSellCount(String period);
+    ArrayList<Sell> allSellList(String period, RowBounds rowBounds);
+    ArrayList<Business> allBusinessList(RowBounds rowBounds);
 }

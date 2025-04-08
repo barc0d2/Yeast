@@ -34,7 +34,7 @@
             top: 40%;
             left: 57%;
             color: white;
-            font-size: 80px;
+            font-size: 40px;
         }
         .back{
             color: white;

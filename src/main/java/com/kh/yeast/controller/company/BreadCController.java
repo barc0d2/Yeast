@@ -25,12 +25,7 @@ public class BreadCController {
 
     @GetMapping("/enrollForm")
     public String enrollFormBread(Model model) {
-        ArrayList<BreadCategory> categories;
-        try {
-            categories = breadCService.selectBreadCategories();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<BreadCategory> categories = breadCService.selectBreadCategories();
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴등록");
         model.addAttribute("categories",categories);
@@ -39,18 +34,8 @@ public class BreadCController {
 
     @GetMapping("/updateForm")
     public String updateFormBread(int breadNo, Model model) {
-        ArrayList<BreadCategory> categories;
-        Bread bread = null;
-        try {
-            categories = breadCService.selectBreadCategories();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            bread = breadCService.selectBread(breadNo);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<BreadCategory> categories = breadCService.selectBreadCategories();
+        Bread bread = breadCService.selectBread(breadNo);
         model.addAttribute("bread",bread);
         model.addAttribute("categories",categories);
         model.addAttribute("currentName", "메뉴관리");
@@ -60,12 +45,7 @@ public class BreadCController {
 
     @GetMapping("/detail")
     public String detailBread(int breadNo, Model model) {
-        Bread bread = null;
-        try {
-            bread = breadCService.selectBread(breadNo);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Bread bread = breadCService.selectBread(breadNo);
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
         model.addAttribute("bread",bread);
@@ -74,20 +54,10 @@ public class BreadCController {
 
     @GetMapping("/list")
     public String selectBreadList(@RequestParam(defaultValue = "1") Integer currentPage, Model model) {
-        Integer breadCount = null;
-        try {
-            breadCount = breadCService.selectBreadCount();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Integer breadCount = breadCService.selectBreadCount();
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
-        ArrayList<Bread> list = null;
-        try {
-            list = breadCService.selectBreadList(pi);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<Bread> list = breadCService.selectBreadList(pi);
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
@@ -108,12 +78,7 @@ public class BreadCController {
             bread.setImageOrigin(upfile.getOriginalFilename());
         }
 
-        Integer result = null;
-        try {
-            result = breadCService.insertBread(bread);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Integer result = breadCService.insertBread(bread);
 
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
@@ -122,7 +87,7 @@ public class BreadCController {
             return "redirect:/company/bread/list";
         } else {
             model.addAttribute("errorMsg", "게시글 작성 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 
