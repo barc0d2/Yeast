@@ -70,4 +70,22 @@
         ORDER BY B.BREAD_NO ASC
 
     </select>
+
+    <insert id="insert">
+        INSERT
+        INTO SUPPLY(
+            BRANCH_NO,
+            ORDER_DATE,
+            SEPARATE
+        )
+        VALUES(
+        (SELECT BUSINESS_NO FROM BUSINESS WHERE BUSINESS_NAME = #{branchName}),
+        #{orderDate},
+        'O'
+        )
+    </insert>
+
+
+
+
 </mapper>

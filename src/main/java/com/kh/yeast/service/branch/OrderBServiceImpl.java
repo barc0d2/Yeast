@@ -2,10 +2,12 @@ package com.kh.yeast.service.branch;
 
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.domain.vo.Supply;
+import com.kh.yeast.domain.vo.SupplyDetail;
 import com.kh.yeast.mappers.SupplyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,4 +31,20 @@ public class OrderBServiceImpl implements OrderBService {
     public ArrayList<Supply> selectOrderList(PageInfo pi) {
         return supplyMapper.selectOrderList(pi);
     }
+
+    @Override
+    public int insert(String branchName, Date orderDate) {
+        return supplyMapper.insert(branchName, orderDate);
+    }
+
+    @Override
+    public String insert(Supply supply) {
+      int result = supplyMapper.insert(supply);
+        if(result==0){
+            throw new RuntimeException("저장되지 않았습니다.");
+        }
+        return "저장완료";
+    }
+
+
 }

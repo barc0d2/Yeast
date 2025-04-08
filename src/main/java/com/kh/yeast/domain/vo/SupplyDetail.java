@@ -1,14 +1,15 @@
-package com.kh.yeast.domain.dto;
+package com.kh.yeast.domain.vo;
 
 import lombok.*;
 
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BreadOrderDetail {
+@EqualsAndHashCode
+public class SupplyDetail {
+    private Long supplyNo;
     private String breadName;
-    private String category;
     private Integer quantity;
-    private Integer totalPrice;
 }
