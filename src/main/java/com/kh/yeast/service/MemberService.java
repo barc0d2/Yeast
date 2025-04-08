@@ -13,7 +13,7 @@ public interface MemberService {
     Integer insertMember(Member member);
     Integer idCheck(String checkId);
 
-    Member loginMember(String userId) throws Exception;
+    Member loginMember(String userId);
 
     Integer emailCheck(String checkEmail);
     

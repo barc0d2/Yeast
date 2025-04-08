@@ -4,6 +4,7 @@ body{
 #wrapper{
   position: relative;
   width: 100%;
+  width: 100%;
 }
 .frame {
   position: absolute;
@@ -380,23 +381,6 @@ body{
   font-style: var(--head-kakao-14px-font-style);
 }
 
-.frame .notion {
-  display: flex;
-  flex-direction: column;
-  width: 47%;
-  height: 240px;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px;
-  position: absolute;
-  top: 30px;
-  left: 790px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 1px solid;
-  border-color: #cecece;
-}
-
 .frame .div-10 {
   display: flex;
   align-items: center;
@@ -478,23 +462,6 @@ body{
   font-style: var(--head-kakao-16px-font-style);
 }
 
-.frame .inquire {
-  display: flex;
-  flex-direction: column;
-  width: 47%;
-  height: 240px;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px;
-  position: absolute;
-  top: 293px;
-  left: 790px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 1px solid;
-  border-color: #cecece;
-}
-
 .frame .text-wrapper-10 {
   position: relative;
   width: fit-content;
@@ -526,12 +493,12 @@ body{
   display: flex;
   flex-direction: column;
   width: 47%;
-  height: 385px;
+  height: 1030px;
   align-items: flex-start;
   gap: 17px;
   padding: 10px;
   position: absolute;
-  top: 568px;
+  top: 30px;
   left: 790px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -743,8 +710,6 @@ ul {
 
   .sales,
   .production,
-  .notion,
-  .inquire,
   .employee {
     width: 100%;
     margin-left: 0;

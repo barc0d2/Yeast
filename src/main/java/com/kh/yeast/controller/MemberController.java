@@ -99,11 +99,7 @@ public class MemberController {
     @PostMapping("/login")
     public ModelAndView login(@ModelAttribute Member member, HttpSession session, ModelAndView modelAndView) {
         Member loginMember = null;
-        try {
-            loginMember = memberService.loginMember(member.getUserId());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        loginMember = memberService.loginMember(member.getUserId());
 
         if(loginMember == null){
             modelAndView.addObject("errorMsg", "아이디를 찾을 수 없습니다.");
@@ -113,7 +109,7 @@ public class MemberController {
             modelAndView.setViewName("/common/errorPage");
         } else {
             session.setAttribute("loginUser", loginMember);
-            if(loginMember.getUserId().startsWith("B")){
+            if(loginMember.getPositionName().startsWith("B")){
                 modelAndView.setViewName("redirect:/branch/dashboard/dashboard");
             }else{
                 modelAndView.setViewName("redirect:/company/dashboard/dashboard");

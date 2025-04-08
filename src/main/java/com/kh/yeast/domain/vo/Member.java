@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 @ToString
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 @EqualsAndHashCode
 public class Member {
     private Long userNo;
+    private String headName;
     private Long businessNo;
     private String businessName;
     private Long positionNo;
@@ -35,4 +37,5 @@ public class Member {
     private Date birthday;
     private Date enrollDate;
     private Integer status;
+    private LocalDate updateAt;
 }

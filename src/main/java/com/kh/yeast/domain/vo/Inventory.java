@@ -21,4 +21,5 @@ public class Inventory {
     private String breadName;
     private Timestamp createTime;
     private Date enrollDate;
+    private String categoryName;
 }

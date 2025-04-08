@@ -30,12 +30,14 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member loginMember(String userId) {
         Member member = memberMapper.loginMember(userId);
-        Timestamp createDate = member.getCreateDate();
-        if (createDate != null) {
-            Date sqlDate = new Date(createDate.getTime());
-            member.setEnrollDate(sqlDate);
-        } else {
-            member.setEnrollDate(null);
+        if (member != null) {
+            Timestamp createDate = member.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                member.setEnrollDate(sqlDate);
+            } else {
+                member.setEnrollDate(null);
+            }
         }
         return member;
     }

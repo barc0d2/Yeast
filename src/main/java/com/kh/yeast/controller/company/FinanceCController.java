@@ -24,7 +24,7 @@ public class FinanceCController {
         model.addAttribute("list", list);
         model.addAttribute("currentName", "재무관리");
         model.addAttribute("smallCurrentName","회사 매출");
-        if(list.size() > 0){
+        if(!list.isEmpty()){
             return "company/finance/storegraph";
         } else {
             model.addAttribute("errorMsg", "회사 매출 데이터 불러오기 실패");
@@ -61,4 +61,5 @@ public class FinanceCController {
             return "company/finance/storedetail";
         }
     }
+
 }

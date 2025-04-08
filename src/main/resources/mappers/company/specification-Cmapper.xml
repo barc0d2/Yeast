@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.company.SpecificationCMapper">
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="STATUS" property="status"/>
+        <result column="HEAD_NAME" property="headName"/>
+    </resultMap>
+
+    <select id="selectEmployeeCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM MEMBER
+        WHERE STATUS = 1
+    </select>
+
+    <select id="selectEmployeeList" resultMap="memberResult">
+        SELECT M.USER_NO,
+        BUSINESS_NAME,
+        POSITION_NAME,
+        E.USER_NAME,
+        M.USER_NAME,
+        M.USER_ID,
+        M.USER_PWD,
+        M.EMAIL,
+        M.SALARY,
+        M.BONUS,
+        M.PHONE,
+        M.GENDER,
+        M.ADDRESS,
+        M.CREATE_DATE,
+        M.IMAGE_CHANGE,
+        M.IMAGE_ORIGIN,
+        M.BIRTHDAY AS BIRTHDAY,
+        M.STATUS AS STATUS
+        FROM MEMBER M
+        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+        WHERE M.STATUS = 1
+    </select>
+
+    <select id="findByUserNo" resultMap="memberResult">
+        SELECT *
+        FROM MEMBER
+        WHERE USER_NO = #{userNo}
+    </select>
+
+    <select id="findByUserName" resultMap="memberResult">
+        SELECT *
+        FROM employees
+        WHERE user_name = #{userName}
+    </select>
+
+<!--    <select id="getAllEmployees" resultMap="employeeResult">
+        SELECT * FROM MEMBER;
+    </select>-->
+
+    <select id="findEmployeesByName" resultMap="memberResult">
+        SELECT
+        m.USER_NO AS userNo,
+        m.USER_ID AS userId,
+        m.USER_NAME AS userName,
+        m.EMAIL,
+        m.PHONE,
+        m.GENDER,
+        m.POSITION_NO AS positionNo,
+        p.POSITION_NAME AS positionName,
+        m.BUSINESS_NO AS businessNo,
+        m.SALARY,
+        m.CREATE_DATE AS enrollDate,
+        m.STATUS AS status,
+        COALESCE(h.headName, '없음') AS headName
+        FROM MEMBER m
+        LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO
+        LEFT JOIN (
+        SELECT mm.BUSINESS_NO, mm.USER_NAME AS headName
+        FROM MEMBER mm
+        WHERE mm.POSITION_NO = 6
+        ) h ON m.BUSINESS_NO = h.BUSINESS_NO
+        WHERE m.USER_NAME = #{userName}
+    </select>
+</mapper>

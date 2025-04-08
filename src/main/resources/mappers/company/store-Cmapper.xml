@@ -85,7 +85,7 @@
         UPDATE INVENTORY
         SET INVEN_COUNT=0
     </update>
-    <select id="selectInventoryList">
+    <select id="selectInvenCount">
         SELECT INVEN_COUNT
         FROM INVENTORY
     </select>
