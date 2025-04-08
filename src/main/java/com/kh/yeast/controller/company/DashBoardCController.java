@@ -20,7 +20,7 @@ public class DashBoardCController {
 
     private final DashBoardCService dashBoardCService;
 
-    @GetMapping
+    @GetMapping("/dashboard")
     public String dashboard(Model model) {
         // 생산 현황 데이터 추가
         ArrayList<Inventory> productionData = dashBoardCService.productionList();

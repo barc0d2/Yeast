@@ -87,7 +87,7 @@ public class BreadCController {
             return "redirect:/company/bread/list";
         } else {
             model.addAttribute("errorMsg", "게시글 작성 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 

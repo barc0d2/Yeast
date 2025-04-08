@@ -1,5 +1,6 @@
 package com.kh.yeast.mappers.company;
 
+import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +22,11 @@ public interface SpecificationCMapper {
 
     Member findByUserNo(Long userNo);
 
-    Member findByUserName(String userName);
+    Member findByBusinessNo(Long businessNo);
+
+    Integer lastMonthStatus(Long businessNo);
+
+    Integer selectMonthlySellMoney(Long businessNo);
+
+    ArrayList<Business> selectBusinessList(RowBounds rowBounds);
 }

@@ -29,12 +29,8 @@ public class MonthlyFeeCController {
 
     @GetMapping("/monthlyFee")
     public String goToMonthlyFee(@RequestParam(value = "userName", required = false) String userName, Model model) {
-        System.out.println("받은 요청 - userName: " + userName);
+
         Member employee = monthlyFeeCService.findByUserName(userName);
-        if (employee == null) {
-            System.out.println("해당 직원 정보 없음!");
-            return "redirect:/errorPage";
-        }
 
         Long businessNo = employee.getBusinessNo().longValue();
 

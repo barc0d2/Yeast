@@ -140,10 +140,10 @@
             </div>
 
             <div class="branch-info">
-                <div class="branch-name">회사</div>
+                <div class="branch-name">${sessionScope.loginUser.businessName}</div>
                 <div class="manager-info">
-                    <div class="manager-label">공장장</div>
-                    <div class="manager-name">황인태</div>
+                    <div class="manager-label">${sessionScope.loginUser.positionName}</div>
+                    <div class="manager-name">${sessionScope.loginUser.userName}</div>
                     <div class="manager-separator" style="cursor: pointer;">
                         <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L4.70455 4.67453C5.14205 5.10849 5.85795 5.10849 6.29545 4.67453L10 1"
@@ -156,7 +156,7 @@
                         <a href="/branch/mypage/myPage">
                         <div class="dropdown-item">마이페이지</div>
                         </a>
-                        <div class="dropdown-item">로그아웃</div>
+                        <div class="dropdown-item" onclick="location.href='/member/logout'" style="cursor: pointer;">로그아웃</div>
                     </div>
                 </div>
             </div>
