@@ -23,11 +23,11 @@ public class FinanceCController {
         ArrayList<Sell> list = financeCService.selectRecentlySellList();
         model.addAttribute("list", list);
         model.addAttribute("currentName", "재무관리");
-        model.addAttribute("smallCurrentName","도매 매출");
+        model.addAttribute("smallCurrentName","회사 매출");
         if(list.size() > 0){
             return "company/finance/storegraph";
         } else {
-            model.addAttribute("errorMsg", "도매 매출 데이터 불러오기 실패");
+            model.addAttribute("errorMsg", "회사 매출 데이터 불러오기 실패");
             return "common/errorPage";
         }
     }
@@ -48,5 +48,17 @@ public class FinanceCController {
     public String wholesalegraph(Model model){
 
         return "company/finance/wholesalegraph";
+    }
+
+    @GetMapping("/storeDetail")
+    public String selectSellDetail(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period){
+
+        model = financeCService.selectSellList(businessNo, cpage, period, model);
+
+        if(model.containsAttribute("errorMsg")){
+            return "common/errorPage";
+        }else{
+            return "company/finance/storedetail";
+        }
     }
 }

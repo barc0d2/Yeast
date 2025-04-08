@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -156,411 +157,6 @@
                         </p>
                     </footer>
                 </article>
-                <article class="branch">
-                    <header class="title">
-                        <h3 class="div">잠실점</h3>
-                    </header>
-                    <div class="body-2">
-                        <div class="header">
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">종류</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">거래건수</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">매출</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">재고소진율</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">순수익</h4>
-                            </div>
-                        </div>
-                        <div class="line-wrapper">
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">단과자</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">간식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">건강빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">도넛</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">페스츄리</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="total">
-                        <p class="element">
-                            <span class="span">금일 총 매출 금액 : </span>
-                            <span class="text-wrapper-4">3,340,000</span>
-                            <span class="span">원</span>
-                        </p>
-                    </footer>
-                </article>
-                <article class="branch">
-                    <header class="title">
-                        <h3 class="div">잠실점</h3>
-                    </header>
-                    <div class="body-2">
-                        <div class="header">
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">종류</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">거래건수</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">매출</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">재고소진율</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">순수익</h4>
-                            </div>
-                        </div>
-                        <div class="line-wrapper">
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">단과자</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">간식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">건강빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">도넛</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">페스츄리</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="total">
-                        <p class="element">
-                            <span class="span">금일 총 매출 금액 : </span>
-                            <span class="text-wrapper-4">3,340,000</span>
-                            <span class="span">원</span>
-                        </p>
-                    </footer>
-                </article>
-                <article class="branch">
-                    <header class="title">
-                        <h3 class="div">잠실점</h3>
-                    </header>
-                    <div class="body-2">
-                        <div class="header">
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">종류</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">거래건수</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">매출</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">재고소진율</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">순수익</h4>
-                            </div>
-                        </div>
-                        <div class="line-wrapper">
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">단과자</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">간식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">건강빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">도넛</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">페스츄리</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="total">
-                        <p class="element">
-                            <span class="span">금일 총 매출 금액 : </span>
-                            <span class="text-wrapper-4">3,340,000</span>
-                            <span class="span">원</span>
-                        </p>
-                    </footer>
-                </article>
             </div>
         </div>
     </section>
@@ -573,112 +169,22 @@
             <div class="div-6">
                 <p class="p">
                     <span class="span">총 생산금액 : </span>
-                    <span class="text-wrapper-4">11,040,000</span>
+                    <span class="text-wrapper-4"><fmt:formatNumber value="${totalAmount}" pattern="#,###,###"/></span>
                     <span class="span">원</span>
                 </p>
                 <div class="div-7">
                     <h3 class="text-wrapper-5">생산완료 파트</h3>
                     <ul class="div-8">
-                        <li class="div-9">
-                            <time class="element-2">2025-3-12-06:35</time>
-                            <p class="text-wrapper-6">단과자</p>
-                        </li>
-                        <li class="div-9">
-                            <time class="element-2">2025-3-12-06:45</time>
-                            <p class="text-wrapper-6">건강빵</p>
-                        </li>
-                        <li class="div-9">
-                            <time class="element-2">2025-3-12-06:55</time>
-                            <p class="text-wrapper-6">간식빵</p>
-                        </li>
+                        <c:forEach var="item" items="${productionData}" varStatus="status">
+                            <li class="div-9">
+                                <time class="element-2"><fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy-MM-dd HH:mm"/></time>
+                                <p class="text-wrapper-6">${item.categoryName}</p>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="notion">
-        <header class="div-10">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_478_2940)">
-                    <path
-                            d="M6.42871 12.9428L17.4001 16.5999C17.615 16.6708 17.8436 16.6896 18.0671 16.6548C18.2906 16.6201 18.5027 16.5326 18.6859 16.3999C18.8704 16.2685 19.0211 16.0951 19.1256 15.8938C19.2299 15.6926 19.2849 15.4695 19.2859 15.2428V3.48567C19.2849 3.25903 19.2299 3.03589 19.1256 2.83469C19.0211 2.63349 18.8704 2.45999 18.6859 2.32853C18.5014 2.19816 18.2889 2.11336 18.0653 2.08107C17.8419 2.0488 17.6139 2.06996 17.4001 2.14282L6.42871 5.79996V12.9428Z"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                            d="M0.714355 9.37148C0.714355 9.84048 0.806733 10.3049 0.986214 10.7382C1.1657 11.1715 1.42877 11.5652 1.7604 11.8969C2.43017 12.5666 3.33858 12.9429 4.28578 12.9429H6.42864V5.80005H4.28578C3.81678 5.80005 3.35237 5.89242 2.91906 6.07191C2.48576 6.25139 2.09204 6.51446 1.7604 6.84609C1.09063 7.51586 0.714355 8.42428 0.714355 9.37148Z"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                            d="M4.28589 12.9429V14.3715C4.28589 14.8405 4.37826 15.3049 4.55775 15.7382C4.73723 16.1715 5.0003 16.5652 5.33193 16.8968C5.66357 17.2285 6.05729 17.4915 6.49059 17.6711C6.9239 17.8505 7.38832 17.9429 7.85732 17.9429"
-                            stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_478_2940">
-                        <rect width="20" height="20" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
-
-            <h2 class="text-wrapper-7">공지사항 관리</h2>
-        </header>
-        <ul class="div-8">
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-
-        </ul>
-    </section>
-    <section class="inquire">
-        <header class="div-10">
-            <div class="text-wrapper-10">Q</div>
-            <h2 class="text-wrapper-11">문의사항 관리</h2>
-        </header>
-        <ul class="div-8">
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-            <li class="line">
-                <p class="text-wrapper-8">이 부분 수정가능할까요?</p>
-                <time class="text-wrapper-9">2025-03-20</time>
-            </li>
-
-        </ul>
     </section>
     <section class="employee">
         <h2 class="text-wrapper-12">전체직원 목록</h2>
@@ -812,12 +318,29 @@
             '#575757'
         ];
 
+        // 카테고리 이름과 수량 데이터 가져오기
+        const categoryLabels = [
+            <c:forEach var="item" items="${productionData}" varStatus="status">
+                "${item.categoryName}"<c:if test="${!status.last}">, </c:if>
+            </c:forEach>
+        ];
+        
+        const inventoryData = [
+            <c:forEach var="item" items="${productionData}" varStatus="status">
+                ${item.invenCount}<c:if test="${!status.last}">, </c:if>
+            </c:forEach>
+        ];
+        
+        // 콘솔에 데이터 출력하여 확인
+        console.log("카테고리 라벨:", categoryLabels);
+        console.log("재고 데이터:", inventoryData);
+
         new Chart(document.getElementById("chartjs-doughnut"), {
             type: "pie",
             data: {
-                labels: ["단과자", "식빵", "간식빵", "건강빵", "도넛", "페스츄리"],
+                labels: categoryLabels.length > 0 ? categoryLabels : ["데이터 없음"],
                 datasets: [{
-                    data: [260, 125, 54, 146, 100, 70],
+                    data: inventoryData.length > 0 ? inventoryData : [100],
                     backgroundColor: colorPalette,
                     borderColor: "transparent"
                 }]

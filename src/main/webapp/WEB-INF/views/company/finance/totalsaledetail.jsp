@@ -44,7 +44,7 @@
                         <td>${sell.sellNo}</td>
                         <td>${sell.enrollDate}</td>
                         <td class="quantity" data-quantity="${sell.quantityList}"></td>
-                        <td>${sell.sellMoney}</td>
+                        <td><fmt:formatNumber value="${sell.sellMoney}" pattern="#,###" /></td>
                         <td>1,800,000</td>
                         <td>3,000,000</td>
                     </tr>

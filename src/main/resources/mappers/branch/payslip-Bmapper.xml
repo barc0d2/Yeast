@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.branch.PaySlipBMapper">
+    <resultMap id="memberResult" type="Member">
+        <result column="USER_NO" property="userNo"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_PWD" property="userPwd"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="EMAIL" property="email"/>
+        <result column="SALARY" property="salary"/>
+        <result column="BONUS" property="bonus"/>
+        <result column="PHONE" property="phone"/>
+        <result column="GENDER" property="gender"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="IMAGE_CHANGE" property="imageChange"/>
+        <result column="IMAGE_ORIGIN" property="imageOrigin"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="STATUS" property="status"/>
+        <result column="HEAD_NAME" property="headName"/>
+    </resultMap>
+
+    <select id="getEmployeePaySlip" resultMap="memberResult">
+        SELECT
+        e.USER_NO,
+        e.USER_ID,
+        e.USER_PWD,
+        e.USER_NAME,
+        e.BUSINESS_NAME,
+        e.BUSINESS_NO,
+        e.POSITION_NAME,
+        e.POSITION_NO,
+        e.MANAGER_NAME,
+        e.SALARY,
+        e.BONUS,
+        e.PHONE,
+        e.GENDER,
+        e.ADDRESS,
+        e.CREATE_DATE,
+        e.IMAGE_CHANGE,
+        e.IMAGE_ORIGIN,
+        e.BIRTHDAY,
+        e.STATUS,
+        h.USER_NAME AS HEAD_NAME
+        FROM MEMBER e
+        LEFT JOIN MEMBER h ON e.MANAGER_NAME = h.USER_ID
+        LEFT JOIN BUSINESSE b ON e.BUSINESS_NO = b.BUSINESS_NO
+        LEFT JOIN POSITION p ON e.POSITION_NO = p.POSITION_NO
+        WHERE e.USER_NO = #{userNo}
+    </select>
+    <select id="findEmployeeByUserName" resultMap="memberResult">
+        SELECT
+        e.USER_NO,
+        e.USER_ID,
+        e.USER_PWD,
+        e.USER_NAME,
+        e.BUSINESS_NO,
+        b.BUSINESS_NAME,
+        e.POSITION_NO,
+        p.POSITION_NAME,
+        e.SALARY,
+        e.BONUS,
+        e.PHONE,
+        e.GENDER,
+        e.ADDRESS,
+        e.CREATE_DATE,
+        e.IMAGE_CHANGE,
+        e.IMAGE_ORIGIN,
+        e.BIRTHDAY,
+        e.STATUS
+        FROM MEMBER e
+        LEFT JOIN BUSINESS b ON e.BUSINESS_NO = b.BUSINESS_NO
+        LEFT JOIN POSITION p ON e.POSITION_NO = p.POSITION_NO
+        WHERE e.USER_NAME = #{userName}
+    </select>
+</mapper>

@@ -25,7 +25,7 @@ public class FinanceBController {
         HttpSession session = request.getSession();
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
-        String businessName = "서울 강남점";
+        String businessName = "서울 홍대점";
         ArrayList<BreadInventory> breadInventoryList = null;
         try {
             breadInventoryList = financeBService.dailyBreadList(businessName);
