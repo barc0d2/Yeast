@@ -11,4 +11,10 @@ public interface DispatchCService {
     int selectDispatchCount();
 
     ArrayList<Supply> selectDispatchList(PageInfo pi);
+
+    ArrayList<Supply> selectSupply(int supplyNo);
+
+    Supply selectSupplyInfo(int supplyNo);
+
+    int approval(int supplyNo);
 }

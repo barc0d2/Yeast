@@ -97,7 +97,7 @@
     gap: 15px;
     padding: 0px 15px;
     position: absolute;
-    top: 50px;
+    top: 100px;
     left: 0;
   }
   
@@ -158,18 +158,16 @@
   
   .screen .name {
     position: relative;
-    width: 102px;
+    width: 200px;
     height: 44px;
-    margin-bottom: -1.00px;
-    margin-left: -1.00px;
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid;
     border-color: var(--linelightgray);
     padding-left: 10px;
-    font-family: var(--head-kakao-20px-font-family);
+    font-family: var(--head-kakao-28px-font-family);
     font-weight: var(--head-kakao-20px-font-weight);
-    font-size: var(--head-kakao-20px-font-size);
+    font-size: var(--head-kakao-28px-font-size);
     letter-spacing: var(--head-kakao-20px-letter-spacing);
     line-height: var(--head-kakao-20px-line-height);
     white-space: nowrap;
@@ -210,9 +208,9 @@
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid;
-    font-family: var(--head-kakao-20px-font-family);
+    font-family: var(--head-kakao-28px-font-family);
     font-weight: var(--head-kakao-20px-font-weight);
-    font-size: var(--head-kakao-20px-font-size);
+    font-size: var(--head-kakao-28px-font-size);
     letter-spacing: var(--head-kakao-20px-letter-spacing);
     line-height: var(--head-kakao-20px-line-height);
     white-space: nowrap;
@@ -324,8 +322,8 @@
     align-items: center;
     gap: 30px;
     position: absolute;
-    top: 470px;
-    left: 903px;
+    top: 520px;
+    left: 850px;
   }
   
   .screen .total-amount-wrapper {
@@ -354,7 +352,7 @@
     position: absolute;
     width: 947px;
     height: 474px;
-    top: 50px;
+    top: 100px;
     left: 467px;
   }
   
@@ -678,13 +676,13 @@
 
   #order-table{
     width: 100%;
-    font-family: var(--head-kakao-20px-font-family);
-    font-weight: var(--head-kakao-20px-font-weight);
-    font-size: var(--head-kakao-20px-font-size);
-    letter-spacing: var(--head-kakao-20px-letter-spacing);
-    line-height: var(--head-kakao-20px-line-height);
+    font-family: var(--head-kakao-24px-font-family);
+    font-weight: var(--head-kakao-24px-font-weight);
+    font-size: var(--head-kakao-24px-font-size);
+    letter-spacing: var(--head-kakao-24px-letter-spacing);
+    line-height: var(--head-kakao-24px-line-height);
     white-space: nowrap;
-    font-style: var(--head-kakao-20px-font-style);
+    font-style: var(--head-kakao-24px-font-style);
   }
 
 .listTable{
@@ -844,9 +842,12 @@ button{
   background: #eee;
   padding: 24px;
   border-radius: 12px;
-  width: 350px;
+  width: 450px;
+  height: 170px;
   text-align: center;
   font-family: sans-serif;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .payment-confirm-row {
@@ -878,6 +879,7 @@ button{
   border-radius: 8px;
   border: none;
   font-weight: bold;
+  font-size: 20px;
   cursor: pointer;
 }
 

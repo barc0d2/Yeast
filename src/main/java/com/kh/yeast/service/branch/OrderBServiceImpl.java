@@ -6,6 +6,7 @@ import com.kh.yeast.domain.vo.SupplyDetail;
 import com.kh.yeast.mappers.SupplyMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -52,6 +53,13 @@ public class OrderBServiceImpl implements OrderBService {
     @Override
     public int insertList(String categoryName, String breadName, String quantityList, String priceList) {
         return supplyMapper.insertList(categoryName,breadName,quantityList,priceList);
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 22 * * ?")
+    public int night() {
+        System.out.println("🔔 스케줄러 실행됨: 16:31");
+        return supplyMapper.night();
     }
 
 

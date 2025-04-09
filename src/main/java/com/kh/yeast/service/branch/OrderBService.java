@@ -19,4 +19,6 @@ public interface OrderBService {
     String insert(Supply supply);
 
     int insertList(String categoryName, String breadName, String quantityList, String priceList);
+
+    int night();
 }
