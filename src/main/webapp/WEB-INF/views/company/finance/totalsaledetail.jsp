@@ -97,6 +97,21 @@
             </ul>
         </div>
     </div>
+<%--    <td>${bread.breadNo}</td>
+    <td class="category">${bread.categoryName}</td>
+    <td class="breadName">${bread.breadName}</td>
+    <td class="price">${bread.price}</td>
+    <td><input name="select" onclick="select()" style="transform: scale(1.5)" type="radio"></td>
+    </tr>
+    </c:forEach>
+    </tbody>
+    </table>
+    </div>
+    <div id="modalFooter">
+        <div id="breadCount">수량: <input id="quantityInput" type="number" min="0" max="200" step="1" value="0"/></div>
+        <p id="priceCalc">갯수 X <br> 가격 : ? X ?</p>
+        <p id="totalPrice">합산: ?</p>
+        <button id="push">가져오기</button>--%>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             function updateURL() {
