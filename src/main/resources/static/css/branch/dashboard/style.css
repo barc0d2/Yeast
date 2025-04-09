@@ -195,7 +195,7 @@ body{
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: var(--head-kakao-10px-font-size);
+  font-size: var(--head-kakao-12px-font-size);
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;
   position: relative;
