@@ -38,21 +38,21 @@
                         <div class="line">
                             <div class="div">
                                 <div class="text"><div class="text-wrapper-2">이름</div></div>
-                                <div class="name-wrapper"><div class="text-wrapper-3">${member.userName}</div></div>
+                                <div class="name-wrapper"><div class="text-wrapper-3">${sessionScope.loginUser.userName}</div></div>
                             </div>
                             <div class="div">
                                 <div class="text"><div class="text-wrapper-2">사번</div></div>
-                                <div class="div-wrapper"><div class="text-wrapper-3">${member.userNo}</div></div>
+                                <div class="div-wrapper"><div class="text-wrapper-3">${sessionScope.loginUser.userNo}</div></div>
                             </div>
                         </div>
                         <div class="line">
                             <div class="div">
                                 <div class="text"><div class="business">사업장</div></div>
-                                <div class="input-2"><div class="text-wrapper-3">${member.businessName}</div></div>
+                                <div class="input-2"><div class="text-wrapper-3">${sessionScope.loginUser.businessName}</div></div>
                             </div>
                             <div class="div">
                                 <div class="text"><div class="text-wrapper-2">직무</div></div>
-                                <div class="posiotion-wrapper"><div class="text-wrapper-3">${member.positionName}</div></div>
+                                <div class="posiotion-wrapper"><div class="text-wrapper-3">${sessionScope.loginUser.positionName}</div></div>
                             </div>
                         </div>
                         <div class="line-2">
@@ -125,16 +125,20 @@
             </div>
         </div>
     </div>
-<%--
-
-    <a href="/company/storemangement/specification/monthlyFee/gototable" class="click">
-        <button class="list">목록으로</button>
-    </a>
-
---%>
+    <c:choose>
+        <c:when test="${status == 1}">
+            <a href="/branch/specification/pay" class="click">
+                <button class="list">송금하기</button>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <button class="list" style="color:gray">송금완료</button>
+        </c:otherwise>
+    </c:choose>
 </div>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../sideBar/brownTopBar.jsp"/>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         function updateURL(){
@@ -144,7 +148,6 @@
         }
         document.getElementById('branchSelect').addEventListener('change', updateURL);
     });
-
 </script>
 </body>
 </html>

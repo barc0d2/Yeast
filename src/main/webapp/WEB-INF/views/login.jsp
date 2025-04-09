@@ -58,7 +58,7 @@
             <button type="submit" class="findIdPwd">
                 로그인
             </button>
-            <a href="location.href='/member/agreement'"><div class="Join">
+            <a href="/member/agreement"><div class="Join">
                 회원가입  </div></a>
 
             <label class="Session" style="white-space: nowrap;">

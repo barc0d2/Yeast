@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.yeast.mappers.company.SpecificationCMapper">
+<mapper namespace="com.kh.yeast.mappers.company.SpecificationBMapper">
     <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
         <result column="USER_ID" property="userId"/>
@@ -107,6 +107,15 @@
         AND STATUS = 1
     </select>
 
+    <select id="selectMonthlySellMoney" resultType="Integer">
+        SELECT
+        SUM(SELL_MONEY)
+        FROM SELL
+        WHERE BUSINESS_NO = #{businessNo}
+        AND TO_CHAR(CREATE_DATE, 'YYYY-MM') &lt; TO_CHAR(SYSDATE, 'YYYY-MM')
+        AND STATUS = 1
+    </select>
+
     <select id="lastMonthStatus" resultType="Integer">
         SELECT
             CASE
@@ -118,19 +127,34 @@
         AND STATUS = 1
     </select>
 
-    <select id="selectMonthlySellMoney" resultType="Integer">
-        SELECT
-        SUM(SELL_MONEY)
-        FROM SELL
-        WHERE BUSINESS_NO = #{businessNo}
-        AND TO_CHAR(CREATE_DATE, 'YYYY-MM') &lt; TO_CHAR(SYSDATE, 'YYYY-MM')
-        AND STATUS = 1
-    </select>
-
     <select id="selectBusinessList" resultMap="businessResult">
         SELECT BUSINESS_NO,
                 BUSINESS_NAME
         FROM BUSINESS
         WHERE STATUS = 1
     </select>
+
+    <select id="selectUpdateAt" resultType="java.sql.Timestamp">
+        SELECT UPDATE_AT
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
+        AND STATUS = 1
+    </select>
+
+    <update id="updateAddMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY + #{money}
+            UPDATE_AT = SYSTIMESTAMP
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
+    </update>
+
+    <update id="updateSubMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY - #{money}
+            UPDATE_AT = SYSTIMESTAMP
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
+        AND MONEY >= #{money}
+    </update>
 </mapper>

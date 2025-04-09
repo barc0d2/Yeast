@@ -9,14 +9,22 @@
 
         align-items: center;
         gap: 27px;
+        /*
+
         top: 46px;
         left: 50%;
         transform: translateX(-50%);
+
+        */
+        left: 300px;
+        top: 147px;
         display: flex;
         flex-direction: column;
         position: relative;
     }
     #pagination{
+        left:50%;
+        transform: translateX(-50%);
         position : absolute;
         bottom : 20px;
     }

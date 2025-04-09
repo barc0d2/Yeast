@@ -7,13 +7,27 @@
 }
 
 .company .form {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   position: relative;
-  top: 100px;
+  top: 110px;
   left: 400px;
+}
+
+.filter-container{
+  width: 100%;
+  text-align: left;
+}
+.filter-container select {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  width: auto;
+  border-radius: 12px;
 }
 
 .company .out-frame {
