@@ -118,8 +118,4 @@
         ORDER BY
         S.SUPPLY_NO DESC
     </select>
-
-
-
-
 </mapper>

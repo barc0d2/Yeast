@@ -22,47 +22,36 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     private final SpecificationCMapper specificationCMapper;
 
     @Override
-    public Integer selectEmployeeCount() {
-        return specificationCMapper.selectEmployeeCount();
-    }
+    public Model specificationList(Integer cpage, Model model, String search) {
+        Integer employeeCount = specificationCMapper.selectEmployeeCount();
 
-    @Override
-    public ArrayList<Member> getEmployeeList(PageInfo pi) {
+        PageInfo pi = new PageInfo(employeeCount, cpage, 10, 10);
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-        ArrayList<Member> list = specificationCMapper.selectEmployeeList(rowBounds);
-        list.forEach(employee -> {
-            Timestamp createDate = employee.getCreateDate();
+        ArrayList<Member> list = specificationCMapper.selectEmployeeList(rowBounds, search);
+
+        list.forEach(member -> {
+            Timestamp createDate = member.getCreateDate();
             if (createDate != null) {
                 Date sqlDate = new Date(createDate.getTime());
-                employee.setEnrollDate(sqlDate);
+                member.setEnrollDate(sqlDate);
             } else {
-                employee.setEnrollDate(null);
+                member.setEnrollDate(null);
             }
         });
-        return list;
+
+        model.addAttribute("employees", list);
+        return model;
     }
 
     @Override
-    public List<Member> findEmployeesByName(String userName) {
-        List<Member> employees = specificationCMapper.findEmployeesByName(userName);
-        for (Member employee : employees) {
-            if (employee.getHeadName() == null) {
-                employee.setHeadName("없음");
-            }
-            if (employee.getStatus() != null) {
-            }
-        }
-        return employees;
+    public Model detail(Model model, Long userNo) throws Exception {
+
+        return model;
     }
 
     @Override
-    public Member findByUserNo(Long userNo) {
-        return specificationCMapper.findByUserNo(userNo);
-    }
-
-    @Override
-    public Model detail(Model model, Long businessNo) {
+    public Model monthlyFee(Model model, Long businessNo) {
         Member member = specificationCMapper.findByBusinessNo(businessNo);
         model.addAttribute("member", member);
 

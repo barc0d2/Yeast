@@ -14,7 +14,7 @@ public interface SpecificationCMapper {
 
     Integer selectEmployeeCount();
 
-    ArrayList<Member> selectEmployeeList(RowBounds rowBounds);
+    ArrayList<Member> selectEmployeeList(RowBounds rowBounds, String search);
 
 //    List<Member> getAllEmployees();
 

@@ -63,7 +63,7 @@
         LEFT JOIN MEMBER m2 ON m1.MANAGER_NO = m2.USER_NO
         LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
         LEFT JOIN BUSINESS b ON m1.BUSINESS_NO = b.BUSINESS_NO
-        WHERE m1.STATUS='1'
+        WHERE m1.STATUS=1
             AND m1.USER_NO = #{userNo}
     </select>
     <update id="update">
@@ -91,7 +91,5 @@
             M.IMAGE_ORIGIN = #{imageOrigin},
             M.BIRTHDAY = #{birthday}
              WHERE M.USER_NO = #{userNo}
-
-
     </update>
 </mapper>
