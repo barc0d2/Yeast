@@ -70,6 +70,7 @@
             <a href="/company/employee/list"><div class="submenu-item">직원관리</div></a>
             <a href="/company/store/list"><div class="submenu-item">지점 수정/추가</div></a>
         </div>
+        <a href="/company/dispatch/list">
         <div id="order-menu" class="menu-item">
             <div class="menu-icon">
                 <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +90,7 @@
             <div id="order-text" class="menu-text">출하관리</div>
 
         </div>
-
+        </a>
         <div class="menu-item">
             <div class="menu-icon">
                 <svg width="32" height="34" viewBox="0 0 32 34" fill="none"

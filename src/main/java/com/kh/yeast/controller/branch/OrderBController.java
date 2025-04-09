@@ -62,7 +62,8 @@ public class OrderBController {
     public String insertList(@RequestParam("category") ArrayList<String> category,
                              @RequestParam("breadName") ArrayList<String> bread,
                              @RequestParam("quantity") ArrayList<Integer> quantity,
-                             @RequestParam("price") ArrayList<Integer> price) {
+                             @RequestParam("price") ArrayList<Integer> price,HttpSession session, Model model) {
+        int result =0;
         for (int i = 0; i < bread.size(); i++) {
             String categoryName = category.get(i);
             String breadName = bread.get(i);
@@ -74,8 +75,14 @@ public class OrderBController {
             System.out.println("개수 : " + quantityList);
             System.out.println("구매가격 : " + priceList);
 
+            result += orderBService.insertList(categoryName,breadName,quantityList,priceList);
         }
-
-        return null;
+        if(result == bread.size()){
+           session.setAttribute("alertMsg","발주 신청 완료");
+           return "redirect:/branch/order/list";
+        }else{
+            model.addAttribute("errorMsg", "발주 신청 실패");
+            return "error";
+        }
     }
 }

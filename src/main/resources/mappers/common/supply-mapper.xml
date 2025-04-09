@@ -26,7 +26,6 @@
     <select id="selectOrderCount" resultType="int">
         SELECT COUNT(*)
         FROM SUPPLY
-        WHERE SEPARATE = 'O'
     </select>
 
     <select id="selectOrderList" resultMap="supplyResult">
@@ -34,20 +33,18 @@
         S.SUPPLY_NO,
         MAX(S.STATUS) AS STATUS,
         MAX(S.ORDER_DATE) AS ORDER_DATE,
-        MAX(S.CREATE_DATE) AS CREATE_DATE,
-        SUM(BR.PRICE * SD.QUANTITY) AS TOTAL_PRICE,
+        CAST(MAX(S.CREATE_DATE) AS DATE) AS CREATE_DATE,
+        SUM(BR.PRICE * SD.QUANTITY) AS PRICE,
         MAX(BU.BUSINESS_NAME) AS CLIENT
         FROM
         SUPPLY S
         JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
         JOIN BREAD BR ON SD.BREAD_NO = BR.BREAD_NO
         JOIN BUSINESS BU ON S.BRANCH_NO = BU.BUSINESS_NO
-        WHERE
-        S.SEPARATE = 'O'
         GROUP BY
         S.SUPPLY_NO
         ORDER BY
-        S.SUPPLY_NO
+        S.SUPPLY_NO DESC
 
     </select>
 
@@ -75,15 +72,52 @@
         INSERT
         INTO SUPPLY(
             BRANCH_NO,
-            ORDER_DATE,
-            SEPARATE
+            ORDER_DATE
         )
         VALUES(
         (SELECT BUSINESS_NO FROM BUSINESS WHERE BUSINESS_NAME = #{branchName}),
-        #{orderDate},
-        'O'
+        #{orderDate}
         )
     </insert>
+    <insert id="insertList">
+        INSERT
+        INTO SUPPLY_DETAIL(
+        BREAD_NO,
+        QUANTITY
+        )
+        VALUES(
+        (SELECT BREAD_NO FROM BREAD WHERE BREAD_NAME = #{breadName} AND STATUS = 1),
+        #{quantityList}
+        )
+
+    </insert>
+
+<!--    여기부터 출하     -->
+    <select id="selectDispatchCount" resultType="int">
+        SELECT COUNT(*)
+        FROM SUPPLY
+        WHERE STATUS IN ('R' , 'Y')
+    </select>
+
+    <select id="selectDispatchList" resultMap="supplyResult">
+        SELECT
+        S.SUPPLY_NO,
+        MAX(S.STATUS) AS STATUS,
+        MAX(S.ORDER_DATE) AS ORDER_DATE,
+        CAST(MAX(S.CREATE_DATE) AS DATE) AS CREATE_DATE,
+        SUM(BR.PRICE * SD.QUANTITY) AS PRICE,
+        MAX(BU.BUSINESS_NAME) AS CLIENT
+        FROM
+        SUPPLY S
+        JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
+        JOIN BREAD BR ON SD.BREAD_NO = BR.BREAD_NO
+        JOIN BUSINESS BU ON S.BRANCH_NO = BU.BUSINESS_NO
+        WHERE S.STATUS IN ('R' , 'Y')
+        GROUP BY
+        S.SUPPLY_NO
+        ORDER BY
+        S.SUPPLY_NO DESC
+    </select>
 
 
 

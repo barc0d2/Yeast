@@ -5,6 +5,7 @@ import com.kh.yeast.domain.vo.Supply;
 import com.kh.yeast.domain.vo.SupplyDetail;
 import com.kh.yeast.mappers.SupplyMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -29,7 +30,9 @@ public class OrderBServiceImpl implements OrderBService {
 
     @Override
     public ArrayList<Supply> selectOrderList(PageInfo pi) {
-        return supplyMapper.selectOrderList(pi);
+        int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset , pi.getBoardLimit());
+        return supplyMapper.selectOrderList(rowBounds);
     }
 
     @Override
@@ -44,6 +47,11 @@ public class OrderBServiceImpl implements OrderBService {
             throw new RuntimeException("저장되지 않았습니다.");
         }
         return "저장완료";
+    }
+
+    @Override
+    public int insertList(String categoryName, String breadName, String quantityList, String priceList) {
+        return supplyMapper.insertList(categoryName,breadName,quantityList,priceList);
     }
 
 

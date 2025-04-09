@@ -74,16 +74,16 @@
                         <input type="date" name="orderDate" class="date">
                     </div>
                 </div>
-                    <div class="box" id="modalOpen">
-                        <div class="btn"  onclick="submit1()" >
-                            <div class="div-wrapper" >
-                                <div class="text" >
-                                    <div class="line-3" >빵 품목 확인</div>
-                                </div>
+                <div class="box" id="modalOpen">
+                    <div class="btn"  onclick="submit1()" >
+                        <div class="div-wrapper" >
+                            <div class="text" >
+                                <div class="line-3" >빵 품목 확인</div>
                             </div>
                         </div>
-
                     </div>
+
+                </div>
                 <br>
 
             </div>
@@ -220,12 +220,12 @@
                 "<input type='hidden' name='quantity' value='" + quantity + "' />" +
                 "<input type='hidden' name='price' value='" + total + "' />"+
                 "</tr>"
-                ;
+            ;
 
-                categoryList.push(selectedInfo.category);
-                breadList.push(selectedInfo.breadName);
-                quantityList.push(quantity);
-                totalPriceList.push(total);
+            categoryList.push(selectedInfo.category);
+            breadList.push(selectedInfo.breadName);
+            quantityList.push(quantity);
+            totalPriceList.push(total);
 
             totalCount.innerText = "총 수량 "+SumCount + "개";
             sumPrice.innerText = "총 발주 금액" + SumPrice + "원";

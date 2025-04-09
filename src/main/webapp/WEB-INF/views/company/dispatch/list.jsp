@@ -4,9 +4,9 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="/css/branch/order/list/style.css"/>
-    <link rel="stylesheet" href="/css/branch/order/list/globals.css"/>
-    <link rel="stylesheet" href="/css/branch/order/list/styleguide.css"/>
+    <link rel="stylesheet" href="/css/company/dispatch/list/style.css"/>
+    <link rel="stylesheet" href="/css/company/dispatch/list/globals.css"/>
+    <link rel="stylesheet" href="/css/company/dispatch/list/styleguide.css"/>
 </head>
 <body>
 <div class="main">
@@ -35,20 +35,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="order" items="${list}">
-                        <tr>
-                            <td>${order.supplyNo}</td>
+                    <c:forEach var="dispatch" items="${list}">
+                        <tr onclick="location.href='enrollForm?supplyNo=${dispatch.supplyNo}'">
+                            <td>${dispatch.supplyNo}</td>
                             <td class="btn">
                                 <div class="button">
                                     <c:choose>
-                                        <c:when test="${order.status == 'N'}">
-                                            <span style="color: blue;">발주등록</span>
+                                        <c:when test="${dispatch.status == 'R'}">
+                                            <span style="color: blue;">출하승인 대기중</span>
                                         </c:when>
-                                        <c:when test="${order.status == 'R'}">
-                                            <span style="color: red;">처리완료</span>
-                                        </c:when>
-                                        <c:when test="${order.status == 'Y'}">
-                                            <span style="color: #009e32;">출하중</span>
+                                        <c:when test="${dispatch.status == 'Y'}">
+                                            <span style="color: red;">출하승인</span>
                                         </c:when>
                                         <c:otherwise>
                                             <span style="color: gray;">알수없음</span>
@@ -56,10 +53,10 @@
                                     </c:choose>
                                 </div>
                             </td>
-                            <td>${order.orderDate}</td>
-                            <td>${order.createDate}</td>
-                            <td>${order.price}</td>
-                            <td>${order.client}</td>
+                            <td>${dispatch.orderDate}</td>
+                            <td>${dispatch.createDate}</td>
+                            <td>${dispatch.price}</td>
+                            <td>${dispatch.client}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -75,7 +72,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="../sideBar/whiteSideBar.jsp"/>
-<jsp:include page="../sideBar/whiteTopBar.jsp"/>
+<jsp:include page="../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

@@ -2,11 +2,9 @@ package com.kh.yeast.service.branch;
 
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.domain.vo.Supply;
-import com.kh.yeast.domain.vo.SupplyDetail;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface OrderBService {
 
@@ -19,4 +17,6 @@ public interface OrderBService {
     int insert(String branchName, Date orderDate);
 
     String insert(Supply supply);
+
+    int insertList(String categoryName, String breadName, String quantityList, String priceList);
 }
