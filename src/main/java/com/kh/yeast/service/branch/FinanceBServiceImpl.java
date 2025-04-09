@@ -38,13 +38,13 @@ public class FinanceBServiceImpl implements FinanceBService {
             return "오늘 매출 내역이 이미 저장되었습니다.";
         }
 
-        Integer result1 = financeBMapper.insertSell(sell);
-        if(result1==0){
+        Integer insertedRow = financeBMapper.insertSell(sell);
+        if(insertedRow==0 || insertedRow==null){
             throw new PaymentTransactionException("하루 매출 내역이 저장되지 않았습니다.");
         }
 
-        Integer result2 = financeBMapper.updateMoney(money, businessNo, updateAt);
-        if(result2==0){
+        Integer updatedRow = financeBMapper.updateMoney(money, businessNo, updateAt);
+        if(updatedRow==0 || updatedRow==null){
             throw new PaymentTransactionException("가맹점에 입금 실패");
         }
 

@@ -485,7 +485,7 @@ button{
   border-color: var(--fontlightgray);
 }
 
-.company .list {
+.submitPay {
   position: absolute;
   height: 34px;
   font-family: var(--head-kakao-24px-font-family);

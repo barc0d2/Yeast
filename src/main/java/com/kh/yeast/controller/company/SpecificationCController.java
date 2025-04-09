@@ -52,10 +52,6 @@ public class SpecificationCController {
     public String detail(@RequestParam(defaultValue = "2") Long businessNo, Model model) {
         model = specificationCService.detail(model, businessNo);
 
-        if(model.containsAttribute("errorMsg")) {
-            return "errorPage";
-        }
-
         return "company/specification/detail";
     }
 }

@@ -15,9 +15,11 @@ public interface SpecificationBMapper {
 
     ArrayList<Business> selectBusinessList(RowBounds rowBounds);
 
-    Timestamp selectUpdateAt(Long businessNo);
+    Integer updateSubMoney(Long businessNo, Integer money);
 
-    Integer updateSubMoney(Long businessNo, Integer money, Timestamp branchUpdateAt);
+    Integer updateAddMoney(Long businessNo, Integer money);
 
-    Integer updateAddMoney(Long businessNo, Integer money, Timestamp branchUpdateAt);
+    Integer updateSellMonthly(Long businessNo);
+
+    Integer updateRemitted(Long businessNo);
 }

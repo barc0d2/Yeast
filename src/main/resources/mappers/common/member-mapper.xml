@@ -8,8 +8,11 @@
     <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
         <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
         <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
         <result column="MANAGER_NAME" property="managerName"/>
+        <result column="MANAGER_NO" property="managerNo"/>
         <result column="USER_NAME" property="userName"/>
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
@@ -51,8 +54,11 @@
     <select id="loginMember" resultMap="memberResult">
         SELECT M.USER_NO,
         BUSINESS_NAME,
+        M.BUSINESS_NO,
         POSITION_NAME,
+        M.POSITION_NO,
         E.USER_NAME,
+        E.USER_NO,
         M.USER_NAME,
         M.USER_ID,
         M.USER_PWD,
@@ -65,8 +71,9 @@
         M.CREATE_DATE,
         M.IMAGE_CHANGE,
         M.IMAGE_ORIGIN,
-        M.BIRTHDAY AS BIRTHDAY,
-        M.STATUS AS STATUS
+        M.BIRTHDAY,
+        M.STATUS,
+        M.UPDATE_AT
         FROM MEMBER M
         LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
         LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO

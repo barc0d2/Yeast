@@ -28,16 +28,16 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
         Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
         model.addAttribute("monthSellMoney", monthSellMoney);
-
+        System.out.println("monthSellMoney = " + monthSellMoney);
         Integer status = specificationBMapper.lastMonthStatus(businessNo);
         model.addAttribute("status", status);
-
+        System.out.println("status = " + status);
         RowBounds rowBounds = new RowBounds(1, Integer.MAX_VALUE);
         ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
         model.addAttribute("businessList", businessList);
-
-        if(member==null || status == null || monthSellMoney==null){
-            model.addAttribute("errorMsg", "페이지를 불러오지 못했습니다");
+        System.out.println("businessList = " + businessList);
+        if(member==null || status == null){
+            throw new NullPointerException();
         }
 
         return model;
@@ -45,10 +45,31 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
     @Override
     @Transactional
-    public Model updateMoney(HttpSession session, Model model, Integer money) {
+    public synchronized Model updateMoney(HttpSession session, Model model, Integer money) {
 
         Member member = (Member) session.getAttribute("loginUser");
         Long businessNo = member.getBusinessNo();
+
+        Integer updatedAdd = specificationBMapper.updateAddMoney(1L, money);
+        if(updatedAdd==0 || updatedAdd==null){
+            throw new PaymentTransactionException("회사에 수수료를 지불하지 못했습니다.");
+        }
+
+        Integer updateSub = specificationBMapper.updateSubMoney(businessNo, money);
+        if(updateSub==0 || updateSub==null){
+            throw new PaymentTransactionException("가맹점에서 수수료가 차감되지 않았습니다.");
+        }
+
+        Integer updateSellMonthly = specificationBMapper.updateSellMonthly(businessNo);
+        if(updateSellMonthly==0 || updateSellMonthly==null){
+            throw new PaymentTransactionException("결제 내역이 업데이트 안되었습니다.");
+        }
+
+        Integer updateRemitted = specificationBMapper.updateRemitted(businessNo);
+        if(updateRemitted==0 || updateRemitted==null){
+            throw new PaymentTransactionException("날짜가 갱신되지 않았습니다.");
+        }
+
 
         Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
         model.addAttribute("monthSellMoney", monthSellMoney);
@@ -60,18 +81,7 @@ public class SpecificationBServiceImpl implements SpecificationBService {
         ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
         model.addAttribute("businessList", businessList);
 
-        Timestamp branchUpdateAt = specificationBMapper.selectUpdateAt(businessNo);
-        Timestamp companyUpdateAt = specificationBMapper.selectUpdateAt(1L);
 
-        Integer result1 = specificationBMapper.updateAddMoney(1L, money, companyUpdateAt);
-        if(result1==0 || result1==null){
-            throw new PaymentTransactionException("회사에 수수료를 지불하지 못했습니다.");
-        }
-
-        Integer result2 = specificationBMapper.updateSubMoney(businessNo, money, branchUpdateAt);
-        if(result2==0 || result2==null){
-            throw new PaymentTransactionException("가맹점에서 수수료가 차감되지 않았습니다.");
-        }
 
         return model;
     }

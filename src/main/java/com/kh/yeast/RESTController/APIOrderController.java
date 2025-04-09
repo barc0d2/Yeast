@@ -16,7 +16,4 @@ public class APIOrderController {
 
     private final OrderBService orderBService;
 
-
-
-
 }
