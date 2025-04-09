@@ -15,18 +15,13 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/branch/bread")
-public class BreadBController {
+public class BreadBController{
 
     private final BreadBService breadBService;
 
     @GetMapping("/list")
-    public String selectBreadList(@RequestParam(defaultValue = "1") int currentPage, Model model) {
-        Integer breadCount = null;
-        try {
-            breadCount = breadBService.selectBreadCount();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public String selectBreadList(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception {
+        Integer breadCount = breadBService.selectBreadCount();
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
         ArrayList<Bread> list = null;

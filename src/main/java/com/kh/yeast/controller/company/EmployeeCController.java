@@ -23,7 +23,7 @@ public class EmployeeCController {
 
 
     @GetMapping("/enrollForm")
-    public String enrollFormEmployee(int userNo, Model model) {
+    public String enrollFormEmployee(int userNo, Model model) throws Exception  {
         Member member = employeeCService.selectMember(userNo);
         model.addAttribute("currentName", "지점관리");
         model.addAttribute("smallCurrentName","직원수정");
@@ -32,7 +32,7 @@ public class EmployeeCController {
     }
 
     @GetMapping("/list")
-    public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) {
+    public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception  {
         int memberCount = employeeCService.selectMemberCount();
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);

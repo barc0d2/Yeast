@@ -97,7 +97,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute Member member, HttpSession session, ModelAndView modelAndView) {
+    public ModelAndView login(@ModelAttribute Member member, HttpSession session, ModelAndView modelAndView) throws Exception  {
         Member loginMember = memberService.loginMember(member.getUserId());
         System.out.println("loginMember = " + loginMember);
 

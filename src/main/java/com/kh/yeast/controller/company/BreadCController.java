@@ -24,7 +24,7 @@ public class BreadCController {
     private final BreadCService breadCService;
 
     @GetMapping("/enrollForm")
-    public String enrollFormBread(Model model) {
+    public String enrollFormBread(Model model) throws Exception {
         ArrayList<BreadCategory> categories = breadCService.selectBreadCategories();
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴등록");
@@ -33,7 +33,7 @@ public class BreadCController {
     }
 
     @GetMapping("/updateForm")
-    public String updateFormBread(int breadNo, Model model) {
+    public String updateFormBread(int breadNo, Model model) throws Exception {
         ArrayList<BreadCategory> categories = breadCService.selectBreadCategories();
         Bread bread = breadCService.selectBread(breadNo);
         model.addAttribute("bread",bread);
@@ -44,7 +44,7 @@ public class BreadCController {
     }
 
     @GetMapping("/detail")
-    public String detailBread(int breadNo, Model model) {
+    public String detailBread(int breadNo, Model model) throws Exception {
         Bread bread = breadCService.selectBread(breadNo);
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
@@ -53,7 +53,7 @@ public class BreadCController {
     }
 
     @GetMapping("/list")
-    public String selectBreadList(@RequestParam(defaultValue = "1") Integer currentPage, Model model) {
+    public String selectBreadList(@RequestParam(defaultValue = "1") Integer currentPage, Model model) throws Exception {
         Integer breadCount = breadCService.selectBreadCount();
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
@@ -68,7 +68,7 @@ public class BreadCController {
     }
 
     @PostMapping("/insert")
-    public String insertBread(@ModelAttribute Bread bread, MultipartFile upfile, HttpSession session, Model model) {
+    public String insertBread(@ModelAttribute Bread bread, MultipartFile upfile, HttpSession session, Model model) throws Exception  {
         if(bread.getStatus() == null) {
             bread.setStatus(0);
         }
@@ -92,7 +92,7 @@ public class BreadCController {
     }
 
     @PostMapping("/update")
-    public String updateBread(@ModelAttribute Bread bread, MultipartFile reupfile, HttpSession session, Model model) {
+    public String updateBread(@ModelAttribute Bread bread, MultipartFile reupfile, HttpSession session, Model model) throws Exception  {
         if(bread.getStatus() == null) {
             bread.setStatus(0);
         }
@@ -107,12 +107,7 @@ public class BreadCController {
             bread.setImageOrigin(reupfile.getOriginalFilename());
         }
 
-        int result = 0;
-        try {
-            result = breadCService.updateBread(bread);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        int result = breadCService.updateBread(bread);
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
         if(result > 0){
@@ -125,19 +120,13 @@ public class BreadCController {
     }
 
     @PostMapping("/delete")
-    public String deleteBread(@ModelAttribute Bread bread, HttpSession session, Model model) {
+    public String deleteBread(@ModelAttribute Bread bread, HttpSession session, Model model) throws Exception  {
         String imageChange = bread.getImageChange();
         Long breadNo = bread.getBreadNo();
-        System.out.println("변환된 파일 경로: " + session.getServletContext().getRealPath(bread.getImageChange()));
         if(imageChange != null && !imageChange.equals("")){
             new File(session.getServletContext().getRealPath(imageChange)).delete();
         }
-        Integer result;
-        try {
-            result = breadCService.deleteBread(breadNo);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Integer result = breadCService.deleteBread(breadNo);
         model.addAttribute("currentName", "메뉴관리");
         model.addAttribute("smallCurrentName","메뉴조회");
         if(result > 0){

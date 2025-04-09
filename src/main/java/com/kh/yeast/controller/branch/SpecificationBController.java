@@ -31,22 +31,9 @@ public class SpecificationBController {
     }
 
     @PostMapping("/branch/specification/pay")
-    public String pay(HttpSession session, Model model, Integer money) {
-        try {
-            model = specificationBService.updateMoney(session, model, money);
-        } catch (Exception e) {
-            if(e instanceof RuntimeException){
-                model.addAttribute("errorMsg", e.getMessage());
-            }else{
-                model.addAttribute("errorMsg", "서버에서의 문제가 발생했습니다.");
-            }
-            return "errorPage";
-        }
+    public String pay(HttpSession session, Model model, Integer money) throws Exception {
+        model = specificationBService.updateMoney(session, model, money);
 
-        if(model.containsAttribute("errorMsg")) {
-            return "errorPage";
-        }
-
-        return "redirect:/branch/specification/detail";
+        return "branch/specification/detail";
     }
 }

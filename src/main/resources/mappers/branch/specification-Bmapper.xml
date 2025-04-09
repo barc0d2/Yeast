@@ -134,7 +134,7 @@
         WHERE STATUS = 1
     </select>
 
-    <select id="selectUpdateAt" resultType="Timestamp">
+    <select id="selectUpdateAt" resultType="java.sql.Timestamp">
         SELECT UPDATE_AT
         FROM BUSINESS
         WHERE BUSINESS_NO = #{businessNo}
@@ -155,5 +155,6 @@
             UPDATE_AT = SYSTIMESTAMP
         WHERE BUSINESS_NO = #{businessNo}
         AND UPDATE_AT = #{updateAt}
+        AND MONEY >= #{money}
     </update>
 </mapper>

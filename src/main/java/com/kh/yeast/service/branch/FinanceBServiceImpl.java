@@ -1,5 +1,6 @@
 package com.kh.yeast.service.branch;
 
+import com.kh.yeast.customException.PaymentTransactionException;
 import com.kh.yeast.domain.vo.BreadInventory;
 import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Sell;
@@ -39,12 +40,12 @@ public class FinanceBServiceImpl implements FinanceBService {
 
         Integer result1 = financeBMapper.insertSell(sell);
         if(result1==0){
-            throw new RuntimeException("하루 매출 내역이 저장되지 않았습니다.");
+            throw new PaymentTransactionException("하루 매출 내역이 저장되지 않았습니다.");
         }
 
         Integer result2 = financeBMapper.updateMoney(money, businessNo, updateAt);
         if(result2==0){
-            throw new RuntimeException("가맹점에 입금 실패");
+            throw new PaymentTransactionException("가맹점에 입금 실패");
         }
 
         return "저장 성공!!";

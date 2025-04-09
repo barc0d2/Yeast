@@ -1,5 +1,6 @@
 package com.kh.yeast.service.branch;
 
+import com.kh.yeast.customException.PaymentTransactionException;
 import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.mappers.branch.SpecificationBMapper;
@@ -64,12 +65,12 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
         Integer result1 = specificationBMapper.updateAddMoney(1L, money, companyUpdateAt);
         if(result1==0 || result1==null){
-            throw new RuntimeException("회사에 수수료를 지불하지 못했습니다.");
+            throw new PaymentTransactionException("회사에 수수료를 지불하지 못했습니다.");
         }
 
         Integer result2 = specificationBMapper.updateSubMoney(businessNo, money, branchUpdateAt);
         if(result2==0 || result2==null){
-            throw new RuntimeException("가맹점에서 수수료가 차감되지 않았습니다.");
+            throw new PaymentTransactionException("가맹점에서 수수료가 차감되지 않았습니다.");
         }
 
         return model;
