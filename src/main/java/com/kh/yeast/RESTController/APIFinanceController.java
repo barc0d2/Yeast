@@ -13,15 +13,7 @@ public class APIFinanceController {
     private final FinanceBService financeBService;
 
     @PostMapping("/insert")
-    public String insertSell(Sell sell) {
-        try {
-            return financeBService.insertSell(sell);
-        } catch (Exception e) {
-            if(e instanceof RuntimeException){
-                throw new RuntimeException(e.getMessage());
-            }else{
-                return "서버에서의 문제가 발생했습니다.";
-            }
-        }
+    public String insertSell(Sell sell) throws Exception {
+        return financeBService.insertSell(sell);
     }
 }

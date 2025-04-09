@@ -15,13 +15,12 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 public class Member {
     private Long userNo;
-    private String headName;
-    private Long businessNo;
     private String businessName;
-    private Long positionNo;
+    private Long businessNo;
     private String positionName;
-    private Long managerNo;
+    private Long positionNo;
     private String managerName;
+    private Long managerNo;
     private String userName;
     private String userId;
     private String userPwd;
@@ -38,4 +37,5 @@ public class Member {
     private Date enrollDate;
     private Integer status;
     private LocalDate updateAt;
+    private String headName;
 }

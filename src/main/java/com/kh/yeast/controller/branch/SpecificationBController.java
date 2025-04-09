@@ -19,21 +19,18 @@ public class SpecificationBController {
     private final SpecificationBService specificationBService;
 
     @GetMapping("/detail")
-    public String detail(HttpSession session, Model model) {
+    public String detail(HttpSession session, Model model) throws Exception{
 
         model = specificationBService.detail(model, session);
-
-        if(model.containsAttribute("errorMsg")) {
-            return "errorPage";
-        }
 
         return "branch/specification/detail";
     }
 
-    @PostMapping("/branch/specification/pay")
+    @PostMapping("/pay")
     public String pay(HttpSession session, Model model, Integer money) throws Exception {
+
         model = specificationBService.updateMoney(session, model, money);
 
-        return "branch/specification/detail";
+        return "redirect:/branch/specification/detail";
     }
 }

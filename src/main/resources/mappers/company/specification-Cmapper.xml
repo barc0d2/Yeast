@@ -77,10 +77,6 @@
         AND BUSINESS.STATUS = 1
     </select>
 
-<!--    <select id="getAllEmployees" resultMap="employeeResult">
-        SELECT * FROM MEMBER;
-    </select>-->
-
     <select id="findEmployeesByName" resultMap="memberResult">
         SELECT
         m.USER_NO AS userNo,
@@ -107,23 +103,23 @@
         AND STATUS = 1
     </select>
 
-    <select id="lastMonthStatus" resultType="Integer">
-        SELECT
-            CASE
-                WHEN TO_CHAR(UPDATE_AT, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM') THEN 1
-                WHEN TO_CHAR(UPDATE_AT, 'YYYY-MM') &lt; TO_CHAR(SYSDATE, 'YYYY-MM') THEN 0
-            END AS STATUS
-        FROM BUSINESS
-        WHERE BUSINESS_NO = #{businessNo}
-        AND STATUS = 1
-    </select>
-
     <select id="selectMonthlySellMoney" resultType="Integer">
         SELECT
         SUM(SELL_MONEY)
         FROM SELL
         WHERE BUSINESS_NO = #{businessNo}
         AND TO_CHAR(CREATE_DATE, 'YYYY-MM') &lt; TO_CHAR(SYSDATE, 'YYYY-MM')
+        AND STATUS = 1
+    </select>
+
+    <select id="lastMonthStatus" resultType="Integer">
+        SELECT
+            CASE
+                WHEN TO_CHAR(REMITTED_DATE, 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM') THEN 1
+                WHEN TO_CHAR(REMITTED_DATE, 'YYYY-MM') &lt; TO_CHAR(SYSDATE, 'YYYY-MM') THEN 0
+            END AS STATUS
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
         AND STATUS = 1
     </select>
 

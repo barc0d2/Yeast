@@ -21,7 +21,7 @@ public class FinanceBController {
 
     private final FinanceBService financeBService;
 
-    @GetMapping("/storechart")
+    @GetMapping("/list")
     public String dailyRevenueForm(HttpSession session, Model model) throws Exception {
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
@@ -31,15 +31,5 @@ public class FinanceBController {
         model.addAttribute("currentName", "판매기록조회");
         model.addAttribute("smallCurrentName","판매내역");
         return "branch/finance/storechart";
-    }
-
-    @GetMapping("/storeDetail")
-    public String selectSellList(HttpSession session, Model model) throws Exception {
-        Member member = (Member)session.getAttribute("member");
-//        String businessName =  member.getBusinessName();
-        String businessName = "서울 강남점";
-//        ArrayList<Sell> sellList= financeBService.selectSellList();
-
-        return "branch/finance/detial";
     }
 }

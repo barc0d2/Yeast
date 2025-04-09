@@ -7,5 +7,5 @@ import java.util.ArrayList;
 
 public interface FinanceBService {
     ArrayList<BreadInventory> dailyBreadList(String businessName) throws Exception;
-    String insertSell(Sell sell);
+    String insertSell(Sell sell) throws Exception;
 }

@@ -20,13 +20,6 @@
 <div class="company">
     <div class="form">
         <div class="filter-container">
-                <select id="branchSelect">
-                    <c:forEach var="business" items="${businessList}">
-                        <option value="${business.businessNo}"
-                            ${param.businessNo == business.businessNo ? 'selected' : ''}>
-                                ${business.businessName}</option>
-                    </c:forEach>
-                </select>
         </div>
         <div class="out-frame">
             <div class="frame">
@@ -77,7 +70,7 @@
                                             <div class="input-in"><div class="text-wrapper-5"><fmt:formatNumber value="${monthSellMoney}" type="number" />원×5%</div></div>
                                         </div>
                                         <div class="money">
-                                            <div class="number"><fmt:formatNumber value="${(monthSellMoney / 20)}" type="number" /></div>
+                                            <div class="number"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
                                             <div class="won-2">원</div>
                                         </div>
                                     </div>
@@ -87,14 +80,14 @@
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">공제액 합계</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney / 20)}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">예상 실수령액(월)</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney / 20)}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
@@ -125,19 +118,22 @@
             </div>
         </div>
     </div>
-    <c:choose>
-        <c:when test="${status == 1}">
-            <a href="/branch/specification/pay" class="click">
-                <button class="list">송금하기</button>
-            </a>
-        </c:when>
-        <c:otherwise>
-            <button class="list" style="color:gray">송금완료</button>
-        </c:otherwise>
-    </c:choose>
+    <div class="click">
+        <c:choose>
+            <c:when test="${status == 0}">
+                <form id="payForm" action="/branch/specification/pay" method="POST">
+                    <input type="hidden" name="money" value="<fmt:formatNumber value='${monthSellMoney * 0.5}' type='number' maxFractionDigits='0' groupingUsed='false'/>">
+                    <button class="submitPay" type="submit" >송금하기</button>
+                </form>
+            </c:when>
+            <c:otherwise>
+                <button class="submitPay" style="color:gray">송금완료</button>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
-<jsp:include page="../sideBar/brownSideBar.jsp"/>
-<jsp:include page="../sideBar/brownTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

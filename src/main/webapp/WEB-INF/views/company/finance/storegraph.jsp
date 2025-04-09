@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <button class="detail-button" onclick="location.href='/company/finance/storeDetail?businessNo=${sell.businessNo}'">상세보기</button>
+            <button class="detail-button" onclick="location.href='/company/finance/detail?businessNo=${sell.businessNo}'">상세보기</button>
         </div>
         </c:forEach>
     </div>
