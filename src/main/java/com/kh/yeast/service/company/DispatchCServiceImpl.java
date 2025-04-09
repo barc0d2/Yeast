@@ -29,4 +29,19 @@ public class DispatchCServiceImpl implements DispatchCService{
         return list;
 
     }
+
+    @Override
+    public ArrayList<Supply> selectSupply(int supplyNo) {
+        return supplyMapper.selectSupply(supplyNo);
+    }
+
+    @Override
+    public Supply selectSupplyInfo(int supplyNo) {
+        return supplyMapper.selectSupplyInfo(supplyNo);
+    }
+
+    @Override
+    public int approval(int supplyNo) {
+        return supplyMapper.approval(supplyNo);
+    }
 }

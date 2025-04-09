@@ -1,10 +1,8 @@
 .main {
-    width: 1567px;
-    height: 981px;
+    width: 100%;
+    height: 100%;
     position: absolute;
-  top : 120px;
-  left : 55%;
-  transform: translateX(-50%);
+    background: #FFFCEC;
   }
   
   .main .container {
@@ -13,6 +11,9 @@
     width: 1426px;
     align-items: flex-end;
     gap: 16px;
+    top : 130px;
+    left : 55%;
+    transform: translateX(-50%);
     position:absolute;
 
   }

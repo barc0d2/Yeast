@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/css/branch/order/list/style.css"/>
     <link rel="stylesheet" href="/css/branch/order/list/globals.css"/>
     <link rel="stylesheet" href="/css/branch/order/list/styleguide.css"/>
@@ -19,7 +20,7 @@
                 </div>
                 <input type="date" class="input">
                 <div class="cancel">
-                    <div class="detail-btn">상세보기</div>
+                    <div class="detail-btn" style="cursor: pointer" onclick="night()">상세보기</div>
                 </div>
             </header>
             <div class="navbar">
@@ -77,5 +78,20 @@
 </div>
 <jsp:include page="../sideBar/whiteSideBar.jsp"/>
 <jsp:include page="../sideBar/whiteTopBar.jsp"/>
+<script>
+        function night() {
+            $.ajax({
+                url: '/api/order/night',
+                success: function () {
+                    alert("22시가 되.");
+                },
+                error: function (err) {
+                    console.error("에러:", err);
+                }
+            });
+        }
+
+
+</script>
 </body>
 </html>

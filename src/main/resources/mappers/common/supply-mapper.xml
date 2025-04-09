@@ -7,6 +7,7 @@
     <resultMap id="supplyResult" type="Supply">
         <result column="SUPPLY_NO" property="supplyNo"/>
         <result column="BREAD_NO" property="breadNo"/>
+        <result column="BRANCH_NAME" property="branchName"/>
         <result column="BRANCH_NO" property="branchNo"/>
         <result column="COMPANY_NO" property="companyNo"/>
         <result column="QUANTITY" property="quantity"/>
@@ -20,7 +21,6 @@
         <result column="PRICE" property="price"/>
         <result column="INVEN_COUNT" property="invenCount"/>
         <result column="MANAGER" property="manager"/>
-        <result column="CLIENT" property="client"/>
     </resultMap>
 
     <select id="selectOrderCount" resultType="int">
@@ -119,7 +119,54 @@
         S.SUPPLY_NO DESC
     </select>
 
+    <select id="selectSupply" resultMap="supplyResult">
+        SELECT
+                S.BRANCH_NO,
+                S.COMPANY_NO,
+                S.STATUS,
+                S.ORDER_DATE,
+                S.CREATE_DATE,
+                BC.CATEGORY_NAME,
+                B.BREAD_NAME,
+                SD.QUANTITY,
+                (B.PRICE * SD.QUANTITY) AS PRICE
+        FROM SUPPLY S
+        LEFT JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
+        LEFT JOIN BREAD B ON SD.BREAD_NO = B.BREAD_NO
+        LEFT JOIN BREAD_CATEGORY BC ON B.CATEGORY_NO = BC.CATEGORY_NO
+        WHERE S.SUPPLY_NO = #{supplyNo}
+    </select>
 
+    <select id="selectSupplyInfo" resultMap="supplyResult">
+        SELECT
+                BN.BUSINESS_NAME AS BRANCH_NAME,
+                S.SUPPLY_NO,
+                S.COMPANY_NO,
+                S.STATUS,
+                S.ORDER_DATE,
+                S.CREATE_DATE
+        FROM SUPPLY S
+        JOIN BUSINESS BN ON S.BRANCH_NO = BN.BUSINESS_NO
+        WHERE S.SUPPLY_NO = #{supplyNo}
+    </select>
+
+    <update id="approval">
+        UPDATE SUPPLY
+        SET STATUS = 'Y'
+        WHERE SUPPLY_NO = #{supplyNo}
+    </update>
+
+
+
+
+
+    <!--    22시가 되.    -->
+    <update id="night">
+        UPDATE SUPPLY
+        SET STATUS = 'R'
+        WHERE STATUS = 'N'
+    </update>
+    <!--    22시가 되.    -->
 
 
 </mapper>

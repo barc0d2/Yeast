@@ -3,6 +3,7 @@ package com.kh.yeast.mappers;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.domain.vo.Supply;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import java.sql.Date;
@@ -27,4 +28,12 @@ public interface SupplyMapper {
     int selectDispatchCount();
 
     ArrayList<Supply> selectDispatchList(RowBounds rowBounds);
+
+    ArrayList<Supply> selectSupply(@Param("supplyNo") int supplyNo);
+
+    Supply selectSupplyInfo(@Param("supplyNo") int supplyNo);
+
+    int night();
+
+    int approval(@Param("supplyNo") int supplyNo);
 }

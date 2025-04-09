@@ -36,16 +36,16 @@
                     </thead>
                     <tbody>
                     <c:forEach var="dispatch" items="${list}">
-                        <tr onclick="location.href='enrollForm?supplyNo=${dispatch.supplyNo}'">
+                        <tr  style="cursor: pointer" onclick="location.href='approval?supplyNo=${dispatch.supplyNo}'">
                             <td>${dispatch.supplyNo}</td>
                             <td class="btn">
                                 <div class="button">
                                     <c:choose>
                                         <c:when test="${dispatch.status == 'R'}">
-                                            <span style="color: blue;">출하승인 대기중</span>
+                                            <span style="color: red;">출하승인 대기중</span>
                                         </c:when>
                                         <c:when test="${dispatch.status == 'Y'}">
-                                            <span style="color: red;">출하승인</span>
+                                            <span style="color: blue;">출하승인 완료</span>
                                         </c:when>
                                         <c:otherwise>
                                             <span style="color: gray;">알수없음</span>
