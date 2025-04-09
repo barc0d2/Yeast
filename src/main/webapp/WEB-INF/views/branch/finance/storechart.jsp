@@ -31,7 +31,7 @@
                     <tr>
                         <td>${bread.breadNo}</td>
                         <td class="breadName">${bread.breadName}</td>
-                        <td>${bread.categoryName}</td>
+                        <td class="category">${bread.categoryName}</td>
                         <td class="saleQuantity"></td>
                         <td class="remain" data-remain="${bread.invenCount}"></td>
                         <td class="money" data-price="${bread.price}"></td>
@@ -60,6 +60,7 @@
             let totalMoney = 0;
             let saleQuantityList = [];
             let breadList = [];
+            let categoryList = [];
             let businessNo = 0;
             let remainList = [];
 
@@ -67,12 +68,15 @@
                 let remainElement = row.querySelector(".remain");
                 let moneyElement = row.querySelector(".money");
                 let breadNameElement = row.querySelector(".breadName");
+                let categoryElement = row.querySelector(".category");
                 let breadName = breadNameElement.textContent;
+                let category = categoryElement.textContent;
                 let price = parseInt(moneyElement.dataset.price || "0");
                 let remain = parseInt(remainElement.dataset.remain || "0");
                 let businessNoElement = document.querySelector("#businessNo")||"0"
                 businessNo = parseInt(businessNoElement ? businessNoElement.textContent.trim() : "0");
                 remainList.push(remain);
+
 
                 let saleQuantity = Math.floor((Math.random() * (remain - (remain*0.8)))+remain*0.8)* + 1;
                 let newRemain = remain - saleQuantity;
@@ -86,6 +90,7 @@
                 totalRemain += newRemain;
                 totalMoney += rowTotalMoney;
 
+                categoryList.push(category);
                 saleQuantityList.push(saleQuantity);
                 breadList.push(breadName);
             });
@@ -95,6 +100,7 @@
             let data = {
                 breadList: breadList.join(","),
                 quantityList: saleQuantityList.join(","),
+                categoryList: categoryList.join(","),
                 totalList: remainList.join(","),
                 sellMoney: totalMoney,
                 businessNo: businessNo

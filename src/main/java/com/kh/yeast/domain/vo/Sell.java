@@ -17,6 +17,7 @@ public class Sell {
     private Integer sellMoney;
     private String quantityList;
     private String breadList;
+    private String categoryList;
     private Long businessNo;
     private String totalList;
     private Timestamp createDate;

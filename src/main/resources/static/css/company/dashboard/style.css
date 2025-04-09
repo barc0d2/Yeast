@@ -4,7 +4,7 @@
   justify-content: space-between;
   position: absolute;
   top: 97px;
-  left: 250px;
+  left: 290px;
   width: 1565px;
   height: 100%;
 }
@@ -38,8 +38,6 @@
   align-self: stretch;
   font-style: var(--head-kakao-24px-font-style);
 }
-
-
 
 .frame .branch,
 .frame .branch-2 {
@@ -79,13 +77,14 @@
 .frame .body-2 {
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: auto;
+  min-height: 400px;
   align-items: flex-start;
-  gap: 4px;
-  padding: 7px 10px;
+  gap: 8px;
+  padding: 10px 15px;
   position: relative;
   align-self: stretch;
-  width: 100%;
+  width: 700px;
   margin-bottom: -30.00px;
 }
 
@@ -99,15 +98,16 @@
   background-color: #fff8e7;
   border: 1px solid;
   border-color: #cecece;
+  height: 50px;
 }
 
 .frame .div-wrapper {
   display: flex;
-  height: 17px;
+  height: 30px;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+  padding: 12px 15px;
   position: relative;
   flex: 1;
   flex-grow: 1;
@@ -121,7 +121,7 @@
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: var(--head-kakao-10px-font-size);
+  font-size: 14px;
   letter-spacing: var(--head-kakao-10px-letter-spacing);
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;
@@ -129,7 +129,7 @@
 }
 
 .frame .line-wrapper {
-  gap: 1px;
+  gap: 2px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
@@ -149,6 +149,7 @@
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-color: #cecece;
+  height: 45px;
 }
 
 .frame .text-wrapper-3 {
@@ -160,7 +161,7 @@
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: var(--head-kakao-10px-font-size);
+  font-size: 14px;
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;
   position: relative;
@@ -183,7 +184,7 @@
 
 .frame .element {
   flex: 1;
-  margin-top: -1.00px;
+  top: 30px;
   font-family: var(--head-kakao-14px-font-family);
   font-weight: var(--head-kakao-14px-font-weight);
   color: #000000;
@@ -502,6 +503,7 @@
   position: relative;
   align-self: stretch;
   width: 100%;
+  overflow: auto;
 }
 
 .frame .div-wrapper-2 {
@@ -529,6 +531,7 @@
   letter-spacing: var(--head-kakao-20px-letter-spacing);
   font-style: var(--head-kakao-20px-font-style);
 }
+
 /* Original CSS code should be injected here */
 
 /* Additional styles for semantic elements */

@@ -110,9 +110,9 @@ public class MemberController {
         } else {
             session.setAttribute("loginUser", loginMember);
             if(loginMember.getPositionName().startsWith("B")){
-                modelAndView.setViewName("redirect:/branch/dashboard/dashboard");
+                modelAndView.setViewName("redirect:/branch/dashboard");
             }else{
-                modelAndView.setViewName("redirect:/company/dashboard/dashboard");
+                modelAndView.setViewName("redirect:/company/dashboard");
             }
         }
         return modelAndView;

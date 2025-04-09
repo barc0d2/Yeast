@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,6 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
@@ -19,140 +21,90 @@
 <body>
 <main class="frame">
     <section class="sales">
-        <h2 class="text-wrapper">가맹점별 금일 매출 현황</h2>
         <div class="body">
             <div class="inbody">
                 <article class="branch">
                     <header class="title">
-                        <h3 class="div">잠실점</h3>
+                        <h2 class="text-wrapper-12">금일 판매내역
+                            <select id="businessSelect" onchange="changeBusiness(this.value)" style="margin-left: 10px; padding: 5px; border-radius: 5px; border: 1px solid #cecece;">
+                                <c:forEach var="business" items="${businessList}">
+                                    <option value="${business.businessNo}" ${not empty todaySales and todaySales[0].businessNo eq business.businessNo ? 'selected' : ''}>
+                                        ${business.businessName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </h2>
                     </header>
-                    <div class="body-2">
+                    <div id="salesContent" class="body-2">
                         <div class="header">
+                            <div class="div-wrapper">
+                                <h4 class="text-wrapper-2">No.</h4>
+                            </div>
                             <div class="div-wrapper">
                                 <h4 class="text-wrapper-2">종류</h4>
                             </div>
                             <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">거래건수</h4>
+                                <h4 class="text-wrapper-2">상품명</h4>
+                            </div>
+                            <div class="div-wrapper">
+                                <h4 class="text-wrapper-2">판매개수</h4>
                             </div>
                             <div class="div-wrapper">
                                 <h4 class="text-wrapper-2">매출</h4>
                             </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">재고소진율</h4>
-                            </div>
-                            <div class="div-wrapper">
-                                <h4 class="text-wrapper-2">순수익</h4>
-                            </div>
                         </div>
                         <div class="line-wrapper">
+                            <c:choose>
+                                <c:when test="${empty todaySales}">
                             <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">단과자</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
+                                        <div class="div-wrapper" style="width: 100%; text-align: center;">
+                                            <p class="text-wrapper-3">금일 판매 데이터가 없습니다.</p>
                                 </div>
                             </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="sale" items="${todaySales}" varStatus="status">
+                                        <c:set var="categoryArray" value="${fn:split(sale.categoryList, ',')}" />
+                                        <c:set var="breadArray" value="${fn:split(sale.breadList, ',')}" />
+                                        <c:set var="quantityArray" value="${fn:split(sale.quantityList, ',')}" />
+
+                                        <c:forEach var="category" items="${categoryArray}" varStatus="itemStatus">
                             <div class="div-2">
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-3">식빵</p>
+                                    <p class="text-wrapper-2">${itemStatus.count}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
+                                    <p class="text-wrapper-3">${category}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
+                                    <p class="text-wrapper-2">${breadArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
+                                    <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
+                                    <p class="text-wrapper-2">
+                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]] != null ? breadPriceMap[breadArray[itemStatus.index]] : 2000)}" pattern="#,###" />
+                                    </p>
                             </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">간식빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">건강빵</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">도넛</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
-                            <div class="div-2">
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-3">페스츄리</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">200</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">338,000</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">30%</p>
-                                </div>
-                                <div class="div-wrapper">
-                                    <p class="text-wrapper-2">202,800</p>
-                                </div>
-                            </div>
+                        </div>
+                                        </c:forEach>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <footer class="total">
                         <p class="element">
                             <span class="span">금일 총 매출 금액 : </span>
-                            <span class="text-wrapper-4">3,340,000</span>
+                            <span class="text-wrapper-4">
+                                <c:choose>
+                                    <c:when test="${empty todaySales}">0</c:when>
+                                    <c:otherwise>
+                                        <fmt:formatNumber value="${todaySales[0].sellMoney}" pattern="#,###,###"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
                             <span class="span">원</span>
                         </p>
                     </footer>
@@ -176,10 +128,19 @@
                     <h3 class="text-wrapper-5">생산완료 파트</h3>
                     <ul class="div-8">
                         <c:forEach var="item" items="${productionData}" varStatus="status">
-                            <li class="div-9">
-                                <time class="element-2"><fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy-MM-dd HH:mm"/></time>
+                        <li class="div-9">
+                                <time class="element-2">
+                                    <c:choose>
+                                        <c:when test="${item.createTime != null}">
+                                            <fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:formatDate value="<%= new java.util.Date() %>" pattern="yyyy-MM-dd HH:mm"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </time>
                                 <p class="text-wrapper-6">${item.categoryName}</p>
-                            </li>
+                        </li>
                         </c:forEach>
                     </ul>
                 </div>
@@ -204,105 +165,35 @@
                 </div>
             </div>
             <ul class="div-8">
+                <c:choose>
+                    <c:when test="${empty memberList}">
+                        <!-- 데이터가 없을 경우 메시지 표시 -->
                 <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
+                            <div class="div-wrapper-2 text-center" style="width: 100%;">
+                                <p class="text-wrapper-13">등록된 직원 정보가 없습니다.</p>
                     </div>
                 </li>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- memberList에서 데이터 반복 표시 -->
+                        <c:forEach var="member" items="${memberList}">
                 <li class="div-2">
                     <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
+                        <p class="text-wrapper-13">${member.userName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
+                        <p class="text-wrapper-13">${member.businessName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
+                        <p class="text-wrapper-13">${member.positionName}</p>
                     </div>
                     <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
+                        <p class="text-wrapper-13">${member.phone}</p>
                     </div>
                 </li>
-                <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
-                    </div>
-                </li>
-                <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
-                    </div>
-                </li>
-                <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
-                    </div>
-                </li>
-                <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
-                    </div>
-                </li>
-                <li class="div-2">
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">최지원</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회사</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">회장</p>
-                    </div>
-                    <div class="div-wrapper-2">
-                        <p class="text-wrapper-13">010-7777-7777</p>
-                    </div>
-                </li>
-
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </section>
@@ -369,9 +260,21 @@
             plugins: [ChartDataLabels]
         });
     });
+
+    function changeBusiness(businessNo) {
+        fetch('/company/dashboard/sales?businessNo=' + businessNo)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('salesContent').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 </script>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
 <jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 
 </html>
+
