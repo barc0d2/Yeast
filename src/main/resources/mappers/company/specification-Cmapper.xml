@@ -66,9 +66,17 @@
     </select>
 
     <select id="findByUserNo" resultMap="memberResult">
-        SELECT *
+        SELECT USER_NAME,
+                USER_NO,
+                POSITION_NAME,
+                BUSINESS_NAME,
+                SALARY,
+                BONUS
         FROM MEMBER
+        LEFT JOIN POSITION USING(POSITION_NO)
+        LEFT JOIN BUSINESS USING(BUSINESS_NO)
         WHERE USER_NO = #{userNo}
+        AND MEMBER.STATUS = 1
     </select>
 
     <select id="findByBusinessNo" resultMap="memberResult">

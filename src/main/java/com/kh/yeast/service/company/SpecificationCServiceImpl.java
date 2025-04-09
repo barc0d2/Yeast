@@ -29,7 +29,7 @@ public class SpecificationCServiceImpl implements SpecificationCService{
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
         ArrayList<Member> list = specificationCMapper.selectEmployeeList(rowBounds, search);
-
+        System.out.println("list = " + list);
         list.forEach(member -> {
             Timestamp createDate = member.getCreateDate();
             if (createDate != null) {
@@ -46,7 +46,8 @@ public class SpecificationCServiceImpl implements SpecificationCService{
 
     @Override
     public Model detail(Model model, Long userNo) throws Exception {
-
+        Member member = specificationCMapper.findByUserNo(userNo);
+        model.addAttribute("member", member);
         return model;
     }
 
