@@ -177,7 +177,7 @@
             </div>
         </section>
         <section class="employee">
-            <h2 class="text-wrapper-12">전체직원 목록</h2>
+            <h2 class="text-wrapper-12">전체직원 목록 (${businessName})</h2>
             <div class="list">
                 <div class="div-2">
                     <div class="div-wrapper-2">

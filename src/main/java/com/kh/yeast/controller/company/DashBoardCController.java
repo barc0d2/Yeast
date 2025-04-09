@@ -97,6 +97,19 @@ public class DashBoardCController {
     public String getSalesByBusiness(@RequestParam("businessNo") Long businessNo, Model model) {
         ArrayList<Sell> todaySales = dashBoardCService.getTodaySalesByBusiness(businessNo);
         model.addAttribute("todaySales", todaySales);
-        return "company/dashboard/dashboard :: #salesContent";
+        
+        // 빵 정보 조회
+        ArrayList<Bread> breadList = dashBoardCService.getAllBread();
+        
+        // 빵 이름을 키로, 가격을 값으로 하는 맵 생성
+        Map<String, Integer> breadPriceMap = new HashMap<>();
+        if (breadList != null && !breadList.isEmpty()) {
+            for (Bread bread : breadList) {
+                breadPriceMap.put(bread.getBreadName(), bread.getPrice());
+            }
+        }
+        
+        model.addAttribute("breadPriceMap", breadPriceMap);
+        return "company/dashboard/salesContent";
     }
 }

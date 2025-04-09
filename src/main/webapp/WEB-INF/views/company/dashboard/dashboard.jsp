@@ -9,6 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
@@ -24,7 +25,7 @@
             <div class="inbody">
                 <article class="branch">
                     <header class="title">
-                        <h2 class="text-wrapper-12">금일 판매내역 
+                        <h2 class="text-wrapper-12">금일 판매내역
                             <select id="businessSelect" onchange="changeBusiness(this.value)" style="margin-left: 10px; padding: 5px; border-radius: 5px; border: 1px solid #cecece;">
                                 <c:forEach var="business" items="${businessList}">
                                     <option value="${business.businessNo}" ${not empty todaySales and todaySales[0].businessNo eq business.businessNo ? 'selected' : ''}>
@@ -66,25 +67,25 @@
                                         <c:set var="categoryArray" value="${fn:split(sale.categoryList, ',')}" />
                                         <c:set var="breadArray" value="${fn:split(sale.breadList, ',')}" />
                                         <c:set var="quantityArray" value="${fn:split(sale.quantityList, ',')}" />
-                                        
+
                                         <c:forEach var="category" items="${categoryArray}" varStatus="itemStatus">
                             <div class="div-2">
                                 <div class="div-wrapper">
-                                                    <p class="text-wrapper-2">${itemStatus.count}</p>
+                                    <p class="text-wrapper-2">${itemStatus.count}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                                    <p class="text-wrapper-3">${category}</p>
+                                    <p class="text-wrapper-3">${category}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                                    <p class="text-wrapper-2">${breadArray[itemStatus.index]}</p>
+                                    <p class="text-wrapper-2">${breadArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                                    <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
+                                    <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
                                 </div>
                                 <div class="div-wrapper">
-                                                    <p class="text-wrapper-2">
-                                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]] != null ? breadPriceMap[breadArray[itemStatus.index]] : 2000)}" pattern="#,###" />
-                                                    </p>
+                                    <p class="text-wrapper-2">
+                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]] != null ? breadPriceMap[breadArray[itemStatus.index]] : 2000)}" pattern="#,###" />
+                                    </p>
                             </div>
                         </div>
                                         </c:forEach>
@@ -261,17 +262,14 @@
     });
 
     function changeBusiness(businessNo) {
-        $.ajax({
-            url: '/company/dashboard/sales',
-            type: 'GET',
-            data: { businessNo: businessNo },
-            success: function(response) {
-                $('#salesContent').html(response);
-            },
-            error: function(xhr, status, error) {
+        fetch('/company/dashboard/sales?businessNo=' + businessNo)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('salesContent').innerHTML = html;
+            })
+            .catch(error => {
                 console.error('Error:', error);
-            }
-        });
+            });
     }
 </script>
 <jsp:include page="../sideBar/brownSideBar.jsp"/>
@@ -279,3 +277,4 @@
 </body>
 
 </html>
+
