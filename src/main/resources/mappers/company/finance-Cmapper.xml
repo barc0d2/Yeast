@@ -78,4 +78,46 @@
                 BUSINESS_NAME
         FROM BUSINESS
     </select>
+
+    <select id="allSellCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM SELL
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="allSellList" resultMap="sellResult">
+        SELECT SELL_NO,
+                SELL_MONEY,
+                BREAD_LIST,
+                QUANTITY_LIST,
+                TOTAL_LIST,
+                CREATE_DATE,
+                BUSINESS_NO,
+                BUSINESS_NAME
+        FROM SELL
+        JOIN BUSINESS USING (BUSINESS_NO)
+        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
+        AND CREATE_DATE >=
+            CASE
+                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
+                ELSE CREATE_DATE
+            END
+        ORDER BY SELL_NO DESC
+    </select>
+
+    <select id="allBusinessList" resultMap="businessResult">
+        SELECT BUSINESS_NO,
+                BUSINESS_NAME
+        FROM BUSINESS
+    </select>
 </mapper>

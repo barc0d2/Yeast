@@ -64,4 +64,45 @@ public class FinanceCServiceImpl implements FinanceCService {
         }
         return model;
     }
+
+    @Override
+    @Transactional
+    public Model allSellList(Integer cpage,String period, Model model) {
+
+        Integer sellCount = financeCMapper.allSellCount(period);
+
+        PageInfo pi = new PageInfo(sellCount, cpage, 10, 15);
+        int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+        ArrayList<Sell> sellList = financeCMapper.allSellList(period, rowBounds);
+        sellList.forEach(sell -> {
+            Timestamp createDate = sell.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                sell.setEnrollDate(sqlDate);
+            } else {
+                sell.setEnrollDate(null);
+            }
+        });
+
+        RowBounds rowBusinessBounds = new RowBounds(1, Integer.MAX_VALUE);
+        ArrayList<Business> businessList = financeCMapper.allBusinessList(rowBusinessBounds);
+
+        model.addAttribute("sellList", sellList);
+        model.addAttribute("businessList", businessList);
+        model.addAttribute("pi", pi);
+        model.addAttribute("currentName", "재무관리");
+        model.addAttribute("smallCurrentName","도매 매출");
+
+        if(businessList.isEmpty()){
+            model.addAttribute("errorMsg", "페이지를 불러오지 못했습니다");
+        }
+
+        if(sellList.isEmpty()){
+            model.addAttribute("alertMsg", "도매 매출 데이터 불러오지 못했습니다.");
+        }
+
+        return model;
+    }
 }
