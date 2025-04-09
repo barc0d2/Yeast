@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.yeast.mappers.SupplyMapper">
+
+    <resultMap id="supplyResult" type="Supply">
+        <result column="SUPPLY_NO" property="supplyNo"/>
+        <result column="BREAD_NO" property="breadNo"/>
+        <result column="BRANCH_NO" property="branchNo"/>
+        <result column="COMPANY_NO" property="companyNo"/>
+        <result column="QUANTITY" property="quantity"/>
+        <result column="STATUS" property="status"/>
+        <result column="ORDER_DATE" property="orderDate"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="UPDATE_AT" property="updateAt"/>
+        <result column="SEPARATE" property="separate"/>
+        <result column="CATEGORY_NAME" property="categoryName"/>
+        <result column="BREAD_NAME" property="breadName"/>
+        <result column="PRICE" property="price"/>
+        <result column="INVEN_COUNT" property="invenCount"/>
+        <result column="MANAGER" property="manager"/>
+        <result column="CLIENT" property="client"/>
+    </resultMap>
+
+    <select id="selectOrderCount" resultType="int">
+        SELECT COUNT(*)
+        FROM SUPPLY
+        WHERE SEPARATE = 'O'
+    </select>
+
+    <select id="selectOrderList" resultMap="supplyResult">
+        SELECT
+        S.SUPPLY_NO,
+        MAX(S.STATUS) AS STATUS,
+        MAX(S.ORDER_DATE) AS ORDER_DATE,
+        MAX(S.CREATE_DATE) AS CREATE_DATE,
+        SUM(BR.PRICE * SD.QUANTITY) AS TOTAL_PRICE,
+        MAX(BU.BUSINESS_NAME) AS CLIENT
+        FROM
+        SUPPLY S
+        JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
+        JOIN BREAD BR ON SD.BREAD_NO = BR.BREAD_NO
+        JOIN BUSINESS BU ON S.BRANCH_NO = BU.BUSINESS_NO
+        WHERE
+        S.SEPARATE = 'O'
+        GROUP BY
+        S.SUPPLY_NO
+        ORDER BY
+        S.SUPPLY_NO
+
+    </select>
+
+    <select id="selectValue" resultMap="supplyResult">
+        SELECT
+        B.BREAD_NO,
+        BC.CATEGORY_NAME,
+        B.BREAD_NAME,
+        B.PRICE,
+        I.INVEN_COUNT
+        FROM BREAD B
+        LEFT JOIN BREAD_CATEGORY BC ON B.CATEGORY_NO = BC.CATEGORY_NO
+        LEFT JOIN INVENTORY I ON B.BREAD_NO = I.BREAD_NO
+        WHERE B.STATUS = 1
+        AND I.CREATE_TIME = (
+        SELECT MAX(I2.CREATE_TIME)
+        FROM INVENTORY I2
+        WHERE I2.BREAD_NO = B.BREAD_NO
+        )
+        ORDER BY B.BREAD_NO ASC
+
+    </select>
+</mapper>

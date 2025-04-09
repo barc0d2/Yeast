@@ -22,16 +22,11 @@ public class FinanceBController {
     private final FinanceBService financeBService;
 
     @GetMapping("/storechart")
-    public String dailyRevenueForm(HttpSession session, Model model) {
+    public String dailyRevenueForm(HttpSession session, Model model) throws Exception {
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
         String businessName = "서울 홍대점";
-        ArrayList<BreadInventory> breadInventoryList = null;
-        try {
-            breadInventoryList = financeBService.dailyBreadList(businessName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<BreadInventory> breadInventoryList = financeBService.dailyBreadList(businessName);
         model.addAttribute("list", breadInventoryList);
         model.addAttribute("currentName", "판매기록조회");
         model.addAttribute("smallCurrentName","판매내역");
@@ -39,16 +34,11 @@ public class FinanceBController {
     }
 
     @GetMapping("/storeDetail")
-    public String selectSellList(HttpSession session, Model model){
+    public String selectSellList(HttpSession session, Model model) throws Exception {
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
         String businessName = "서울 강남점";
-        ArrayList<Sell> sellList;
-        try{
-//            sellList = financeBService.selectSellList()
-        }catch (Exception e){
-
-        }
+//        ArrayList<Sell> sellList= financeBService.selectSellList();
 
         return "branch/finance/detial";
     }

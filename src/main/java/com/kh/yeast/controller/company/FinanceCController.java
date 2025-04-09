@@ -19,7 +19,7 @@ public class FinanceCController {
     private final FinanceCService financeCService;
 
     @GetMapping("/storeGraph")
-    public String selectStoreList(Model model) {
+    public String selectStoreList(Model model) throws Exception  {
         ArrayList<Sell> list = financeCService.selectRecentlySellList();
         model.addAttribute("list", list);
         model.addAttribute("currentName", "재무관리");
@@ -33,7 +33,7 @@ public class FinanceCController {
     }
 
     @GetMapping("/totalSaleDetail")
-    public String selectSellList(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period){
+    public String selectSellList(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period) throws Exception {
 
         model = financeCService.selectSellList(businessNo, cpage,period, model);
 

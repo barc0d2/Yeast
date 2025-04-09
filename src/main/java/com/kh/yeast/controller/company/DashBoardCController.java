@@ -20,8 +20,8 @@ public class DashBoardCController {
 
     private final DashBoardCService dashBoardCService;
 
-    @GetMapping
-    public String dashboard(Model model) {
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) throws Exception  {
         // 생산 현황 데이터 추가
         ArrayList<Inventory> productionData = dashBoardCService.productionList();
         int totalAmount = dashBoardCService.getTotalInventoryAmount();
@@ -41,7 +41,7 @@ public class DashBoardCController {
     }
 
     @GetMapping("/produtionchart")
-    public String selectDashChart(Model model) {
+    public String selectDashChart(Model model) throws Exception  {
         ArrayList<Inventory> list = dashBoardCService.productionList();
         model.addAttribute("list", list);
         model.addAttribute("currentName", "생산관리");
