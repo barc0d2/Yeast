@@ -595,7 +595,7 @@
   padding: 0px 10px;
   position: absolute;
   top: 19px;
-  left: 623px;
+  right:0px;
 }
 
 .store-specific .input-6 {
@@ -606,7 +606,7 @@
   padding: 0px 10px;
   position: absolute;
   top: 19px;
-  left: 604px;
+  right:0px;
 }
 
 .store-specific .click {

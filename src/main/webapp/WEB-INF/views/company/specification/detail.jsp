@@ -49,7 +49,7 @@
                         <div class="div-2">
                             <div class="payment-wrapper"><div class="text-wrapper-5">급여액(월)</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-6"><fmt:formatNumber value="${member.salary + member.bonus}" type="number" /></div>
+                                <div class="text-wrapper-6 uu"><fmt:formatNumber value="${member.salary + member.bonus}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
@@ -78,7 +78,8 @@
                                         <div class="input-in"><div class="text-wrapper-10"><fmt:formatNumber value="${(member.salary + member.bonus)*0.03545}" pattern="#,###" />원×12.81%</div></div>
                                     </div>
                                     <div class="money">
-                                        <div class="text-wrapper-11 o1"><fmt:formatNumber value="${(member.salary + member.bonus)*0.03545*0.1281}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.03545*0.1281}" pattern="#,###" var="o1"/>
+                                        <div class="text-wrapper-11 o1">${o1}</div>
                                         <div class="text-wrapper-12">원</div>
                                     </div>
                                 </div>
@@ -94,7 +95,8 @@
                                         <div class="input-in-2"><div class="text-wrapper-10"><fmt:formatNumber value="${member.salary + member.bonus}" pattern="#,###" />원×4.5%</div></div>
                                     </div>
                                     <div class="money-2">
-                                        <div class="text-wrapper-13 o2"><fmt:formatNumber value="${(member.salary + member.bonus)*0.045}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.045}" pattern="#,###" var="o2"/>
+                                        <div class="text-wrapper-13 o2">${o2}</div>
                                         <div class="text-wrapper-14">원</div>
                                     </div>
                                 </div>
@@ -110,7 +112,8 @@
                                         <div id="input-in-2-jangi" ><div class="text-wrapper-10"><fmt:formatNumber value="${member.salary + member.bonus}" pattern="#,###" />원×3.545%</div></div>
                                     </div>
                                     <div class="money">
-                                        <div class="text-wrapper-11 o3"><fmt:formatNumber value="${(member.salary + member.bonus)*0.03545}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.03545}" pattern="#,###"  var="o3" />
+                                        <div class="text-wrapper-11 o3">${o3}</div>
                                         <div class="text-wrapper-12">원</div>
                                     </div>
                                 </div>
@@ -126,7 +129,8 @@
                                         <div class="input-in"><div class="text-wrapper-10"><fmt:formatNumber value="${member.salary + member.bonus}" pattern="#,###" />원×0.9%</div></div>
                                     </div>
                                     <div class="money">
-                                        <div class="text-wrapper-11 o4"><fmt:formatNumber value="${(member.salary + member.bonus)*0.009}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.009}" pattern="#,###" var="o4" />
+                                        <div class="text-wrapper-11 o4">${o4}</div>
                                         <div class="text-wrapper-12">원</div>
                                     </div>
                                 </div>
@@ -147,7 +151,8 @@
                                         </div>
                                     </div>
                                     <div class="money">
-                                        <div class="text-wrapper-11 o5"><fmt:formatNumber value="${(member.salary + member.bonus)*0.104}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.104}" pattern="#,###" var="o5" />
+                                        <div class="text-wrapper-11 o5">${o5}</div>
                                         <div class="text-wrapper-12">원</div>
                                     </div>
                                 </div>
@@ -163,7 +168,8 @@
                                         <div id="jibang"><div class="text-wrapper-10 o2"><fmt:formatNumber value="${(member.salary + member.bonus)*0.104}" pattern="#,###" />원×10%</div></div>
                                     </div>
                                     <div class="money">
-                                        <div class="text-wrapper-11 o6"><fmt:formatNumber value="${(member.salary + member.bonus)*0.0104}" pattern="#,###" /></div>
+                                        <fmt:formatNumber value="${(member.salary + member.bonus)*0.0104}" pattern="#,###" var="o6"/>
+                                        <div class="text-wrapper-11 o6">${o6}</div>
                                         <div class="text-wrapper-12">원</div>
                                     </div>
                                 </div>
@@ -175,14 +181,14 @@
                         <div class="div-2">
                             <div class="text-3"><div class="text-wrapper-5">공제액 합계</div></div>
                             <div class="input-5">
-                                <div class="text-wrapper-4">210,760</div>
+                                <div class="text-wrapper-4 r1"></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
                         <div class="div-2">
                             <div class="text-3"><div class="text-wrapper-5">예상 실수력액(월)</div></div>
                             <div class="input-6">
-                                <div class="text-wrapper-4"><fmt:formatNumber value="${employee.salary - 210760}" type="number" /></div>
+                                <div class="text-wrapper-4 r2"></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
@@ -203,6 +209,34 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const o1 = document.querySelector(".o1").textContent;
+        let n1 = Number(o1.replace(/,/g, ''));
+        const o2 = document.querySelector(".o2").textContent;
+        let n2 = Number(o2.replace(/,/g, ''));
+        const o3 = document.querySelector(".o3").textContent;
+        let n3 = Number(o3.replace(/,/g, ''));
+        const o4 = document.querySelector(".o4").textContent;
+        let n4 = Number(o4.replace(/,/g, ''));
+        const o5 = document.querySelector(".o5").textContent;
+        let n5 = Number(o5.replace(/,/g, ''));
+        const o6 = document.querySelector(".o6").textContent;
+        let n6 = Number(o6.replace(/,/g, ''));
+
+        const uu = document.querySelector(".uu").textContent;
+        let nu = Number(uu.replace(/,/g, ''));
+
+        let r1 = n1 + n2 + n3 + n4 + n5 + n6;
+        console.log("r1" + o1);
+
+        let r2 = nu - r1;
+
+        document.querySelector(".r1").innerHTML = r1.toLocaleString();
+
+        document.querySelector(".r2").innerHTML = r2.toLocaleString();
+    });
+
+
     const userName = "${employee.userName}";
     const encodedUserName = encodeURIComponent(userName);
 
@@ -235,8 +269,8 @@
     }
 </script>
 
-<jsp:include page="../../../sideBar/whiteSideBar.jsp"/>
-<jsp:include page="../../../sideBar/whiteTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 
 <!-- ✅ 모달은 여기 유지 -->
 <div id="payslipModal" class="modal-overlay" style="display: none;">
