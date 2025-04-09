@@ -1,6 +1,7 @@
 package com.kh.yeast.globalException;
 
 import com.kh.yeast.customException.PaymentTransactionException;
+import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
