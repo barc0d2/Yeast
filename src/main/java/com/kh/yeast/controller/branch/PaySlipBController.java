@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 
-
 @Controller
 @RequestMapping("/branch/storemangement/specification/payslip")
 public class PaySlipBController {
@@ -34,7 +33,7 @@ public class PaySlipBController {
         System.out.println("🚀 받은 요청 - userName: " + userName);
 
         if (userName == null || userName.isEmpty()) {
-            System.out.println("❌ userName이 비어 있음!");
+
             return "redirect:/errorPage";
         }
 
