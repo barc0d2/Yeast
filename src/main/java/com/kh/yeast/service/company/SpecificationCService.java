@@ -8,14 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SpecificationCService {
+    Model specificationList(Integer cpage, Model model, String search) throws Exception;
 
-    Integer selectEmployeeCount();
+    Model detail(Model model, Long userNo) throws Exception;
 
-    ArrayList<Member> getEmployeeList(PageInfo pi);
-
-    List<Member> findEmployeesByName(String userName);
-
-    Member findByUserNo(Long userNo);
-
-    Model detail(Model model, Long businessNo);
+    Model monthlyFee(Model model, Long businessNo);
 }

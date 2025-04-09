@@ -23,6 +23,7 @@
         <result column="BIRTHDAY" property="birthday"/>
         <result column="STATUS" property="status"/>
         <result column="HEAD_NAME" property="headName"/>
+        <result column="UPDATE_AT" property="updateAt"/>
     </resultMap>
     <resultMap id="businessResult" type="Business">
         <result column="BUSINESS_NO" property="businessNo"/>
@@ -52,13 +53,16 @@
         M.CREATE_DATE,
         M.IMAGE_CHANGE,
         M.IMAGE_ORIGIN,
-        M.BIRTHDAY AS BIRTHDAY,
-        M.STATUS AS STATUS
+        M.BIRTHDAY,
+        M.STATUS,
+        M.UPDATE_AT
         FROM MEMBER M
         LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
         LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
         LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
-        WHERE M.STATUS = 1
+        WHERE (#{search} IS NULL
+        OR M.USER_NAME = #{search})
+        AND M.STATUS = 1
     </select>
 
     <select id="findByUserNo" resultMap="memberResult">

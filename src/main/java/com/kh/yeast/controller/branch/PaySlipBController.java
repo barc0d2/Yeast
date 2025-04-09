@@ -47,7 +47,7 @@ public class PaySlipBController {
 
         model.addAttribute("employee", employee);
         System.out.println("🚀 받은 요청 - employee: " + employee);
-        return "branch/storemangement/specification/payslip/paySlip";
+        return "detail";
     }
 
 }
