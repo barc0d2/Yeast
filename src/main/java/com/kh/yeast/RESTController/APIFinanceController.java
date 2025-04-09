@@ -17,7 +17,11 @@ public class APIFinanceController {
         try {
             return financeBService.insertSell(sell);
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            if(e instanceof RuntimeException){
+                throw new RuntimeException(e.getMessage());
+            }else{
+                return "서버에서의 문제가 발생했습니다.";
+            }
         }
     }
 }

@@ -5,7 +5,10 @@ import com.kh.yeast.service.company.STableCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,10 +23,6 @@ public class STableCController {
         this.stableCService = stableCService;
     }
 
-    @GetMapping("/list")
-    public String specificationTable() {
-        return "company/specification/list";
-    }
 
     @GetMapping("/Table/searchByName")
     public ResponseEntity<?> searchByName(@RequestParam String userName) {

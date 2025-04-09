@@ -28,7 +28,6 @@ public class BreadCServiceImpl implements BreadCService {
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
         ArrayList<Bread> breadList = breadCMapper.selectBreadList(rowBounds);
-        System.out.println("size2"+breadList.size());
         breadList.forEach(bread -> {
             Timestamp createDate = bread.getCreateDate();
             if (createDate != null) {
@@ -61,13 +60,12 @@ public class BreadCServiceImpl implements BreadCService {
     }
 
     @Override
-    public Bread selectBread(Integer breadNo) throws Exception {
+    public Bread selectBread(Integer breadNo){
         return breadCMapper.selectBread(breadNo);
     }
 
     @Override
-    @Transactional
-    public Integer deleteBread(Long breadNo) throws Exception {
+    public Integer deleteBread(Long breadNo){
         return breadCMapper.deleteBread(breadNo);
     }
 }

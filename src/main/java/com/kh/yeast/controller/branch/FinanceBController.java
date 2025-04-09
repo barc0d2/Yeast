@@ -2,6 +2,7 @@ package com.kh.yeast.controller.branch;
 
 import com.kh.yeast.domain.vo.BreadInventory;
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Sell;
 import com.kh.yeast.service.branch.FinanceBService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,8 +22,7 @@ public class FinanceBController {
     private final FinanceBService financeBService;
 
     @GetMapping("/storechart")
-    public String dailyRevenueForm(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
+    public String dailyRevenueForm(HttpSession session, Model model) {
         Member member = (Member)session.getAttribute("member");
 //        String businessName =  member.getBusinessName();
         String businessName = "서울 홍대점";
@@ -38,4 +38,18 @@ public class FinanceBController {
         return "branch/finance/storechart";
     }
 
+    @GetMapping("/storeDetail")
+    public String selectSellList(HttpSession session, Model model){
+        Member member = (Member)session.getAttribute("member");
+//        String businessName =  member.getBusinessName();
+        String businessName = "서울 강남점";
+        ArrayList<Sell> sellList;
+        try{
+//            sellList = financeBService.selectSellList()
+        }catch (Exception e){
+
+        }
+
+        return "branch/finance/detial";
+    }
 }
