@@ -22,42 +22,37 @@ public class DashBoardCController {
 
     private final DashBoardCService dashBoardCService;
 
-    @GetMapping("/dashboard")
+    @GetMapping
     public String dashboard(Model model) throws Exception  {
-        // 생산 현황 데이터 추가
+
         ArrayList<Inventory> productionData = dashBoardCService.productionList();
+
         int totalAmount = dashBoardCService.getTotalInventoryAmount();
-        
-        // 데이터가 비어있는지 확인하고 로그 출력
+
         if (productionData == null || productionData.isEmpty()) {
             System.out.println("경고: 생산 데이터가 존재하지 않습니다.");
         } else {
             System.out.println("생산 데이터 로드 성공: " + productionData.size() + "개 카테고리");
         }
-        
-        // 전체 직원 목록 데이터 추가
+
         ArrayList<Member> memberList = dashBoardCService.getAllMembers();
         if (memberList == null || memberList.isEmpty()) {
             System.out.println("경고: 직원 데이터가 존재하지 않습니다.");
         } else {
             System.out.println("직원 데이터 로드 성공: " + memberList.size() + "명");
         }
-        
-        // 전체 지점 목록 조회
+
         ArrayList<Business> businessList = dashBoardCService.getAllBusinesses();
         
-        // 금일 판매내역 데이터 추가
         ArrayList<Sell> todaySales = dashBoardCService.getTodaySales();
         if (todaySales == null || todaySales.isEmpty()) {
             System.out.println("경고: 금일 판매 데이터가 존재하지 않습니다.");
         } else {
             System.out.println("금일 판매 데이터 로드 성공: " + todaySales.size() + "건");
         }
-        
-        // 빵 정보 조회
+
         ArrayList<Bread> breadList = dashBoardCService.getAllBread();
-        
-        // 빵 이름을 키로, 가격을 값으로 하는 맵 생성
+
         Map<String, Integer> breadPriceMap = new HashMap<>();
         if (breadList != null && !breadList.isEmpty()) {
             for (Bread bread : breadList) {
@@ -76,7 +71,7 @@ public class DashBoardCController {
         model.addAttribute("businessList", businessList);
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName","대시보드");
-        return "company/dashboard/dashboard";
+        return "company/dashboard";
     }
 
     @GetMapping("/produtionchart")
