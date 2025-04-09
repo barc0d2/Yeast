@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 public class Supply {
     private Long supplyNo;
     private Long breadNo;
+    private String branchName;
     private Long branchNo;
     private Long companyNo;
     private Integer quantity;
