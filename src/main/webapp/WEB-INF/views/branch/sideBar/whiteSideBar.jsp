@@ -71,7 +71,9 @@
                     <a href="/branch/employee/list">
                         <div class="submenu-item">직원관리</div>
                     </a>
-                    <div class="submenu-item">매장 정보수정</div>
+                    <a href="/branch/store/updateForm">
+                        <div class="submenu-item">매장 정보수정</div>
+                    </a>
                     <a href="/branch/finance/list">
                         <div class="submenu-item">하루 매출</div>
                     </a>

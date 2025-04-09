@@ -17,7 +17,7 @@ public class StoreBSereviceImpl implements StoreBService {
     private final StoreBMapper storeBMapper;
 
     @Override
-    public Business selectStore(int businessNo) {
+    public Business selectStore(long businessNo) {
         return storeBMapper.selectStore(businessNo);
     }
 

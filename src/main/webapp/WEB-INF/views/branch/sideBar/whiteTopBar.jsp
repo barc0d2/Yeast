@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -110,6 +112,12 @@
     </head>
 
     <body>
+    <c:if test="${not empty sessionScope.alertMsg}">
+        <script>
+            alert("${sessionScope.alertMsg}");
+        </script>
+        <c:remove var="alertMsg" scope="session" />
+    </c:if>
         <div id="top-bar">
             <div id="top-bar-background"></div>
             <div class="menu-management">

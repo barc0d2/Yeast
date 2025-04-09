@@ -37,7 +37,7 @@
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${list}">
-                        <tr>
+                        <tr  style="cursor: pointer" onclick="location.href='updateForm?supplyNo=${order.supplyNo}'">
                             <td>${order.supplyNo}</td>
                             <td class="btn">
                                 <div class="button">

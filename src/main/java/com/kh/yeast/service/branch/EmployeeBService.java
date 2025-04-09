@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 public interface EmployeeBService {
 
-    int selectMemberCount();
+    int selectMemberCount(long businessNo);
 
-    ArrayList<Member> selectMemberList(PageInfo pi);
+    ArrayList<Member> selectMemberList(long businessNo, PageInfo pi);
 
     Member selectMember(int userNo);
+
+    int update(Member member);
 }

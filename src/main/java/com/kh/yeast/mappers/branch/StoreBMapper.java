@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Mapper
 public interface StoreBMapper {
-    Business selectStore(@Param("businessNo") int businessNo);
+    Business selectStore(@Param("businessNo") long businessNo);
 
     Integer updateThings(Business business);
 }

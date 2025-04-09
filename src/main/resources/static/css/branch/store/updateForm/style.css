@@ -14,8 +14,8 @@
   justify-content: center;
   gap: 72px;
   position: absolute;
-  top: 201px;
-  left: 50%;
+  top: 320px;
+  left: 55%;
   transform: translateX(-50%);
   background-color: var(--backgroundwhite);
   border-radius: 15px;
@@ -215,8 +215,8 @@
   justify-content: space-between;
   padding: 0px 30px;
   position: absolute;
-  top: 55px;
-  left: 50%;
+  top: 160px;
+  left: 55%;
   transform: translateX(-50%);
   background-color: #ffffff;
   border-radius: 15px;
