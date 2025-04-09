@@ -24,13 +24,7 @@ public class BreadBController{
         Integer breadCount = breadBService.selectBreadCount();
 
         PageInfo pi = new PageInfo(breadCount, currentPage, 10, 6);
-        ArrayList<Bread> list = null;
-
-        try {
-            list = breadBService.selectBreadList(pi);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        ArrayList<Bread> list = breadBService.selectBreadList(pi);
 
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);

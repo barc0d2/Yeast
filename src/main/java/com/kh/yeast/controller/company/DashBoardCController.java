@@ -29,39 +29,13 @@ public class DashBoardCController {
 
         int totalAmount = dashBoardCService.getTotalInventoryAmount();
 
-        if (productionData == null || productionData.isEmpty()) {
-            System.out.println("경고: 생산 데이터가 존재하지 않습니다.");
-        } else {
-            System.out.println("생산 데이터 로드 성공: " + productionData.size() + "개 카테고리");
-        }
-
         ArrayList<Member> memberList = dashBoardCService.getAllMembers();
-        if (memberList == null || memberList.isEmpty()) {
-            System.out.println("경고: 직원 데이터가 존재하지 않습니다.");
-        } else {
-            System.out.println("직원 데이터 로드 성공: " + memberList.size() + "명");
-        }
 
         ArrayList<Business> businessList = dashBoardCService.getAllBusinesses();
         
         ArrayList<Sell> todaySales = dashBoardCService.getTodaySales();
-        if (todaySales == null || todaySales.isEmpty()) {
-            System.out.println("경고: 금일 판매 데이터가 존재하지 않습니다.");
-        } else {
-            System.out.println("금일 판매 데이터 로드 성공: " + todaySales.size() + "건");
-        }
-
-        ArrayList<Bread> breadList = dashBoardCService.getAllBread();
 
         Map<String, Integer> breadPriceMap = new HashMap<>();
-        if (breadList != null && !breadList.isEmpty()) {
-            for (Bread bread : breadList) {
-                breadPriceMap.put(bread.getBreadName(), bread.getPrice());
-            }
-            System.out.println("빵 데이터 로드 성공: " + breadList.size() + "개 상품");
-        } else {
-            System.out.println("경고: 빵 데이터가 존재하지 않습니다.");
-        }
         
         model.addAttribute("productionData", productionData);
         model.addAttribute("totalAmount", totalAmount > 0 ? totalAmount : 11040000);
@@ -71,7 +45,7 @@ public class DashBoardCController {
         model.addAttribute("businessList", businessList);
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName","대시보드");
-        return "company/dashboard";
+        return "company/dashboard/dashboard";
     }
 
     @GetMapping("/produtionchart")
@@ -92,11 +66,9 @@ public class DashBoardCController {
     public String getSalesByBusiness(@RequestParam("businessNo") Long businessNo, Model model) {
         ArrayList<Sell> todaySales = dashBoardCService.getTodaySalesByBusiness(businessNo);
         model.addAttribute("todaySales", todaySales);
-        
-        // 빵 정보 조회
+
         ArrayList<Bread> breadList = dashBoardCService.getAllBread();
-        
-        // 빵 이름을 키로, 가격을 값으로 하는 맵 생성
+
         Map<String, Integer> breadPriceMap = new HashMap<>();
         if (breadList != null && !breadList.isEmpty()) {
             for (Bread bread : breadList) {

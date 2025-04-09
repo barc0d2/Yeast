@@ -1,6 +1,7 @@
 package com.kh.yeast.mappers.branch;
 
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Sell;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,4 +17,6 @@ public interface DashBoardBMapper {
     
     // 사용자 이름으로 회원 정보 조회
     Member selectMemberByName(@Param("userName") String userName);
+
+    ArrayList<Sell> selectFinanceChart();
 }

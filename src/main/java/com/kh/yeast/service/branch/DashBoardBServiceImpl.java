@@ -1,6 +1,7 @@
 package com.kh.yeast.service.branch;
 
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Sell;
 import com.kh.yeast.mappers.branch.DashBoardBMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,10 @@ public class DashBoardBServiceImpl implements DashBoardBService {
     @Override
     public Member getMemberByName(String userName) {
         return dashBoardBMapper.selectMemberByName(userName);
+    }
+
+    @Override
+    public ArrayList<Sell> financeList() {
+        return dashBoardBMapper.selectFinanceChart();
     }
 }
