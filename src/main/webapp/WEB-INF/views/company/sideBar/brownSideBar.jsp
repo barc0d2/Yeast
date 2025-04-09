@@ -120,9 +120,18 @@
 
         </div>
         <div class="submenu">
-            <div class="submenu-item">지점별 매출</div>
-            <div class="submenu-item">도매 매출</div>
-            <div class="submenu-item">명세</div>
+            <a href="/company/finance/chart">
+                <div class="submenu-item">지점별 매출</div>
+            </a>
+            <a href="/company/finance/wholesaleChart">
+                <div class="submenu-item">도매 매출</div>
+            </a>
+            <a href="/company/specification/list">
+                <div class="submenu-item">임금 명세서</div>
+            </a>
+            <a href="/company/specification/detail">
+                <div class="submenu-item">월 수수료</div>
+            </a>
         </div>
 
         <div class="menu-item">

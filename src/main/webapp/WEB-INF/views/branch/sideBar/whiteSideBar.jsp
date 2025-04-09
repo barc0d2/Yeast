@@ -72,7 +72,15 @@
                         <div class="submenu-item">직원관리</div>
                     </a>
                     <div class="submenu-item">매장 정보수정</div>
-                    <div class="submenu-item">명세</div>
+                    <a href="/branch/finance/list">
+                        <div class="submenu-item">하루 매출</div>
+                    </a>
+                    <a href="/branch/specification/list">
+                        <div class="submenu-item">임금 명세서</div>
+                    </a>
+                    <a href="/branch/specification/detail">
+                        <div class="submenu-item">월 수수료</div>
+                    </a>
                 </div>
                 <div class="menu-item">
                     <div class="menu-icon"><svg width="32" height="34" viewBox="0 0 32 34" fill="none"

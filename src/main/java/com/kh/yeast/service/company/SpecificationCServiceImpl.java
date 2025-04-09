@@ -62,11 +62,6 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     }
 
     @Override
-    public Member findByBusinessNo(Long businessNo) {
-        return specificationCMapper.findByBusinessNo(businessNo);
-    }
-
-    @Override
     public Model detail(Model model, Long businessNo) {
         Member member = specificationCMapper.findByBusinessNo(businessNo);
         model.addAttribute("member", member);

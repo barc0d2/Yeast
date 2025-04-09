@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -27,7 +28,7 @@ public class FinanceCServiceImpl implements FinanceCService {
 
     @Override
     @Transactional
-    public Model selectSellList(Long businessNo, Integer cpage,String period, Model model) {
+    public Model selectSellList(Long businessNo,Integer cpage, String period, Model model) {
 
         Integer sellCount = financeCMapper.selectSellCount(businessNo, period);
 

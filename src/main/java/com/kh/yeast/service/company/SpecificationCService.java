@@ -17,7 +17,5 @@ public interface SpecificationCService {
 
     Member findByUserNo(Long userNo);
 
-    Member findByBusinessNo(Long businessNo);
-
     Model detail(Model model, Long businessNo);
 }
