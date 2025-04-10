@@ -40,4 +40,8 @@ public interface SupplyMapper {
     Supply selectUpdateInfo(@Param("supplyNo") int supplyNo);
 
     int updateList(@Param("supplyNo") long supplyNo, String categoryName, String breadName, String quantityList, String priceList);
+
+    int businessMoney(long businessNo);
+
+    int updateBusinessMoney(@Param("businessNo") long businessNo, @Param("totalSumPrice") int totalSumPrice);
 }

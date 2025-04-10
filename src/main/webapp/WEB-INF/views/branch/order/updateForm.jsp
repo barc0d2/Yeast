@@ -38,7 +38,7 @@
                                 <td>${bread.breadNo}</td>
                                 <td class="category">${bread.categoryName}</td>
                                 <td class="breadName">${bread.breadName}</td>
-                                <td class="price">${bread.price}</td>
+                                <td class="price">${bread.price * 0.25}</td>
                                 <td><input class="radio" name="select" onchange="select(event)" style="transform: scale(1.5)" type="radio"></td>
                             </tr>
                         </c:forEach>
@@ -168,22 +168,21 @@
         const submitOrderBtn = document.getElementById('submitOrderBtn');
         const modalOpenBtn = document.getElementById('modalOpen');
 
-        // status 값 가져오기
+        let SumCount = 0;
+        let SumPrice = 0;
+        document.getElementById('totalSumPrice').value = SumPrice;
+
         const status = document.querySelector('input[name="status"]').value;
 
-        // status가 'R' 또는 'Y'인 경우 버튼 비활성화
         if (status === 'R' || status === 'Y') {
-            // 추가 버튼 비활성화 및 스타일 변경
             // submitOrderBtn.disabled = true;
             submitOrderBtn.style.opacity = '0.5';
             submitOrderBtn.style.cursor = 'not-allowed';
 
-            // 품목 확인 버튼도 비활성화
             //modalOpenBtn.style.pointerEvents = 'none';
             modalOpenBtn.style.opacity = '0.5';
             modalOpenBtn.style.cursor = 'not-allowed';
 
-            // 원래 클릭 이벤트를 제거하고 새 이벤트 추가
             submitOrderBtn.onclick = function() {
                 const message = status === 'R' ? '이미 승인 신청된 발주입니다.' : '이미 승인된 발주입니다.';
                 alert(message);
@@ -196,8 +195,7 @@
             };
         }
 
-        let SumCount = 0;
-        let SumPrice = 0;
+
 
         const quantity = document.querySelectorAll('.quantity');
         const priceList = document.querySelectorAll('.price');
@@ -292,14 +290,24 @@
         tbody.addEventListener('click', (e) => {
             if (e.target.closest('.delete-image')) {
                 const row = e.target.closest('tr');
-                if (row) row.remove();
+                const quantity = parseInt(row.querySelector('input[name="quantity"]').value);
+                const price = parseInt(row.querySelector('input[name="price"]').value);
+
+                SumCount -= quantity;
+                SumPrice -= price;
+
+                totalCount.innerText = "총 수량 " + SumCount + "개";
+                sumPrice.innerText = "총 발주 금액" + SumPrice + "원";
+
+                document.getElementById('totalSumPrice').value = SumPrice;
+                if(row)row.remove();
             }
         });
 
         window.openPaymentConfirmModal = function () {
-            const current = 80667020; // 예: 현재 잔액
+            const current = ${money}; // 예: 현재 잔액
             const payment = SumPrice;
-            const remain = current - payment;
+            const remain = ${money} - payment;
 
             document.getElementById("confirm-current").innerText = current.toLocaleString() + "원";
             document.getElementById("confirm-payment").innerText = payment.toLocaleString() + "원";
@@ -316,6 +324,8 @@
             if(selectedInfo == null){
                 alert("발주품목을 추가 하지 않았습니다.")
             }else{
+                document.getElementById('totalSumPrice').value = SumPrice;
+
             const form = document.getElementById('orderForm');
             form.action = '/branch/order/updateList';
             form.submit();

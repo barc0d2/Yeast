@@ -75,5 +75,15 @@ public class OrderBServiceImpl implements OrderBService {
         return supplyMapper.updateList(supplyNo, categoryName,breadName,quantityList,priceList);
     }
 
+    @Override
+    public int businessMoney(long businessNo) {
+        return supplyMapper.businessMoney(businessNo);
+    }
+
+    @Override
+    public int updateBusinessMoney(long businessNo, int totalSumPrice) {
+        return supplyMapper.updateBusinessMoney(businessNo, totalSumPrice);
+    }
+
 
 }

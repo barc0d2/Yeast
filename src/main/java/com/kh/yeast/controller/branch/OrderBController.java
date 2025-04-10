@@ -40,11 +40,14 @@ public class OrderBController {
     }
 
     @GetMapping("/orderPage")
-    public String orderPage(Model model){
+    public String orderPage(@SessionAttribute("loginUser") Member loginUser, Model model){
         model.addAttribute("currentName", "발주신청");
         model.addAttribute("smallCurrentName","발주신청");
+        long businessNo = loginUser.getBusinessNo();
         ArrayList<Supply> list = orderBService.selectValue();
+        int money = orderBService.businessMoney(businessNo);
         System.out.println(list);
+        model.addAttribute("money", money);
         model.addAttribute("list", list);
 
         List<String> categoryList = list.stream()
@@ -62,7 +65,9 @@ public class OrderBController {
     public String insertList(@RequestParam("category") ArrayList<String> category,
                              @RequestParam("breadName") ArrayList<String> bread,
                              @RequestParam("quantity") ArrayList<Integer> quantity,
-                             @RequestParam("price") ArrayList<Integer> price,HttpSession session, Model model) {
+                             @RequestParam("price") ArrayList<Integer> price,HttpSession session,
+                             @RequestParam("totalSumPrice") int totalSumPrice,
+                             @SessionAttribute("loginUser") Member loginUser,Model model) {
         int result =0;
         for (int i = 0; i < bread.size(); i++) {
             String categoryName = category.get(i);
@@ -77,6 +82,8 @@ public class OrderBController {
 
             result += orderBService.insertList(categoryName,breadName,quantityList,priceList);
         }
+        long businessNo = loginUser.getBusinessNo();
+        int result2 = orderBService.updateBusinessMoney(businessNo, totalSumPrice);
         if(result == bread.size()){
            session.setAttribute("alertMsg","발주 신청 완료");
            return "redirect:/branch/order/list";
@@ -87,12 +94,15 @@ public class OrderBController {
     }
 
     @GetMapping("/updateForm")
-    public String updateForm(int supplyNo, Model model){
+    public String updateForm(@SessionAttribute("loginUser") Member loginUser, int supplyNo, Model model){
         ArrayList<Supply> supply = orderBService.selectUpdate(supplyNo);
         Supply list = orderBService.selectUpdateInfo(supplyNo);
         ArrayList<Supply> bread = orderBService.selectValue();
         model.addAttribute("currentName", "발주관리");
         model.addAttribute("smallCurrentName","발주품목추가");
+        long businessNo = loginUser.getBusinessNo();
+        int money = orderBService.businessMoney(businessNo);
+        model.addAttribute("money", money);
         model.addAttribute("supply", supply);
         model.addAttribute("list", list);
         model.addAttribute("bread", bread);
@@ -104,7 +114,8 @@ public class OrderBController {
     public String updateList(@RequestParam("category") ArrayList<String> category,
                              @RequestParam("breadName") ArrayList<String> bread,
                              @RequestParam("quantity") ArrayList<Integer> quantity,
-                             @RequestParam("price") ArrayList<Integer> price,@RequestParam("supplyNo") long supplyNo ,HttpSession session, Model model) {
+                             @RequestParam("price") ArrayList<Integer> price,
+                             @RequestParam("supplyNo") long supplyNo ,HttpSession session, Model model) {
         int result =0;
         for (int i = 0; i < bread.size(); i++) {
             String categoryName = category.get(i);

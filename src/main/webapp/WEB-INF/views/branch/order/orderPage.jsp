@@ -15,6 +15,7 @@
 <div class="screen">
 
     <form id="orderForm" class="container" method="post">
+        <input type="hidden" id="totalSumPrice" name="totalSumPrice" value="0">
         <div id="myModal" class="modal">
             <div class="modalHead">
                 빵 품목리스트
@@ -38,7 +39,7 @@
                                 <td>${bread.breadNo}</td>
                                 <td class="category">${bread.categoryName}</td>
                                 <td class="breadName">${bread.breadName}</td>
-                                <td class="price">${bread.price}</td>
+                                <td class="price">${bread.price * 0.25}</td>
                                 <td><input class="radio" name="select" onchange="select(event)" style="transform: scale(1.5)" type="radio"></td>
                             </tr>
                         </c:forEach>
@@ -159,6 +160,11 @@
         let SumCount = 0;
         let SumPrice = 0;
 
+        totalCount.innerText = "총 수량 "+SumCount + "개";
+        sumPrice.innerText = "총 발주 금액" + SumPrice + "원";
+
+        document.getElementById('totalSumPrice').value = SumPrice;
+
 
         let breadList = [];
         let categoryList = [];
@@ -235,14 +241,24 @@
         tbody.addEventListener('click', (e) => {
             if (e.target.closest('.delete-image')) {
                 const row = e.target.closest('tr');
-                if (row) row.remove();
+                const quantity = parseInt(row.querySelector('input[name="quantity"]').value);
+                const price = parseInt(row.querySelector('input[name="price"]').value);
+
+                SumCount -= quantity;
+                SumPrice -= price;
+
+                totalCount.innerText = "총 수량 " + SumCount + "개";
+                sumPrice.innerText = "총 발주 금액" + SumPrice + "원";
+
+                document.getElementById('totalSumPrice').value = SumPrice;
+                if(row)row.remove();
             }
         });
 
         window.openPaymentConfirmModal = function () {
-            const current = 80667020; // 예: 현재 잔액
+            const current = ${money}; // 예: 현재 잔액
             const payment = SumPrice;
-            const remain = current - payment;
+            const remain = ${money} - payment;
 
             document.getElementById("confirm-current").innerText = current.toLocaleString() + "원";
             document.getElementById("confirm-payment").innerText = payment.toLocaleString() + "원";
@@ -256,6 +272,8 @@
         }
 
         window.submitConfirmedPayment = function() {
+            document.getElementById('totalSumPrice').value = SumPrice;
+
             const form = document.getElementById('orderForm');
             form.action = '/branch/order/insertList';
             form.submit();

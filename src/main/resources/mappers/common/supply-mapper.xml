@@ -21,6 +21,7 @@
         <result column="PRICE" property="price"/>
         <result column="INVEN_COUNT" property="invenCount"/>
         <result column="MANAGER" property="manager"/>
+        <result column="BUSINESS_MONEY" property="businessMoney"/>
     </resultMap>
 
     <select id="selectOrderCount" resultType="int">
@@ -69,6 +70,14 @@
         )
         ORDER BY B.BREAD_NO ASC
 
+    </select>
+    <select id="businessMoney" resultType="int">
+        SELECT
+            MONEY AS BUSINESS_MONEY
+        FROM BUSINESS
+        WHERE
+            BUSINESS_NO = #{businessNo} AND
+             STATUS = 1
     </select>
 
     <insert id="insert">
@@ -140,6 +149,13 @@
         )
 
     </insert>
+
+    <update id="updateBusinessMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY - #{totalSumPrice}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND MONEY >= #{totalSumPrice}
+    </update>
 
 <!--    여기부터 출하     -->
     <select id="selectDispatchCount" resultType="int">
