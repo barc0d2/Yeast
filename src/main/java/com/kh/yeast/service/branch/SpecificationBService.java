@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SpecificationBService {
-    Model detail(Model model, HttpSession session);
+    Model detail(Model model, HttpSession session) throws Exception;
 
     Model updateMoney(HttpSession session, Model model, Integer money) throws Exception;
 }

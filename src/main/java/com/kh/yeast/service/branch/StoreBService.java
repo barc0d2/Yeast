@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 public interface StoreBService {
 
-    Business selectStore(int businessNo);
+    Business selectStore(long businessNo);
     Integer updateThings(Business business) throws Exception;
 }

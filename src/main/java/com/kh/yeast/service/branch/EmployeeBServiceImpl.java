@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Service
@@ -17,21 +19,36 @@ public class EmployeeBServiceImpl implements EmployeeBService {
 
 
     @Override
-    public int selectMemberCount() {
-        int memberCount = employeeBMapper.selectMemberCount();
+    public int selectMemberCount(long businessNo) {
+        int memberCount = employeeBMapper.selectMemberCount(businessNo);
         System.out.println(memberCount);
         return memberCount;
     }
 
     @Override
-    public ArrayList<Member> selectMemberList(PageInfo pi) {
+    public ArrayList<Member> selectMemberList(long businessNo, PageInfo pi) {
         int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset , pi.getBoardLimit());
-        return employeeBMapper.selectMemberList(rowBounds);
+        ArrayList<Member> memberList = employeeBMapper.selectMemberList(businessNo, rowBounds);
+        memberList.forEach(member -> {
+            Timestamp createDate = member.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                member.setEnrollDate(sqlDate);
+            } else {
+                member.setEnrollDate(null);
+            }
+        });
+        return memberList;
     }
 
     @Override
     public Member selectMember(int userNo) {
         return employeeBMapper.selectMember(userNo);
+    }
+
+    @Override
+    public int update(Member member) {
+        return employeeBMapper.update(member);
     }
 }

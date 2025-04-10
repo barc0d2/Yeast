@@ -7,11 +7,11 @@
 }
 
 .frame {
-  left: 5%;
-  top: 15%;
+  left: 250px;
+  top: 30px;
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  width: 1300px;
   height: 919px;
   align-items: center;
   justify-content: center;
@@ -232,10 +232,10 @@ td>button {
 }
 .needpay-button{
   color: white;
-  background-color: var(--stateinfo);
+  background-color: rgba(132, 161, 255, 1);
   border-radius: 10px;
   border: 1px solid;
-  border-color: var(--variable-collection-border-grayup);
+  border-color: rgba(173, 173, 173, 1);
 }
 
 .pagination {

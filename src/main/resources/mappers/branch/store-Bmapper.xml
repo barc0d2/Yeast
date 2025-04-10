@@ -16,6 +16,7 @@
     <resultMap id="inventoryResult" type="Inventory">
         <result column="INVEN_COUNT" property="invenCount"/>
     </resultMap>
+
     <select id="selectStore" resultMap="businessResult">
         SELECT  BUSINESS_NO,
                 BUSINESS_NAME,

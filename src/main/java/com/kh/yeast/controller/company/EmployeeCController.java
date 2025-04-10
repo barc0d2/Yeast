@@ -23,7 +23,7 @@ public class EmployeeCController {
 
 
     @GetMapping("/enrollForm")
-    public String enrollFormEmployee(int userNo, Model model) throws Exception  {
+    public String enrollFormEmployee(int userNo, Model model)  {
         Member member = employeeCService.selectMember(userNo);
         model.addAttribute("currentName", "지점관리");
         model.addAttribute("smallCurrentName","직원수정");

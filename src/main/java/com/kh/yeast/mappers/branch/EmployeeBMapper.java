@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 @Mapper
 public interface EmployeeBMapper {
-    int selectMemberCount();
+    int selectMemberCount(@Param("businessNo") long businessNo);
 
-    ArrayList<Member> selectMemberList(RowBounds rowBounds);
+    ArrayList<Member> selectMemberList(@Param("businessNo") long businessNo, RowBounds rowBounds);
 
     Member selectMember(@Param("userNo") int userNo);
+
+    int update(Member member);
 }

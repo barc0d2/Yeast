@@ -36,6 +36,6 @@ public class Member {
     private Date birthday;
     private Date enrollDate;
     private Integer status;
-    private LocalDate updateAt;
+    private Date updateAt;
     private String headName;
 }

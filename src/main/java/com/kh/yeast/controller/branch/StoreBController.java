@@ -1,6 +1,7 @@
 package com.kh.yeast.controller.branch;
 
 import com.kh.yeast.domain.vo.Business;
+import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.service.branch.StoreBService;
 import com.kh.yeast.service.company.StoreCService;
@@ -23,12 +24,15 @@ public class StoreBController {
     private final StoreBService storeBService;
 
     @GetMapping("/updateForm")
-    public String updateFormStore(int businessNo, Model model) {
+    public String updateFormStore(@SessionAttribute("loginUser") Member loginUser, Model model) {
+        long businessNo = loginUser.getBusinessNo();
+
         Business business = storeBService.selectStore(businessNo);
-        System.out.println(business.getBusinessNo());
-        model.addAttribute("currentName", "지점관리");
-        model.addAttribute("smallCurrentName", "지점수정");
+        model.addAttribute("currentName", "매장관리");
+        model.addAttribute("smallCurrentName", "매장 정보수정");
         model.addAttribute("business", business);
+
+
         return "branch/store/updateForm";
     }
 
@@ -55,7 +59,7 @@ public class StoreBController {
         model.addAttribute("smallCurrentName","지점수정");
         if(result > 0){
             session.setAttribute("alertMsg", "지점 수정 성공");
-            return "redirect:/branch/store/updateForm?businessNo=" + business.getBusinessNo();
+            return "redirect:/branch/store/updateForm";
         } else {
             model.addAttribute("errorMsg", "지점 수정 실패");
             return "errorPage";
