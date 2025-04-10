@@ -67,11 +67,9 @@
                 </table>
             </div>
             <p class="page-no">
-                <span class="span">${currentPage} </span>
-                <span class="text-wrapper-7"> to </span>
-                <span class="span">4</span>
+                <span class="span">${pi.currentPage} </span>
                 <span class="text-wrapper-7"> of </span>
-                <span class="span">4</span>
+                <span class="span">${pi.maxPage}</span>
             </p>
         </div>
     </div>

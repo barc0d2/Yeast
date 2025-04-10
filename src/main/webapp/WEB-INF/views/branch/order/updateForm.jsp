@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/css/branch/order/orderPage/style.css"/>
-    <link rel="stylesheet" href="/css/branch/order/orderPage/global.css"/>
-    <link rel="stylesheet" href="/css/branch/order/orderPage/styleguide.css"/>
+    <link rel="stylesheet" href="/css/branch/order/updateForm/style.css"/>
+    <link rel="stylesheet" href="/css/branch/order/updateForm/global.css"/>
+    <link rel="stylesheet" href="/css/branch/order/updateForm/styleguide.css"/>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="bread" items="${list}">
+                        <c:forEach var="bread" items="${bread}">
                             <tr>
                                 <td>${bread.breadNo}</td>
                                 <td class="category">${bread.categoryName}</td>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <button type="button" class="purchase-btn" id="submitOrderBtn" onclick="openPaymentConfirmModal()">
-            <div class="cancel">결제</div>
+            <div class="cancel">추가</div>
         </button>
 
         <div class="back">
@@ -66,16 +66,16 @@
             <div class="list">
                 <div class="div">
                     <p class="p"><span class="text-wrapper">*</span> <span class="span">발주자</span></p>
-                    <input name="branchName" style="color: #5c5c5c" value="${sessionScope.loginUser.businessName}" class="name" readonly>
+                    <input name="branchName"  value="${sessionScope.loginUser.businessName}" class="name">
                 </div>
                 <div class="div">
                     <div class="line-2">*배송요청일</div>
                     <div class="date">
-                        <input type="date" name="orderDate" class="date">
+                        <input type="date" name="orderDate" value="${list.orderDate}" class="date">
                     </div>
                 </div>
                     <div class="box" id="modalOpen">
-                        <div class="btn"  onclick="submit1()" >
+                        <div class="btn" >
                             <div class="div-wrapper" >
                                 <div class="text" >
                                     <div class="line-3" >빵 품목 확인</div>
@@ -97,9 +97,9 @@
             </div>
         </div>
         <div class="content">
-
             <div class="table">
                 <table id="order-table">
+                    <input type="hidden" name="supplyNo" value="${list.supplyNo}">
                     <thead>
                     <tr>
                         <th>빵 종류</th>
@@ -110,6 +110,14 @@
                     </tr>
                     </thead>
                     <tbody class="tbody">
+                    <c:forEach var="supply" items="${supply}">
+                        <tr>
+                            <td class="category">${supply.categoryName}</td>
+                            <td class="breadName">${supply.breadName}</td>
+                            <td class="quantity">${supply.quantity}</td>
+                            <td class="price">${supply.price}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -158,6 +166,18 @@
         let SumCount = 0;
         let SumPrice = 0;
 
+        const quantity = document.querySelectorAll('.quantity');
+        const priceList = document.querySelectorAll('.price');
+
+        quantity.forEach((qtyEl, index) => {
+            const qty = parseInt(qtyEl.textContent.trim()) || 0;
+            const price = parseInt(priceList[index].textContent.trim()) || 0;
+
+            SumCount += qty;
+            SumPrice += price;
+        });
+        totalCount.innerText = "총 수량 "+SumCount + "개";
+        sumPrice.innerText = "총 발주 금액" + SumPrice + "원";
 
         let breadList = [];
         let categoryList = [];
@@ -255,34 +275,19 @@
         }
 
         window.submitConfirmedPayment = function() {
+            if(selectedInfo == null){
+                alert("발주품목을 추가 하지 않았습니다.")
+            }else{
             const form = document.getElementById('orderForm');
-            form.action = '/branch/order/insertList';
+            form.action = '/branch/order/updateList';
             form.submit();
-            alert("결제가 완료되었습니다.");
+            alert("수정이 완료되었습니다.");
             closePaymentConfirmModal();
+            }
         }
 
 
     });
-
-    function submit1() {
-        const branchName = document.querySelector('input[name="branchName"]').value;
-        const orderDate = document.querySelector('input[name="orderDate"]').value;
-
-        $.ajax({
-            url: "/api/order/insert",
-            type: "POST",
-            data: {
-                branchName: branchName,
-                orderDate: orderDate
-            },
-            success: function (res) {
-                console.log('성공:', res);
-            },
-            error: function (err) {
-            }
-        })
-    }
 
 </script>
 

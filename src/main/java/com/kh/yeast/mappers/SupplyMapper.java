@@ -1,6 +1,5 @@
 package com.kh.yeast.mappers;
 
-import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.domain.vo.Supply;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,14 +7,13 @@ import org.apache.ibatis.session.RowBounds;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 @Mapper
 public interface SupplyMapper {
 
-    int selectOrderCount();
+    int selectOrderCount(@Param("businessNo") long businessNo);
 
-    ArrayList<Supply> selectOrderList(RowBounds rowBounds);
+    ArrayList<Supply> selectOrderList(@Param("businessNo") long businessNo, RowBounds rowBounds);
 
     ArrayList<Supply> selectValue();
 
@@ -36,4 +34,10 @@ public interface SupplyMapper {
     int night();
 
     int approval(@Param("supplyNo") int supplyNo);
+
+    ArrayList<Supply> selectUpdate(@Param("supplyNo") int supplyNo);
+
+    Supply selectUpdateInfo(@Param("supplyNo") int supplyNo);
+
+    int updateList(@Param("supplyNo") long supplyNo, String categoryName, String breadName, String quantityList, String priceList);
 }

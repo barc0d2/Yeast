@@ -25,14 +25,14 @@ public class OrderBController {
     private final OrderBService orderBService;
 
     @GetMapping("/list")
-    public String orderManagement(@RequestParam(defaultValue = "1") int currentPage, Model model){
+    public String orderManagement(@SessionAttribute("loginUser") Member loginUser ,@RequestParam(defaultValue = "1") int currentPage, Model model){
         model.addAttribute("currentName", "발주신청");
         model.addAttribute("smallCurrentName","발주신청내역");
-
-        int orderCount = orderBService.selectOrderCount();
+        long businessNo = loginUser.getBusinessNo();
+        int orderCount = orderBService.selectOrderCount(businessNo);
 
         PageInfo pi = new PageInfo(orderCount, currentPage, 10, 10);
-        ArrayList<Supply> list = orderBService.selectOrderList(pi);
+        ArrayList<Supply> list = orderBService.selectOrderList(businessNo, pi);
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
 
@@ -85,4 +85,47 @@ public class OrderBController {
             return "error";
         }
     }
+
+    @GetMapping("/updateForm")
+    public String updateForm(int supplyNo, Model model){
+        ArrayList<Supply> supply = orderBService.selectUpdate(supplyNo);
+        Supply list = orderBService.selectUpdateInfo(supplyNo);
+        ArrayList<Supply> bread = orderBService.selectValue();
+        model.addAttribute("currentName", "발주관리");
+        model.addAttribute("smallCurrentName","발주품목추가");
+        model.addAttribute("supply", supply);
+        model.addAttribute("list", list);
+        model.addAttribute("bread", bread);
+
+        return "branch/order/updateForm";
+    }
+
+    @PostMapping("/updateList")
+    public String updateList(@RequestParam("category") ArrayList<String> category,
+                             @RequestParam("breadName") ArrayList<String> bread,
+                             @RequestParam("quantity") ArrayList<Integer> quantity,
+                             @RequestParam("price") ArrayList<Integer> price,@RequestParam("supplyNo") long supplyNo ,HttpSession session, Model model) {
+        int result =0;
+        for (int i = 0; i < bread.size(); i++) {
+            String categoryName = category.get(i);
+            String breadName = bread.get(i);
+            String quantityList = quantity.get(i).toString();
+            String priceList = price.get(i).toString();
+
+            System.out.println("빵 종류 : " + categoryName);
+            System.out.println("빵 이름 : " + breadName);
+            System.out.println("개수 : " + quantityList);
+            System.out.println("구매가격 : " + priceList);
+
+            result += orderBService.updateList(supplyNo, categoryName,breadName,quantityList,priceList);
+        }
+        if(result == bread.size()){
+            session.setAttribute("alertMsg","발주품목추가 완료");
+            return "redirect:/branch/order/list";
+        }else{
+            model.addAttribute("errorMsg", "발주품목추가 실패");
+            return "error";
+        }
+    }
+
 }

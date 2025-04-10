@@ -26,6 +26,7 @@
     <select id="selectOrderCount" resultType="int">
         SELECT COUNT(*)
         FROM SUPPLY
+        WHERE BRANCH_NO = #{businessNo}
     </select>
 
     <select id="selectOrderList" resultMap="supplyResult">
@@ -41,6 +42,8 @@
         JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
         JOIN BREAD BR ON SD.BREAD_NO = BR.BREAD_NO
         JOIN BUSINESS BU ON S.BRANCH_NO = BU.BUSINESS_NO
+        WHERE
+        S.BRANCH_NO = #{businessNo}
         GROUP BY
         S.SUPPLY_NO
         ORDER BY
@@ -86,6 +89,52 @@
         QUANTITY
         )
         VALUES(
+        (SELECT BREAD_NO FROM BREAD WHERE BREAD_NAME = #{breadName} AND STATUS = 1),
+        #{quantityList}
+        )
+
+    </insert>
+
+    <select id="selectUpdate" resultMap="supplyResult">
+        SELECT
+        S.BRANCH_NO,
+        S.COMPANY_NO,
+        S.STATUS,
+        S.ORDER_DATE,
+        S.CREATE_DATE,
+        BC.CATEGORY_NAME,
+        B.BREAD_NAME,
+        SD.QUANTITY,
+        (B.PRICE * SD.QUANTITY) AS PRICE
+        FROM SUPPLY S
+        LEFT JOIN SUPPLY_DETAIL SD ON S.SUPPLY_NO = SD.SUPPLY_NO
+        LEFT JOIN BREAD B ON SD.BREAD_NO = B.BREAD_NO
+        LEFT JOIN BREAD_CATEGORY BC ON B.CATEGORY_NO = BC.CATEGORY_NO
+        WHERE S.SUPPLY_NO = #{supplyNo}
+    </select>
+
+    <select id="selectUpdateInfo" resultMap="supplyResult">
+        SELECT
+        BN.BUSINESS_NAME AS BRANCH_NAME,
+        S.SUPPLY_NO,
+        S.COMPANY_NO,
+        S.STATUS,
+        S.ORDER_DATE,
+        S.CREATE_DATE
+        FROM SUPPLY S
+        JOIN BUSINESS BN ON S.BRANCH_NO = BN.BUSINESS_NO
+        WHERE S.SUPPLY_NO = #{supplyNo}
+    </select>
+
+    <insert id="updateList">
+        INSERT
+        INTO SUPPLY_DETAIL(
+        SUPPLY_NO,
+        BREAD_NO,
+        QUANTITY
+        )
+        VALUES(
+        #{supplyNo},
         (SELECT BREAD_NO FROM BREAD WHERE BREAD_NAME = #{breadName} AND STATUS = 1),
         #{quantityList}
         )
