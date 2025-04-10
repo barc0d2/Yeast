@@ -22,6 +22,8 @@ public interface SpecificationCMapper {
 
     Member findByUserNo(Long userNo);
 
+    Integer selectCompanyMoney();
+
     Member findByBusinessNo(Long businessNo);
 
     Integer lastMonthStatus(Long businessNo);

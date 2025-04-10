@@ -45,11 +45,8 @@
           <c:forEach var="employee" items="${employees}">
             <tr>
               <td>
-                <button class="procure pay-button" data-updateAt="${employee.updateAt}" onclick="location.href='/company/specification/detail?userNo=${employee.userNo}'">
-                  수급 완료
-                </button>
-                <button class="needpay-button" onclick="location.href='/company/specification/detail?userNo=${employee.userNo}'">
-                  수급
+                <fmt:formatDate value="${employee.updateAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="formattedDate" />
+                <button class="procure" data-update="${formattedDate}" onclick="location.href='/company/specification/detail?userNo=${employee.userNo}'">
                 </button>
               </td>
               <td>${employee.userName}</td>
@@ -72,19 +69,24 @@
 <jsp:include page="../sideBar/brownTopBar.jsp"/>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const today = new Date(sqlDate);
+    const today = new Date();
     const todayYear = today.getFullYear();
     const todayMonth = today.getMonth() + 1;
-    document.querySelectorAll(".procure").forEach(td => {
-      const updateAt = td.dataset.updateAt;
-      if(updateAt){
-        const sqlDate = new Date(updateAt.replace(" ", "T"));
+    document.querySelectorAll(".procure").forEach(button => {
+      const updateAt = button.dataset.update;
+      if (updateAt) {
+        const sqlDate = new Date(updateAt);
         const sqlYear = sqlDate.getFullYear();
         const sqlMonth = sqlDate.getMonth() + 1;
         if (todayYear === sqlYear && todayMonth === sqlMonth) {
-
+          button.classList.add('pay-button');
+          button.textContent = '수급완료';
+        } else {
+          button.classList.add('needpay-button');
+          button.textContent = '수급';
+        }
       }
-    }});
+    })
   });
 </script>
 </body>

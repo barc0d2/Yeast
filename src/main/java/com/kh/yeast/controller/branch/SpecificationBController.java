@@ -1,7 +1,5 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.vo.Business;
-import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.branch.SpecificationBService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,7 @@ public class SpecificationBController {
     @GetMapping("/detail")
     public String detail(HttpSession session, Model model) throws Exception{
 
-        model = specificationBService.detail(model, session);
+        specificationBService.detail(model, session);
 
         return "branch/specification/detail";
     }
@@ -29,7 +27,7 @@ public class SpecificationBController {
     @PostMapping("/pay")
     public String pay(HttpSession session, Model model, Integer money) throws Exception {
 
-        model = specificationBService.updateMoney(session, model, money);
+        specificationBService.updateMoney(session, model, money);
 
         return "redirect:/branch/specification/detail";
     }

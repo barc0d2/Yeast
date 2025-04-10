@@ -486,7 +486,6 @@ button{
 }
 
 .submitPay {
-  position: absolute;
   height: 34px;
   font-family: var(--head-kakao-24px-font-family);
   font-weight: var(--head-kakao-24px-font-weight);

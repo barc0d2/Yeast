@@ -45,7 +45,7 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
     @Override
     @Transactional
-    public synchronized Model updateMoney(HttpSession session, Model model, Integer money) {
+    public synchronized void updateMoney(HttpSession session, Model model, Integer money) {
 
         Member member = (Member) session.getAttribute("loginUser");
         Long businessNo = member.getBusinessNo();
@@ -69,20 +69,5 @@ public class SpecificationBServiceImpl implements SpecificationBService {
         if(updateRemitted==0 || updateRemitted==null){
             throw new PaymentTransactionException("날짜가 갱신되지 않았습니다.");
         }
-
-
-        Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
-        model.addAttribute("monthSellMoney", monthSellMoney);
-
-        Integer status = specificationBMapper.lastMonthStatus(businessNo);
-        model.addAttribute("status", status);
-
-        RowBounds rowBounds = new RowBounds(1, Integer.MAX_VALUE);
-        ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
-        model.addAttribute("businessList", businessList);
-
-
-
-        return model;
     }
 }
