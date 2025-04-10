@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +16,6 @@ public interface SpecificationCMapper {
     Integer selectEmployeeCount();
 
     ArrayList<Member> selectEmployeeList(RowBounds rowBounds, String search);
-
-//    List<Member> getAllEmployees();
-
-    List<Member> findEmployeesByName(@Param("userName") String userName);
 
     Member findByUserNo(Long userNo);
 
@@ -31,4 +28,12 @@ public interface SpecificationCMapper {
     Integer selectMonthlySellMoney(Long businessNo);
 
     ArrayList<Business> selectBusinessList(RowBounds rowBounds);
+
+    Timestamp selectMemberUpdate(Long userNo);
+
+    Timestamp selectCompanyUpdate();
+
+    Integer updateEmployeeSalary(Long userNo, Timestamp updateAt);
+
+    Integer updateCompanyMoney(Integer deduction, Timestamp updateAt);
 }

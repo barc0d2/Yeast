@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @Mapper
 public interface FinanceBMapper {
-    ArrayList<BreadInventory> inventoryList(String businessName);
+    ArrayList<BreadInventory> inventoryList(Long businessNo);
     ArrayList<Sell> selectTodaySell(Long businessNo);
     Integer insertSell(Sell sell);
     Integer updateMoney(Integer money, Long businessNo, Timestamp updateAt);
