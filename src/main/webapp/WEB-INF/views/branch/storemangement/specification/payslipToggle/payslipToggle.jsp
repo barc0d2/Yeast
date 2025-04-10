@@ -62,8 +62,6 @@
     <div class="cancel" onclick="window.location.href='/branch/storemangement/specification/payslipToggle/cancel?userNo=${userNo}';">
         <button type="button" class="cancel-2">취소</button>
     </div>
-
-
 </div>
 </body>
 </html>

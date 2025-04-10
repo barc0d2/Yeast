@@ -3,7 +3,8 @@
   width: 100%;
   height: auto;
   min-height: 100vh;
-  overflow: auto;
+  left:200px;
+  top:147px;
 }
 
 .store-specific .form {
@@ -617,7 +618,7 @@
   gap: 42px;
   position: absolute;
   top: 760px;
-  left: 1202px;
+  left: 1100px;
 }
 
 .store-specific .text-4 {

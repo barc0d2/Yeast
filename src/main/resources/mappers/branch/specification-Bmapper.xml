@@ -158,4 +158,5 @@
         SET REMITTED_DATE = SYSDATE
         WHERE BUSINESS_NO = #{businessNo}
     </update>
+
 </mapper>

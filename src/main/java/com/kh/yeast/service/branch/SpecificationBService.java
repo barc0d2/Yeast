@@ -11,5 +11,5 @@ import java.util.List;
 public interface SpecificationBService {
     Model detail(Model model, HttpSession session) throws Exception;
 
-    Model updateMoney(HttpSession session, Model model, Integer money) throws Exception;
+    void updateMoney(HttpSession session, Model model, Integer money) throws Exception;
 }
