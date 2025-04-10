@@ -22,7 +22,6 @@
   <div id="wrapper">
     <main class="frame">
         <section class="sales">
-
         </section>
         <section class="production">
             <h2 class="text-wrapper">금일 매출 현황</h2>
@@ -43,7 +42,7 @@
                             </div>
                         </div>
                     <c:choose>
-                        <c:when test="${empty todaySales}">
+                        <c:when test="${empty categorySales}">
                         <div class="div-2">
                             <div class="div-wrapper" style="width: 100%; text-align: center;">
                                 <p class="text-wrapper-3">금일 판매 데이터가 없습니다.</p>
@@ -51,25 +50,20 @@
                         </div>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="sale" items="${todaySales}" varStatus="status">
-                                <c:set var="categoryArray" value="${fn:split(sale.categoryList, ',')}"/>
-                                <c:set var="quantityArray" value="${fn:split(sale.quantityList, ',')}" />
-
-                                <c:forEach var="category" items="${categoryArray}" varStatus="itemStatus">
-                                    <div class="div-2">
-                                        <div class="div-wrapper">
-                                            <p class="text-wrapper-3">${category}</p>
-                                        </div>
-                                        <div class="div-wrapper">
-                                            <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
-                                        </div>
-                                        <div class="div-wrapper">
-                                            <p class="text-wrapper-2">
-                                                <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]] != null ? breadPriceMap[breadArray[itemStatus.index]] : 2000)}" pattern="#,###" />
-                                            </p>
-                                        </div>
+                            <c:forEach var="item" items="${categorySales}">
+                                <div class="div-2">
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-3">${item.CATEGORY_NAME}</p>
                                     </div>
-                                </c:forEach>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">${item.TOTAL_QUANTITY}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">
+                                            <fmt:formatNumber value="${item.TOTAL_AMOUNT}" pattern="#,###" />원
+                                        </p>
+                                    </div>
+                                </div>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
@@ -140,12 +134,24 @@
                 '#575757'
             ];
 
+            const categoryLabels = [
+                <c:forEach var="item" items="${categorySales}" varStatus="status">
+                "${item.CATEGORY_NAME}"<c:if test="${!status.last}">, </c:if>
+                </c:forEach>
+            ];
+
+            const categoryData = [
+                <c:forEach var="item" items="${categorySales}" varStatus="status">
+                ${item.TOTAL_QUANTITY}<c:if test="${!status.last}">, </c:if>
+                </c:forEach>
+            ];
+
             new Chart(document.getElementById("chartjs-doughnut"), {
                 type: "pie",
                 data: {
-                    labels: ["단과자", "식빵", "간식빵", "건강빵", "도넛", "페스츄리"],
+                    labels: categoryLabels.length > 0 ? categoryLabels : ["데이터 없음"],
                     datasets: [{
-                        data: [260, 125, 54, 146, 100, 70],
+                        data: categoryData.length > 0 ? categoryData : [100],
                         backgroundColor: colorPalette,
                         borderColor: "transparent"
                     }]

@@ -142,7 +142,7 @@ body{
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+  padding: 20px;
   position: relative;
   flex: 1;
   flex-grow: 1;
@@ -156,7 +156,7 @@ body{
   font-family: var(--head-kakao-10px-font-family);
   font-weight: var(--head-kakao-10px-font-weight);
   color: #000000;
-  font-size: var(--head-kakao-10px-font-size);
+  font-size: 15px;
   letter-spacing: var(--head-kakao-10px-letter-spacing);
   line-height: var(--head-kakao-10px-line-height);
   white-space: nowrap;

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface DashBoardBMapper {
@@ -19,4 +21,10 @@ public interface DashBoardBMapper {
     Member selectMemberByName(@Param("userName") String userName);
 
     ArrayList<Sell> selectFinanceChart();
+    
+    // 특정 지점의 금일 판매내역 조회
+    ArrayList<Sell> selectTodaySalesByBusiness(@Param("businessNo") Long businessNo);
+    
+    // 카테고리별 판매 개수 및 매출 조회
+    List<Map<String, Object>> selectCategorySalesByBusiness(@Param("businessNo") Long businessNo);
 }
