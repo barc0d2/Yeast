@@ -20,8 +20,8 @@ public class FinanceBServiceImpl implements FinanceBService {
     private final FinanceBMapper financeBMapper;
 
     @Override
-    public ArrayList<BreadInventory> dailyBreadList(String businessName) {
-        return financeBMapper.inventoryList(businessName);
+    public ArrayList<BreadInventory> dailyBreadList(Long businessNo) {
+        return financeBMapper.inventoryList(businessNo);
     }
 
     @Override

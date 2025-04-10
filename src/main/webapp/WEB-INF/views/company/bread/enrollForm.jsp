@@ -103,8 +103,6 @@
               reader.onload = function(ev){
                   img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
               }
-  
-  
           } else { //파일이 있었는데 선택 후 취소했을 때
               img.src = null;
           }

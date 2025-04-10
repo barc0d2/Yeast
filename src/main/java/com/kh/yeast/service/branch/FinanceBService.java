@@ -6,6 +6,6 @@ import com.kh.yeast.domain.vo.Sell;
 import java.util.ArrayList;
 
 public interface FinanceBService {
-    ArrayList<BreadInventory> dailyBreadList(String businessName) throws Exception;
+    ArrayList<BreadInventory> dailyBreadList(Long businessNo) throws Exception;
     String insertSell(Sell sell) throws Exception;
 }

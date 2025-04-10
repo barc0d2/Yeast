@@ -45,7 +45,7 @@
           <c:forEach var="employee" items="${employees}">
             <tr>
               <td>
-                <fmt:formatDate value="${employee.updateAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="formattedDate" />
+                <fmt:formatDate value="${employee.payday}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="formattedDate" />
                 <button class="procure" data-update="${formattedDate}" onclick="location.href='/company/specification/detail?userNo=${employee.userNo}'">
                 </button>
               </td>
@@ -73,9 +73,9 @@
     const todayYear = today.getFullYear();
     const todayMonth = today.getMonth() + 1;
     document.querySelectorAll(".procure").forEach(button => {
-      const updateAt = button.dataset.update;
-      if (updateAt) {
-        const sqlDate = new Date(updateAt);
+      const payday = button.dataset.update;
+      if (payday) {
+        const sqlDate = new Date(payday);
         const sqlYear = sqlDate.getFullYear();
         const sqlMonth = sqlDate.getMonth() + 1;
         if (todayYear === sqlYear && todayMonth === sqlMonth) {
