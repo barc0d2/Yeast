@@ -1,7 +1,5 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.vo.Business;
-import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.branch.SpecificationBService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
