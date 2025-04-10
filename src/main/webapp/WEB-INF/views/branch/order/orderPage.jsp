@@ -57,10 +57,11 @@
         <button type="button" class="purchase-btn" id="submitOrderBtn" onclick="openPaymentConfirmModal()">
             <div class="cancel">결제</div>
         </button>
-
-        <div class="back">
-            <div class="back-btn">이전</div>
-        </div>
+        <a href="/branch/order/list">
+            <div class="back">
+                <div class="back-btn">이전</div>
+            </div>
+        </a>
         <div class="column">
             <div class="line">기본 정보</div>
             <div class="list">

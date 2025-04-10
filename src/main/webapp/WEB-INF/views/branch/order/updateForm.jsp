@@ -58,9 +58,11 @@
             <div class="cancel">추가</div>
         </button>
 
-        <div class="back">
-            <div class="back-btn">이전</div>
-        </div>
+        <a href="/branch/order/list">
+            <div class="back">
+                <div class="back-btn">이전</div>
+            </div>
+        </a>
         <div class="column">
             <div class="line">기본 정보</div>
             <div class="list">
@@ -100,6 +102,7 @@
             <div class="table">
                 <table id="order-table">
                     <input type="hidden" name="supplyNo" value="${list.supplyNo}">
+                    <input type="hidden" name="status" value="${list.status}">
                     <thead>
                     <tr>
                         <th>빵 종류</th>
@@ -162,6 +165,36 @@
         const totalCount = document.querySelector('#totalCount');
         const sumPrice = document.querySelector('#sumPrice');
         const pushBtn = document.querySelector('#pushBtn');
+        const submitOrderBtn = document.getElementById('submitOrderBtn');
+        const modalOpenBtn = document.getElementById('modalOpen');
+
+        // status 값 가져오기
+        const status = document.querySelector('input[name="status"]').value;
+
+        // status가 'R' 또는 'Y'인 경우 버튼 비활성화
+        if (status === 'R' || status === 'Y') {
+            // 추가 버튼 비활성화 및 스타일 변경
+            // submitOrderBtn.disabled = true;
+            submitOrderBtn.style.opacity = '0.5';
+            submitOrderBtn.style.cursor = 'not-allowed';
+
+            // 품목 확인 버튼도 비활성화
+            //modalOpenBtn.style.pointerEvents = 'none';
+            modalOpenBtn.style.opacity = '0.5';
+            modalOpenBtn.style.cursor = 'not-allowed';
+
+            // 원래 클릭 이벤트를 제거하고 새 이벤트 추가
+            submitOrderBtn.onclick = function() {
+                const message = status === 'R' ? '이미 승인 신청된 발주입니다.' : '이미 승인된 발주입니다.';
+                alert(message);
+            };
+
+            modalOpenBtn.onclick = function() {
+                const message = status === 'R' ? '이미 승인 신청된 발주입니다.' : '이미 승인된 발주입니다.';
+                alert(message);
+                return false;
+            };
+        }
 
         let SumCount = 0;
         let SumPrice = 0;
@@ -185,9 +218,14 @@
         let totalPriceList = [];
 
         let selectedInfo = null;
-        modal.onclick = function () {
-            mymodal.style.display = "block";
-        };
+
+        // status가 'N'일 때만 모달 이벤트 활성화
+        if (status === 'N') {
+            modal.onclick = function () {
+                mymodal.style.display = "block";
+            };
+        }
+
         modalClose.onclick = function () {
             mymodal.style.display = "none";
         };
