@@ -17,19 +17,19 @@ public class SpecificationCController {
 
     @GetMapping("/list")
     public String specificationList(@RequestParam(defaultValue = "1") Integer cpage, Model model, String search) throws Exception {
-        model = specificationCService.specificationList(cpage, model, search);
+        specificationCService.specificationList(cpage, model, search);
         return "company/specification/list";
     }
 
     @GetMapping("/detail")
     public String detail(Model model, Long userNo) throws Exception {
-        model = specificationCService.detail(model, userNo);
+        specificationCService.detail(model, userNo);
         return "company/specification/detail";
     }
 
     @GetMapping("/monthlyFee")
     public String monthlyFee(@RequestParam(defaultValue = "2") Long businessNo, Model model) {
-        model = specificationCService.monthlyFee(model, businessNo);
+        specificationCService.monthlyFee(model, businessNo);
         return "company/specification/monthlyFee";
     }
 }

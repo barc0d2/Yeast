@@ -129,7 +129,7 @@
             <a href="/company/specification/list">
                 <div class="submenu-item">임금 명세서</div>
             </a>
-            <a href="/company/specification/detail">
+            <a href="/company/specification/monthlyFee">
                 <div class="submenu-item">월 수수료</div>
             </a>
         </div>

@@ -47,7 +47,9 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     @Override
     public Model detail(Model model, Long userNo) throws Exception {
         Member member = specificationCMapper.findByUserNo(userNo);
+        Integer money = specificationCMapper.selectCompanyMoney();
         model.addAttribute("member", member);
+        model.addAttribute("money", money);
         return model;
     }
 
