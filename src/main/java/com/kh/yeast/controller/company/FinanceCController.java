@@ -26,32 +26,19 @@ public class FinanceCController {
 
     @GetMapping("/detail")
     public String selectSellDetail(@RequestParam(defaultValue = "1")Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period){
-
-        model = financeCService.selectSellList(businessNo, cpage, period, model);
-
-        if(model.containsAttribute("errorMsg")){
-            return "errorPage";
-        }else{
-            return "company/finance/storedetail";
-        }
-    }
-
-    @GetMapping("/wholesaleDetail")
-    public String selectSellList(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period) throws Exception {
-
-        model = financeCService.selectSellList(businessNo, cpage,period, model);
-
-        if(model.containsAttribute("errorMsg")){
-            return "errorPage";
-        }else{
-            return "company/finance/totalsaledetail";
-        }
+        financeCService.selectSellList(businessNo, cpage, period, model);
+        return "company/finance/storedetail";
     }
 
     @GetMapping("/wholesaleChart")
-    public String wholesalegraph(Model model){
-
+    public String wholesalegraph(Model model, @RequestParam(defaultValue = "1")Integer cpage){
+        financeCService.selectRecentlyWholesaleList(model, cpage);
         return "company/finance/wholesalegraph";
     }
 
+    @GetMapping("/wholesaleDetail")
+    public String wholesaleDetail(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period) throws Exception {
+        financeCService.wholesaleDetail(businessNo, cpage, period, model);
+        return "company/finance/totalsaledetail";
+    }
 }

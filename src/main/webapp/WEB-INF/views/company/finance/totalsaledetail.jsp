@@ -21,7 +21,8 @@
                     <c:forEach var="business" items="${businessList}">
                         <option value="${business.businessNo}"
                             ${param.businessNo == business.businessNo ? 'selected' : ''}>
-                                ${business.businessName}</option>
+                                ${business.businessName}
+                        </option>
                     </c:forEach>
                 </select>
             </div>
@@ -33,20 +34,16 @@
                         <th data-sort="no">NO.</th>
                         <th data-sort="date">일자</th>
                         <th data-sort="quantity">판매 수량</th>
-                        <th data-sort="store">지점 매출</th>
                         <th data-sort="wholesale">도매 매출</th>
-                        <th data-sort="total">전체 매출</th>
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="sell" items="${sellList}">
+                <c:forEach var="wholesale" items="${wholeSaleList}">
                     <tr>
-                        <td>${sell.sellNo}</td>
-                        <td>${sell.enrollDate}</td>
-                        <td class="quantity" data-quantity="${sell.quantityList}"></td>
-                        <td><fmt:formatNumber value="${sell.sellMoney}" pattern="#,###" /></td>
-                        <td>1,800,000</td>
-                        <td>3,000,000</td>
+                        <td>${wholesale.supplyNo}</td>
+                        <td>${wholesale.orderDate}</td>
+                        <td class="quantity" data-quantity="${wholesale.quantityList}"></td>
+                        <td><fmt:formatNumber value="${wholesale.price*0.25}" pattern="#,###" /></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -118,7 +115,7 @@
                 const businessNo = document.getElementById('branchSelect').value;
                 const period = document.getElementById('periodSelect').value;
 
-                let url = "/company/finance/totalSaleDetail?businessNo="+businessNo+"&period="+period;
+                let url = "/company/finance/wholesaleDetail?businessNo="+businessNo+"&period="+period;
 
                 window.location.href = url;
             }
@@ -155,9 +152,7 @@
                     switch(type) {
                         case 'no':
                         case 'quantity':
-                        case 'store':
                         case 'wholesale':
-                        case 'total':
                             const numA = parseFloat(cleanValue(cellA));
                             const numB = parseFloat(cleanValue(cellB));
                             return direction === 'asc' ? numA - numB : numB - numA;

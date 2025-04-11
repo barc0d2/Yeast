@@ -12,11 +12,11 @@
 </head>
 <body>
 <div class="container">
-    <c:forEach var="sell" items="${list}">
+    <c:forEach var="wholeSale" items="${list}">
         <div class="dashboard">
-            <div class="header">${sell.businessName}</div>
-            <div class="quantityList" style="display: none">${sell.quantityList}</div>
-            <div class="breadList" style="display: none">${sell.breadList}</div>
+            <div class="header">${wholeSale.businessName}</div>
+            <div class="quantityList" style="display: none">${wholeSale.quantityList}</div>
+            <div class="breadList" style="display: none">${wholeSale.breadList}</div>
             <div class="chart-container">
                 <canvas class="chart-canvas"></canvas>
             </div>
@@ -38,11 +38,11 @@
                 <div class="summary-item">
                     <div class="summary-label">총매출</div>
                     <div class="summary-value">
-                        <fmt:formatNumber value="${sell.sellMoney}" pattern="#,###" />
+                        <fmt:formatNumber value="${wholeSale.price*0.25}" pattern="#,###" />
                     </div>
                 </div>
             </div>
-            <button class="detail-button" onclick="location.href='/company/finance/detail?businessNo=${sell.businessNo}'">상세보기</button>
+            <button class="detail-button" onclick="location.href='/company/finance/wholesaleDetail?businessNo=${wholeSale.businessNo}'">상세보기</button>
         </div>
     </c:forEach>
 </div>
