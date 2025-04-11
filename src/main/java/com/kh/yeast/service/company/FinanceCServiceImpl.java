@@ -22,8 +22,23 @@ public class FinanceCServiceImpl implements FinanceCService {
     private final FinanceCMapper financeCMapper;
 
     @Override
-    public ArrayList<Sell> selectRecentlySellList() {
-        return financeCMapper.selectRecentlySellList();
+    public Model selectRecentlySellList(Model model,Integer cpage) {
+        Integer branchCount = financeCMapper.selectBranchCount();
+
+        PageInfo pi = new PageInfo(branchCount, cpage, 10, 4);
+        int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+        ArrayList<Sell> list = financeCMapper.selectRecentlySellList(rowBounds);
+        if(list.isEmpty()){
+            model.addAttribute("errorMsg", "회사 매출 데이터 불러오기 실패");
+            throw new NullPointerException();
+        }
+        model.addAttribute("pi", pi);
+        model.addAttribute("list", list);
+        model.addAttribute("currentName", "재무관리");
+        model.addAttribute("smallCurrentName","회사 매출");
+        return model;
     }
 
     @Override

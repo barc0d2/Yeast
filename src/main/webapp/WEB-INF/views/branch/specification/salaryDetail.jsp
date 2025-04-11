@@ -8,9 +8,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/company/storemangement/payslip/globals.css" />
-    <link rel="stylesheet" href="/css/company/storemangement/payslip/styleguide.css" />
-    <link rel="stylesheet" href="/css/company/storemangement/payslip/style.css" />
+    <link rel="stylesheet" href="/css/branch/storemangement/payslip/globals.css" />
+    <link rel="stylesheet" href="/css/branch/storemangement/payslip/styleguide.css" />
+    <link rel="stylesheet" href="/css/branch/storemangement/payslip/style.css" />
     <link rel="stylesheet" href="/css/branch/storemangement/payslipToggle/globals.css" />
     <link rel="stylesheet" href="/css/branch/storemangement/payslipToggle/style.css" />
     <link rel="stylesheet" href="/css/branch/storemangement/payslipToggle/styleguide.css" />
@@ -213,7 +213,7 @@
                 </c:otherwise>
             </c:choose>
 
-            <button class="div-2" style="cursor: pointer" onclick="location.href='/company/specification/list'">
+            <button class="div-2" style="cursor: pointer" onclick="location.href='/branch/specification/salaryList'">
                 <div class="text-4"><span class="text-wrapper-15">목록으로</span></div>
             </button>
         </section>
@@ -223,7 +223,7 @@
        top: 50%;
        left: 50%;
        transform: translate(-50%, -50%);"
-       method="post" action="/company/specification/payment">
+       method="post" action="/branch/specification/payment">
         <div class="question">
             <div class="text">정말로 송금하시겠습니까?</div>
         </div>
@@ -299,8 +299,8 @@
     }
 </script>
 
-<jsp:include page="../sideBar/brownSideBar.jsp"/>
-<jsp:include page="../sideBar/brownTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 
 </body>
 </html>

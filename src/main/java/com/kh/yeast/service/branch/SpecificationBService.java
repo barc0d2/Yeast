@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface SpecificationBService {
-    Model detail(Model model, HttpSession session) throws Exception;
+    Model salaryList(Integer cpage, Model model, String search, HttpSession session) throws Exception;
+
+    Model salaryDetail(Model model, Long userNo, HttpSession session) throws Exception;
+
+    Model monthlyFee(Model model, HttpSession session) throws Exception;
 
     void updateMoney(HttpSession session, Model model, Integer money) throws Exception;
 }

@@ -19,6 +19,12 @@
         <result column="BUSINESS_NAME" property="businessName"/>
     </resultMap>
 
+    <select id="selectBranchCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM BUSINESS
+        WHERE BUSINESS_NO>1
+    </select>
+
     <select id="selectRecentlySellList" resultMap="sellResult">
         SELECT S.SELL_NO,
                 S.SELL_MONEY,

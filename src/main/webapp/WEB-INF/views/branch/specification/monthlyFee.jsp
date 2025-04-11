@@ -118,32 +118,26 @@
             </div>
         </div>
     </div>
-    <div class="click">
+
         <c:choose>
             <c:when test="${status == 0}">
-                <form id="payForm" action="/branch/specification/pay" method="POST">
-                    <input type="hidden" name="money" value="<fmt:formatNumber value='${monthSellMoney * 0.5}' type='number' maxFractionDigits='0' groupingUsed='false'/>">
-                    <button class="submitPay" type="submit" >송금하기</button>
-                </form>
+            <form action="/branch/specification/monthlyFeePay" method="POST">
+                <button class="click" type="submit">
+                    <div id="payForm">
+                        <input type="hidden" name="money" value="<fmt:formatNumber value='${monthSellMoney * 0.5}' type='number' maxFractionDigits='0' groupingUsed='false'/>">
+                        <div class="submitPay" >송금하기</div>
+                    </div>
+                </button>
+            </form>
             </c:when>
             <c:otherwise>
-                <button class="submitPay" style="color:gray">송금완료</button>
+            <div class="click">
+                <div class="submitPay" style="color:gray">송금완료</div>
+            </div>
             </c:otherwise>
         </c:choose>
-    </div>
 </div>
 <jsp:include page="../sideBar/whiteSideBar.jsp"/>
 <jsp:include page="../sideBar/whiteTopBar.jsp"/>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function updateURL(){
-            const businessNo = document.getElementById('branchSelect').value;
-            let url = "/company/specification/detail?businessNo="+businessNo;
-            window.location.href = url;
-        }
-        document.getElementById('branchSelect').addEventListener('change', updateURL);
-    });
-</script>
 </body>
 </html>
