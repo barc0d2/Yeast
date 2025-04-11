@@ -29,6 +29,6 @@
 <img src="/resources/uploadfile/companyIntroduce.png" />
 </div>
 </body>
-<jsp:include page="../sideBar/brownSideBar.jsp"/>
-<jsp:include page="../sideBar/brownTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </html>

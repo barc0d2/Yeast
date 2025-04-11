@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/branch/employee")
+@RequestMapping("/branch")
 public class  EmployeeBController {
 
     private final EmployeeBService employeeBService;
 
-    @GetMapping("/enrollForm")
+    @GetMapping("/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
         Member member = employeeBService.selectMember(userNo);
         model.addAttribute("currentName", "지점관리");
@@ -31,7 +31,7 @@ public class  EmployeeBController {
         return "branch/employee/enrollForm";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/employee/list")
     public String listEmployee(@SessionAttribute("loginUser") Member loginUser, @RequestParam(defaultValue = "1") int currentPage, Model model) {
         long businessNo = loginUser.getBusinessNo();
         int memberCount = employeeBService.selectMemberCount(businessNo);
@@ -45,7 +45,7 @@ public class  EmployeeBController {
         return "branch/employee/list";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/employee/update")
     public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
         if(!reupfile.getOriginalFilename().equals("")){
             if(member.getImageChange() != null && !member.getImageChange().equals("")){
@@ -75,6 +75,19 @@ public class  EmployeeBController {
             model.addAttribute("errorMsg", "지점 수정 실패");
             return "common/errorPage";
         }
+    }
+
+    @GetMapping("/introduction/allEmployeeList")
+    public String listBEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception  {
+        int memberCount = employeeBService.selectAllMemberCount();
+
+        PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
+        ArrayList<Member> list = employeeBService.selectAllMemberList(pi);
+        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("smallCurrentName","직원관리");
+        model.addAttribute("list", list);
+        model.addAttribute("pi", pi);
+        return "branch/introduction/allEmployeeList";
     }
 
 

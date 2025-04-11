@@ -208,8 +208,8 @@
                         </svg></div>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">회사소개</div>
-                    <div class="submenu-item">전체 사원조회</div>
+                    <a href="/branch/introduce"><div class="submenu-item">회사소개</div></a>
+                    <a href="/branch/introduction/allEmployeeList"><div class="submenu-item">전체 사원조회</div></a>
                 </div>
 
             </div>

@@ -123,5 +123,6 @@ public class MemberController {
         modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
+
 }
 

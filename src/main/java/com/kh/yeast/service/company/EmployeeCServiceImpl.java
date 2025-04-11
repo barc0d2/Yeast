@@ -50,4 +50,27 @@ public class EmployeeCServiceImpl implements EmployeeCService {
     public int update(Member member) {
         return employeeCMapper.update(member);
     }
+
+    @Override
+    public int selectAllMemberCount() {
+        int memberCount = employeeCMapper.selectAllMemberCount();
+        return memberCount;
+    }
+
+    @Override
+    public ArrayList<Member> selectAllMemberList(PageInfo pi) {
+        int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+        ArrayList<Member> memberList = employeeCMapper.selectAllMemberList(rowBounds);
+        memberList.forEach(member -> {
+            Timestamp createDate = member.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                member.setEnrollDate(sqlDate);
+            } else {
+                member.setEnrollDate(null);
+            }
+        });
+        return memberList;
+    }
 }

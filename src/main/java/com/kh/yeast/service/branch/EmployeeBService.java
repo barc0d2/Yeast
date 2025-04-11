@@ -14,4 +14,8 @@ public interface EmployeeBService {
     Member selectMember(int userNo);
 
     int update(Member member);
+
+    int selectAllMemberCount();
+
+    ArrayList<Member> selectAllMemberList(PageInfo pi);
 }
