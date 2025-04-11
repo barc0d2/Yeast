@@ -71,8 +71,8 @@ public class OrderBServiceImpl implements OrderBService {
     }
 
     @Override
-    public int updateList(long supplyNo, String categoryName, String breadName, String quantityList, String priceList) {
-        return supplyMapper.updateList(supplyNo, categoryName,breadName,quantityList,priceList);
+    public int deleteList(long supplyNo) {
+        return supplyMapper.deleteList(supplyNo);
     }
 
     @Override
@@ -83,6 +83,11 @@ public class OrderBServiceImpl implements OrderBService {
     @Override
     public int updateBusinessMoney(long businessNo, int totalSumPrice) {
         return supplyMapper.updateBusinessMoney(businessNo, totalSumPrice);
+    }
+
+    @Override
+    public int updateMoney(long businessNo,long totalPrice) {
+        return supplyMapper.updateMoney(businessNo, totalPrice);
     }
 
 

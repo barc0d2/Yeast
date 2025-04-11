@@ -135,20 +135,18 @@
         WHERE S.SUPPLY_NO = #{supplyNo}
     </select>
 
-    <insert id="updateList">
-        INSERT
-        INTO SUPPLY_DETAIL(
-        SUPPLY_NO,
-        BREAD_NO,
-        QUANTITY
-        )
-        VALUES(
-        #{supplyNo},
-        (SELECT BREAD_NO FROM BREAD WHERE BREAD_NAME = #{breadName} AND STATUS = 1),
-        #{quantityList}
-        )
-
+    <insert id="deleteList">
+        DELETE
+        FROM SUPPLY
+        WHERE SUPPLY_NO = #{supplyNo}
     </insert>
+
+    <update id="updateMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY + #{totalPrice}
+        WHERE BUSINESS_NO = #{businessNo}
+        AND STATUS = 1
+    </update>
 
     <update id="updateBusinessMoney">
         UPDATE BUSINESS
@@ -156,6 +154,7 @@
         WHERE BUSINESS_NO = #{businessNo}
         AND MONEY >= #{totalSumPrice}
     </update>
+
 
 <!--    여기부터 출하     -->
     <select id="selectDispatchCount" resultType="int">

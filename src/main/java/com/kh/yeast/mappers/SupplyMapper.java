@@ -39,11 +39,13 @@ public interface SupplyMapper {
 
     Supply selectUpdateInfo(@Param("supplyNo") int supplyNo);
 
-    int updateList(@Param("supplyNo") long supplyNo, String categoryName, String breadName, String quantityList, String priceList);
+    int deleteList(@Param("supplyNo") long supplyNo);
 
     int businessMoney(long businessNo);
 
     int updateBusinessMoney(@Param("businessNo") long businessNo, @Param("totalSumPrice") int totalSumPrice);
 
     int updateInventory(@Param("businessNo") int branchNo,@Param("breadNo") int breadNo,@Param("invenCount") int quantity);
+
+    int updateMoney(@Param("businessNo") long businessNo ,@Param("totalPrice") long totalPrice);
 }

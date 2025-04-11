@@ -1,18 +1,13 @@
 package com.kh.yeast.controller.branch;
 
-import com.kh.yeast.domain.dto.SupplyOrderRequest;
 import com.kh.yeast.domain.vo.*;
 import com.kh.yeast.service.branch.OrderBService;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,13 +88,13 @@ public class OrderBController {
         }
     }
 
-    @GetMapping("/updateForm")
+    @GetMapping("/deleteOrder")
     public String updateForm(@SessionAttribute("loginUser") Member loginUser, int supplyNo, Model model){
         ArrayList<Supply> supply = orderBService.selectUpdate(supplyNo);
         Supply list = orderBService.selectUpdateInfo(supplyNo);
         ArrayList<Supply> bread = orderBService.selectValue();
         model.addAttribute("currentName", "발주관리");
-        model.addAttribute("smallCurrentName","발주품목추가");
+        model.addAttribute("smallCurrentName","발주정보");
         long businessNo = loginUser.getBusinessNo();
         int money = orderBService.businessMoney(businessNo);
         model.addAttribute("money", money);
@@ -107,34 +102,19 @@ public class OrderBController {
         model.addAttribute("list", list);
         model.addAttribute("bread", bread);
 
-        return "branch/order/updateForm";
+        return "branch/order/deleteOrder";
     }
 
-    @PostMapping("/updateList")
-    public String updateList(@RequestParam("category") ArrayList<String> category,
-                             @RequestParam("breadName") ArrayList<String> bread,
-                             @RequestParam("quantity") ArrayList<Integer> quantity,
-                             @RequestParam("price") ArrayList<Integer> price,
-                             @RequestParam("supplyNo") long supplyNo ,HttpSession session, Model model) {
-        int result =0;
-        for (int i = 0; i < bread.size(); i++) {
-            String categoryName = category.get(i);
-            String breadName = bread.get(i);
-            String quantityList = quantity.get(i).toString();
-            String priceList = price.get(i).toString();
-
-            System.out.println("빵 종류 : " + categoryName);
-            System.out.println("빵 이름 : " + breadName);
-            System.out.println("개수 : " + quantityList);
-            System.out.println("구매가격 : " + priceList);
-
-            result += orderBService.updateList(supplyNo, categoryName,breadName,quantityList,priceList);
-        }
-        if(result == bread.size()){
-            session.setAttribute("alertMsg","발주품목추가 완료");
+    @PostMapping("/deleteOrderON")
+    public String updateList(@RequestParam("supplyNo") long supplyNo ,@SessionAttribute("loginUser") Member loginUser, @RequestParam("totalPrice") long totalPrice, HttpSession session, Model model) {
+        long businessNo = loginUser.getBusinessNo();
+            int result1 = orderBService.deleteList(supplyNo);
+            int result2 = orderBService.updateMoney(businessNo,totalPrice);
+        if(result1 * result2 != 0){
+            session.setAttribute("alertMsg","발주삭제 완료");
             return "redirect:/branch/order/list";
         }else{
-            model.addAttribute("errorMsg", "발주품목추가 실패");
+            model.addAttribute("errorMsg", "발주삭제 실패");
             return "error";
         }
     }

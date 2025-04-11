@@ -26,9 +26,11 @@ public interface OrderBService {
 
     Supply selectUpdateInfo(int supplyNo);
 
-    int updateList(long supplyNo, String categoryName, String breadName, String quantityList, String priceList);
+    int deleteList(long supplyNo);
 
     int businessMoney(long businessNo);
 
     int updateBusinessMoney(long businessNo, int totalSumPrice);
+
+    int updateMoney(long businessNo, long totalPrice);
 }

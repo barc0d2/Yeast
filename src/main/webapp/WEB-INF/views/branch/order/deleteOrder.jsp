@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="/css/company/dispatch/approval/style.css"/>
-    <link rel="stylesheet" href="/css/company/dispatch/approval/global.css"/>
-    <link rel="stylesheet" href="/css/company/dispatch/approval/styleguide.css"/>
+    <link rel="stylesheet" href="/css/branch/order/delete/style.css"/>
+    <link rel="stylesheet" href="/css/branch/order/delete/global.css"/>
+    <link rel="stylesheet" href="/css/branch/order/delete/styleguide.css"/>
 </head>
 <body>
 
@@ -16,12 +16,12 @@
 
     <form id="orderForm" class="container" method="post">
         <button type="button" class="purchase-btn" id="submitOrderBtn" onclick="openPaymentConfirmModal()">
-            <div class="cancel">승인</div>
+            <div class="cancel">삭제</div>
         </button>
-        <a href="/company/dispatch/list">
-        <div class="back">
-            <div class="back-btn">이전</div>
-        </div>
+        <a href="/branch/order/list">
+            <div class="back">
+                <div class="back-btn">이전</div>
+            </div>
         </a>
         <div class="column">
             <div class="line">기본 정보</div>
@@ -34,7 +34,7 @@
                 <div class="div">
                     <div class="line-2">*배송요청일</div>
                     <div class="date">
-                        <input type="date" name="orderDate" value="${list.orderDate}" class="date">
+                        <input type="date" name="orderDate" value="${list.orderDate}" class="date" readonly>
                         <input type="hidden" name="supplyNo" value="${list.supplyNo}">
                     </div>
                 </div>
@@ -67,21 +67,19 @@
                         let totalPriceJS = 0;
                         let totalQuantityJS = 0;
                     </script>
-                        <c:forEach var="supply"  items="${supply}">
-                            <tr>
-                                <td>${supply.categoryName}</td>
-                                <td>${supply.breadName}</td>
-                                <td>${supply.quantity}</td>
-                                <td>${supply.price * 0.25}</td>
-                                <input type='hidden' name='breadNo' value="${supply.breadNo}"/>
-                                <input type='hidden' name='quantity' value="${supply.quantity}"/>
-                            </tr>
-
-                            <script>
-                                totalPriceJS += ${supply.price *0.25};
-                                totalQuantityJS += ${supply.quantity};
-                            </script>
-                        </c:forEach>
+                    <c:forEach var="supply"  items="${supply}">
+                        <tr>
+                            <td>${supply.categoryName}</td>
+                            <td>${supply.breadName}</td>
+                            <td>${supply.quantity}</td>
+                            <td>${supply.price * 0.25}</td>
+                        </tr>
+                        <script>
+                            totalPriceJS += ${supply.price * 0.25};
+                            totalQuantityJS += ${supply.quantity};
+                        </script>
+                    </c:forEach>
+                    <input type="hidden" name="totalPrice" id="totalPriceInput" value="0.0">
                     </tbody>
                 </table>
             </div>
@@ -89,10 +87,10 @@
     </form>
     <div id="payment-confirm-modal" class="payment-confirm-modal hidden">
         <div class="payment-confirm-modal-content">
-            <h3>정말로 승인하시겠습니까?</h3>
+            <h3>정말로 삭제하시겠습니까?</h3>
             <br>
             <div class="payment-confirm-buttons">
-                <button onclick="submitConfirmedPayment()">승인</button>
+                <button onclick="submitConfirmedPayment()">삭제</button>
                 <button onclick="closePaymentConfirmModal()">취소</button>
             </div>
         </div>
@@ -118,63 +116,39 @@
         document.getElementById("payment-confirm-modal").classList.add("hidden");
     }
 
-    window.submitConfirmedPayment = function() {
-        const form = document.getElementById('orderForm');
-        form.action = '/company/dispatch/approvalOk';
-        form.submit();
-        alert("승인이 완료되었습니다.");
-        closePaymentConfirmModal();
-    }
-
     document.addEventListener('DOMContentLoaded', function () {
         const status = "${list.status}";
 
-        if (status === "Y") {
+        if (status === "Y" || status === "R") {
             const btn = document.getElementById('submitOrderBtn');
             const cancelDiv = document.querySelector('#submitOrderBtn .cancel');
 
             btn.onclick = function (e) {
                 e.preventDefault();
-                alert("이미 승인된 건입니다.");
+                if (status === "Y") {
+                    alert("이미 출하중인 건입니다.");
+                } else if (status === "R") {
+                    alert("이미 발주처리된 건입니다.");
+                }
             };
 
             cancelDiv.style.backgroundColor = '#5ea9f4'; // 연한 파란색
             cancelDiv.style.border = '1px solid #99ccff';
             cancelDiv.style.cursor = 'not-allowed';
             cancelDiv.style.opacity = '0.7';
-            btn.querySelector('.cancel').innerText = '승인 완료';
+            btn.querySelector('.cancel').innerText = '발주 완료';
         }
     });
 
+
     window.submitConfirmedPayment = function() {
-        const orderDateStr = document.querySelector('input[name="orderDate"]').value;
 
-        if (!orderDateStr) {
-            alert("배송요청일이 입력되지 않았습니다.");
-            return;
-        }
+        document.getElementById("totalPriceInput").value = totalPriceJS;
 
-        const orderDate = new Date(orderDateStr);
-        const today = new Date();
-
-        // 전날 날짜 만들기
-        const dayBeforeOrder = new Date(orderDate);
-        dayBeforeOrder.setDate(orderDate.getDate() - 1);
-
-        // 오늘 날짜와 전날 날짜 비교 (시간 무시)
-        const formatDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-        if (formatDate(today).getTime() !== formatDate(dayBeforeOrder).getTime()) {
-            alert("아직 승인할 수 있는 날이 아닙니다.\n배송 요청일의 전날에만 승인할 수 있습니다.");
-            closePaymentConfirmModal();
-            return;
-        }
-
-        // 승인 처리
         const form = document.getElementById('orderForm');
-        form.action = '/company/dispatch/approvalOk';
+        form.action = '/branch/order/deleteOrderON';
         form.submit();
-        alert("승인이 완료되었습니다.");
+        alert("삭제가 완료되었습니다.");
         closePaymentConfirmModal();
     }
 
@@ -185,7 +159,7 @@
 
 
 
-<jsp:include page="../sideBar/brownSideBar.jsp"/>
-<jsp:include page="../sideBar/brownTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </body>
 </html>
