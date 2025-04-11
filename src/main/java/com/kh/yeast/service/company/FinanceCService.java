@@ -13,5 +13,7 @@ public interface FinanceCService {
 
     Model selectSellList(Long businessNo, Integer cpage, String period, Model model);
 
-    Model allSellList(Integer cpage, String period, Model model);
+    Model selectRecentlyWholesaleList(Model model,Integer cpage);
+
+    Model wholesaleDetail(Long businessNo,Integer cpage, String period, Model model);
 }
