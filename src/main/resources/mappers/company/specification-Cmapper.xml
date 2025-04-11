@@ -34,6 +34,7 @@
         SELECT COUNT(*)
         FROM MEMBER
         WHERE STATUS = 1
+        AND BUSINESS_NO = #{businessNo}
     </select>
 
     <select id="selectEmployeeList" resultMap="memberResult">
@@ -62,6 +63,7 @@
         LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
         WHERE (#{search} IS NULL
         OR M.USER_NAME = #{search})
+        AND M.BUSINESS_NO = #{businessNo}
         AND M.STATUS = 1
     </select>
 

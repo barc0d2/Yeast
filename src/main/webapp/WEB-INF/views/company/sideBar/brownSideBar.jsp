@@ -126,7 +126,7 @@
             <a href="/company/finance/wholesaleChart">
                 <div class="submenu-item">도매 매출</div>
             </a>
-            <a href="/company/specification/list">
+            <a href="/company/specification/salaryList">
                 <div class="submenu-item">임금 명세서</div>
             </a>
             <a href="/company/specification/monthlyFee">

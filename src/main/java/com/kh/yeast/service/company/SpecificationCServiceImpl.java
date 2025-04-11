@@ -5,6 +5,7 @@ import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.mappers.company.SpecificationCMapper;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
@@ -22,21 +23,26 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     private final SpecificationCMapper specificationCMapper;
 
     @Override
-    public Model specificationList(Integer cpage, Model model, String search) {
-        Integer employeeCount = specificationCMapper.selectEmployeeCount();
+    public Model salaryList(Integer cpage, Model model, String search, HttpSession session) throws Exception {
 
+        Member member = (Member)session.getAttribute("loginUser");
+
+        Long businessNo = member.getBusinessNo();
+
+        Integer employeeCount = specificationCMapper.selectEmployeeCount(businessNo);
         PageInfo pi = new PageInfo(employeeCount, cpage, 10, 10);
+        model.addAttribute("pi", pi);
         Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-        ArrayList<Member> list = specificationCMapper.selectEmployeeList(rowBounds, search);
-        System.out.println("list = " + list);
-        list.forEach(member -> {
-            Timestamp createDate = member.getCreateDate();
+
+        ArrayList<Member> list = specificationCMapper.selectEmployeeList(rowBounds, search, businessNo);
+        list.forEach(employee -> {
+            Timestamp createDate = employee.getCreateDate();
             if (createDate != null) {
                 Date sqlDate = new Date(createDate.getTime());
-                member.setEnrollDate(sqlDate);
+                employee.setEnrollDate(sqlDate);
             } else {
-                member.setEnrollDate(null);
+                employee.setEnrollDate(null);
             }
         });
 
@@ -45,7 +51,7 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     }
 
     @Override
-    public Model detail(Model model, Long userNo) throws Exception {
+    public Model salaryDetail(Model model, Long userNo) throws Exception {
         Member member = specificationCMapper.findByUserNo(userNo);
         Integer money = specificationCMapper.selectCompanyMoney();
 
@@ -93,7 +99,7 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     }
 
     @Override
-    public Model monthlyFee(Model model, Long businessNo) {
+    public Model monthlyFeeDetail(Model model, Long businessNo) {
         Member member = specificationCMapper.findByBusinessNo(businessNo);
         model.addAttribute("member", member);
 

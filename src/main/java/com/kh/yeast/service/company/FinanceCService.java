@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import java.util.ArrayList;
 
 public interface FinanceCService {
-    ArrayList<Sell> selectRecentlySellList();
+    Model selectRecentlySellList(Model model, Integer cpage);
 
     Model selectSellList(Long businessNo, Integer cpage, String period, Model model);
 

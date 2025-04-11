@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 @Mapper
 public interface FinanceCMapper {
-    ArrayList<Sell> selectRecentlySellList();
+    Integer selectBranchCount();
+    ArrayList<Sell> selectRecentlySellList(RowBounds rowBounds);
     Integer selectSellCount(Long businessNo, String period);
     ArrayList<Sell> selectSellList(Long businessNo, String period, RowBounds rowBounds);
     ArrayList<Business> selectBusinessList(RowBounds rowBounds);
