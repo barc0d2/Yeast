@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="div-2">
-                                <div class="text-3"><div class="text-wrapper-5">예상 실수력액(월)</div></div>
+                                <div class="text-3"><div class="text-wrapper-5">예상 실수령액(월)</div></div>
                                 <div class="input-6">
                                     <div class="text-wrapper-4 r2"></div>
                                     <div class="won">원</div>
@@ -200,21 +200,30 @@
                 </div>
 
         <section class="click">
-            <button onclick="toggleModal()" id="openModal" class="div-2" style="cursor: pointer">
-                <div class="text-4"><span class="text-wrapper-15">송금하기</span></div>
-            </button>
+            <c:choose>
+                <c:when test="${paid == 1}">
+                    <button id="openModal" class="div-2" style="background:#d7f4ff">
+                        <div class="text-4"><span class="text-wrapper-15">송금완료</span></div>
+                    </button>
+                </c:when>
+                <c:otherwise>
+                    <button onclick="toggleModal()" id="openModal" class="div-2" style="cursor: pointer">
+                        <div class="text-4"><span class="text-wrapper-15">송금하기</span></div>
+                    </button>
+                </c:otherwise>
+            </c:choose>
 
-            <button class="div-2" style="cursor: pointer" onclick="location.href='/company/storemangement/specification/list'">
+            <button class="div-2" style="cursor: pointer" onclick="location.href='/company/specification/list'">
                 <div class="text-4"><span class="text-wrapper-15">목록으로</span></div>
             </button>
         </section>
     </div>
-    <div class="toggle" id="toggle" style="display: none;
+    <form class="toggle" id="toggle" style="display: none;
        position: fixed;
        top: 50%;
        left: 50%;
-       transform: translate(-50%, -50%);
-    ">
+       transform: translate(-50%, -50%);"
+       method="post" action="/company/specification/payment">
         <div class="question">
             <div class="text">정말로 송금하시겠습니까?</div>
         </div>
@@ -232,12 +241,10 @@
             </div>
             <div class="outline">
                 <div class="div-wrapper">
-                    <div class="text-wrapper">실수령액(월)</div>
+                    <div class="text-wrapper">차감 금액</div>
                 </div>
                 <div class="money-2">
-                    <div class="div">
-                        <fmt:formatNumber value="${member.salary + member.bonus}" type="number" />
-                    </div>
+                    <input name="deduction" class="div" style="border: none; background: none; outline: none; padding: 0; margin: 0;" value="<fmt:formatNumber value="${member.salary + member.bonus}" type="number" />"/>
                     <div class="won">원</div>
                 </div>
             </div>
@@ -246,25 +253,22 @@
                     <div class="text-wrapper">남은 잔액</div>
                 </div>
                 <div class="money-3">
-                    <div class="div">
-                        <fmt:formatNumber value="${money - member.salary + member.bonus}" type="number" />
+                    <div id="remain" class="div">
+                    <fmt:formatNumber value="${money - member.salary - member.bonus}" type="number" />
                     </div>
                     <div class="won">원</div>
                 </div>
             </div>
+            <input type="hidden" name="userNo" value="${member.userNo}"/>
         </div>
         <div class="send">
-            <form id="sendForm" method="post" action="/branch/storemangement/specification/payslipToggle/send">
-                <input type="hidden" name="userNo" value="${userNo}" />
-                <input type="hidden" name="salary" value="${salary}" />
-                <button type="button" class="send-2">보내기</button>
-            </form>
+            <button type="submit" class="send-2">보내기</button>
         </div>
 
         <div class="cancel" onclick="toggleModal()">
             <button type="button" class="cancel-2">취소</button>
         </div>
-    </div>
+    </form>
 <script>
     const o1 = document.querySelector(".o1").textContent;
     let n1 = parseInt(o1.replace(/,/g, ''));

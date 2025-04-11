@@ -1,5 +1,6 @@
 package com.kh.yeast.service.company;
 
+import com.kh.yeast.customException.PaymentTransactionException;
 import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.PageInfo;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -48,9 +48,48 @@ public class SpecificationCServiceImpl implements SpecificationCService{
     public Model detail(Model model, Long userNo) throws Exception {
         Member member = specificationCMapper.findByUserNo(userNo);
         Integer money = specificationCMapper.selectCompanyMoney();
+
+        Timestamp updateAt = member.getPayday();
+
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+
+        // 연도 및 월 추출
+        int targetYear = new Date(updateAt.getTime()).getYear() + 1900;
+        System.out.println("targetYear = " + targetYear);
+        int targetMonth = new Date(updateAt.getTime()).getMonth() + 1;
+        System.out.println("targetMonth = " + targetMonth);
+
+        int currentYear = new Date(currentTimestamp.getTime()).getYear() + 1900;
+        System.out.println("currentYear = " + currentYear);
+        int currentMonth = new Date(currentTimestamp.getTime()).getMonth() + 1;
+        System.out.println("currentMonth = " + currentMonth);
+
+        // 비교
+        if (currentYear == targetYear && currentMonth == targetMonth) {
+            model.addAttribute("paid", 1);
+        } else {
+            model.addAttribute("paid", 0);
+        }
+
         model.addAttribute("member", member);
         model.addAttribute("money", money);
         return model;
+    }
+
+    @Override
+    @Transactional
+    public void payment(Model model, Long userNo, Integer deduction) throws Exception {
+        Timestamp memberUpdateAt = specificationCMapper.selectMemberUpdate(userNo);
+        Timestamp companyUpdateAt = specificationCMapper.selectCompanyUpdate();
+
+        Integer updatedSalaryRow = specificationCMapper.updateEmployeeSalary(userNo, memberUpdateAt);
+        if(updatedSalaryRow== null||updatedSalaryRow == 0){
+            throw new PaymentTransactionException("연봉을 지급하지 못했습니다.");
+        }
+        Integer updatedCompanyMoney = specificationCMapper.updateCompanyMoney(deduction, companyUpdateAt);
+        if(updatedCompanyMoney== null||updatedCompanyMoney == 0){
+            throw new PaymentTransactionException("회사 금액이 차감되지 않았습니다.");
+        }
     }
 
     @Override
