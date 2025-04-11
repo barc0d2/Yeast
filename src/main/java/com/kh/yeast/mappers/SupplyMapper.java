@@ -44,4 +44,6 @@ public interface SupplyMapper {
     int businessMoney(long businessNo);
 
     int updateBusinessMoney(@Param("businessNo") long businessNo, @Param("totalSumPrice") int totalSumPrice);
+
+    int updateInventory(@Param("businessNo") int branchNo,@Param("breadNo") int breadNo,@Param("invenCount") int quantity);
 }

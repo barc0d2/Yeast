@@ -192,6 +192,7 @@
                 S.ORDER_DATE,
                 S.CREATE_DATE,
                 BC.CATEGORY_NAME,
+                B.BREAD_NO,
                 B.BREAD_NAME,
                 SD.QUANTITY,
                 (B.PRICE * SD.QUANTITY) AS PRICE
@@ -206,7 +207,7 @@
         SELECT
                 BN.BUSINESS_NAME AS BRANCH_NAME,
                 S.SUPPLY_NO,
-                S.COMPANY_NO,
+                S.BRANCH_NO,
                 S.STATUS,
                 S.ORDER_DATE,
                 S.CREATE_DATE
@@ -219,6 +220,13 @@
         UPDATE SUPPLY
         SET STATUS = 'Y'
         WHERE SUPPLY_NO = #{supplyNo}
+    </update>
+
+    <update id="updateInventory">
+        UPDATE INVENTORY
+        SET INVEN_COUNT = #{invenCount}
+        WHERE BREAD_NO = #{breadNo}
+                AND BUSINESS_NO = #{businessNo}
     </update>
 
 

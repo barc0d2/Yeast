@@ -44,4 +44,9 @@ public class DispatchCServiceImpl implements DispatchCService{
     public int approval(int supplyNo) {
         return supplyMapper.approval(supplyNo);
     }
+
+    @Override
+    public int updateInventory(int branchNo, int breadNo, int quantity) {
+        return supplyMapper.updateInventory(branchNo,breadNo,quantity);
+    }
 }
