@@ -55,7 +55,7 @@
             <img class="Text" src="images/login/logoText.png" />
         </div>
         <div id="Checkbox">
-            <button type="submit" class="findIdPwd">
+            <button type="submit" style="cursor: pointer;" class="findIdPwd">
                 로그인
             </button>
             <a href="/member/agreement"><div class="Join">
