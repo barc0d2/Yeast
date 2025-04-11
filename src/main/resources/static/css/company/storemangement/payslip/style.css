@@ -1,9 +1,9 @@
 .store-specific {
   position: relative;
-  width: 100%;
+  width: 1000px;
   height: auto;
   min-height: 100vh;
-  left:200px;
+  left:300px;
   top:147px;
 }
 

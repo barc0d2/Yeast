@@ -77,10 +77,10 @@
                     <a href="/branch/finance/list">
                         <div class="submenu-item">하루 매출</div>
                     </a>
-                    <a href="/branch/specification/list">
+                    <a href="/branch/specification/salaryList">
                         <div class="submenu-item">임금 명세서</div>
                     </a>
-                    <a href="/branch/specification/detail">
+                    <a href="/branch/specification/monthlyFee">
                         <div class="submenu-item">월 수수료</div>
                     </a>
                 </div>

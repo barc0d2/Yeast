@@ -19,26 +19,18 @@ public class FinanceCController {
     private final FinanceCService financeCService;
 
     @GetMapping("/chart")
-    public String selectStoreList(Model model) throws Exception  {
-        ArrayList<Sell> list = financeCService.selectRecentlySellList();
-        model.addAttribute("list", list);
-        model.addAttribute("currentName", "재무관리");
-        model.addAttribute("smallCurrentName","회사 매출");
-        if(!list.isEmpty()){
-            return "company/finance/storegraph";
-        } else {
-            model.addAttribute("errorMsg", "회사 매출 데이터 불러오기 실패");
-            return "common/errorPage";
-        }
+    public String selectStoreList(Model model, @RequestParam(defaultValue = "1")Integer cpage)  {
+        financeCService.selectRecentlySellList(model, cpage);
+        return "company/finance/storegraph";
     }
 
     @GetMapping("/detail")
-    public String selectSellDetail(@RequestParam(defaultValue = "1") Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period){
+    public String selectSellDetail(@RequestParam(defaultValue = "1")Integer cpage, Model model, Long businessNo,@RequestParam(defaultValue = "week") String period){
 
         model = financeCService.selectSellList(businessNo, cpage, period, model);
 
         if(model.containsAttribute("errorMsg")){
-            return "common/errorPage";
+            return "errorPage";
         }else{
             return "company/finance/storedetail";
         }
@@ -50,7 +42,7 @@ public class FinanceCController {
         model = financeCService.selectSellList(businessNo, cpage,period, model);
 
         if(model.containsAttribute("errorMsg")){
-            return "common/errorPage";
+            return "errorPage";
         }else{
             return "company/finance/totalsaledetail";
         }

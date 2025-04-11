@@ -13,9 +13,9 @@ import java.util.List;
 @Mapper
 public interface SpecificationCMapper {
 
-    Integer selectEmployeeCount();
+    Integer selectEmployeeCount(Long businessNo);
 
-    ArrayList<Member> selectEmployeeList(RowBounds rowBounds, String search);
+    ArrayList<Member> selectEmployeeList(RowBounds rowBounds, String search, Long businessNo);
 
     Member findByUserNo(Long userNo);
 
