@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.yeast.mappers.branch.MyPageBMapper">
-<!--    <select id="selectBMemberById" resultType="com.kh.yeast.domain.entity.Member">-->
-<!--        SELECT-->
-<!--        m.*,-->
-<!--        b.BUSINESS_NAME AS businessName,-->
-<!--        mgr.USER_NAME AS managerName,-->
-<!--        m.IMAGE_CHANGE AS imageChangePath,-->
-<!--        m.IMAGE_ORIGIN AS imageOriginPath-->
-<!--        FROM MEMBER m-->
-<!--        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO-->
-<!--        LEFT JOIN MEMBER mgr ON m.MANAGER_NO = mgr.USER_NO-->
-<!--        WHERE m.USER_ID = #{userId}-->
-<!--    </select>-->
     <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
+        <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="POSITION_NAME" property="positionName"/>
+        <result column="MANAGER_NAME" property="managerName"/>
+        <result column="USER_NAME" property="userName"/>
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
-        <result column="USER_NAME" property="userName"/>
-        <result column="BUSINESS_NAME" property="businessName"/>
-        <result column="BUSINESS_NO" property="businessNo"/>
-        <result column="POSITION_NAME" property="positionName"/>
-        <result column="POSITION_NO" property="positionNo"/>
-        <result column="MANAGER_NAME" property="managerName"/>
         <result column="EMAIL" property="email"/>
         <result column="SALARY" property="salary"/>
         <result column="BONUS" property="bonus"/>
@@ -33,38 +19,57 @@
         <result column="IMAGE_CHANGE" property="imageChange"/>
         <result column="IMAGE_ORIGIN" property="imageOrigin"/>
         <result column="BIRTHDAY" property="birthday"/>
-        <result column="STATUS" property="status"/>
-        <result column="HEAD_NAME" property="headName"/>
     </resultMap>
 
-    <select id="selectBMemberByUserNo" resultMap="memberResult">
-        SELECT m.*,
-        p.POSITION_NAME AS POSITION_NAME,
-        b.BUSINESS_NAME AS BUSINESS_NAME
-        FROM MEMBER m
-        LEFT JOIN POSITION p ON m.POSITION_NO = p.POSITION_NO
-        LEFT JOIN BUSINESS b ON m.BUSINESS_NO = b.BUSINESS_NO
-        WHERE m.USER_NO = #{userNo}
+    <select id="selectMember" resultMap="memberResult">
+        SELECT
+        m1.USER_NO,
+        b.BUSINESS_NAME,
+        p.POSITION_NAME,
+        m2.USER_NAME AS MANAGER_NAME,
+        m1.USER_NAME,
+        m1.USER_ID,
+        m1.EMAIL,
+        m1.SALARY,
+        m1.BONUS,
+        m1.PHONE,
+        m1.GENDER,
+        m1.ADDRESS,
+        m1.IMAGE_CHANGE,
+        m1.IMAGE_ORIGIN,
+        TO_CHAR(m1.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+        FROM MEMBER m1
+        LEFT JOIN MEMBER m2 ON m1.MANAGER_NO = m2.USER_NO
+        LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
+        LEFT JOIN BUSINESS b ON m1.BUSINESS_NO = b.BUSINESS_NO
+        WHERE m1.STATUS='1'
+        AND m1.USER_NO = #{userNo}
     </select>
-    <update id="updateBMember">
-        UPDATE MEMBER
-        SET
-        EMAIL = #{email},
-        USER_NAME = #{userName},
-        PASSWORD = #{password},
-        ADDRESS = #{address},
-        PHONE = #{phone},
-        BIRTHDAY = #{birthday},
-        POSITION_NO = #{positionNo},
-        BUSINESS_NO = #{businessNo},
-        GENDER = #{gender},
-        IMAGE_CHANGE = #{imageChangePath},
-        IMAGE_ORIGIN = #{imageOriginPath}
-        WHERE USER_NO = #{userNo}
+
+    <update id="update">
+        UPDATE MEMBER M
+        SET M.BUSINESS_NO = (
+        SELECT B.BUSINESS_NO
+        FROM BUSINESS B
+        WHERE B.BUSINESS_NAME = #{businessName}
+        ),
+        M.POSITION_NO = (
+        SELECT P.POSITION_NO
+        FROM POSITION P
+        WHERE P.POSITION_NAME = #{positionName}
+        ),
+        M.MANAGER_NO = (
+        SELECT M2.USER_NO
+        FROM MEMBER M2
+        WHERE M2.USER_NAME = #{managerName}
+        ),
+        M.USER_NAME = #{userName},
+        M.EMAIL = #{email},
+        M.PHONE = #{phone},
+        M.ADDRESS = #{address},
+        M.IMAGE_CHANGE = #{imageChange},
+        M.IMAGE_ORIGIN = #{imageOrigin},
+        M.BIRTHDAY = #{birthday}
+        WHERE M.USER_NO = #{userNo}
     </update>
-    <select id="findBManagerByUserNo" resultMap="memberResult">
-        SELECT m.*
-        FROM MEMBER m
-        WHERE m.USER_NO = (SELECT manager_no FROM MEMBER WHERE USER_NO = #{userNo})
-    </select>
 </mapper>

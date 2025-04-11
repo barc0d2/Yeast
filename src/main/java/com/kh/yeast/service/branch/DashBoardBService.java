@@ -5,6 +5,8 @@ import com.kh.yeast.domain.vo.Sell;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public interface DashBoardBService {
@@ -18,4 +20,10 @@ public interface DashBoardBService {
     Member getMemberByName(String userName);
 
     ArrayList<Sell> financeList();
+    
+    // 특정 지점의 금일 판매내역 조회
+    ArrayList<Sell> getTodaySalesByBusiness(Long businessNo);
+    
+    // 카테고리별 판매 개수 조회
+    List<Map<String, Object>> getCategorySalesByBusiness(Long businessNo);
 }

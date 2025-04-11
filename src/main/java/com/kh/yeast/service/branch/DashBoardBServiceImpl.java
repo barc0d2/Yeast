@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +34,15 @@ public class DashBoardBServiceImpl implements DashBoardBService {
     @Override
     public ArrayList<Sell> financeList() {
         return dashBoardBMapper.selectFinanceChart();
+    }
+    
+    @Override
+    public ArrayList<Sell> getTodaySalesByBusiness(Long businessNo) {
+        return dashBoardBMapper.selectTodaySalesByBusiness(businessNo);
+    }
+    
+    @Override
+    public List<Map<String, Object>> getCategorySalesByBusiness(Long businessNo) {
+        return dashBoardBMapper.selectCategorySalesByBusiness(businessNo);
     }
 }

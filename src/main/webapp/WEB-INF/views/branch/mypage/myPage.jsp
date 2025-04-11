@@ -1,13 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="com.kh.yeast.domain.vo.Member" %>
-<%
-  Member member = (Member) request.getAttribute("member");
-%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
   <link rel="stylesheet" href="../../css/global/bmyPage.css" />
   <link rel="stylesheet" href="../../css/styleguide/bmyPage.css" />
   <link rel="stylesheet" href="../../css/style/bmyPage.css" />
@@ -87,31 +85,36 @@
 </div>
 
 <script>
-  function saveChanges() {
-    const formData = {
-      email: document.getElementById("email").value,
-      name: document.getElementById("name").value,
-      userId: document.getElementById("userId").value,
-      password: document.getElementById("password").value,
-      address: document.getElementById("address").value,
-      phone: document.getElementById("phone").value,
-      birthday: document.getElementById("birthday").value,
-      positionName: document.getElementById("positionName").value,
-      businessName: document.getElementById("businessName").value,
-      gender: document.getElementById("gender").value,
-      managerName: document.getElementById("managerName").value
-    };
+  function loadImg(changeInput, targetImg){
+    //파일객체 -> files -> 선택된파일들이 담겨있음
+    console.log(changeInput.files[0])
+    const img = document.querySelector(targetImg);
+    console.log(img)
+    if(changeInput.files.length > 0){ //파일은 선택했을 때
+      //파일을 읽어들일 객체
+      const reader = new FileReader();
 
-    console.log("Updated Information:", formData);
-    alert("정보가 업데이트되었습니다.");
+      //해당 파일을 읽얻들여 해당파일만의 고유한 url을 부여
+      //url : Base64로 인코딩된 데이터 url(파일을 실제로 표현하는 형식인 바이너리 코드를 텍스트문자열로 인코딩한 방식)
+      reader.readAsDataURL(changeInput.files[0]);
+
+      //파일읽어들이기를 완료 했을 때 이벤트핸들러를 실행시켜줘
+      reader.onload = function(ev){
+        img.src = ev.target.result //이미지 요소에 불러온 파일의 url을 넣어준다.
+      }
+
+
+    } else { //파일이 있었는데 선택 후 취소했을 때
+      img.src = null;
+    }
   }
 
-  document.getElementById("fileInput").addEventListener("change", function (event) {
-    let files = event.target.files;
-    let previewContainer = document.getElementById("previewContainer");
-  });
+  function chooseFile(selector){
+    const fileInput = document.querySelector(selector);
+    fileInput.click();
+  }
 </script>
-<jsp:include page="whiteSideBar.jsp"/>
-<jsp:include page="whiteTopBar.jsp"/>
+<jsp:include page="../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

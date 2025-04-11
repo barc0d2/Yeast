@@ -13,6 +13,19 @@
         <result property="businessNo" column="BUSINESS_NO"/>
     </resultMap>
 
+    <!-- Sell 결과 매핑 -->
+    <resultMap id="sellResultMap" type="com.kh.yeast.domain.vo.Sell">
+        <result property="sellNo" column="SELL_NO"/>
+        <result property="sellMoney" column="SELL_MONEY"/>
+        <result property="breadList" column="BREAD_LIST"/>
+        <result property="quantityList" column="QUANTITY_LIST"/>
+        <result property="categoryList" column="CATEGORY_LIST"/>
+        <result property="totalList" column="TOTAL_LIST"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="businessNo" column="BUSINESS_NO"/>
+        <result property="businessName" column="BUSINESS_NAME"/>
+    </resultMap>
+
     <!-- 지점 직원 목록 조회 -->
     <select id="selectBranchMembers" resultMap="memberResultMap">
         SELECT
@@ -80,4 +93,89 @@
         ORDER BY 
             m.USER_NO ASC
     </select>
-</mapper> 
+    
+    <!-- 재무 차트 데이터 조회 -->
+    <select id="selectFinanceChart" resultMap="sellResultMap">
+        SELECT 
+            s.SELL_NO,
+            s.SELL_MONEY,
+            s.BREAD_LIST,
+            s.QUANTITY_LIST,
+            s.CATEGORY_LIST,
+            s.TOTAL_LIST,
+            s.CREATE_DATE,
+            s.BUSINESS_NO,
+            b.BUSINESS_NAME
+        FROM 
+            SELL s
+        JOIN 
+            BUSINESS b ON s.BUSINESS_NO = b.BUSINESS_NO
+        WHERE 
+            s.STATUS = 1
+        ORDER BY 
+            s.CREATE_DATE DESC
+    </select>
+
+    <!-- 특정 지점의 금일 판매내역 조회 -->
+    <select id="selectTodaySalesByBusiness" resultMap="sellResultMap">
+        SELECT
+            s.SELL_NO,
+            s.SELL_MONEY,
+            s.BREAD_LIST,
+            s.QUANTITY_LIST,
+            s.CATEGORY_LIST,
+            s.TOTAL_LIST,
+            s.CREATE_DATE,
+            s.BUSINESS_NO,
+            b.BUSINESS_NAME
+        FROM
+            SELL s
+        JOIN
+            BUSINESS b ON s.BUSINESS_NO = b.BUSINESS_NO
+        WHERE
+            s.CREATE_DATE BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999
+            AND s.STATUS = 1
+            AND s.BUSINESS_NO = #{businessNo}
+        ORDER BY
+            s.SELL_NO DESC
+    </select>
+
+    <!-- 특정 지점의 카테고리별 판매 개수 조회 -->
+    <select id="selectCategorySalesByBusiness" resultType="java.util.Map">
+        SELECT 
+            TRIM(category_name) AS CATEGORY_NAME, 
+            SUM(quantity) AS TOTAL_QUANTITY,
+            SUM(NVL(amount, 0)) * 1000 AS TOTAL_AMOUNT
+        FROM (
+            SELECT 
+                TRIM(REGEXP_SUBSTR(s.CATEGORY_LIST, '[^,]+', 1, LEVEL)) AS category_name,
+                TO_NUMBER(TRIM(REGEXP_SUBSTR(s.QUANTITY_LIST, '[^,]+', 1, LEVEL))) AS quantity,
+                CASE 
+                    WHEN REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL) IS NOT NULL 
+                         AND LENGTH(TRIM(REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL))) > 0 
+                    THEN TO_NUMBER(TRIM(REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL))) 
+                    ELSE 2000 * TO_NUMBER(TRIM(REGEXP_SUBSTR(s.QUANTITY_LIST, '[^,]+', 1, LEVEL)))
+                END AS amount
+            FROM 
+                SELL s
+            WHERE 
+                s.BUSINESS_NO = #{businessNo}
+                AND TRUNC(s.CREATE_DATE) = TRUNC(SYSDATE)
+                AND s.STATUS = 1
+            CONNECT BY 
+                LEVEL &lt;= GREATEST(
+                    LENGTH(REGEXP_REPLACE(s.CATEGORY_LIST, '[^,]')) + 1,
+                    LENGTH(REGEXP_REPLACE(s.QUANTITY_LIST, '[^,]')) + 1,
+                    LENGTH(REGEXP_REPLACE(s.TOTAL_LIST, '[^,]')) + 1
+                )
+                AND PRIOR s.SELL_NO = s.SELL_NO
+                AND PRIOR SYS_GUID() IS NOT NULL
+        )
+        WHERE 
+            category_name IS NOT NULL
+        GROUP BY 
+            TRIM(category_name)
+        ORDER BY 
+            SUM(quantity) DESC
+    </select>
+</mapper>

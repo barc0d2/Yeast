@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -20,7 +22,89 @@
   <div id="wrapper">
     <main class="frame">
         <section class="sales">
+            <div class="body">
+                <div class="inbody">
+                    <article class="branch">
+                        <header class="title">
+                            <h2 class="text-wrapper-12">금일 판매내역</h2>
+                        </header>
+                        <div id="salesContent" class="body-2">
+                            <div class="header">
+                                <div class="div-wrapper">
+                                    <h4 class="text-wrapper-2">No.</h4>
+                                </div>
+                                <div class="div-wrapper">
+                                    <h4 class="text-wrapper-2">종류</h4>
+                                </div>
+                                <div class="div-wrapper">
+                                    <h4 class="text-wrapper-2">상품명</h4>
+                                </div>
+                                <div class="div-wrapper">
+                                    <h4 class="text-wrapper-2">판매개수</h4>
+                                </div>
+                                <div class="div-wrapper">
+                                    <h4 class="text-wrapper-2">매출</h4>
+                                </div>
+                            </div>
+                            <div class="line-wrapper">
+                                <c:choose>
+                                    <c:when test="${empty todaySales}">
+                                <div class="div-2">
+                                            <div class="div-wrapper" style="width: 100%; text-align: center;">
+                                                <p class="text-wrapper-3">금일 판매 데이터가 없습니다.</p>
+                                    </div>
+                                </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="sale" items="${todaySales}" varStatus="status">
+                                            <c:set var="categoryArray" value="${fn:split(sale.categoryList, ',')}" />
+                                            <c:set var="breadArray" value="${fn:split(sale.breadList, ',')}" />
+                                            <c:set var="quantityArray" value="${fn:split(sale.quantityList, ',')}" />
 
+                                            <c:forEach var="category" items="${categoryArray}" varStatus="itemStatus">
+                                <div class="div-2">
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">${itemStatus.count}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-3">${category}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">${breadArray[itemStatus.index]}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">${quantityArray[itemStatus.index]}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">
+                                            <fmt:formatNumber value="${quantityArray[itemStatus.index] * 2000}" pattern="#,###" />원
+                                        </p>
+                                </div>
+                            </div>
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </div>
+                        <footer class="total">
+                            <p class="element">
+                                <span class="span">금일 총 매출 금액 : </span>
+                                <span class="text-wrapper-4">
+                                    <c:choose>
+                                        <c:when test="${empty todaySales}">0</c:when>
+                                        <c:otherwise>
+                                            <fmt:formatNumber value="${todaySales[0].sellMoney}" pattern="#,###,###"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                                <span class="span">원</span>
+                            </p>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+            
         </section>
         <section class="production">
             <h2 class="text-wrapper">금일 매출 현황</h2>
@@ -29,7 +113,6 @@
                     <canvas id="chartjs-doughnut"></canvas>
                 </div>
                 <div class="sales-details">
-                    <table class="sales-details-table">
                         <div class="div-2">
                             <div class="div-wrapper-2">
                                 <h3 class="text-wrapper-13">종류</h3>
@@ -41,12 +124,37 @@
                                 <h3 class="text-wrapper-13">매출</h3>
                             </div>
                         </div>
-                    </table>
+                    <c:choose>
+                        <c:when test="${empty categorySales}">
+                        <div class="div-2">
+                            <div class="div-wrapper" style="width: 100%; text-align: center;">
+                                <p class="text-wrapper-3">금일 판매 데이터가 없습니다.</p>
+                            </div>
+                        </div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="item" items="${categorySales}">
+                                <div class="div-2">
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-3">${item.CATEGORY_NAME}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">${item.TOTAL_QUANTITY}</p>
+                                    </div>
+                                    <div class="div-wrapper">
+                                        <p class="text-wrapper-2">
+                                            <fmt:formatNumber value="${item.TOTAL_AMOUNT}" pattern="#,###" />원
+                                        </p>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </section>
         <section class="employee">
-            <h2 class="text-wrapper-12">전체직원 목록 (${businessName})</h2>
+            <h2 class="text-wrapper-12">전체직원 목록</h2>
             <div class="list">
                 <div class="div-2">
                     <div class="div-wrapper-2">
@@ -109,12 +217,24 @@
                 '#575757'
             ];
 
+            const categoryLabels = [
+                <c:forEach var="item" items="${categorySales}" varStatus="status">
+                "${item.CATEGORY_NAME}"<c:if test="${!status.last}">, </c:if>
+                </c:forEach>
+            ];
+
+            const categoryData = [
+                <c:forEach var="item" items="${categorySales}" varStatus="status">
+                ${item.TOTAL_QUANTITY}<c:if test="${!status.last}">, </c:if>
+                </c:forEach>
+            ];
+
             new Chart(document.getElementById("chartjs-doughnut"), {
                 type: "pie",
                 data: {
-                    labels: ["단과자", "식빵", "간식빵", "건강빵", "도넛", "페스츄리"],
+                    labels: categoryLabels.length > 0 ? categoryLabels : ["데이터 없음"],
                     datasets: [{
-                        data: [260, 125, 54, 146, 100, 70],
+                        data: categoryData.length > 0 ? categoryData : [100],
                         backgroundColor: colorPalette,
                         borderColor: "transparent"
                     }]

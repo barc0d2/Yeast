@@ -7,10 +7,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface MyPageBMapper {
 
-        Member selectBMemberByUserNo(@Param("userNo") Long userNo);
-
-        int updateBMember(Member member);
-
-        Member findBManagerByUserNo(@Param("userNo") Long userNo); // 🛠️ 수정
-    }
+   Member selectMember(@Param("userNo") int userNo);
+}
 

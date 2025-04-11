@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,8 +33,12 @@ public class DashBoardBController {
         session.setAttribute("loginUser", loginUser);
 
         ArrayList<Member> memberList = dashBoardBService.getBranchMembersByBusinessNo(loginUser.getBusinessNo());
+        ArrayList<Sell> todaySales = dashBoardBService.getTodaySalesByBusiness(loginUser.getBusinessNo());
+        List<Map<String, Object>> categorySales = dashBoardBService.getCategorySalesByBusiness(loginUser.getBusinessNo());
 
         model.addAttribute("memberList", memberList);
+        model.addAttribute("todaySales", todaySales);
+        model.addAttribute("categorySales", categorySales);
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName", "대시보드");
         return "branch/dashboard/dashboard";
