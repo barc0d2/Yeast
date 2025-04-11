@@ -189,7 +189,7 @@
             };
 
             modalOpenBtn.onclick = function() {
-                const message = status === 'R' ? '이미 승인 신청된 발주입니다.' : '이미 승인된 발주입니다.';
+                const message = status === 'Y' ? '이미 승인 신청된 발주입니다.' : '이미 승인된 발주입니다.';
                 alert(message);
                 return false;
             };
@@ -329,7 +329,7 @@
             const form = document.getElementById('orderForm');
             form.action = '/branch/order/updateList';
             form.submit();
-            alert("수정이 완료되었습니다.");
+            alert("추가가 완료되었습니다.");
             closePaymentConfirmModal();
             }
         }

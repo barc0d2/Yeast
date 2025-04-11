@@ -12,16 +12,6 @@
 <div class="main">
     <div class="container">
         <div class="content">
-            <header class="header">
-                <input type="date" class="input">
-                <div class="wave-sym">
-                    <div class="to">~</div>
-                </div>
-                <input type="date" class="input">
-                <div class="cancel">
-                    <div class="detail-btn">상세보기</div>
-                </div>
-            </header>
             <div class="navbar">
                 <table>
                     <thead>
@@ -63,11 +53,9 @@
                 </table>
             </div>
             <p class="page-no">
-                <span class="span">${currentPage} </span>
-                <span class="text-wrapper-7"> to </span>
-                <span class="span">4</span>
+                <span class="span">${pi.currentPage} </span>
                 <span class="text-wrapper-7"> of </span>
-                <span class="span">4</span>
+                <span class="span">${pi.maxPage}</span>
             </p>
         </div>
     </div>

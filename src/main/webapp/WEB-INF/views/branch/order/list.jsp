@@ -14,11 +14,6 @@
     <div class="container">
         <div class="content">
             <header class="header">
-                <input type="date" class="input">
-                <div class="wave-sym">
-                    <div class="to">~</div>
-                </div>
-                <input type="date" class="input">
                 <div class="cancel">
                     <div class="detail-btn" style="cursor: pointer" onclick="night()">상세보기</div>
                 </div>
@@ -59,7 +54,7 @@
                             </td>
                             <td>${order.orderDate}</td>
                             <td>${order.createDate}</td>
-                            <td>${order.price}</td>
+                            <td>${order.price * 0.25}</td>
                             <td>${order.client}</td>
                         </tr>
                     </c:forEach>
@@ -71,6 +66,25 @@
                 <span class="text-wrapper-7"> of </span>
                 <span class="span">${pi.maxPage}</span>
             </p>
+        </div>
+        <div style="background: white; border: #6e6e6e 1px solid; border-radius: 10px">
+            <div class="indicator">
+                <a  href="/branch/order/list?currentPage=${pi.currentPage - 1}"><svg width="45" height="53" viewBox="0 0 45 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.9">
+                        <path d="M29.8623 16.6313L21.3142 26.5228L29.8623 36.4143L27.2307 39.4529L16.0322 26.5228L27.2307 13.5928L29.8623 16.6313Z" fill="#202224"/>
+                    </g>
+                </svg>
+                </a>
+
+                <a  href="/branch/order/list?currentPage=${pi.currentPage + 1}">
+                <svg width="46" height="53" viewBox="0 0 46 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.9">
+                        <path d="M16.6923 36.4143L25.2405 26.5228L16.6923 16.6313L19.324 13.5928L30.5225 26.5228L19.324 39.4529L16.6923 36.4143Z" fill="#202224"/>
+                    </g>
+                </svg>
+                </a>
+
+            </div>
         </div>
     </div>
 </div>

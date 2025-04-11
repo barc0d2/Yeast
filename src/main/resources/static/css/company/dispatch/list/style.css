@@ -14,7 +14,6 @@
     align-items: flex-end;
     gap: 16px;
     position:absolute;
-
   }
   
   .main .content {
@@ -136,7 +135,6 @@
     gap: 80px;
     padding: 0px 10px;
     position: relative;
-    border: 1px solid;
     border-color: var(--bordergray);
   }
   .main .body {
