@@ -1,7 +1,9 @@
 package com.kh.yeast.controller;
 
+import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.MemberService;
+import com.kh.yeast.utils.Template;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -65,14 +68,18 @@ public class MemberController {
 
     @PostMapping("/register")
     @ResponseBody
-    public String insertMember(Member member, HttpSession session, Model model) {
+    public String insertMember(Member member, @ModelAttribute Business business, MultipartFile upfile, HttpSession session, Model model) {
         if (member.getManagerName() != null && !member.getManagerName().trim().isEmpty()) {
             Member manager = memberService.findManagerByName(member.getManagerName());
             if (manager != null) {
                 member.setManagerNo(manager.getUserNo());
             }
         }
-
+        if(upfile != null && !upfile.getOriginalFilename().equals("")){
+            String changeName = Template.saveFile(upfile, session, "/resources/uploadfile/");
+            member.setImageChange("/resources/uploadfile/" + changeName);
+            member.setImageOrigin(upfile.getOriginalFilename());
+        }
         String pwd = bCryptPasswordEncoder.encode(member.getUserPwd());
         member.setUserPwd(pwd);
 

@@ -1,13 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="com.kh.yeast.domain.vo.Member" %>
-<%
-  Member member = (Member) request.getAttribute("member");
-%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
   <link rel="stylesheet" href="../../css/global/bmyPage.css" />
   <link rel="stylesheet" href="../../css/styleguide/bmyPage.css" />
   <link rel="stylesheet" href="../../css/style/bmyPage.css" />
@@ -116,7 +114,7 @@
     fileInput.click();
   }
 </script>
-<jsp:include page="whiteSideBar.jsp"/>
-<jsp:include page="whiteTopBar.jsp"/>
+<jsp:include page="../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../sideBar/brownTopBar.jsp"/>
 </body>
 </html>

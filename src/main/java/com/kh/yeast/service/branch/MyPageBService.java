@@ -8,15 +8,7 @@ import java.util.List;
 
 public interface MyPageBService {
 
-    Member getBMemberInfo(Long userNo) throws Exception;
-
-    String findBManagerByUserNo(@Param("userNo") Long userNo);
 
 
-    int updateBMemberInfo(Member member) throws Exception;
-
-    Member getBManagerName(Long userNo);
-
-
-
+    Member selectMember(int userNo);
 }
