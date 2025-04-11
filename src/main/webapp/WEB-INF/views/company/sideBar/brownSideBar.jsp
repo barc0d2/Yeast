@@ -14,12 +14,14 @@
 <body>
 <div id="sidebar">
     <div id="sidebar-background"></div>
+    <a href="/company/dashboard">
     <div id="logo">
         <div id="logo-main" alt="Main Logo"></div>
         <div id="logo-sub"></div>
     </div>
+    </a>
     <div id="menu-container">
-        <a href="/company/dashboard/dashboard">
+        <a href="/company/dashboard">
             <div class="menu-item">
                 <div class="menu-icon">
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">

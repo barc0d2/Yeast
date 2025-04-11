@@ -6,11 +6,13 @@ import com.kh.yeast.service.branch.DashBoardBService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.MyBatisSystemException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,8 @@ public class DashBoardBController {
     }
 
     @GetMapping("/mypage")
-    public String redirectToBMyPage(@RequestParam(value = "userId", required = false) String userId) {
+    public String redirectToBMyPage(@SessionAttribute("loginUser") Member loginUser) {
+        String userId = loginUser.getUserId();
         return "redirect:/branch/mypage/myPage?userId=" + userId;
     }
 
