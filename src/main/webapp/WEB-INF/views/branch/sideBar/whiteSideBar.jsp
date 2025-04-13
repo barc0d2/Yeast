@@ -76,9 +76,6 @@
                     <a href="/branch/store/updateForm">
                         <div class="submenu-item">매장 정보수정</div>
                     </a>
-                    <a href="/branch/finance/list">
-                        <div class="submenu-item">하루 매출</div>
-                    </a>
                     <a href="/branch/specification/salaryList">
                         <div class="submenu-item">임금 명세서</div>
                     </a>
@@ -111,8 +108,9 @@
                         </svg></div>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">판매내역</div>
-                    <div class="submenu-item">매출</div>
+                    <a href="/branch/finance/list">
+                        <div class="submenu-item">하루 매출</div>
+                    </a>
                 </div>
                 <div id="order-menu" class="menu-item">
                     <div class="menu-icon">

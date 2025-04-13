@@ -25,7 +25,7 @@ public class  EmployeeBController {
     @GetMapping("/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
         Member member = employeeBService.selectMember(userNo);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원수정");
         model.addAttribute("member", member);
         return "branch/employee/enrollForm";
@@ -38,7 +38,7 @@ public class  EmployeeBController {
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
         ArrayList<Member> list = employeeBService.selectMemberList(businessNo,pi);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원관리");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
@@ -66,7 +66,7 @@ public class  EmployeeBController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","지점수정");
         if(result > 0){
             session.setAttribute("alertMsg", "지점 수정 성공");
@@ -83,7 +83,7 @@ public class  EmployeeBController {
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
         ArrayList<Member> list = employeeBService.selectAllMemberList(pi);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원관리");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
@@ -93,7 +93,7 @@ public class  EmployeeBController {
     @GetMapping("/introduction/enrollForm")
     public String enrollFormAllEmployee(int userNo, Model model) {
         Member member = employeeBService.selectMember(userNo);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원수정");
         model.addAttribute("member", member);
         return "branch/employee/enrollForm";
