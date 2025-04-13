@@ -32,7 +32,6 @@
             <th>이름</th>
             <th>명세 등록일</th>
             <th>직무</th>
-            <th>담당자</th>
             <th>이메일</th>
             <th>월급</th>
             <th>전화번호</th>
@@ -50,7 +49,6 @@
               <td>${employee.userName}</td>
               <td>${employee.enrollDate}</td>
               <td>${employee.positionName}</td>
-              <td>${employee.headName}</td>
               <td>${employee.email}</td>
               <td>${employee.salary}</td>
               <td>${employee.phone}</td>

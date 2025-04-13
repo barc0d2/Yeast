@@ -56,7 +56,6 @@ public class OrderBServiceImpl implements OrderBService {
     @Override
     @Scheduled(cron = "0 0 22 * * ?")
     public int night() {
-        System.out.println("🔔 스케줄러 실행됨: 16:31");
         return supplyMapper.night();
     }
 

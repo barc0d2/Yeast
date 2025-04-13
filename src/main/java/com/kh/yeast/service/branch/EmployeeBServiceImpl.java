@@ -21,7 +21,6 @@ public class EmployeeBServiceImpl implements EmployeeBService {
     @Override
     public int selectMemberCount(long businessNo) {
         int memberCount = employeeBMapper.selectMemberCount(businessNo);
-        System.out.println(memberCount);
         return memberCount;
     }
 
