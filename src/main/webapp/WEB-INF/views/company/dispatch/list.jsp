@@ -45,7 +45,7 @@
                             </td>
                             <td>${dispatch.orderDate}</td>
                             <td>${dispatch.createDate}</td>
-                            <td>${dispatch.price}</td>
+                            <td>${dispatch.price * 0.25}</td>
                             <td>${dispatch.client}</td>
                         </tr>
                     </c:forEach>
