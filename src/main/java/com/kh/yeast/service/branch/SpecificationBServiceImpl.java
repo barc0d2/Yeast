@@ -47,6 +47,8 @@ public class SpecificationBServiceImpl implements SpecificationBService {
         });
 
         model.addAttribute("employees", list);
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
         return model;
     }
 
@@ -82,6 +84,8 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
         model.addAttribute("member", member);
         model.addAttribute("money", money);
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
         return model;
     }
 
@@ -119,7 +123,8 @@ public class SpecificationBServiceImpl implements SpecificationBService {
         if(member==null || status == null){
             throw new NullPointerException();
         }
-
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","월 수수료");
         return model;
     }
 

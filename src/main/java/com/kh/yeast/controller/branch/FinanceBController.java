@@ -27,8 +27,8 @@ public class FinanceBController {
         Long businessNo =  member.getBusinessNo();
         ArrayList<BreadInventory> breadInventoryList = financeBService.dailyBreadList(businessNo);
         model.addAttribute("list", breadInventoryList);
-        model.addAttribute("currentName", "판매기록조회");
-        model.addAttribute("smallCurrentName","판매내역");
+        model.addAttribute("currentName", "매장관리");
+        model.addAttribute("smallCurrentName","하루 매출");
         return "branch/finance/storechart";
     }
 }

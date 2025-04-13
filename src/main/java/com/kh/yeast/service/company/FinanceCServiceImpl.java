@@ -34,7 +34,7 @@ public class FinanceCServiceImpl implements FinanceCService {
         model.addAttribute("pi", pi);
         model.addAttribute("list", list);
         model.addAttribute("currentName", "재무관리");
-        model.addAttribute("smallCurrentName","가맹점 매출");
+        model.addAttribute("smallCurrentName","지점점 매출");
         return model;
     }
 
