@@ -86,6 +86,24 @@ public class SpecificationBServiceImpl implements SpecificationBService {
     }
 
     @Override
+    @Transactional
+    public void payment(Model model, Long userNo, Integer deduction, HttpSession session) throws Exception {
+        Member member = (Member)session.getAttribute("loginUser");
+        Long businessNo = member.getBusinessNo();
+        Timestamp memberUpdateAt = specificationBMapper.selectMemberUpdate(userNo);
+        Timestamp companyUpdateAt = specificationBMapper.selectCompanyUpdate(businessNo);
+
+        Integer updatedSalaryRow = specificationBMapper.updateEmployeeSalary(userNo, memberUpdateAt);
+        if(updatedSalaryRow== null||updatedSalaryRow == 0){
+            throw new PaymentTransactionException("연봉을 지급하지 못했습니다.");
+        }
+        Integer updatedCompanyMoney = specificationBMapper.updateCompanyMoney(deduction, companyUpdateAt, businessNo);
+        if(updatedCompanyMoney== null||updatedCompanyMoney == 0){
+            throw new PaymentTransactionException("회사 금액이 차감되지 않았습니다.");
+        }
+    }
+
+    @Override
     public Model monthlyFee(Model model, HttpSession session) {
 
         Member member = (Member) session.getAttribute("loginUser");
@@ -93,14 +111,11 @@ public class SpecificationBServiceImpl implements SpecificationBService {
 
         Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
         model.addAttribute("monthSellMoney", monthSellMoney);
-        System.out.println("monthSellMoney = " + monthSellMoney);
         Integer status = specificationBMapper.lastMonthStatus(businessNo);
         model.addAttribute("status", status);
-        System.out.println("status = " + status);
         RowBounds rowBounds = new RowBounds(1, Integer.MAX_VALUE);
         ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
         model.addAttribute("businessList", businessList);
-        System.out.println("businessList = " + businessList);
         if(member==null || status == null){
             throw new NullPointerException();
         }

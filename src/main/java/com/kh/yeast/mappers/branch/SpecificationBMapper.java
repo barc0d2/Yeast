@@ -32,4 +32,13 @@ public interface SpecificationBMapper {
     Integer updateSellMonthly(Long businessNo);
 
     Integer updateRemitted(Long businessNo);
+
+    Timestamp selectMemberUpdate(Long userNo);
+
+    Timestamp selectCompanyUpdate(Long businessNo);
+
+    Integer updateEmployeeSalary(Long userNo, Timestamp updateAt);
+
+    Integer updateCompanyMoney(Integer deduction, Timestamp updateAt, Long businessNo);
+
 }
