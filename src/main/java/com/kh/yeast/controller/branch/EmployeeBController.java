@@ -83,8 +83,8 @@ public class  EmployeeBController {
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
         ArrayList<Member> list = employeeBService.selectAllMemberList(pi);
-        model.addAttribute("currentName", "매장관리");
-        model.addAttribute("smallCurrentName","직원관리");
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원 조회");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
         return "branch/introduction/allEmployeeList";
@@ -93,8 +93,8 @@ public class  EmployeeBController {
     @GetMapping("/introduction/enrollForm")
     public String enrollFormAllEmployee(int userNo, Model model) {
         Member member = employeeBService.selectMember(userNo);
-        model.addAttribute("currentName", "매장관리");
-        model.addAttribute("smallCurrentName","직원수정");
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원 조회");
         model.addAttribute("member", member);
         return "branch/employee/enrollForm";
     }
