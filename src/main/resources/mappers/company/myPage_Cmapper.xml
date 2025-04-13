@@ -6,8 +6,11 @@
     <resultMap id="memberResult" type="Member">
         <result column="USER_NO" property="userNo"/>
         <result column="BUSINESS_NAME" property="businessName"/>
+        <result column="BUSINESS_NO" property="businessNo"/>
         <result column="POSITION_NAME" property="positionName"/>
+        <result column="POSITION_NO" property="positionNo"/>
         <result column="MANAGER_NAME" property="managerName"/>
+        <result column="MANAGER_NO" property="managerNo"/>
         <result column="USER_NAME" property="userName"/>
         <result column="USER_ID" property="userId"/>
         <result column="USER_PWD" property="userPwd"/>
@@ -45,43 +48,39 @@
     </resultMap>
 
     <select id="selectMember" resultMap="memberResult">
-        SELECT
-        m1.USER_NO,
-        b.BUSINESS_NAME,
-        p.POSITION_NAME,
-        m2.USER_NAME AS MANAGER_NAME,
-        m1.USER_NAME,
-        m1.USER_ID,
-        m1.EMAIL,
-        m1.SALARY,
-        m1.BONUS,
-        m1.PHONE,
-        m1.GENDER,
-        m1.ADDRESS,
-        m1.IMAGE_CHANGE,
-        m1.IMAGE_ORIGIN,
-        TO_CHAR(m1.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
-        FROM MEMBER m1
-        LEFT JOIN MEMBER m2 ON m1.MANAGER_NO = m2.USER_NO
-        LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
-        LEFT JOIN BUSINESS b ON m1.BUSINESS_NO = b.BUSINESS_NO
-        WHERE m1.STATUS=1
-        AND m1.USER_NO = #{userNo}
+        SELECT M.USER_NO,
+        BUSINESS_NAME,
+        M.BUSINESS_NO,
+        POSITION_NAME,
+        M.POSITION_NO,
+        E.USER_NAME,
+        E.USER_NO,
+        M.USER_NAME,
+        M.USER_ID,
+        M.USER_PWD,
+        M.EMAIL,
+        M.SALARY,
+        M.BONUS,
+        M.PHONE,
+        M.GENDER,
+        M.ADDRESS,
+        M.CREATE_DATE,
+        M.IMAGE_CHANGE,
+        M.IMAGE_ORIGIN,
+        TO_CHAR(.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY,
+        M.STATUS
+        FROM MEMBER M
+        LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
+        LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
+        LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
+        WHERE M.STATUS=1
+        AND M.USER_NO = #{userNo}
     </select>
     <update id="update">
         UPDATE MEMBER M
-        SET M.BUSINESS_NO = (
-        SELECT B.BUSINESS_NO
-        FROM BUSINESS B
-        WHERE B.BUSINESS_NAME = #{businessName}
-        ),
-        M.POSITION_NO = #{positionNo}
-        ,
-        M.MANAGER_NO = (
-        SELECT M2.USER_NO
-        FROM MEMBER M2
-        WHERE M2.USER_NAME = #{managerName}
-        ),
+        SET M.BUSINESS_NO = #{businessNo},
+        M.POSITION_NO = #{positionNo},
+        M.MANAGER_NO = #{managerNo},
         M.USER_NAME = #{userName},
         M.EMAIL = #{email},
         M.PHONE = #{phone},

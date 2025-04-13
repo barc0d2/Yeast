@@ -20,7 +20,7 @@ public class MyPageCController {
     private final MyPageCService myPageCService;
 
     @GetMapping("mypage/myPage")
-    public String showCMyPage(@SessionAttribute("loginUser") Member loginUser , Model model) throws Exception {
+    public String showCMyPage(@SessionAttribute("loginUser")Member loginUser , Model model) throws Exception {
         Long userNo = loginUser.getUserNo();
         Member member = myPageCService.selectMember(userNo);
         model.addAttribute("currentName", "마이페이지");
@@ -43,23 +43,22 @@ public class MyPageCController {
             member.setImageOrigin(reupfile.getOriginalFilename());
         }
         int result = 0;
+        Member loginUpdate;
         try {
-            System.out.println(member.getImageChange());
-            System.out.println(member.getImageOrigin());
-            System.out.println(member.getUserNo());
             result = myPageCService.update(member);
-            System.out.println("result = "+result);
+            loginUpdate = myPageCService.selectMember(member.getUserNo());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        session.setAttribute("loginUser", loginUpdate);
         model.addAttribute("currentName", "마이페이지");
         model.addAttribute("smallCurrentName","마이페이지");
         if(result > 0){
             session.setAttribute("alertMsg", "마이페이지 정보수정 성공");
-            return "company/mypage/myPage";
+            return "redirect:/company/mypage/myPage";
         } else {
             model.addAttribute("errorMsg", "마이페이지 정보수정 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 

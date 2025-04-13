@@ -101,7 +101,7 @@ public class FinanceCServiceImpl implements FinanceCService {
                 wholeSale.setOrderDate(supplyList.get(0).getOrderDate());
             }
             supplyList.forEach(supply -> {
-                totalPrice.updateAndGet(v -> v + supply.getPrice());
+                totalPrice.updateAndGet(v -> v + supply.getPrice()*supply.getQuantity());
                 if (quantitySb.length() > 0) quantitySb.append(",");
                 quantitySb.append(supply.getQuantity());
 
