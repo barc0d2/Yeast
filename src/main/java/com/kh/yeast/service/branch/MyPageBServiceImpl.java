@@ -13,8 +13,13 @@ public class MyPageBServiceImpl implements MyPageBService {
     private final MyPageBMapper myPageBMapper;
 
     @Override
-    public Member selectMember(int userNo) {
+    public Member selectMember(long userNo) {
         return myPageBMapper.selectMember(userNo);
+    }
+
+    @Override
+    public int update(Member member) {
+        return myPageBMapper.update(member);
     }
 }
 

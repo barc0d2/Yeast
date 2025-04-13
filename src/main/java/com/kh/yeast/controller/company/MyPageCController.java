@@ -2,46 +2,65 @@ package com.kh.yeast.controller.company;
 
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.service.company.MyPageCService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kh.yeast.utils.Template;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/company")
 public class MyPageCController {
 
     private final MyPageCService myPageCService;
 
-    @Autowired
-    public MyPageCController(MyPageCService myPageCService) {
-        this.myPageCService = myPageCService;
-    }
-
-
-    @GetMapping
-    public String showCMyPage(String userId, Model model) throws Exception {
-        Member member = myPageCService.getCMemberInfo(userId);
-        String managerName = myPageCService.getCManagerName(member.getUserNo());
+    @GetMapping("mypage/myPage")
+    public String showCMyPage(@SessionAttribute("loginUser") Member loginUser , Model model) throws Exception {
+        Long userNo = loginUser.getUserNo();
+        Member member = myPageCService.selectMember(userNo);
+        model.addAttribute("currentName", "마이페이지");
+        model.addAttribute("smallCurrentName","마이페이지");
+        model.addAttribute("positions", myPageCService.getAllPositions());
+        model.addAttribute("businesses", myPageCService.getAllBusinesses());
         model.addAttribute("member", member);
-        model.addAttribute("managerName", managerName);
-        return "mypage/myPage";
+        return "company/mypage/myPage";
     }
 
-    @GetMapping("/mypage/myPagePopUp")
-    public String showCMyPagePopUp(Long userNo, Model model) throws Exception {
-        Member member = myPageCService.getCMemberInfoByUserNo(userNo);
-        String managerName = myPageCService.getCManagerName(member.getUserNo());
-        model.addAttribute("member", member);
-        model.addAttribute("managerName", managerName);
-        return "mypage/myPagePopUp";
+    @PostMapping("mypage/update")
+    public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
+        if(!reupfile.getOriginalFilename().equals("")){
+            if(member.getImageChange() != null && !member.getImageChange().equals("")){
+                new File(session.getServletContext().getRealPath(member.getImageChange())).delete();
+            }
+
+            String changeName = Template.saveFile(reupfile, session, "/resources/uploadfile/");
+            member.setImageChange("/resources/uploadfile/" + changeName);
+            member.setImageOrigin(reupfile.getOriginalFilename());
+        }
+        int result = 0;
+        try {
+            System.out.println(member.getImageChange());
+            System.out.println(member.getImageOrigin());
+            System.out.println(member.getUserNo());
+            result = myPageCService.update(member);
+            System.out.println("result = "+result);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("currentName", "마이페이지");
+        model.addAttribute("smallCurrentName","마이페이지");
+        if(result > 0){
+            session.setAttribute("alertMsg", "마이페이지 정보수정 성공");
+            return "company/mypage/myPage";
+        } else {
+            model.addAttribute("errorMsg", "마이페이지 정보수정 실패");
+            return "common/errorPage";
+        }
     }
 
-    @PostMapping("/mypage/myPage")
-    public String updateCMyPage(Member member) throws Exception {
-        myPageCService.updateCMemberInfo(member);
-        return "redirect: mypage/myPage?userId=" + member.getUserId();
-    }
 }

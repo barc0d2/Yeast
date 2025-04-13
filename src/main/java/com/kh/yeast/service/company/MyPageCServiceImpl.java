@@ -1,9 +1,13 @@
 package com.kh.yeast.service.company;
 
+import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.Position;
 import com.kh.yeast.mappers.company.MyPageCMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service("myPageCService")
@@ -13,39 +17,24 @@ public class MyPageCServiceImpl implements MyPageCService {
 
 
     @Override
-    public Member getCMemberInfo(String userId) {
-        return myPageCMapper.selectCMemberById(userId);
+    public Member selectMember(Long userNo) {
+        return myPageCMapper.selectMember(userNo) ;
     }
 
     @Override
-    public Member getCMemberInfoByUserNo(Long userNo) {
-        return myPageCMapper.selectCMemberByUserNo(userNo);
+    public int update(Member member) {
+        return myPageCMapper.update(member);
     }
 
     @Override
-    public int updateCMemberInfo(Member member) {
-        return myPageCMapper.updateCMember(member);
+    public List<Position> getAllPositions() {
+        return myPageCMapper.getAllPositions();
     }
 
     @Override
-    public String getCManagerName(Long userNo) {
-        return findManagerName(userNo);
+    public List<Business> getAllBusinesses() {
+        return myPageCMapper.getAllBusinesses();
     }
 
-    private String findManagerName(Long userNo) {
-        Member member = myPageCMapper.selectCMemberByUserNo(userNo);
 
-        if (member == null || member.getManagerNo() == null) {  // 🔹 `getManagerNo()` 사용
-            return "";
-        }
-
-        Long managerNo = member.getManagerNo();  // 🔹 변경된 필드명 적용
-
-        Member manager = myPageCMapper.selectCMemberByUserNo(managerNo);
-        if (manager == null) {
-            return "";
-        }
-
-        return manager.getUserName();  // 🔹 필드명 올바르게 수정
-    }
 }

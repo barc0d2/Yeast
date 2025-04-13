@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MyPageBService {
 
+    Member selectMember(long userNo);
 
-
-    Member selectMember(int userNo);
+    int update(Member member);
 }

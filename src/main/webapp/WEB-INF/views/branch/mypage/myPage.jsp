@@ -3,87 +3,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="../../css/global/bmyPage.css" />
-  <link rel="stylesheet" href="../../css/styleguide/bmyPage.css" />
-  <link rel="stylesheet" href="../../css/style/bmyPage.css" />
+  <link rel="stylesheet" href="/css/branch/mypage/updateForm/globals.css"/>
+  <link rel="stylesheet" href="/css/branch/mypage/updateForm/style.css"/>
+  <link rel="stylesheet" href="/css/branch/mypage/updateForm/styleguide.css"/>
 </head>
 <body>
 <div class="main">
-  <div class="container">
-    <div class="column">
-      <div class="image">
-        <div class="insert-photo">
-          <div class="frame">
-            <img class="plus-circle-fill" src="/resources/uploadfile/image/myPage/plus-image.png" />
-          </div>
-          <div id="previewContainer" class="insert-photo"></div>
-        </div>
-        <div class="inser-new-img">
-          <div class="new-img">새 이미지 첨부</div>
-          <input type="file" id="fileInput" style="display: none;" multiple />
-        </div>
+  <form class="form" action="/branch/mypage/update" method="post" enctype="multipart/form-data">
+    <a href="/branch/dashboard">
+      <div class="pre">
+        <div class="text-wrapper">홈으로</div>
       </div>
-      <div class="div">
-        <p class="p"><span class="span">이메일&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="email" name="email" id="email" class="blank" value="${member.email}" />
-      </div>
-      <div class="div">
-        <p class="p"><span class="span">이름&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="name" id="name" class="blank" value="${member.userName}" />
-      </div>
-      <div class="div">
-        <p class="p"><span class="span">아이디&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="userId" id="userId" class="blank" value="${member.userId}" />
-      </div>
-    </div>
-    <div class="column-2">
-      <div class="div">
-        <p class="p"><span class="span">비밀번호&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="password" name="password" id="password" class="blank" value="${member.userPwd}"/>
-      </div>
-      <div class="div">
-        <p class="p"><span class="span">주소&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="address" class="blank" value="${member.address}" />
-      </div>
-      <div class="div">
-        <p class="p"><span class="span">전화번호&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="phone" id="phone" class="blank" value="${member.phone}" />
-      </div>
-      <div class="div">
-        <p class="p"><span class="span">생년월일&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="date" name="birthdate" id="birthdate" class="blank" value="${member.birthday}" />
-      </div>
-      <div class="div-2">
-        <p class="p"><span class="span">직무&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="position" class="blank-2" value="${member.positionName}" />
-      </div>
-      <div class="div-2">
-        <p class="p"><span class="span">부서&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="business" class="blank-2" value="${member.businessName}" />
-      </div>
-      <div class="div-2">
-        <p class="p"><span class="span">성별&nbsp;&nbsp;</span> <span class="span">(필수)</span></p>
-        <input type="text" name="address" id="gender" class="blank-2" value="${member.gender}" />
-      </div>
-      <div class="div-2">
-        <p class="p"><span class="span">사수&nbsp;&nbsp;</span> <span class="span">(이름)</span></p>
-        <input type="text" name="manager" id="manager" class="blank-2" value="${member.managerName}" readonly/>
-      </div>
-    </div>
-  </div>
-  <div class="save-btn">
-    <div class="text-wrapper-3" onclick="saveChanges()">저장</div>
-  </div>
-  <div class="edit-btn" onclick="click()">
-    <a href="/branch/mypage/myPagePopUp">
-      <div class="text-wrapper-3">수정</div>
     </a>
-  </div>
-</div>
+    <div class="button">
+      <button type="submit">
+        <div class="update">
+          <div class="div">수정</div>
+        </div>
+      </button>
 
+      <button>
+        <div class="delete">
+          <div class="div">삭제</div>
+        </div>
+      </button>
+
+    </div>
+    <div class="write">
+      <div class="column">
+
+        <div class="image" style="cursor: pointer">
+          <section class="thumbnail">
+            <div class="overlap-group">
+              <img id="thumbnail" src="${member.imageChange}" class="image" onclick="chooseFile('.file-image')">
+              <div style="display: none;">
+                <input type="file" class="file-image" name="reupfile" onchange="loadImg(this, '#thumbnail')">
+              </div>
+              <input type="hidden" name="imageChange" value="${member.imageChange}">
+            </div>
+          </section>
+          <%--                    <div class="image-in">--%>
+          <%--                        <div class="text-wrapper-2">첨부한 이미지</div>--%>
+          <%--                        <div class="circle" onclick="">--%>
+          <%--                            <svg width="78" height="78" viewBox="0 0 78 78" fill="none"--%>
+          <%--                                 xmlns="http://www.w3.org/2000/svg">--%>
+          <%--                                <path d="M78 39C78 60.5391 60.5391 78 39 78C17.4609 78 0 60.5391 0 39C0 17.4609 17.4609 0 39 0C60.5391 0 78 17.4609 78 39ZM41.4375 21.9375C41.4375 20.5913 40.3462 19.5 39 19.5C37.6538 19.5 36.5625 20.5913 36.5625 21.9375V36.5625H21.9375C20.5913 36.5625 19.5 37.6538 19.5 39C19.5 40.3462 20.5913 41.4375 21.9375 41.4375H36.5625V56.0625C36.5625 57.4087 37.6538 58.5 39 58.5C40.3462 58.5 41.4375 57.4087 41.4375 56.0625V41.4375H56.0625C57.4087 41.4375 58.5 40.3462 58.5 39C58.5 37.6538 57.4087 36.5625 56.0625 36.5625H41.4375V21.9375Z"--%>
+          <%--                                      fill="#C8C8C8"/>--%>
+          <%--                            </svg>--%>
+          <%--                        </div>--%>
+          <%--                    </div>--%>
+        </div>
+        <div style="display: none">
+          <input type="text" class="input" value="${member.userNo}" name="userNo" hidden="hidden">
+        </div>
+        <div class="div-2">
+          <div class="title">이름</div>
+          <input type="text" class="input" value="${member.userName}" name="userName" required>
+        </div>
+        <div class="div-2">
+          <div class="title">아이디</div>
+          <input type="text" class="input" value="${member.userId}" name="userId" readonly>
+        </div>
+        <div class="address">
+          <div class="title">집주소</div>
+          <input type="text" class="input" value="${member.address}" name="address" required>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="div-2">
+          <div class="title">사수</div>
+          <input type="text" class="input" value="${member.managerName}" name="managerName">
+          <div id="managerCheckMessage" style="margin-top: 10px; font-size: 12px; padding-left: 180px"></div>
+        </div>
+        <div class="div-2">
+          <div class="title">이메일</div>
+          <input type="text" class="input" value="${member.email}" name="email" required>
+        </div>
+        <div class="div-2">
+          <div class="title">전화번호</div>
+          <input type="tel" class="input" value="${member.phone}" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+        </div>
+        <div class="div-2">
+          <div class="title">생년월일</div>
+          <input type="date" class="input" value="${member.birthday}" name="birthday" required>
+        </div>
+        <div class="job">
+          <div class="split">
+            <div class="div-3">
+              <div class="title">*가맹점</div>
+              <input type="text" class="input" value="${member.businessName}" name="businessName" required>
+            </div>
+            <div class="div-3">
+              <div class="title">직무</div>
+              <input type="text" class="input" value="${member.positionName}" name="positionName">
+            </div>
+          </div>
+        </div>
+        <div class="gender">
+          <div class="title">성별</div>
+          <input type="text" class="input" value="${member.gender}" name="gender" readonly>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 <script>
   function loadImg(changeInput, targetImg){
     //파일객체 -> files -> 선택된파일들이 담겨있음
@@ -113,8 +139,37 @@
     const fileInput = document.querySelector(selector);
     fileInput.click();
   }
+
+  // 사수 이름 검증
+  const managerNameInput = document.querySelector('input[name="managerName"]');
+  if (managerNameInput) {
+    managerNameInput.addEventListener('blur', function() {
+      const managerName = this.value;
+      if (managerName.trim() !== '') {
+        $.ajax({
+          url: "/member/check-manager",
+          data: { managerName: managerName },
+          success: function(result) {
+            const messageDiv = document.getElementById('managerCheckMessage');
+            if(result) {
+              messageDiv.style.color = "green";
+              messageDiv.textContent = "사용 가능한 사수입니다.";
+            } else {
+              messageDiv.style.color = "red";
+              messageDiv.textContent = "존재하지 않는 사수입니다.";
+            }
+          },
+          error: function() {
+            console.log("사수 검증 ajax 실패");
+          }
+        });
+      } else {
+        document.getElementById('managerCheckMessage').textContent = "";
+      }
+    });
+  }
 </script>
-<jsp:include page="../sideBar/brownSideBar.jsp"/>
-<jsp:include page="../sideBar/brownTopBar.jsp"/>
+<jsp:include page="../sideBar/whiteSideBar.jsp"/>
+<jsp:include page="../sideBar/whiteTopBar.jsp"/>
 </body>
 </html>

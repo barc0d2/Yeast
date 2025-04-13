@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="dropdown-menu">
-                        <a href="/branch/dashboard/mypage">
+                        <a href="/branch/mypage/myPage">
                         <div class="dropdown-item">마이페이지</div>
                         </a>
                         <div class="dropdown-item" onclick="location.href='/member/logout'" style="cursor: pointer;">로그아웃</div>
