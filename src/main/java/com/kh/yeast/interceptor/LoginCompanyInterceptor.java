@@ -15,8 +15,8 @@ public class LoginCompanyInterceptor implements HandlerInterceptor {
 
         if(session.getAttribute("loginUser") != null) {
             Member member = (Member) session.getAttribute("loginUser");
-            String positionName = member.getPositionName();
-            if(positionName.startsWith("C")){
+            Long businessNo = member.getBusinessNo();
+            if(businessNo==1L){
                 return true; // 계속 실행
             }else{
                 response.sendRedirect("/");

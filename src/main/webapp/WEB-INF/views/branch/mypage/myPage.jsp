@@ -94,11 +94,25 @@
           <div class="split">
             <div class="div-3">
               <div class="title">*가맹점</div>
-              <input type="text" class="input" value="${member.businessName}" name="businessName" required>
+              <select class="input" name="businessNo" required>
+                <c:forEach items="${businesses}" var="business">
+                  <option value="${business.businessNo}"
+                          <c:if test="${business.businessNo eq member.businessNo}">selected</c:if>>
+                      ${business.businessName}
+                  </option>
+                </c:forEach>
+              </select>
             </div>
             <div class="div-3">
               <div class="title">직무</div>
-              <input type="text" class="input" value="${member.positionName}" name="positionName">
+              <select class="input" name="positionNo" required>
+                <c:forEach items="${positions}" var="position">
+                  <option value="${position.positionNo}"
+                          <c:if test="${position.positionNo eq member.positionNo}">selected</c:if>>
+                      ${position.positionName}
+                  </option>
+                </c:forEach>
+              </select>
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ public class MyPageCController {
     private final MyPageCService myPageCService;
 
     @GetMapping("mypage/myPage")
-    public String showCMyPage(@SessionAttribute("loginUser") Member loginUser , Model model) throws Exception {
+    public String showCMyPage(@SessionAttribute("loginUser")Member loginUser , Model model) throws Exception {
         Long userNo = loginUser.getUserNo();
         Member member = myPageCService.selectMember(userNo);
         model.addAttribute("currentName", "마이페이지");
@@ -43,11 +43,14 @@ public class MyPageCController {
             member.setImageOrigin(reupfile.getOriginalFilename());
         }
         int result = 0;
+        Member loginUpdate;
         try {
             result = myPageCService.update(member);
+            loginUpdate = myPageCService.selectMember(member.getUserNo());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        session.setAttribute("loginUser", loginUpdate);
         model.addAttribute("currentName", "마이페이지");
         model.addAttribute("smallCurrentName","마이페이지");
         if(result > 0){
