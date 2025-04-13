@@ -35,6 +35,11 @@ public class MyPageBServiceImpl implements MyPageBService {
     public int update(Member member) {
         return myPageBMapper.update(member);
     }
+
+    @Override
+    public int updatePwd(long userNo, String pwd) {
+        return myPageBMapper.updatePwd(userNo, pwd);
+    }
 }
 
 

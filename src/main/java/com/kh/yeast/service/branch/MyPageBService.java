@@ -17,4 +17,6 @@ public interface MyPageBService {
     List<Business> getAllBusinesses();
 
     int update(Member member);
+
+    int updatePwd(long userNo, String pwd);
 }

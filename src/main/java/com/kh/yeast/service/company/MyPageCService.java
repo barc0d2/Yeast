@@ -15,4 +15,6 @@ public interface MyPageCService {
      List<Position> getAllPositions();
 
      List<Business> getAllBusinesses();
+
+    int updatePwd(long userNo, String pwd);
 }

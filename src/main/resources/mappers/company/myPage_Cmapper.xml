@@ -67,7 +67,7 @@
         M.CREATE_DATE,
         M.IMAGE_CHANGE,
         M.IMAGE_ORIGIN,
-        TO_CHAR(.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY,
+        TO_CHAR(M.BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY,
         M.STATUS
         FROM MEMBER M
         LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
@@ -105,5 +105,12 @@
         WHERE STATUS = 1
         ORDER BY BUSINESS_NO
     </select>
+
+    <update id="updatePwd">
+        UPDATE MEMBER
+        SET
+        USER_PWD = #{pwd}
+        WHERE USER_NO = #{userNo}
+    </update>
 
 </mapper>

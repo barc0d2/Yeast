@@ -18,5 +18,7 @@ public interface MyPageBMapper {
    List<Business> getAllBusinesses();
 
    int update(Member member);
+
+   int updatePwd(@Param("userNo") long userNo, @Param("pwd") String pwd);
 }
 

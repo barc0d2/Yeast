@@ -36,5 +36,10 @@ public class MyPageCServiceImpl implements MyPageCService {
         return myPageCMapper.getAllBusinesses();
     }
 
+    @Override
+    public int updatePwd(long userNo, String pwd) {
+        return myPageCMapper.updatePwd(userNo, pwd);
+    }
+
 
 }

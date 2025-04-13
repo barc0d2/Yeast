@@ -24,12 +24,11 @@
           <div class="div">수정</div>
         </div>
       </button>
-
-      <button>
+      <a href="/branch/mypage/updatePwdForm">
         <div class="delete">
-          <div class="div">삭제</div>
+          <div class="div">비밀번호 변경</div>
         </div>
-      </button>
+      </a>
 
     </div>
     <div class="write">

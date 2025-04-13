@@ -105,5 +105,12 @@
         WHERE STATUS = 1
         ORDER BY BUSINESS_NO
     </select>
+    <update id="updatePwd">
+        UPDATE MEMBER
+        SET
+        USER_PWD = #{pwd}
+        WHERE USER_NO = #{userNo}
+    </update>
+
 
 </mapper>
