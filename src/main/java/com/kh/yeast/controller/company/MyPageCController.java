@@ -44,11 +44,7 @@ public class MyPageCController {
         }
         int result = 0;
         try {
-            System.out.println(member.getImageChange());
-            System.out.println(member.getImageOrigin());
-            System.out.println(member.getUserNo());
             result = myPageCService.update(member);
-            System.out.println("result = "+result);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -56,10 +52,10 @@ public class MyPageCController {
         model.addAttribute("smallCurrentName","마이페이지");
         if(result > 0){
             session.setAttribute("alertMsg", "마이페이지 정보수정 성공");
-            return "company/mypage/myPage";
+            return "redirect:/company/mypage/myPage";
         } else {
             model.addAttribute("errorMsg", "마이페이지 정보수정 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 
