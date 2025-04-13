@@ -28,6 +28,12 @@ public class SpecificationBController {
         return "branch/specification/salaryDetail";
     }
 
+    @PostMapping("/payment")
+    public String payment(Model model, Long userNo, String deduction, HttpSession session) throws Exception {
+        Integer intDeduction = Integer.parseInt(deduction.replace(",", ""));
+        specificationBService.payment(model, userNo, intDeduction, session);
+        return "redirect:/company/specification/salaryDetail?userNo=" + userNo;
+    }
 
     @GetMapping("/monthlyFee")
     public String monthlyFee(HttpSession session, Model model) throws Exception{

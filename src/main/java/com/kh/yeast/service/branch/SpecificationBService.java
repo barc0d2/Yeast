@@ -13,6 +13,8 @@ public interface SpecificationBService {
 
     Model salaryDetail(Model model, Long userNo, HttpSession session) throws Exception;
 
+    void payment(Model model,Long userNo, Integer deduction, HttpSession session) throws Exception;
+
     Model monthlyFee(Model model, HttpSession session) throws Exception;
 
     void updateMoney(HttpSession session, Model model, Integer money) throws Exception;
