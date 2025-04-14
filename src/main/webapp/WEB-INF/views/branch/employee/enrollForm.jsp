@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="/css/branch/employee/enrollForm/globals.css"/>
   <link rel="stylesheet" href="/css/branch/employee/enrollForm/style.css"/>
   <link rel="stylesheet" href="/css/branch/employee/enrollForm/styleguide.css"/>
@@ -25,7 +26,7 @@
         </div>
       </button>
 
-      <button>
+      <button type="button" id="deleteBtn">
         <div class="delete">
           <div class="div">삭제</div>
         </div>
@@ -138,6 +139,33 @@
     const fileInput = document.querySelector(selector);
     fileInput.click();
   }
+
+  $(document).ready(function () {
+    $('#deleteBtn').click(function () {
+      if (confirm("정말 이 직원을 삭제하시겠습니까?")) {
+        const userNo = $('input[name="userNo"]').val();
+
+        $.ajax({
+          type: "POST",
+          url: "/api/member/delete",
+          data: { userNo: userNo },
+          success: function(response) {
+            console.log("응답 결과:", response);
+            if (response === "YES") {
+              alert("삭제가 완료되었습니다.");
+              window.location.href = "/branch/employee/list";
+            } else {
+              alert("삭제에 실패했습니다.");
+            }
+          },
+          error: function(err) {
+            alert("서버 오류 발생!");
+            console.log(err);
+          }
+        });
+      }
+    });
+  });
 </script>
 <jsp:include page="../sideBar/whiteSideBar.jsp"/>
 <jsp:include page="../sideBar/whiteTopBar.jsp"/>

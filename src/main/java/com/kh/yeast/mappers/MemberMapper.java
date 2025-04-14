@@ -19,4 +19,6 @@ public interface MemberMapper {
    List<Business> getAllBusinesses();
    
    Member findManagerByName(@Param("managerName") String managerName);
+
+    int delete(long userNo);
 }

@@ -61,4 +61,9 @@ public class MemberServiceImpl implements MemberService {
     public Member findManagerByName(String managerName) {
         return memberMapper.findManagerByName(managerName);
     }
+
+    @Override
+    public int delete(long userNo) {
+        return memberMapper.delete(userNo);
+    }
 }

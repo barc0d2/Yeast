@@ -28,7 +28,7 @@
         <table class="table-container">
           <thead>
           <tr>
-            <th>수급 상태</th>
+            <th>송금 상태</th>
             <th>이름</th>
             <th>명세 등록일</th>
             <th>직무</th>
@@ -111,10 +111,10 @@
         const sqlMonth = sqlDate.getMonth() + 1;
         if (todayYear === sqlYear && todayMonth === sqlMonth) {
           button.classList.add('pay-button');
-          button.textContent = '수급완료';
+          button.textContent = '송금완료';
         } else {
           button.classList.add('needpay-button');
-          button.textContent = '수급';
+          button.textContent = '송금';
         }
       }
     })

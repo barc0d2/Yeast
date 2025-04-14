@@ -216,5 +216,10 @@
         #{birthday}
         )
     </insert>
+    <update id="delete">
+        UPDATE MEMBER
+        SET STATUS = 0
+        WHERE USER_NO = #{userNo}
+    </update>
 
 </mapper>

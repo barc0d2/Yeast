@@ -22,4 +22,6 @@ public interface MemberService {
     List<Business> getAllBusinesses();
     
     Member findManagerByName(String managerName);
+
+    int delete(long userNo);
 }
