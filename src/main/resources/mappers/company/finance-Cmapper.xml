@@ -93,6 +93,7 @@
         SELECT BUSINESS_NO,
                 BUSINESS_NAME
         FROM BUSINESS
+        WHERE BUSINESS_NO > 1
     </select>
 
     <select id="selectRecentlyWholesaleList" resultMap="supplyResult">
@@ -143,5 +144,6 @@
                 WHEN #{period} = 'year' THEN ADD_MONTHS(TRUNC(SYSDATE), -12)
                 ELSE ORDER_DATE
             END
+
     </select>
 </mapper>

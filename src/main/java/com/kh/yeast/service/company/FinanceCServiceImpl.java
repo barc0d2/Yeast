@@ -81,7 +81,7 @@ public class FinanceCServiceImpl implements FinanceCService {
     public Model selectRecentlyWholesaleList(Model model, Integer cpage) {
         Integer branchCount = financeCMapper.selectBranchCount();
 
-        PageInfo pi = new PageInfo(branchCount, cpage, 10, 8);
+        PageInfo pi = new PageInfo(branchCount, cpage, 10, 4);
         int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
         ArrayList<Business> businessList = financeCMapper.selectBusinessList(rowBounds);
