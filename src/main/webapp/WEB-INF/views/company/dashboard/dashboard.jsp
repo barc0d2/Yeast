@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="div-wrapper">
                                     <p class="text-wrapper-2">
-                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]])}" pattern="#,###" />
+                                        <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]])}" pattern="#,###" />원
                                     </p>
                             </div>
                         </div>

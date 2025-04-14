@@ -1,5 +1,6 @@
 package com.kh.yeast.mappers.branch;
 
+import com.kh.yeast.domain.vo.Bread;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.Sell;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,7 +19,9 @@ public interface DashBoardBMapper {
     Member selectMemberByName(@Param("userName") String userName);
 
     ArrayList<Sell> selectFinanceChart();
-    
+
+    ArrayList<Bread> selectAllBread();
+
     ArrayList<Sell> selectTodaySalesByBusiness(@Param("businessNo") Long businessNo);
     
     List<Map<String, Object>> selectCategorySalesByBusiness(@Param("businessNo") Long businessNo);

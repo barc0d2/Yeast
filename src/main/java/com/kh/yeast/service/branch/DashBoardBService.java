@@ -1,5 +1,6 @@
 package com.kh.yeast.service.branch;
 
+import com.kh.yeast.domain.vo.Bread;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.Sell;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public interface DashBoardBService {
     Member getMemberByName(String userName);
 
     ArrayList<Sell> financeList();
-    
+
+    ArrayList<Bread> getAllBread();
 
     ArrayList<Sell> getTodaySalesByBusiness(Long businessNo);
     

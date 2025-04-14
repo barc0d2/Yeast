@@ -26,6 +26,16 @@
         <result property="businessName" column="BUSINESS_NAME"/>
     </resultMap>
 
+    <resultMap id="breadResultMap" type="com.kh.yeast.domain.vo.Bread">
+        <result property="breadNo" column="BREAD_NO"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="breadName" column="BREAD_NAME"/>
+        <result property="categoryNo" column="CATEGORY_NO"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+        <result property="price" column="PRICE"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+
     <!-- 지점 직원 목록 조회 -->
     <select id="selectBranchMembers" resultMap="memberResultMap">
         SELECT
@@ -189,5 +199,24 @@
             category_name
         ORDER BY 
             SUM(quantity) DESC
+    </select>
+
+    <select id="selectAllBread" resultMap="breadResultMap">
+        SELECT
+        b.BREAD_NO,
+        b.CREATE_DATE,
+        b.BREAD_NAME,
+        b.CATEGORY_NO,
+        c.CATEGORY_NAME,
+        b.PRICE,
+        b.STATUS
+        FROM
+        BREAD b
+        JOIN
+        BREAD_CATEGORY c ON b.CATEGORY_NO = c.CATEGORY_NO
+        WHERE
+        b.STATUS = 1
+        ORDER BY
+        b.BREAD_NO ASC
     </select>
 </mapper>
