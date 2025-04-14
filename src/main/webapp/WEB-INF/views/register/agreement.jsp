@@ -247,8 +247,8 @@
         <button type="button" class="next-button" disabled><span class="text-wrapper-8">다음</span></button>
       </section>
       <div class="view">
-        <img class="logo" src="/images/logo.png" alt="YEAST 로고" />
-        <img class="img" src="/images/logo3.png" alt="YEAST ERP 로고" />
+        <img class="logo" src="https://ifh.cc/g/lPv5kW.png" alt="YEAST 로고" />
+        <img class="img" src="https://ifh.cc/g/BB2Lkd.png" alt="YEAST ERP 로고" />
       </div>
     </div>
   </div>

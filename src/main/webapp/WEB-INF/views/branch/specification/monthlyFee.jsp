@@ -70,7 +70,7 @@
                                             <div class="input-in"><div class="text-wrapper-5"><fmt:formatNumber value="${monthSellMoney}" type="number" />원×5%</div></div>
                                         </div>
                                         <div class="money">
-                                            <div class="number"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
+                                            <div class="number"><fmt:formatNumber value="${(monthSellMoney * 0.05)}" type="number" /></div>
                                             <div class="won-2">원</div>
                                         </div>
                                     </div>
@@ -80,14 +80,14 @@
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">공제액 합계</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.05)}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>
                         <div class="line-2">
                             <div class="text-3"><div class="text-wrapper-6">예상 실수령액(월)</div></div>
                             <div class="input-4">
-                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.5)}" type="number" /></div>
+                                <div class="text-wrapper-3"><fmt:formatNumber value="${(monthSellMoney * 0.05)}" type="number" /></div>
                                 <div class="won">원</div>
                             </div>
                         </div>

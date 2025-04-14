@@ -123,7 +123,7 @@
         </div>
       </form>
     </div>
-    <div class="view"><img class="logo" src="../../../../../../../../UI/project%20img/logo.png" /> <img class="logo-2" src="../../../../../../../../UI/project%20img/logo3.png" /></div>
+    <div class="view"><img class="logo" src="https://ifh.cc/g/lPv5kW.png" /> <img class="logo-2" src="https://ifh.cc/g/BB2Lkd.png" /></div>
   </div>
 </div>
 
