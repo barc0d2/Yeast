@@ -174,4 +174,32 @@
         WHERE BUSINESS_NO = #{businessNo}
     </update>
 
+    <select id="selectMemberUpdate" resultType="java.sql.Timestamp">
+        SELECT PAYDAY
+        FROM MEMBER
+        WHERE USER_NO = #{userNo}
+    </select>
+
+    <select id="selectCompanyUpdate" resultType="java.sql.Timestamp">
+        SELECT UPDATE_AT
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
+    <update id="updateEmployeeSalary">
+        UPDATE MEMBER
+        SET PAYDAY = SYSTIMESTAMP
+        WHERE USER_NO = #{userNo}
+        AND PAYDAY = #{updateAt}
+    </update>
+
+    <update id="updateCompanyMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY - #{deduction}
+        ,UPDATE_AT = SYSTIMESTAMP
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
+        AND MONEY >= #{deduction}
+    </update>
+
 </mapper>

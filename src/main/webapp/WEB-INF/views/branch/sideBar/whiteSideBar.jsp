@@ -13,13 +13,15 @@
     <body>
         <div id="sidebar">
             <div id="sidebar-background"></div>
+            <a href="/branch/dashboard">
             <div id="logo">
                 <div id="logo-main" alt="Main Logo"></div>
                 <div id="logo-sub"></div>
             </div>
+            </a>
             <div id="menu-container">
                 <div class="menu-item">
-                    <a href="/branch/dashboard/dashboard">
+                    <a href="/branch/dashboard">
                         <div class="menu-icon">
                             <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -74,9 +76,6 @@
                     <a href="/branch/store/updateForm">
                         <div class="submenu-item">매장 정보수정</div>
                     </a>
-                    <a href="/branch/finance/list">
-                        <div class="submenu-item">하루 매출</div>
-                    </a>
                     <a href="/branch/specification/salaryList">
                         <div class="submenu-item">임금 명세서</div>
                     </a>
@@ -109,8 +108,9 @@
                         </svg></div>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">판매내역</div>
-                    <div class="submenu-item">매출</div>
+                    <a href="/branch/finance/list">
+                        <div class="submenu-item">하루 매출</div>
+                    </a>
                 </div>
                 <div id="order-menu" class="menu-item">
                     <div class="menu-icon">

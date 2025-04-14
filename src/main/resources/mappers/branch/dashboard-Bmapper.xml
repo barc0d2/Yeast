@@ -26,6 +26,16 @@
         <result property="businessName" column="BUSINESS_NAME"/>
     </resultMap>
 
+    <resultMap id="breadResultMap" type="com.kh.yeast.domain.vo.Bread">
+        <result property="breadNo" column="BREAD_NO"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="breadName" column="BREAD_NAME"/>
+        <result property="categoryNo" column="CATEGORY_NO"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+        <result property="price" column="PRICE"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+
     <!-- 지점 직원 목록 조회 -->
     <select id="selectBranchMembers" resultMap="memberResultMap">
         SELECT
@@ -142,20 +152,12 @@
 
     <!-- 특정 지점의 카테고리별 판매 개수 조회 -->
     <select id="selectCategorySalesByBusiness" resultType="java.util.Map">
-        SELECT 
-            TRIM(category_name) AS CATEGORY_NAME, 
-            SUM(quantity) AS TOTAL_QUANTITY,
-            SUM(NVL(amount, 0)) * 1000 AS TOTAL_AMOUNT
-        FROM (
+        WITH ITEMS_DATA AS (
             SELECT 
+                s.SELL_NO,
                 TRIM(REGEXP_SUBSTR(s.CATEGORY_LIST, '[^,]+', 1, LEVEL)) AS category_name,
-                TO_NUMBER(TRIM(REGEXP_SUBSTR(s.QUANTITY_LIST, '[^,]+', 1, LEVEL))) AS quantity,
-                CASE 
-                    WHEN REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL) IS NOT NULL 
-                         AND LENGTH(TRIM(REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL))) > 0 
-                    THEN TO_NUMBER(TRIM(REGEXP_SUBSTR(s.TOTAL_LIST, '[^,]+', 1, LEVEL))) 
-                    ELSE 2000 * TO_NUMBER(TRIM(REGEXP_SUBSTR(s.QUANTITY_LIST, '[^,]+', 1, LEVEL)))
-                END AS amount
+                TRIM(REGEXP_SUBSTR(s.BREAD_LIST, '[^,]+', 1, LEVEL)) AS bread_name,
+                TO_NUMBER(TRIM(REGEXP_SUBSTR(s.QUANTITY_LIST, '[^,]+', 1, LEVEL))) AS quantity
             FROM 
                 SELL s
             WHERE 
@@ -165,17 +167,56 @@
             CONNECT BY 
                 LEVEL &lt;= GREATEST(
                     LENGTH(REGEXP_REPLACE(s.CATEGORY_LIST, '[^,]')) + 1,
-                    LENGTH(REGEXP_REPLACE(s.QUANTITY_LIST, '[^,]')) + 1,
-                    LENGTH(REGEXP_REPLACE(s.TOTAL_LIST, '[^,]')) + 1
+                    LENGTH(REGEXP_REPLACE(s.BREAD_LIST, '[^,]')) + 1,
+                    LENGTH(REGEXP_REPLACE(s.QUANTITY_LIST, '[^,]')) + 1
                 )
                 AND PRIOR s.SELL_NO = s.SELL_NO
                 AND PRIOR SYS_GUID() IS NOT NULL
+        ),
+        PRICE_DATA AS (
+            SELECT 
+                id.category_name,
+                id.bread_name,
+                id.quantity,
+                NVL(b.PRICE, 2000) AS bread_price,
+                id.quantity * NVL(b.PRICE, 2000) AS item_amount
+            FROM 
+                ITEMS_DATA id
+            LEFT JOIN 
+                BREAD b ON id.bread_name = b.BREAD_NAME
+            WHERE 
+                id.category_name IS NOT NULL
+                AND id.bread_name IS NOT NULL
+                AND id.quantity > 0
         )
-        WHERE 
-            category_name IS NOT NULL
+        SELECT 
+            category_name AS CATEGORY_NAME, 
+            SUM(quantity) AS TOTAL_QUANTITY,
+            SUM(NVL(item_amount, 0)) AS TOTAL_AMOUNT
+        FROM 
+            PRICE_DATA
         GROUP BY 
-            TRIM(category_name)
+            category_name
         ORDER BY 
             SUM(quantity) DESC
+    </select>
+
+    <select id="selectAllBread" resultMap="breadResultMap">
+        SELECT
+        b.BREAD_NO,
+        b.CREATE_DATE,
+        b.BREAD_NAME,
+        b.CATEGORY_NO,
+        c.CATEGORY_NAME,
+        b.PRICE,
+        b.STATUS
+        FROM
+        BREAD b
+        JOIN
+        BREAD_CATEGORY c ON b.CATEGORY_NO = c.CATEGORY_NO
+        WHERE
+        b.STATUS = 1
+        ORDER BY
+        b.BREAD_NO ASC
     </select>
 </mapper>

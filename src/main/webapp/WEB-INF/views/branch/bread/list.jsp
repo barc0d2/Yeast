@@ -25,7 +25,7 @@
           <div class="list">
             <c:forEach var="bread" items="${list}">
             <div class="div">
-              <img class="image" src="/resources/uploadfile/${bread.imageChange}" />
+              <img class="image" src="${bread.imageChange}" />
               <div class="div-2">
                 <div class="div-3">
                   <div class="text-wrapper-4">${bread.breadName}</div>

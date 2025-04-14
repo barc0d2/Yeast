@@ -158,8 +158,8 @@
                                 stroke="#575757" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-
                     </div>
+
                     <div class="dropdown-menu">
                         <a href="/branch/mypage/myPage">
                         <div class="dropdown-item">마이페이지</div>

@@ -47,6 +47,8 @@ public class SpecificationCServiceImpl implements SpecificationCService{
         });
 
         model.addAttribute("employees", list);
+        model.addAttribute("currentName", "재무관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
         return model;
     }
 
@@ -79,6 +81,8 @@ public class SpecificationCServiceImpl implements SpecificationCService{
 
         model.addAttribute("member", member);
         model.addAttribute("money", money);
+        model.addAttribute("currentName", "재무관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
         return model;
     }
 
@@ -116,7 +120,8 @@ public class SpecificationCServiceImpl implements SpecificationCService{
         if(member==null || status == null || monthSellMoney==null){
             model.addAttribute("errorMsg", "페이지를 불러오지 못했습니다");
         }
-
+        model.addAttribute("currentName", "재무관리");
+        model.addAttribute("smallCurrentName","월 수수료");
         return model;
     }
 }

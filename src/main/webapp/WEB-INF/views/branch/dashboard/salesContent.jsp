@@ -58,7 +58,7 @@
                         </div>
                         <div class="div-wrapper">
                             <p class="text-wrapper-2">
-                                <fmt:formatNumber value="${quantityArray[itemStatus.index] * 2000}" pattern="#,###" />원
+                                <fmt:formatNumber value="${quantityArray[itemStatus.index] * (breadPriceMap[breadArray[itemStatus.index]])}" pattern="#,###" />
                             </p>
                     </div>
                 </div>

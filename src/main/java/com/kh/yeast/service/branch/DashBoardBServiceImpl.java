@@ -1,5 +1,6 @@
 package com.kh.yeast.service.branch;
 
+import com.kh.yeast.domain.vo.Bread;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.Sell;
 import com.kh.yeast.mappers.branch.DashBoardBMapper;
@@ -35,7 +36,12 @@ public class DashBoardBServiceImpl implements DashBoardBService {
     public ArrayList<Sell> financeList() {
         return dashBoardBMapper.selectFinanceChart();
     }
-    
+
+    @Override
+    public ArrayList<Bread> getAllBread() {
+        return dashBoardBMapper.selectAllBread();
+    }
+
     @Override
     public ArrayList<Sell> getTodaySalesByBusiness(Long businessNo) {
         return dashBoardBMapper.selectTodaySalesByBusiness(businessNo);

@@ -37,5 +37,4 @@ public class Member {
     private Date enrollDate;
     private Integer status;
     private Timestamp payday;
-    private String headName;
 }

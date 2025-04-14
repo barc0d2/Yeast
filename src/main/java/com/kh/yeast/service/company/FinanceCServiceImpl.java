@@ -34,7 +34,7 @@ public class FinanceCServiceImpl implements FinanceCService {
         model.addAttribute("pi", pi);
         model.addAttribute("list", list);
         model.addAttribute("currentName", "재무관리");
-        model.addAttribute("smallCurrentName","가맹점 매출");
+        model.addAttribute("smallCurrentName","지점점 매출");
         return model;
     }
 
@@ -81,7 +81,7 @@ public class FinanceCServiceImpl implements FinanceCService {
     public Model selectRecentlyWholesaleList(Model model, Integer cpage) {
         Integer branchCount = financeCMapper.selectBranchCount();
 
-        PageInfo pi = new PageInfo(branchCount, cpage, 10, 4);
+        PageInfo pi = new PageInfo(branchCount, cpage, 10, 8);
         int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
         RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
         ArrayList<Business> businessList = financeCMapper.selectBusinessList(rowBounds);
@@ -159,7 +159,7 @@ public class FinanceCServiceImpl implements FinanceCService {
             wholeSale.setSupplyNo(supplyList.get(0).getSupplyNo());
         }
         supplyList.forEach(supply -> {
-            totalPrice.updateAndGet(v -> v + supply.getPrice());
+            totalPrice.updateAndGet(v -> v + supply.getPrice() * supply.getQuantity());
             if (quantitySb.length() > 0) quantitySb.append(",");
             quantitySb.append(supply.getQuantity());
 

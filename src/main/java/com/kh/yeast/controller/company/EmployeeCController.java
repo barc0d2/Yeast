@@ -82,11 +82,20 @@ public class EmployeeCController {
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
         ArrayList<Member> list = employeeCService.selectAllMemberList(pi);
-        model.addAttribute("currentName", "지점관리");
-        model.addAttribute("smallCurrentName","직원관리");
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원조회");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
         return "company/introduction/allEmployeeList";
+    }
+
+    @GetMapping("/introduction/enrollForm")
+    public String enrollFormAllEmployee(int userNo, Model model)  {
+        Member member = employeeCService.selectMember(userNo);
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원조회");
+        model.addAttribute("member", member);
+        return "company/employee/enrollForm";
     }
 
 

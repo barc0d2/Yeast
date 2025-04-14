@@ -75,16 +75,19 @@
         SELECT B.BUSINESS_NO
         FROM BUSINESS B
         WHERE B.BUSINESS_NAME = #{businessName}
+        AND ROWNUM = 1
         ),
         M.POSITION_NO = (
         SELECT P.POSITION_NO
         FROM POSITION P
         WHERE P.POSITION_NAME = #{positionName}
+        AND ROWNUM = 1
         ),
         M.MANAGER_NO = (
         SELECT M2.USER_NO
         FROM MEMBER M2
         WHERE M2.USER_NAME = #{managerName}
+        AND ROWNUM = 1
         ),
         M.USER_NAME = #{userName},
         M.EMAIL = #{email},
@@ -95,6 +98,7 @@
         M.BIRTHDAY = #{birthday}
         WHERE M.USER_NO = #{userNo}
     </update>
+
 
     <select id="selectAllMemberCount" resultType="int">
         SELECT COUNT(*)
