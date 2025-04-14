@@ -78,4 +78,5 @@
         WHERE BUSINESS_NO = #{businessNo}
         AND UPDATE_AT = #{updateAt}
     </update>
+
 </mapper>

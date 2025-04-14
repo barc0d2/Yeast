@@ -5,6 +5,22 @@ body {
     position:relative;
 }
 
+#outFrame{
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    width: 1500px;
+    height: 100px;
+    position: absolute;
+    left: 300px;
+    top: 830px;
+}
+
 .dashboard {
     width: 360px;
     background-color: white;

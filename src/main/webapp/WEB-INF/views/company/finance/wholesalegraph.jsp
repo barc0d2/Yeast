@@ -11,40 +11,66 @@
 
 </head>
 <body>
-<div class="container">
-    <c:forEach var="wholeSale" items="${list}">
-        <div class="dashboard">
-            <div class="header">${wholeSale.businessName}</div>
-            <div class="quantityList" style="display: none">${wholeSale.quantityList}</div>
-            <div class="breadList" style="display: none">${wholeSale.breadList}</div>
-            <div class="chart-container">
-                <canvas class="chart-canvas"></canvas>
-            </div>
-            <table class="sales-table">
-                <tr>
-                    <td class="rank">Top 5</td>
-                </tr>
-                <tr>
-                    <td class="rank"></td>
-                    <td class="product"></td>
-                    <td class="quantity"></td>
-                </tr>
-            </table>
-            <div class="summary">
-                <div class="summary-item">
-                    <div class="summary-label">판매개수</div>
-                    <div class="summary-value totalSales"></div>
+<div id="outFrame">
+    <div class="container">
+        <c:forEach var="wholeSale" items="${list}">
+            <div class="dashboard">
+                <div class="header">${wholeSale.businessName}</div>
+                <div class="quantityList" style="display: none">${wholeSale.quantityList}</div>
+                <div class="breadList" style="display: none">${wholeSale.breadList}</div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas"></canvas>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">총매출</div>
-                    <div class="summary-value">
-                        <fmt:formatNumber value="${wholeSale.price*0.25}" pattern="#,###" />
+                <table class="sales-table">
+                    <tr>
+                        <td class="rank">Top 5</td>
+                    </tr>
+                    <tr>
+                        <td class="rank"></td>
+                        <td class="product"></td>
+                        <td class="quantity"></td>
+                    </tr>
+                </table>
+                <div class="summary">
+                    <div class="summary-item">
+                        <div class="summary-label">판매개수</div>
+                        <div class="summary-value totalSales"></div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">총매출</div>
+                        <div class="summary-value">
+                            <fmt:formatNumber value="${wholeSale.price*0.25}" pattern="#,###" />
+                        </div>
                     </div>
                 </div>
+                <button class="detail-button" onclick="location.href='/company/finance/wholesaleDetail?businessNo=${wholeSale.businessNo}'">상세보기</button>
             </div>
-            <button class="detail-button" onclick="location.href='/company/finance/wholesaleDetail?businessNo=${wholeSale.businessNo}'">상세보기</button>
-        </div>
-    </c:forEach>
+        </c:forEach>
+    </div>
+    <div class="pagination">
+        <c:choose>
+            <c:when test="${ pi.currentPage eq 1 }">
+            </c:when>
+            <c:otherwise>
+                <a class="page-link" href="/company/finance/wholesaleChart?cpage=${pi.currentPage - 1}">
+                    <svg width="75" height="87" viewBox="0 0 75 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M26.044 50.6C25.404 49.2347 24.7853 48.04 24.188 47.016C23.548 45.992 22.9293 45.1387 22.332 44.456H59.644V41.768H22.332C22.9293 41.0427 23.548 40.168 24.188 39.144C24.7853 38.12 25.404 36.9467 26.044 35.624H23.804C21.116 38.7387 18.3 41.0427 15.356 42.536V43.688C18.3 45.1387 21.116 47.4427 23.804 50.6H26.044Z" fill="#575757"/>
+                    </svg>
+                </a>
+            </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${ pi.currentPage eq pi.maxPage }">
+            </c:when>
+            <c:otherwise>
+                <a class="page-link" href="/company/finance/wholesaleChart?cpage=${pi.currentPage + 1}">
+                    <svg width="75" height="87" viewBox="0 0 75 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M48.956 50.6C49.596 49.2347 50.2147 48.04 50.812 47.016C51.452 45.992 52.0707 45.1387 52.668 44.456H15.356V41.768H52.668C52.0707 41.0427 51.452 40.168 50.812 39.144C50.2147 38.12 49.596 36.9467 48.956 35.624H51.196C53.884 38.7387 56.7 41.0427 59.644 42.536V43.688C56.7 45.1387 53.884 47.4427 51.196 50.6H48.956Z" fill="#575757"/>
+                    </svg>
+                </a>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
