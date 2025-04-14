@@ -16,13 +16,13 @@ import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/company/employee")
+@RequestMapping("/company")
 public class EmployeeCController {
 
     private final EmployeeCService employeeCService;
 
 
-    @GetMapping("/enrollForm")
+    @GetMapping("/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model)  {
         Member member = employeeCService.selectMember(userNo);
         model.addAttribute("currentName", "지점관리");
@@ -31,7 +31,7 @@ public class EmployeeCController {
         return "company/employee/enrollForm";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/employee/list")
     public String listEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception  {
         int memberCount = employeeCService.selectMemberCount();
 
@@ -44,7 +44,7 @@ public class EmployeeCController {
         return "company/employee/list";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/employee/update")
     public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
         if(!reupfile.getOriginalFilename().equals("")){
             if(member.getImageChange() != null && !member.getImageChange().equals("")){
@@ -74,6 +74,28 @@ public class EmployeeCController {
             model.addAttribute("errorMsg", "지점 수정 실패");
             return "common/errorPage";
         }
+    }
+
+    @GetMapping("/introduction/allEmployeeList")
+    public String listCEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception  {
+        int memberCount = employeeCService.selectAllMemberCount();
+
+        PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
+        ArrayList<Member> list = employeeCService.selectAllMemberList(pi);
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원조회");
+        model.addAttribute("list", list);
+        model.addAttribute("pi", pi);
+        return "company/introduction/allEmployeeList";
+    }
+
+    @GetMapping("/introduction/enrollForm")
+    public String enrollFormAllEmployee(int userNo, Model model)  {
+        Member member = employeeCService.selectMember(userNo);
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원조회");
+        model.addAttribute("member", member);
+        return "company/employee/enrollForm";
     }
 
 

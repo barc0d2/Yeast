@@ -36,6 +36,5 @@ public class Member {
     private Date birthday;
     private Date enrollDate;
     private Integer status;
-    private Date updateAt;
-    private String headName;
+    private Timestamp payday;
 }

@@ -4,13 +4,16 @@
     position: absolute;
     background: #FFFCEC;
   }
-  
+  .indicator{
+    display: flex;
+    width: 100%;
+  }
   .main .container {
     display: flex;
     flex-direction: column;
     width: 1426px;
     align-items: flex-end;
-    gap: 16px;
+    gap: 5px;
     top : 130px;
     left : 55%;
     transform: translateX(-50%);
@@ -178,6 +181,7 @@
   .main .page-no {
     position: relative;
     width: 98.55px;
+    padding-left: 10px;
     height: 37.43px;
     font-family: "Kakao OTF-Bold", Helvetica;
     font-weight: 400;

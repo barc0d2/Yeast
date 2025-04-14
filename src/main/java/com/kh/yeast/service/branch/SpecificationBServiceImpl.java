@@ -3,6 +3,7 @@ package com.kh.yeast.service.branch;
 import com.kh.yeast.customException.PaymentTransactionException;
 import com.kh.yeast.domain.vo.Business;
 import com.kh.yeast.domain.vo.Member;
+import com.kh.yeast.domain.vo.PageInfo;
 import com.kh.yeast.mappers.branch.SpecificationBMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -21,31 +23,114 @@ public class SpecificationBServiceImpl implements SpecificationBService {
     private final SpecificationBMapper specificationBMapper;
 
     @Override
-    public Model detail(Model model, HttpSession session) {
+    public Model salaryList(Integer cpage, Model model, String search, HttpSession session) throws Exception {
+
+        Member member = (Member)session.getAttribute("loginUser");
+
+        Long businessNo = member.getBusinessNo();
+
+        Integer employeeCount = specificationBMapper.selectEmployeeCount(businessNo);
+        PageInfo pi = new PageInfo(employeeCount, cpage, 10, 10);
+        model.addAttribute("pi", pi);
+        Integer offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+        ArrayList<Member> list = specificationBMapper.selectEmployeeList(rowBounds, search, businessNo);
+        list.forEach(employee -> {
+            Timestamp createDate = employee.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                employee.setEnrollDate(sqlDate);
+            } else {
+                employee.setEnrollDate(null);
+            }
+        });
+
+        model.addAttribute("employees", list);
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
+        return model;
+    }
+
+    @Override
+    public Model salaryDetail(Model model, Long userNo, HttpSession session) throws Exception {
+        Member loginUser = (Member)session.getAttribute("loginUser");
+        Long businessNo = loginUser.getBusinessNo();
+
+        Member member = specificationBMapper.findByUserNo(userNo);
+        Integer money = specificationBMapper.selectCompanyMoney(businessNo);
+
+        Timestamp updateAt = member.getPayday();
+
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+
+        // 연도 및 월 추출
+        int targetYear = new Date(updateAt.getTime()).getYear() + 1900;
+        System.out.println("targetYear = " + targetYear);
+        int targetMonth = new Date(updateAt.getTime()).getMonth() + 1;
+        System.out.println("targetMonth = " + targetMonth);
+
+        int currentYear = new Date(currentTimestamp.getTime()).getYear() + 1900;
+        System.out.println("currentYear = " + currentYear);
+        int currentMonth = new Date(currentTimestamp.getTime()).getMonth() + 1;
+        System.out.println("currentMonth = " + currentMonth);
+
+        // 비교
+        if (currentYear == targetYear && currentMonth == targetMonth) {
+            model.addAttribute("paid", 1);
+        } else {
+            model.addAttribute("paid", 0);
+        }
+
+        model.addAttribute("member", member);
+        model.addAttribute("money", money);
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","임금 명세서");
+        return model;
+    }
+
+    @Override
+    @Transactional
+    public void payment(Model model, Long userNo, Integer deduction, HttpSession session) throws Exception {
+        Member member = (Member)session.getAttribute("loginUser");
+        Long businessNo = member.getBusinessNo();
+        Timestamp memberUpdateAt = specificationBMapper.selectMemberUpdate(userNo);
+        Timestamp companyUpdateAt = specificationBMapper.selectCompanyUpdate(businessNo);
+
+        Integer updatedSalaryRow = specificationBMapper.updateEmployeeSalary(userNo, memberUpdateAt);
+        if(updatedSalaryRow== null||updatedSalaryRow == 0){
+            throw new PaymentTransactionException("연봉을 지급하지 못했습니다.");
+        }
+        Integer updatedCompanyMoney = specificationBMapper.updateCompanyMoney(deduction, companyUpdateAt, businessNo);
+        if(updatedCompanyMoney== null||updatedCompanyMoney == 0){
+            throw new PaymentTransactionException("회사 금액이 차감되지 않았습니다.");
+        }
+    }
+
+    @Override
+    public Model monthlyFee(Model model, HttpSession session) {
 
         Member member = (Member) session.getAttribute("loginUser");
         Long businessNo = member.getBusinessNo();
 
         Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
         model.addAttribute("monthSellMoney", monthSellMoney);
-        System.out.println("monthSellMoney = " + monthSellMoney);
         Integer status = specificationBMapper.lastMonthStatus(businessNo);
         model.addAttribute("status", status);
-        System.out.println("status = " + status);
         RowBounds rowBounds = new RowBounds(1, Integer.MAX_VALUE);
         ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
         model.addAttribute("businessList", businessList);
-        System.out.println("businessList = " + businessList);
         if(member==null || status == null){
             throw new NullPointerException();
         }
-
+        model.addAttribute("currentName", "매장 관리");
+        model.addAttribute("smallCurrentName","월 수수료");
         return model;
     }
 
     @Override
     @Transactional
-    public synchronized Model updateMoney(HttpSession session, Model model, Integer money) {
+    public synchronized void updateMoney(HttpSession session, Model model, Integer money) {
 
         Member member = (Member) session.getAttribute("loginUser");
         Long businessNo = member.getBusinessNo();
@@ -69,20 +154,5 @@ public class SpecificationBServiceImpl implements SpecificationBService {
         if(updateRemitted==0 || updateRemitted==null){
             throw new PaymentTransactionException("날짜가 갱신되지 않았습니다.");
         }
-
-
-        Integer monthSellMoney = specificationBMapper.selectMonthlySellMoney(businessNo);
-        model.addAttribute("monthSellMoney", monthSellMoney);
-
-        Integer status = specificationBMapper.lastMonthStatus(businessNo);
-        model.addAttribute("status", status);
-
-        RowBounds rowBounds = new RowBounds(1, Integer.MAX_VALUE);
-        ArrayList<Business> businessList = specificationBMapper.selectBusinessList(rowBounds);
-        model.addAttribute("businessList", businessList);
-
-
-
-        return model;
     }
 }

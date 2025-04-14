@@ -1,16 +1,14 @@
 package com.kh.yeast.service.company;
 
-import com.kh.yeast.domain.vo.Member;
-import com.kh.yeast.domain.vo.PageInfo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface SpecificationCService {
-    Model specificationList(Integer cpage, Model model, String search) throws Exception;
+    Model salaryList(Integer cpage, Model model, String search, HttpSession session) throws Exception;
 
-    Model detail(Model model, Long userNo) throws Exception;
+    Model salaryDetail(Model model, Long userNo) throws Exception;
 
-    Model monthlyFee(Model model, Long businessNo);
+    void payment(Model model,Long userNo, Integer deduction) throws Exception;
+
+    Model monthlyFeeDetail(Model model, Long businessNo);
 }

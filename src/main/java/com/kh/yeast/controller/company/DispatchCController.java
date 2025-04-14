@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -45,14 +46,24 @@ public class DispatchCController {
         model.addAttribute("smallCurrentName","출하관리");
         model.addAttribute("supply", supply);
         model.addAttribute("list", list);
-
+        System.out.println(list);
         return "company/dispatch/approval";
     }
 
     @PostMapping("/approvalOk")
-    public String approval(int supplyNo) {
-        int result = dispatchCService.approval(supplyNo);
-        if(result == 1){
+    public String approval( @RequestParam("branchNo") long branchNo,
+                            @RequestParam("breadNo") List<Integer> breadNos,
+                            @RequestParam("quantity") List<Integer> quantities,
+                            int supplyNo) {
+        int result1 = 0;
+        System.out.println("branchNo = " + branchNo);
+        for(int i = 0; i < breadNos.size(); i++) {
+            int breadNo = breadNos.get(i);
+            int quantity = quantities.get(i);
+            result1 += dispatchCService.updateInventory((int) branchNo, breadNo, quantity);
+        }
+        int result2 = dispatchCService.approval(supplyNo);
+        if(result1 * result2 != 0){
             return "redirect:approval?supplyNo=" + supplyNo;
         } else{
             return "error";

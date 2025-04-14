@@ -3,13 +3,32 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="../../css/global/companyIntroduce.css" />
-  <link rel="stylesheet" href="../../css/style/companyIntroduce.css" />
-  <link rel="stylesheet" href="../../css/styleguide/companyIntroduce.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .companyIntroduce {
+      margin-left: 250px;
+      padding-top: 100px;
+      width: calc(100% - 250px);
+      box-sizing: border-box;
+    }
+
+    .companyIntroduce img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+  </style>
 </head>
 <body>
-<div class="box">
-  <div class="group"></div>
+<div class="companyIntroduce">
+<img src="/resources/uploadfile/companyIntroduce.png" />
 </div>
 </body>
+<jsp:include page="../sideBar/brownSideBar.jsp"/>
+<jsp:include page="../sideBar/brownTopBar.jsp"/>
 </html>

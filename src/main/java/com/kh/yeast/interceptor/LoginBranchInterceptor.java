@@ -15,17 +15,18 @@ public class LoginBranchInterceptor implements HandlerInterceptor {
 
         if(session.getAttribute("loginUser") != null) {
             Member member = (Member) session.getAttribute("loginUser");
-            String positionName = member.getPositionName();
-            if(positionName.startsWith("B")){
+            Long businessNo = member.getBusinessNo();
+            if(businessNo!=1L){
                 return true; // 계속 실행
             }else{
-                session.setAttribute("alertMsg", "가맹점 관리자만 이용할 수 있는 서비스입니다.");
                 response.sendRedirect("/");
+                session.setAttribute("alertMsg", "가맹점 관리자만 이용할 수 있는 서비스입니다.");
+                return false;
             }
         } else {
-            session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스입니다.");
             response.sendRedirect("/");
+            session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스입니다.");
+            return false;
         }
-        return false;
     }
 }

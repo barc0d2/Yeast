@@ -17,35 +17,35 @@ import java.util.ArrayList;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/branch/employee")
+@RequestMapping("/branch")
 public class  EmployeeBController {
 
     private final EmployeeBService employeeBService;
 
-    @GetMapping("/enrollForm")
+    @GetMapping("/employee/enrollForm")
     public String enrollFormEmployee(int userNo, Model model) {
         Member member = employeeBService.selectMember(userNo);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원수정");
         model.addAttribute("member", member);
         return "branch/employee/enrollForm";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/employee/list")
     public String listEmployee(@SessionAttribute("loginUser") Member loginUser, @RequestParam(defaultValue = "1") int currentPage, Model model) {
         long businessNo = loginUser.getBusinessNo();
         int memberCount = employeeBService.selectMemberCount(businessNo);
 
         PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
         ArrayList<Member> list = employeeBService.selectMemberList(businessNo,pi);
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","직원관리");
         model.addAttribute("list", list);
         model.addAttribute("pi", pi);
         return "branch/employee/list";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/employee/update")
     public String update(@ModelAttribute Member member, MultipartFile reupfile, HttpSession session, Model model) {
         if(!reupfile.getOriginalFilename().equals("")){
             if(member.getImageChange() != null && !member.getImageChange().equals("")){
@@ -66,7 +66,7 @@ public class  EmployeeBController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.addAttribute("currentName", "지점관리");
+        model.addAttribute("currentName", "매장관리");
         model.addAttribute("smallCurrentName","지점수정");
         if(result > 0){
             session.setAttribute("alertMsg", "지점 수정 성공");
@@ -75,6 +75,28 @@ public class  EmployeeBController {
             model.addAttribute("errorMsg", "지점 수정 실패");
             return "common/errorPage";
         }
+    }
+
+    @GetMapping("/introduction/allEmployeeList")
+    public String listBEmployee(@RequestParam(defaultValue = "1") int currentPage, Model model) throws Exception  {
+        int memberCount = employeeBService.selectAllMemberCount();
+
+        PageInfo pi = new PageInfo(memberCount, currentPage, 10, 10);
+        ArrayList<Member> list = employeeBService.selectAllMemberList(pi);
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원 조회");
+        model.addAttribute("list", list);
+        model.addAttribute("pi", pi);
+        return "branch/introduction/allEmployeeList";
+    }
+
+    @GetMapping("/introduction/enrollForm")
+    public String enrollFormAllEmployee(int userNo, Model model) {
+        Member member = employeeBService.selectMember(userNo);
+        model.addAttribute("currentName", "회사");
+        model.addAttribute("smallCurrentName","전체 사원 조회");
+        model.addAttribute("member", member);
+        return "branch/employee/enrollForm";
     }
 
 

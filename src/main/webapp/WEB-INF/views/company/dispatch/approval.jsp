@@ -28,6 +28,7 @@
             <div class="list">
                 <div class="div">
                     <p class="p"><span class="text-wrapper">*</span> <span class="span">발주자</span></p>
+                    <input type="hidden" name="branchNo" value="${list.branchNo}">
                     <input name="branchName"  value="${list.branchName}" class="name" readonly>
                 </div>
                 <div class="div">
@@ -71,11 +72,13 @@
                                 <td>${supply.categoryName}</td>
                                 <td>${supply.breadName}</td>
                                 <td>${supply.quantity}</td>
-                                <td>${supply.price}</td>
+                                <td>${supply.price * 0.25}</td>
+                                <input type='hidden' name='breadNo' value="${supply.breadNo}"/>
+                                <input type='hidden' name='quantity' value="${supply.quantity}"/>
                             </tr>
 
                             <script>
-                                totalPriceJS += ${supply.price};
+                                totalPriceJS += ${supply.price *0.25};
                                 totalQuantityJS += ${supply.quantity};
                             </script>
                         </c:forEach>
@@ -142,6 +145,39 @@
             btn.querySelector('.cancel').innerText = '승인 완료';
         }
     });
+
+    window.submitConfirmedPayment = function() {
+        const orderDateStr = document.querySelector('input[name="orderDate"]').value;
+
+        if (!orderDateStr) {
+            alert("배송요청일이 입력되지 않았습니다.");
+            return;
+        }
+
+        const orderDate = new Date(orderDateStr);
+        const today = new Date();
+
+        // 전날 날짜 만들기
+        const dayBeforeOrder = new Date(orderDate);
+        dayBeforeOrder.setDate(orderDate.getDate() - 1);
+
+        // 오늘 날짜와 전날 날짜 비교 (시간 무시)
+        const formatDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+        if (formatDate(today).getTime() !== formatDate(dayBeforeOrder).getTime()) {
+            alert("아직 승인할 수 있는 날이 아닙니다.\n배송 요청일의 전날에만 승인할 수 있습니다.");
+            closePaymentConfirmModal();
+            return;
+        }
+
+        // 승인 처리
+        const form = document.getElementById('orderForm');
+        form.action = '/company/dispatch/approvalOk';
+        form.submit();
+        alert("승인이 완료되었습니다.");
+        closePaymentConfirmModal();
+    }
+
 
 
 </script>

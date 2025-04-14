@@ -28,11 +28,11 @@
         <result column="BUSINESS_NO" property="businessNo"/>
         <result column="BUSINESS_NAME" property="businessName"/>
     </resultMap>
-
     <select id="selectEmployeeCount" resultType="Integer">
         SELECT COUNT(*)
         FROM MEMBER
         WHERE STATUS = 1
+        AND BUSINESS_NO = #{businessNo}
     </select>
 
     <select id="selectEmployeeList" resultMap="memberResult">
@@ -52,19 +52,32 @@
         M.CREATE_DATE,
         M.IMAGE_CHANGE,
         M.IMAGE_ORIGIN,
-        M.BIRTHDAY AS BIRTHDAY,
-        M.STATUS AS STATUS
+        M.BIRTHDAY,
+        M.STATUS,
+        M.PAYDAY
         FROM MEMBER M
         LEFT JOIN BUSINESS ON M.BUSINESS_NO = BUSINESS.BUSINESS_NO
         LEFT JOIN POSITION ON M.POSITION_NO = POSITION.POSITION_NO
         LEFT JOIN MEMBER E ON M.USER_NO = E.USER_NO
-        WHERE M.STATUS = 1
+        WHERE (#{search} IS NULL
+        OR M.USER_NAME = #{search})
+        AND M.BUSINESS_NO = #{businessNo}
+        AND M.STATUS = 1
     </select>
 
     <select id="findByUserNo" resultMap="memberResult">
-        SELECT *
+        SELECT USER_NAME,
+        USER_NO,
+        POSITION_NAME,
+        BUSINESS_NAME,
+        SALARY,
+        MEMBER.PAYDAY,
+        BONUS
         FROM MEMBER
+        LEFT JOIN POSITION USING(POSITION_NO)
+        LEFT JOIN BUSINESS USING(BUSINESS_NO)
         WHERE USER_NO = #{userNo}
+        AND MEMBER.STATUS = 1
     </select>
 
     <select id="findByBusinessNo" resultMap="memberResult">
@@ -76,10 +89,6 @@
         AND POSITION_NAME = 'B_점장'
         AND BUSINESS.STATUS = 1
     </select>
-
-<!--    <select id="getAllEmployees" resultMap="employeeResult">
-        SELECT * FROM MEMBER;
-    </select>-->
 
     <select id="findEmployeesByName" resultMap="memberResult">
         SELECT
@@ -105,6 +114,12 @@
         ) h ON m.BUSINESS_NO = h.BUSINESS_NO
         WHERE m.USER_NAME = #{userName}
         AND STATUS = 1
+    </select>
+
+    <select id="selectCompanyMoney" resultType="Integer">
+        SELECT MONEY
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
     </select>
 
     <select id="selectMonthlySellMoney" resultType="Integer">
@@ -158,4 +173,33 @@
         SET REMITTED_DATE = SYSDATE
         WHERE BUSINESS_NO = #{businessNo}
     </update>
+
+    <select id="selectMemberUpdate" resultType="java.sql.Timestamp">
+        SELECT PAYDAY
+        FROM MEMBER
+        WHERE USER_NO = #{userNo}
+    </select>
+
+    <select id="selectCompanyUpdate" resultType="java.sql.Timestamp">
+        SELECT UPDATE_AT
+        FROM BUSINESS
+        WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
+    <update id="updateEmployeeSalary">
+        UPDATE MEMBER
+        SET PAYDAY = SYSTIMESTAMP
+        WHERE USER_NO = #{userNo}
+        AND PAYDAY = #{updateAt}
+    </update>
+
+    <update id="updateCompanyMoney">
+        UPDATE BUSINESS
+        SET MONEY = MONEY - #{deduction}
+        ,UPDATE_AT = SYSTIMESTAMP
+        WHERE BUSINESS_NO = #{businessNo}
+        AND UPDATE_AT = #{updateAt}
+        AND MONEY >= #{deduction}
+    </update>
+
 </mapper>

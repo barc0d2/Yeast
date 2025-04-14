@@ -14,10 +14,12 @@
 <body>
 <div id="sidebar">
     <div id="sidebar-background"></div>
+    <a href="/company/dashboard">
     <div id="logo">
         <div id="logo-main" alt="Main Logo"></div>
         <div id="logo-sub"></div>
     </div>
+    </a>
     <div id="menu-container">
         <a href="/company/dashboard">
             <div class="menu-item">
@@ -126,10 +128,10 @@
             <a href="/company/finance/wholesaleChart">
                 <div class="submenu-item">도매 매출</div>
             </a>
-            <a href="/company/specification/list">
+            <a href="/company/specification/salaryList">
                 <div class="submenu-item">임금 명세서</div>
             </a>
-            <a href="/company/specification/detail">
+            <a href="/company/specification/monthlyFee">
                 <div class="submenu-item">월 수수료</div>
             </a>
         </div>
@@ -209,28 +211,9 @@
             </div>
         </div>
         <div class="submenu">
-            <div class="submenu-item">회사소개</div>
-            <div class="submenu-item">전체 사원조회</div>
+            <a href="/company/introduce"><div class="submenu-item">회사소개</div></a>
+            <a href="/company/introduction/allEmployeeList"><div class="submenu-item">전체 사원조회</div></a>
         </div>
-        <div class="menu-item">
-            <div class="menu-icon">
-                <svg width="35" height="36" viewBox="0 0 35 36" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M22.5 6.93744H7.5C6.1193 6.93744 5 8.05674 5 9.43744V31.9374C5 33.3182 6.1193 34.4374 7.5 34.4374H22.5C23.8807 34.4374 25 33.3182 25 31.9374V9.43744C25 8.05674 23.8807 6.93744 22.5 6.93744Z"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 13.1874H20" stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 19.4374H20" stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10 25.6874H15" stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path
-                            d="M11.25 1.93744H27.5C28.163 1.93744 28.799 2.20083 29.2677 2.66967C29.7365 3.13851 30 3.77439 30 4.43744V28.1874"
-                            stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-
-            </div>
-            <div class="menu-text">규약서</div>
-        </div>
-
     </div>
 
 </div>

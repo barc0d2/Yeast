@@ -75,16 +75,19 @@
         SELECT B.BUSINESS_NO
         FROM BUSINESS B
         WHERE B.BUSINESS_NAME = #{businessName}
+        AND ROWNUM = 1
         ),
         M.POSITION_NO = (
         SELECT P.POSITION_NO
         FROM POSITION P
         WHERE P.POSITION_NAME = #{positionName}
+        AND ROWNUM = 1
         ),
         M.MANAGER_NO = (
         SELECT M2.USER_NO
         FROM MEMBER M2
         WHERE M2.USER_NAME = #{managerName}
+        AND ROWNUM = 1
         ),
         M.USER_NAME = #{userName},
         M.EMAIL = #{email},
@@ -95,4 +98,27 @@
         M.BIRTHDAY = #{birthday}
         WHERE M.USER_NO = #{userNo}
     </update>
+
+
+    <select id="selectAllMemberCount" resultType="int">
+        SELECT COUNT(*)
+        FROM MEMBER
+        WHERE STATUS = '1'
+    </select>
+    <select id="selectAllMemberList" resultMap="memberResult">
+        SELECT
+        m1.USER_NO,
+        p.POSITION_NAME,
+        m1.USER_NAME,
+        m1.USER_ID,
+        m1.EMAIL,
+        m1.PHONE,
+        m1.GENDER,
+        m1.CREATE_DATE
+        FROM MEMBER m1
+        LEFT JOIN POSITION p ON m1.POSITION_NO = p.POSITION_NO
+        WHERE m1.STATUS='1'
+        ORDER BY m1.USER_NO
+    </select>
+
 </mapper>

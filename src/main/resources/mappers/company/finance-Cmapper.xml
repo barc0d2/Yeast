@@ -18,6 +18,22 @@
         <result column="BUSINESS_NO" property="businessNo"/>
         <result column="BUSINESS_NAME" property="businessName"/>
     </resultMap>
+    <resultMap id="supplyResult" type="Supply">
+        <result column="SUPPLY_NO" property="supplyNo"/>
+        <result column="BUSINESS_NAME" property="branchName"/>
+        <result column="BRANCH_NO" property="branchNo"/>
+        <result column="BREAD_NO" property="breadNo"/>
+        <result column="BREAD_NAME" property="breadName"/>
+        <result column="QUANTITY" property="quantity"/>
+        <result column="ORDER_DATE" property="orderDate"/>
+        <result column="PRICE" property="price"/>
+    </resultMap>
+
+    <select id="selectBranchCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM BUSINESS
+        WHERE BUSINESS_NO>1
+    </select>
 
     <select id="selectRecentlySellList" resultMap="sellResult">
         SELECT S.SELL_NO,
@@ -35,6 +51,7 @@
             GROUP BY BUSINESS_NO
         ) LAST ON S.BUSINESS_NO = LAST.BUSINESS_NO AND S.SELL_NO = LAST.LAST_SELL
         JOIN BUSINESS B ON S.BUSINESS_NO=B.BUSINESS_NO
+        ORDER BY S.SELL_NO DESC
     </select>
 
     <select id="selectSellCount" resultType="Integer">
@@ -48,7 +65,6 @@
                 WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
                 ELSE CREATE_DATE
             END
-        ORDER BY SELL_NO DESC
     </select>
 
     <select id="selectSellList" resultMap="sellResult">
@@ -79,45 +95,53 @@
         FROM BUSINESS
     </select>
 
-    <select id="allSellCount" resultType="Integer">
+    <select id="selectRecentlyWholesaleList" resultMap="supplyResult">
+        SELECT SUPPLY_NO,
+                BRANCH_NO,
+                BREAD_NAME,
+                PRICE,
+                ORDER_DATE,
+                QUANTITY
+        FROM SUPPLY S
+        RIGHT JOIN SUPPLY_DETAIL USING (SUPPLY_NO)
+        LEFT JOIN BREAD USING (BREAD_NO)
+        WHERE BRANCH_NO = #{businessNo}
+        AND S.STATUS = 'Y'
+        AND ORDER_DATE = TRUNC(SYSDATE)
+    </select>
+
+    <select id="selectWholesaleCount" resultType="Integer">
         SELECT COUNT(*)
-        FROM SELL
-        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
-        AND CREATE_DATE >=
+        FROM SUPPLY
+        RIGHT JOIN SUPPLY_DETAIL USING (SUPPLY_NO)
+        WHERE #{businessNo} IS NULL OR BRANCH_NO = #{businessNo}
+        AND ORDER_DATE >=
             CASE
                 WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
                 WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
                 WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
-                ELSE CREATE_DATE
-            END
-        ORDER BY SELL_NO DESC
+            ELSE ORDER_DATE
+        END
     </select>
 
-    <select id="allSellList" resultMap="sellResult">
-        SELECT SELL_NO,
-                SELL_MONEY,
-                BREAD_LIST,
-                QUANTITY_LIST,
-                TOTAL_LIST,
-                CREATE_DATE,
-                BUSINESS_NO,
-                BUSINESS_NAME
-        FROM SELL
-        JOIN BUSINESS USING (BUSINESS_NO)
-        WHERE #{businessNo} IS NULL OR BUSINESS_NO = #{businessNo}
-        AND CREATE_DATE >=
+    <select id="selectWholesaleList" resultMap="supplyResult">
+        SELECT SUPPLY_NO,
+                BRANCH_NO,
+                BREAD_NAME,
+                PRICE,
+                ORDER_DATE,
+                QUANTITY
+        FROM SUPPLY S
+        RIGHT JOIN SUPPLY_DETAIL USING (SUPPLY_NO)
+        LEFT JOIN BREAD USING (BREAD_NO)
+        WHERE #{businessNo} IS NULL OR BRANCH_NO = #{businessNo}
+        AND S.STATUS = 'Y'
+        AND ORDER_DATE >=
             CASE
-                WHEN #{period} = 'week' THEN SYSDATE - INTERVAL '7' DAY
-                WHEN #{period} = 'month' THEN ADD_MONTHS(SYSDATE, -1)
-                WHEN #{period} = 'year' THEN ADD_MONTHS(SYSDATE, -12)
-                ELSE CREATE_DATE
+                WHEN #{period} = 'week' THEN TRUNC(SYSDATE) - INTERVAL '7' DAY
+                WHEN #{period} = 'month' THEN ADD_MONTHS(TRUNC(SYSDATE), -1)
+                WHEN #{period} = 'year' THEN ADD_MONTHS(TRUNC(SYSDATE), -12)
+                ELSE ORDER_DATE
             END
-        ORDER BY SELL_NO DESC
-    </select>
-
-    <select id="allBusinessList" resultMap="businessResult">
-        SELECT BUSINESS_NO,
-                BUSINESS_NAME
-        FROM BUSINESS
     </select>
 </mapper>

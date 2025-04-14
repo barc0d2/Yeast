@@ -17,4 +17,6 @@ public interface DispatchCService {
     Supply selectSupplyInfo(int supplyNo);
 
     int approval(int supplyNo);
+
+    int updateInventory(int branchNo, int breadNo, int quantity);
 }

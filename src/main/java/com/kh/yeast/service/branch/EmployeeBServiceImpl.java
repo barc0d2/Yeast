@@ -21,7 +21,6 @@ public class EmployeeBServiceImpl implements EmployeeBService {
     @Override
     public int selectMemberCount(long businessNo) {
         int memberCount = employeeBMapper.selectMemberCount(businessNo);
-        System.out.println(memberCount);
         return memberCount;
     }
 
@@ -51,4 +50,29 @@ public class EmployeeBServiceImpl implements EmployeeBService {
     public int update(Member member) {
         return employeeBMapper.update(member);
     }
+
+    @Override
+    public int selectAllMemberCount() {
+        int memberCount = employeeBMapper.selectAllMemberCount();
+        return memberCount;
+    }
+
+    @Override
+    public ArrayList<Member> selectAllMemberList(PageInfo pi) {
+        int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+        RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+        ArrayList<Member> memberList = employeeBMapper.selectAllMemberList(rowBounds);
+        memberList.forEach(member -> {
+            Timestamp createDate = member.getCreateDate();
+            if (createDate != null) {
+                Date sqlDate = new Date(createDate.getTime());
+                member.setEnrollDate(sqlDate);
+            } else {
+                member.setEnrollDate(null);
+            }
+        });
+        return memberList;
+    }
+
+
 }

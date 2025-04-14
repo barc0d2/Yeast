@@ -23,13 +23,12 @@ public class FinanceBController {
 
     @GetMapping("/list")
     public String dailyRevenueForm(HttpSession session, Model model) throws Exception {
-        Member member = (Member)session.getAttribute("member");
-//        String businessName =  member.getBusinessName();
-        String businessName = "서울 홍대점";
-        ArrayList<BreadInventory> breadInventoryList = financeBService.dailyBreadList(businessName);
+        Member member = (Member)session.getAttribute("loginUser");
+        Long businessNo =  member.getBusinessNo();
+        ArrayList<BreadInventory> breadInventoryList = financeBService.dailyBreadList(businessNo);
         model.addAttribute("list", breadInventoryList);
-        model.addAttribute("currentName", "판매기록조회");
-        model.addAttribute("smallCurrentName","판매내역");
+        model.addAttribute("currentName", "매장관리");
+        model.addAttribute("smallCurrentName","하루 매출");
         return "branch/finance/storechart";
     }
 }

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public interface OrderBService {
 
-   int selectOrderCount();
+   int selectOrderCount(long businessNo);
 
    ArrayList<Supply> selectValue();
 
-   ArrayList<Supply> selectOrderList(PageInfo pi);
+   ArrayList<Supply> selectOrderList(long businessNo, PageInfo pi);
 
     int insert(String branchName, Date orderDate);
 
@@ -21,4 +21,16 @@ public interface OrderBService {
     int insertList(String categoryName, String breadName, String quantityList, String priceList);
 
     int night();
+
+    ArrayList<Supply> selectUpdate(int supplyNo);
+
+    Supply selectUpdateInfo(int supplyNo);
+
+    int deleteList(long supplyNo);
+
+    int businessMoney(long businessNo);
+
+    int updateBusinessMoney(long businessNo, int totalSumPrice);
+
+    int updateMoney(long businessNo, long totalPrice);
 }

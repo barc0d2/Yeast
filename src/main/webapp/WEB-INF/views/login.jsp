@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -17,6 +18,12 @@
 </head>
 
 <body>
+<c:if test="${not empty sessionScope.alertMsg}">
+    <script>
+        alert("${sessionScope.alertMsg}");
+    </script>
+    <c:remove var="alertMsg" scope="session" />
+</c:if>
 <div id="frame">
     <img class="Background" src="images/login/background.jpg" />
     <form id="Main" action="member/login" method="post">
@@ -55,7 +62,7 @@
             <img class="Text" src="images/login/logoText.png" />
         </div>
         <div id="Checkbox">
-            <button type="submit" class="findIdPwd">
+            <button type="submit" style="cursor: pointer;" class="findIdPwd">
                 로그인
             </button>
             <a href="/member/agreement"><div class="Join">

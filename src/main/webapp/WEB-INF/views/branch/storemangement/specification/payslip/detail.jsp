@@ -239,28 +239,6 @@
 <jsp:include page="../../../sideBar/whiteSideBar.jsp"/>
 <jsp:include page="../../../sideBar/whiteTopBar.jsp"/>
 
-<!-- ✅ 모달은 여기 유지 -->
-<div id="payslipModal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-        <span id="closeModal" class="modal-close" onclick="document.getElementById('payslipModal').style.display='none'">&times;</span>
-        <div id="modal-body">
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const cancelBtn = document.querySelector(".cancel");
-
-                    if (cancelBtn) {
-                        cancelBtn.addEventListener("click", function () {
-                            document.getElementById("payslipModal").style.display = "none";
-
-                            window.location.href = "/branch/storemangement/specification/payslip/paySlip";
-                        });
-                    }
-                });
-            </script>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

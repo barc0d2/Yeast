@@ -115,12 +115,12 @@ public class BreadCController {
             return "redirect:/company/bread/detail?breadNo=" + bread.getBreadNo();
         } else {
             model.addAttribute("errorMsg", "게시글 수정 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 
     @PostMapping("/delete")
-    public String deleteBread(@ModelAttribute Bread bread, HttpSession session, Model model) throws Exception  {
+    public String deleteBread(@ModelAttribute Bread bread, HttpSession session, Model model) throws Exception {
         String imageChange = bread.getImageChange();
         Long breadNo = bread.getBreadNo();
         if(imageChange != null && !imageChange.equals("")){
@@ -134,7 +134,7 @@ public class BreadCController {
             return "redirect:/company/bread/list";
         } else {
             model.addAttribute("errorMsg", "게시글 삭제 실패");
-            return "common/errorPage";
+            return "errorPage";
         }
     }
 }
