@@ -31,7 +31,7 @@
   border: 1px solid;
   border-color: #cecece;
   background-color: #ffffff;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .frame .text-wrapper {

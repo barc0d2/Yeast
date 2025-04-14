@@ -21,6 +21,9 @@ public class FinanceCController {
     @GetMapping("/chart")
     public String selectStoreList(Model model, @RequestParam(defaultValue = "1")Integer cpage)  {
         financeCService.selectRecentlySellList(model, cpage);
+        if(model.containsAttribute("errorMsg")){
+            return "errorPage";
+        }
         return "company/finance/storegraph";
     }
 

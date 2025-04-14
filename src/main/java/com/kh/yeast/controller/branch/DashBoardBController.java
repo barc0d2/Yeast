@@ -1,5 +1,6 @@
 package com.kh.yeast.controller.branch;
 
+import com.kh.yeast.domain.vo.Bread;
 import com.kh.yeast.domain.vo.Member;
 import com.kh.yeast.domain.vo.Sell;
 import com.kh.yeast.service.branch.DashBoardBService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +40,20 @@ public class DashBoardBController {
         ArrayList<Sell> todaySales = dashBoardBService.getTodaySalesByBusiness(loginUser.getBusinessNo());
         List<Map<String, Object>> categorySales = dashBoardBService.getCategorySalesByBusiness(loginUser.getBusinessNo());
 
+        ArrayList<Bread> breadList = dashBoardBService.getAllBread();
+
+
+        Map<String, Integer> breadPriceMap = new HashMap<>();
+        if (breadList != null && !breadList.isEmpty()) {
+            for (Bread bread : breadList) {
+                breadPriceMap.put(bread.getBreadName(), bread.getPrice());
+            }
+        }
+
         model.addAttribute("memberList", memberList);
         model.addAttribute("todaySales", todaySales);
         model.addAttribute("categorySales", categorySales);
+        model.addAttribute("breadPriceMap", breadPriceMap);
         model.addAttribute("currentName", "대시보드");
         model.addAttribute("smallCurrentName", "대시보드");
         return "branch/dashboard/dashboard";

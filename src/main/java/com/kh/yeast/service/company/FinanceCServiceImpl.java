@@ -29,7 +29,7 @@ public class FinanceCServiceImpl implements FinanceCService {
 
         ArrayList<Sell> list = financeCMapper.selectRecentlySellList(rowBounds);
         if(list.isEmpty()){
-            throw new NullPointerException();
+            model.addAttribute("errorMsg", "해당 페이지를 못 불러왔습니다.");
         }
         model.addAttribute("pi", pi);
         model.addAttribute("list", list);
