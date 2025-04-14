@@ -120,6 +120,7 @@
   width: 100%;
   position: relative;
   height: 287px;
+  object-fit: cover;
 }
 
 .main .image-in {
