@@ -33,8 +33,8 @@ Spring Boot 기반으로 설계된 이 프로젝트는 팀원 간의 **협업, �
 **Communication**  
 <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/Figma-181717?style=flat-square&logo=Figma&logoColor=white">
-<img src="https://img.shields.io/badge/Discord-181717?style=flat-square&logo=Discord&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white">
+<img src="https://img.shields.io/badge/Discord-7289DA?style=flat-square&logo=Discord&logoColor=white">
 
 
 
