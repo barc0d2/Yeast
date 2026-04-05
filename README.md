@@ -54,26 +54,26 @@ Spring Boot 기반으로 설계된 이 프로젝트는 팀원 간의 **협업, �
 
 ## - 로그인화면, 회원 가입 약관
 
-<img src="./screen/그림1.png" width="400"/>
-<img src="./screen/그림3.png" width="400"/>
+<img src="./screen/그림1.png" width="800"/>
+<img src="./screen/그림3.png" width="800"/>
 
 ## - 사원 목록, 지점 목록
 
-<img src="./screen/그림7.png" width="400"/>
-<img src="./screen/그림9.png" width="400"/>
+<img src="./screen/그림7.png" width="800"/>
+<img src="./screen/그림9.png" width="800"/>
 
 ## - 월급 정산 현황, 지점별 매출 현황
 
-<img src="./screen/그림12.png" width="400"/>
-<img src="./screen/그림10.png" width="400"/>
+<img src="./screen/그림12.png" width="800"/>
+<img src="./screen/그림10.png" width="800"/>
 
 ## - 메뉴판, 임금명세서
 
-<img src="./screen/그림8.png" width="400"/>
-<img src="./screen/그림11.png" width="400"/>
+<img src="./screen/그림8.png" width="800"/>
+<img src="./screen/그림11.png" width="800"/>
 
 ## - 입고 현황
-<img src="./screen/그림13.png" width="400"/>
+<img src="./screen/그림13.png" width="800"/>
 
 ## ⚙️ 설치 및 실행 방법
 
